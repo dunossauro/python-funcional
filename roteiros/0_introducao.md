@@ -7,7 +7,7 @@
 
     - O foco de usar programação imperativa está no ato de mudar variáveis, a computação de dá pela modificação das variáveis iniciais, até o que resultado seja computado, com a modificação da variável, até que a saída seja a pretendida (Baseado em estados (armazenamento))
 
-    - Na programação funcional, se tem a noção de que o estado deve ser substituído, no caso da avaliação, para criação de um novo 'objeto'
+    - Na programação funcional, se tem a noção de que o estado deve ser substituído, no caso da avaliação, para criação de um novo 'objeto' que no caso são funções
 
     - Exemplos:
 
@@ -24,9 +24,9 @@ print(lista) # ['P', 'y', 't', 'h', 'o', 'n']
 
 ```Python
 # Gerar uma lista da string # Funcional
-string = (lambda x: x)('Python')
+string = lambda x: x
 
-lista = list(map(str, string) # atribuição ao um novo objeto
+lista = list(map(str, string('Python'))) # atribuição ao um novo objeto
 
 print(lista) # ['P', 'y', 't', 'h', 'o', 'n']
 ```
@@ -36,13 +36,16 @@ print(lista) # ['P', 'y', 't', 'h', 'o', 'n']
 ## Técnicas usadas por linguagens funcionais
 
 - Funções como objetos de primeira classe
+- Funções de ordem superior
+- Funções puras
 - Recursão, como oposição aos loops
 - Foco em processamento de iteráveis
 - Evitam efeitos colaterais
 - O que deve ser computado, não como computar
-- Funções de ordem superior
-- Funções puras
+- Lazy evaluation
 
 ## Python é uma linguagem funcional?
 
 #### Não. Mas é uma linguagem que implementa muitos paradigmas e porque não usar todos de uma vez?
+
+O objetivo desses videos são escrever código que gere menos efeito colateral, código com menos estados. Só que isso tudo, e feito na medida do possível. Pois Python não é uma linguagem funcional. Porém, podemos contar o máximo possível com as fetures presentes do paradigma em python
