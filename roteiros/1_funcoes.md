@@ -127,7 +127,7 @@ list(zip(lista_0, lista_1)) == [(0, 2), (1, 1), (2, 0)]
 
 como falaremos mais adiante, a função embutida zip itera em duas sequências e nos retorna uma lista de tuplas como os elementos que contém o mesmo index na iteração.
 
-## __call__
+## `__call__`
 
 Por que falar de classes? Lembre-se Python é uma linguagem construída em classes, e todos os objetos que podem ser chamados/invocados, implementam o método `__call__`:
 
