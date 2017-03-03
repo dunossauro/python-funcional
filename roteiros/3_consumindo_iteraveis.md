@@ -113,4 +113,4 @@ Acaba-se de reproduzir o estado de amor Pythonico agora. Você foi funcional, t�
 
 Tá, agora você já sabe o poder que tem nas mãos. Nunca mais declare uma lista vazia para receber appends, combinado?
 
-Agora que você é um intendedor da iterações. Vamos complicar um pouco e falar sobre functors, monads e catamorphismo. Tá, mas sem palavras difíceis, os seus coleguinhas não gostam de nomenclaturas heskelianas. Mas você vai poder esnobar seus conhecimentos teóricos sobre teoria das categorias. Até o próximo vídeo.
+Agora que você é um intendedor da iterações. Vamos complicar um pouco e falar sobre functors, monads e catamorphismo. Tá, mas sem palavras difíceis, os seus coleguinhas não gostam de nomenclaturas haskelianas. Mas você vai poder esnobar seus conhecimentos teóricos sobre teoria das categorias. Até o próximo vídeo.
