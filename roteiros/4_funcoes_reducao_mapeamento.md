@@ -1,4 +1,4 @@
-## consumindo iteráveis (parte 2)
+## Funções de redução/mapeamento
 
 Você já achou que estava super avançado, eu sei, mas porém contudo, entretanto, todavia. Agora que você já sabe como os iteráveis funcionam, nós podemos avançar mais e fazer melhor uso de funções embutidas do python. Como:
 
