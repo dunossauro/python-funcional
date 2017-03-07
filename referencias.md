@@ -14,3 +14,5 @@ Haskell 2010: Language Report - Simon Marlow
 Programação Funcional em OCaml - José Romildo Malaquias, 2015 - Universidade Federal de Ouro Preto (Departamento de Computação)
 
 Structure and Interpretation of Computer Programs - Harold Abelson, Gerald Jay Sussman, Julie Sussman - 1996, The Massachusetts Institute of Technology
+
+https://docs.python.org/

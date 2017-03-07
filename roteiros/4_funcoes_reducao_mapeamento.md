@@ -56,9 +56,9 @@ A [documentação do python](https://docs.python.org/3.6/library/stdtypes.html#t
     - 0.0 (float)
     - 0j (complex)
 - Sequências vazias
-    - [] (lista)
-    - '' (string)
-    - {} (Dicionários/conjuntos)
+    - `[]` (lista)
+    - `''` (string)
+    - `{}` (Dicionários/conjuntos)
 
 Ou seja, qualquer coisa que não seja uma sequência vazia, None/False e zero é True. Olha só, você acabou de aprender um truque grátis e nem doeu:
 

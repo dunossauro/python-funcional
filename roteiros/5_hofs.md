@@ -1,15 +1,15 @@
 ## Funções de ordem superior
 
-Você deve acha que esquecemos muitas funções embutidas no video passado, não? funções como
+Você deve acha que esquecemos muitas funções embutidas no vídeo passado, não? funções como
 
 - map()
 - max()
 - min()
-- filter()
 - iter()
 - sorted()
+- filter()
 
-Porém, essas funções tem características especiais. Como assim? Elas podem receber além do iterável, uma outra função como argumento. Vamos lá. Você já foi entroduzido ao map no vídeo passado
+Porém, essas funções têm características especiais. Como assim? Elas podem receber além do iterável, uma outra função como argumento. Vamos lá. Você já foi introduzido ao map no vídeo passado
 
 ### map()
 
@@ -121,9 +121,90 @@ Viu, esse argumento `key` pode ser uma mão na roda em muitos dias tristes em qu
 ```Python
 lista = [[7,2], [5,3], [5,4], [5,5], [5,6]]
 
-max(lista, key=sum) # [5,6]
+max(lista, key=sum) # [5, 6]
 ```
 
 Como você já sabe compor funções, e vamos imaginar que nossa sequência de entrada poderia ser maior que dois elementos, uma maneira bonita de fazer isso seria usar o `sum()`. Fica muito mais elegante.
 
+
 ### min()
+
+Agora que já entendemos o conceito das HOFs, tudo fica mais simples. A função `min()` é a função equivalente a `max()`. Quando a max pega o maior item da sequência, mim pega o menor.
+
+```Python
+lista = [[7,2], [5,3], [5,4], [5,5], [5,6]]
+
+min(lista, key=sum) # [5, 3]
+```
+
+Não temos muito mais o que falar sobre min, é só um complemento
+
+### iter()
+
+
+A função embutida `iter()` tem duas formas, a primeira devolve o iterável de uma sequência.
+
+
+```Python
+lista = [1, 2, 3, 4, 5]
+
+iter(lista) # <list_iterator at xpto>
+```
+
+Ele faz a chamada do método `__iter__()` do objeto. Até então nenhuma novidade. Vamos supor que isso seja um facilitador para transformar nossos objetos em sequências imutáveis e preguiçosas.
+
+Porém, a segunda forma é bem interessante.
+
+
+```Python
+"""
+Exemplo roubado do Steven Lott
+"""
+lista = [1, 2, 3, 4, 5]
+
+list(iter(lista.pop, 3)) #[5, 4]
+```
+
+Vamos por partes que agora vem muita informação pra pouca linha de código.
+
+vamos dar um `help()` em iter:
+
+```python
+help(iter)
+
+iter(...)
+    iter(iterable) -> iterator
+    iter(callable, sentinel) -> iterator
+
+    Get an iterator from an object.  In the first form, the argument must
+    supply its own iterator, or be a sequence.
+    In the second form, the callable is called until it returns the sentinel.
+```
+
+Então, quer dizer que o callable é chamado até que o retorno seja o sentinela. Como passamos como callable `pop` e se pop for chamado sem argumentos, ele retorna o último elemento da lista e retira ele da mesma. Nesse caso o sentinela é 3. Então ele vai desmontando a lista e gerando um novo iterável de tudo que foi removido da lista anterior.
+
+Ou seja, vamos fazer um mapinha básico:
+
+(1) lista = [1, 2, 3, 4, 5]
+(2) saida = []
+(3) saida.append(lista.pop())
+(4) print(saida) # [5]
+
+Agora que o pop_append ficou claro. Deu pra entender o que faz a segunda forma da função `iter()`? Sim, deu.
+
+
+Então vamos explorar um exemplo mais eficiente, o da documentação:
+
+```Python
+with open('mydata.txt') as fp:
+    for line in iter(fp.readline, ''):
+        print(line) # só essa linha foi modificada
+```
+
+o método readline, quando passado sem parâmetros efetua a leitura de um único caracter. Nesse caso ele printaria uma letra do arquivo por linha. Mas, como usamos `iter(fp.readline, '')` ele vai nos retornar uma sequência de strings até que o sentinela no caso é vazio apareça.
+
+
+### sorted()
+
+
+### filter()
