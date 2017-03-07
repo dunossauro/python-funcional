@@ -185,10 +185,15 @@ Então, quer dizer que o callable é chamado até que o retorno seja o sentinela
 
 Ou seja, vamos fazer um mapinha básico:
 
+```
 (1) lista = [1, 2, 3, 4, 5]
+
 (2) saida = []
+
 (3) saida.append(lista.pop())
+
 (4) print(saida) # [5]
+```
 
 Agora que o pop_append ficou claro. Deu pra entender o que faz a segunda forma da função `iter()`? Sim, deu.
 
