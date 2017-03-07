@@ -67,7 +67,7 @@ Pode parecer trivial, mas muitas vezes por comodidade deixamos o meio influencia
 
 ## Funções de ordem superior (HOFs)
 
-Funções de ordem superior são funções que recebem funções como argumento(os) e/ou retornam funções como resposta. Existem muitas funções embutidas em python de ordem superior como: `map, filter, zip` e praticamente todo o módulo functools `import functools`. Porém, nada impede de criarmos novas funções de ordem superior. Um ponto a ser lembrado é que map e filter não tem mais a devida importância em python com a entrada das comprehensions, o que nos faz escolher única e exclusivamente por gosto, apesar de comprehensions serem mais legíveis. Mas não se preocupe, teremos um vídeo só para esses comparações.
+Funções de ordem superior são funções que recebem funções como argumento(os) e/ou retornam funções como resposta. Existem muitas funções embutidas em python de ordem superior como: `map, filter, zip` e praticamente todo o módulo functools `import functools`. Porém, nada impede de criarmos novas funções de ordem superior. Um ponto a ser lembrado é que map e filter não tem mais a devida importância em python com a entrada das comprehensions, o que nos faz escolher única e exclusivamente por gosto, apesar de comprehensions serem mais legíveis. Mas não se preocupe, teremos um vídeo só para essas comparações.
 
 Vamos lá:
 
@@ -174,4 +174,4 @@ next(gerador) # 5
 next(gerador) # StopIteration
 ```
 
-Passando bem por alto, uma função geradora nos retorna um iterável que é preguiçoso. Ou seja, ele só vai efetuar a computação quando for chamado. Mas no vídeo seguinte vamos discutir só, e mesmo que superficialmente, sobre iteradores 
+Passando bem por alto, uma função geradora nos retorna um iterável que é preguiçoso. Ou seja, ele só vai efetuar a computação quando for chamado. Mas no vídeo seguinte vamos discutir só, e mesmo que superficialmente, sobre iteradores
