@@ -208,8 +208,117 @@ with open('mydata.txt') as fp:
 
 o método readline, quando passado sem parâmetros efetua a leitura de um único caracter. Nesse caso ele printaria uma letra do arquivo por linha. Mas, como usamos `iter(fp.readline, '')` ele vai nos retornar uma sequência de strings até que o sentinela no caso é vazio apareça.
 
+Ou seja, é passado um objeto com um método no lugar de uma função. O método tem suas particularidades como não precisar de argumentos e agir no objeto em si. Isso parece óbvio, porém, quando construímos nossas próprias classes, o retorno pode não ser o esperado, como nas sequências embutidas do python
+
 
 ### sorted()
 
+Para os viciados em listas, como eu, o método sort da lista funciona bem, apesar de ordenar a lista e não trazer uma nova lista, o que as vezes é uma dor de cabeça.
+
+```Python
+lista = [1, 2, 3, 3, 2, 1]
+
+lista.sort()
+
+print(lista) # [1, 1, 2, 2, 3, 3]
+```
+
+Para agradar a todos, temos a função embutida `sorted()` assim como as outras HOFs temos o parâmetro opcional `key` e podemos decidir como a ordenação será feita.
+
+Vamos pensar em uma tupla de tuplas, uma saída de um banco, por exemplo:
+
+```python
+autores = (('Fernando Pessoa', 17, 'Portugal'),
+           ('Carlos Drummond Andrade', 14, 'Brasil'),
+           ('Nenê Altro', 4, 'Brasil'))
+```
+
+Agora vamos ordenar:
+
+```python
+sorted(autores)
+
+#[('Carlos Drummond Andrade', 14, 'Brasil'),
+# ('Fernando Pessoa', 17, 'Portugal'),
+# ('Nenê Altro', 4, 'Brasil')]
+```
+
+Até então, tudo certo. Ele ordenou pelo index o da tupla, que nesse caso eram os nomes.
+Vamos tentar usar a magia da `key` agora:
+
+```python
+sorted(autores, key=lambda x: x[1])
+
+#[('Nenê Altro', 4, 'Brasil'),
+# ('Carlos Drummond Andrade', 14, 'Brasil'),
+# ('Fernando Pessoa', 17, 'Portugal')]
+```
+
+Nesse caso, a ordenação foi dada pelo index 1, que foi o que nós determinamos na função lambda, vamos tentar mais um caso:
+
+```python
+sorted(autores, key=lambda x: x[0][-1])
+
+#[('Fernando Pessoa', 17, 'Portugal'),
+# ('Carlos Drummond Andrade', 14, 'Brasil'),
+# ('Nenê Altro', 4, 'Brasil')]
+```
+
+Nesse caso ele fez a ordenação pelo index 0, só que invertido.
+
+Mas não paramos por aí. `sorted()` ainda tem mais um argumento escondido `reverse` que por padrão vem sempre false
+Mas podemos pedir o True dele:
+
+```python
+sorted(autores, key=lambda x: x[0][-1], reverse=True)
+
+#[('Nenê Altro', 4, 'Brasil'),
+# ('Carlos Drummond Andrade', 14, 'Brasil'),
+# ('Fernando Pessoa', 17, 'Portugal')]
+```
+e agora obtivemos o mesmo resultado, só que invertido.
+
+Só pra não dizer que não falei das flores. No lugar desse lambda que não é muito bonito, existe a uma função bem bonita no módulo `operator` chamada `itemgetter()`.
+
+```python
+from operator import itemgetter
+
+sorted(autores, key=itemgetter(1))
+
+#[('Nenê Altro', 4, 'Brasil'),
+# ('Carlos Drummond Andrade', 14, 'Brasil'),
+# ('Fernando Pessoa', 17, 'Portugal')]
+```
+
+Mas, teremos alguns momentos a sós com o módulo operator, calma jovenzinho. Uma hora a gente chega lá.
+
 
 ### filter()
+
+Bom, já estamos chegando ao final e `filter()` não poderia ficar de fora. A única razão pro filter ser a última função a ser comentada por agora é única e simplesmente por fugir das definições passadas até agora.
+
+Filter não é uma função de nem de mapeamento, nem de redução. Filter é uma função de filtragem. Veja bem, só por isso ela ficou por último. Chega de enrolar, vamos ao código:
+
+```Python
+lista = [1, 2, 3, 4, 5]
+
+impares = lambda x: x % 2
+
+filter(impares, lista) # [1, 3, 5]
+```
+
+Nem doeu, né? Vale uma lembrança, aparentemente iria retornar só os pares, porém zero é False, lembra? então o retorno foram os ímpares.
+
+Caso você queira inverter, temos o filterfalse do módulo itertools, que vai ser tema de outro vídeo, mas fica o gostinho:
+
+```Python
+from itertools import filterfalse
+
+lista = [1, 2, 3, 4, 5]
+
+impares = lambda x: x % 2
+
+filterfalse(impares, lista) # [2, 4]
+```
+
+por hoje é só pessoal. No próximo take vamos aprender a criar nossas próprias HOFs
