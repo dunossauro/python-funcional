@@ -1,15 +1,22 @@
-### Programação funcional
+### Programação funcional com python
 
-- Definição do paradigma (Mertz)
-    - usa-se programação funcional quando se programa em Lisp, Haskell, Scala, Erlang, F# etc..
-    - Do mesmo modo que se usa programação imperativa quando se programada C/C++, Pascal, Java, Python etc...
-    - Também quando de se programa Prolog estamos programando usando o paradigma lógico
+Programação funcional não é um bicho de sete cabeças. Dito isso, sente-se no sofá e vamos aproveitar essa introdução. Eu juro, não vai ser tão longa assim.
 
-    - O foco de usar programação imperativa está no ato de mudar variáveis, a computação de dá pela modificação das variáveis iniciais, até o que resultado seja computado, com a modificação da variável, até que a saída seja a pretendida (Baseado em estados (armazenamento))
+Vamos começar fazendo uma tentativa de entender os paradigmas de programação. um exemplo muito legal é do David Mertz (Functional Programming in Python):
 
-    - Na programação funcional, se tem a noção de que o estado deve ser substituído, no caso da avaliação, para criação de um novo 'objeto' que no caso são funções
+- usa-se programação funcional quando se programa em Lisp, Haskell, Scala, Erlang, F# etc..
 
-    - Exemplos:
+- Do mesmo modo que se usa programação imperativa quando se programada C/C++, Pascal, Java, Python etc...
+
+- Também quando de se programa Prolog estamos programando usando o paradigma lógico
+
+Apesar de não ser uma definição muito elegante, talvez seja a melhor a ser dada em muitas ocasiões. Vamos tentar ser um pouco mais objetivos, em relação ao estilo de computação, embora essa discussão não tenha fim
+
+- O foco de usar programação imperativa está no ato de mudar variáveis. A computação se dá pela modificação dos estados das variáveis iniciais. Sendo assim, vamos pensar que tudo é definido no início e vai se modificando até que o resultado esperado seja obtido
+
+- Na programação funcional, se tem a noção de que o estado deve ser substituído, no caso da avaliação, para criação de um novo 'objeto' que no caso são funções
+
+Exemplos em python:
 
 ```Python
 # Gerar uma lista da string #imperativo
@@ -48,4 +55,4 @@ print(lista) # ['P', 'y', 't', 'h', 'o', 'n']
 
 #### Não. Mas é uma linguagem que implementa muitos paradigmas e porque não usar todos de uma vez?
 
-O objetivo desses videos são escrever código que gere menos efeito colateral, código com menos estados. Só que isso tudo, e feito na medida do possível. Pois Python não é uma linguagem funcional. Porém, podemos contar o máximo possível com as fetures presentes do paradigma em python
+O objetivo desse 'conjunto de videos' é escrever código que gere menos efeito colateral e código com menos estados. Só que isso tudo, feito na medida do possível. Pois Python não é uma linguagem funcional. Porém, podemos contar o máximo possível com as fetures presentes do paradigma em python

@@ -99,8 +99,8 @@ def func_mais_2(funcao, valor):
 
     Ou seja, é uma composição de funções:
 
-    Dado que func(valor) é processado por func_func:
-        func_mais_2(func(valor)) == f(g(x))
+    Dado que func(valor) é processado por func_mais_dois:
+        func_mais_2(funcao(valor)) == f(g(x))
     """
         return funcao(valor) + 2
 
@@ -154,7 +154,7 @@ SIIIIIM. Chupa Haskell
 
 Embora faremos um vídeo extremamente focado em funções geradoras, não custa nada dar uma palinha, não?
 
-Funções geradoras, são funções que nos retornam um iterável. Mas ele é lazzy, vamos só para o exemplo de uso, muitos conceitos precisam ser esclarecidos antes de entendermos profundamente o que acontece com elas, mas digo logo. São funções lindas <3
+Funções geradoras, são funções que nos retornam um iterável. Mas ele é lazy, vamos só para o exemplo de uso, muitos conceitos precisam ser esclarecidos antes de entendermos profundamente o que acontece com elas, mas digo logo. São funções lindas <3
 
 Para que uma função seja geradora, em tese, só precisamos trocar o return por yield:
 

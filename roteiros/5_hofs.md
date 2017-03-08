@@ -1,6 +1,6 @@
 ## Funções de ordem superior
 
-Você deve acha que esquecemos muitas funções embutidas no vídeo passado, não? funções como
+Você deve achar que esquecemos muitas funções embutidas no vídeo passado, não? funções como
 
 - map()
 - max()
@@ -25,7 +25,7 @@ def func(x):
 list(map(func, [1,2,3])) # [3, 4, 5]
 ```
 
-A função que chamamos de `func()` é uma função extremamente simples, retorna a entrada somada com 2, simples assim. Um ponto que vale a pena ser tocado é que as funções usadas por map só podem receber um argumento. Por que? A função map vai pegar um elemento da sequência e aplicar a função. Só isso seŕio.
+A função que chamamos de `func()` é uma função extremamente simples, retorna a entrada somada com 2, simples assim. Um ponto que vale a pena ser tocado é que as funções usadas por map só podem receber um argumento. Por que? A função map vai pegar um elemento da sequência e aplicar a função. Só isso sério.
 
 Agora vamos complicar as coisas um pouco mais....
 
@@ -243,7 +243,7 @@ sorted(autores)
 # ('Nenê Altro', 4, 'Brasil')]
 ```
 
-Até então, tudo certo. Ele ordenou pelo index o da tupla, que nesse caso eram os nomes.
+Até então, tudo certo. Ele ordenou pelo index 0 da tupla, que nesse caso eram os nomes.
 Vamos tentar usar a magia da `key` agora:
 
 ```python
