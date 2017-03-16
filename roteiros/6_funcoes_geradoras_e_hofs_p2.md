@@ -26,7 +26,7 @@ def map_clone(func, sequencia):
         yield func(el)
 ```
 
-Olha, eu sei que parecia que já tinhamos falado sobre tudo, mas esse foi o melhor momento para falar sobre as funções geradoras.
+Olha, eu sei que parecia que já tínhamos falado sobre tudo, mas esse foi o melhor momento para falar sobre as funções geradoras.
 
 #### funções geradoras
 
@@ -72,7 +72,7 @@ def f_geradora():
     yield 1
     print('Segundo chegando')
     yield 2
-    print('Terceiro, tá quase acando')
+    print('Terceiro, tá quase acabando')
     yield 3
     print('Quarto e último')
     yield 4
@@ -86,7 +86,7 @@ next(gen)
 # Segundo chegando
 # 2
 next(gen)
-# Terceiro, tá quase acando
+# Terceiro, tá quase acabando
 # 3
 next(gen)
 # Quarto e último
@@ -98,13 +98,13 @@ gen = f_geradora()
 list(gen)
 # aqui vai o primeiro valor
 # Segundo chegando
-# Terceiro, tá quase acando
+# Terceiro, tá quase acabando
 # Quarto e último
 # [1, 2, 3, 4]
 
 ```
 
-Deu pra sacar agora? A função geradora executa tudo que tem que ser executado até o yield e para. Ultimo, eu juro, aí vamos um pouco mais fundo e voltamos as HOFs:
+Deu pra sacar agora? A função geradora executa tudo que tem que ser executado até o yield e para. Último, eu juro, aí vamos um pouco mais fundo e voltamos as HOFs:
 
 ```Python
 def gen_test():
@@ -172,22 +172,93 @@ Vamos supor, que temos uma lista de tuplas:
 # Sim, já vimos algo parecido no vídeo anterior
 
 # Hora, minuto, segundo
-tempo = [(12, 17, 50),
+tempo = [(13, 17, 50),
          (17, 28, 51),
+         (2, 28, 51),
          (23, 27, 26)]
 ```
 
 E vamos trabalhar nessa sequência que é um pouco mais complexa do que as que usamos até agora.
 
-Vamos supor que esse horário que está no padrão que vai de 00:00:00 até 24:59:59. E a resposta que nós esperamos é um horário am/pm que vai de 01:00:00 até 12:59:59. Só que a saída terá que ser uma nova tupla, com quatro elementos `(H, M, S, (am ou pm))`. Para isso, a nossa função de mapeamento terá que ser um pouco mais iteligente
+Vamos supor que esse horário que está no padrão que vai de 00:00:00 até 24:59:59. E a resposta que nós esperamos é um horário am/pm que vai de 01:00:00 até 12:59:59. Só que a saída terá que ser uma nova tupla, com quatro elementos `(H, M, S, (am ou pm))`. Para isso, a nossa função de mapeamento terá que ser um pouco mais inteligente
 
 ```Python
-tempo = [(13, 17, 50),
-         (17, 28, 51),
-         (23, 27, 26)]
+hora = lambda x: (x[0] % 12, 'pm') if x[0] > 12 else (x[0] % 12, 'am')
+formato = lambda x, y: (y[0], x[1], x[2], y[1])
 
 
-hora = lambda x: (x[0] % 12, 'am') if x[0] > 12 else (x[0] % 12, 'pm')
+def func_map(seq, *funcs):
+    for el in seq:
+        yield funcs[1](el, funcs[0](el))
 
-print(list(map(hora, tempo)))
+list(func_map(tempo, hora, formato)) # [(1, 17, 50, 'pm'), (5, 28, 51, 'pm'), (2, 28, 51, 'am'), (11, 27, 26, 'pm')]
 ```
+
+De brinde você acabou de fazer uma função curry, mas não vamos nos atentar agora a esse detalhe, vamos focar no que aconteceu.
+
+A função anônima `hora()` devolve uma simples tupla com `am` ou `pm` usando aritmética modular. Se for menor que doze ele nos retorna uma tupla com `(hora, 'am')`, se for maior nos retorna `(hora, 'pm')`. Simples não?
+
+agora a função `formato()` recebe dois argumentos de sequência e só organiza o posicionamento `(hora, minuto, segundo, am_ou_pm)`.
+
+Sobre a função `func_map()` eu inverti a ordem dos argumentos propositalmente pois o `*` só pode ficar depois dos argumentos fixos. Neste caso o `*` não é muito importante, mas serve pra gente acumular 'n' argumentos e eles se tornam uma lista dentro do escopo da função. Por isso chamamos `funcs[0]` e `funcs[1]`.
+
+Não iteramos pela lista de funções, e sim pela sequência. Iterar por uma sequência de funções aproveitando os resultados é um conceito chamado de `streaming` mas vamos dedicar um vídeo exclusivamente a isso num futuro próximo.
+
+Vamos tentar mais uma?
+
+Jaber diz: `Não ficou muito claro, esse exemplo fugiu das listas básicas to meio perdido`
+
+Vamos um mais simples pra sintetizar:
+
+Essa função vai fazer o clássico algoritmo de map/reduce, sim aquele que conta quantas palavras tem em um texto. Mas nós vamos nos limitar a letras, pois é mais simples de demonstrar.
+
+Vamos entrar com uma string `abacaxi` e a função vai ter que retornar {'a': 3, 'b': 1, 'c': 1, 'x': 1, 'i': 1}.
+
+
+```Python
+def map_reduce(map_func, reduce_func, seq):
+    return reduce_func(map_func(seq))
+
+map_func = lambda x: ((el, 1) for el in x)
+
+
+def reduce_func(seq):
+    dicio = {}
+    for chave, val in seq:
+        if chave not in dicio:
+            dicio[chave] = val
+        else:
+            dicio[chave] += val
+
+    return dicio
+
+map_reduce(map_func, reduce_func, 'abacaxi') # {'a': 3, 'b': 1, 'c': 1, 'x': 1, 'i': 1}
+```
+
+Viu, essa foi simples como roubar doce de criança, tá... ok, roubar doce de criança é bem difícil, mas nossa implementação é bem simples
+
+A função de mapeamento pega elemento por elemento e o transforma em uma tupla com o valor 1 `(elemento, 1)` e a função de redução tem um dicionário que usa o elemento como chave e o valor um vai sendo somado cada vez que ele aparece no dicionário. Então tudo foi mapeado (para transformação em tupla) e foi reduzido em um dicionário. Olha, tudo é muito simples, você já está muito avançado.
+
+Um ponto legal a ser comentado é que se a nossa entrada fosse uma lista, ele faria um agrupamento por palavras
+
+```Python
+map_reduce(map_func, reduce_func, 'abacaxi verde limão verde como coco verde'.split())
+
+# {'abacaxi': 1, 'verde': 3, 'limão': 1, 'como': 1, 'coco': 1}
+```
+
+Olha que mágico, é uma HOF realmente útil... Não, ela não é. Sabe por que?
+
+
+```Python
+from collections import Counter
+
+Counter('abacaxi') # Counter({'a': 3, 'b': 1, 'c': 1, 'i': 1, 'x': 1})
+
+
+Counter('abacaxi verde limão verde como coco verde'.split()) # Counter({'abacaxi': 1, 'como': 1, 'coco': 1, 'limão': 1, 'verde': 3})
+```
+
+Tá, vai... a gente tentou e você aprendeu. SUAHSUAHUSHA
+
+Com isso, vamos voltar um pouco ao iteráveis no próximo vídeo. Um abraço
