@@ -261,4 +261,4 @@ Counter('abacaxi verde limão verde como coco verde'.split()) # Counter({'abacax
 
 Tá, vai... a gente tentou e você aprendeu. SUAHSUAHUSHA
 
-Com isso, vamos voltar um pouco ao iteráveis no próximo vídeo. Um abraço
+Com isso, no próximo vídeo, vamos construir nossa propria lib de HOFs simples e que servem para tudo. Um abraço
