@@ -160,7 +160,7 @@ Agora que você já conhece mais um tipo de função, vamos voltar as nossas HOF
 
 Como já sabemos e já foi dito exaustivamente. Funções são objetos de primeira classe em Python. Já sabemos. Ok.
 
-Então como já entendemos tudo isso, vamos só usar alguns exemplos de funções que recebem funções.
+Então como já entendemos tudo isso, vamos só usar alguns exemplos de funções que recebem funções. OBS: Vamos criar algumas funções meio especialistas agora, isso não é muito bom. Mas serve como base de aprendizado. No proxímo vídeo vamos explorar mais funções simples e que são de grande utilidade em muitos contextos, porém ...
 
 Vamos trabalhar em outra frente então:
 
