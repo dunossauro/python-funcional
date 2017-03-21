@@ -28,7 +28,7 @@ O laço for em python itera em cada elemento da sequência. Como no exemplo, o f
 
 ```C
 for (i = 0; i > 10; i++){
-    sequencia[i]
+    sequencia[i];
 }
 ```
 
