@@ -45,3 +45,58 @@ def head(seq, n=1, key=None):
     [1, 4]
     """
     return seq[:n] if not key else key(seq[:n])
+
+
+def insert():
+    pass
+
+
+def order_insert():
+    pass
+
+
+"""
+Funções que pegamos emprestadas, e adaptamos ao nosso nível de conhecimento,
+ da lib fn.py (https://github.com/kachayev/fn.py/)
+"""
+
+
+def take(n, seq):
+    """
+    Pega n elementos de um sequência.
+
+    Args:
+        - n: Número de elementos retirados da sequência
+        - seq: Sequência da qual os números serão usados
+    """
+    _iter = iter(seq)
+    for el in range(n):
+        yield next(_iter)
+
+
+def drop(n, seq):
+    """
+    Remove n elementos de um sequência.
+
+    Args:
+        - n: Número de elementos retirados da sequência
+        - seq: Sequência da qual os números serão removidos
+    """
+    _iter = iter(seq)
+    for i, el in enumerate(seq):
+        if i < n:
+            next(_iter)
+        else:
+            yield next(_iter)
+
+
+"""
+Funções que pegamos emprestadas, e adaptamos ao nosso nível de conhecimento,
+ da lib [toolz](https://github.com/pytoolz/tool
+"""
+
+
+def pipe(seq, *funcs):
+    for func in funcs:
+        seq = func(seq)
+    return seq
