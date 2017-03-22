@@ -22,7 +22,7 @@ for x in lista:
 
 Era só isso? Sim, nem doeu, fala a verdade.
 
-Em python, o comando `for` nos fornece um iterador implícitos, o que? não entendi.
+Em python, o comando `for` nos fornece um iterador implícito, o que? Não entendi.
 
 O laço for em python itera em cada elemento da sequência. Como no exemplo, o for, ou foreach, no caso vai passando por cada elemento da sequência. Não é necessária a implementação de um index como na linguagem C, onde a iteração é explícita:
 
@@ -34,7 +34,7 @@ for (i = 0; i > 10; i++){
 
 ## `__getitem__`
 
-o padrão de projeto iterator em python já vem implementado por padrão, como já foi dito antes. Basta que um objeto tenha os métodos `__iter__` ou `__getitem__` para que um laço possa ser utilizado.
+O padrão de projeto iterator em python já vem implementado por padrão, como já foi dito antes. Basta que um objeto tenha os métodos `__iter__` ou `__getitem__` para que um laço possa ser utilizado.
 
 Vamos exemplificar:
 
@@ -112,4 +112,4 @@ Seguem dois links maravilhosos explicando sobre iteração em python:
 O primeiro é a PEP sobre as estruturas dos iteráveis e o segundo um video do Guru Luciano Ramalho explicando tudo sobre iteradores.
 
 
-Ah... Ia quase me esquecendo, se você não entendeu muita coisa sobre os dunders, você pode ler o [Python data model](https://docs.python.org/3/reference/datamodel.html#special-method-names). Obs: não me responsabilizo pelo programador melhor que você sairá desta página
+Ah... Ia quase me esquecendo, se você não entendeu muita coisa sobre os dunders, você pode ler o [Python data model](https://docs.python.org/3/reference/datamodel.html#special-method-names). Obs: não me responsabilizo pelo programador melhor que você sairá desta página.

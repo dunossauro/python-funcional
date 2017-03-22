@@ -1,6 +1,6 @@
 # Funções
 
-Esse vídeo vai se limitar a falar da estrutura básica das funções em python, sem entrar profundamente em cada um dos tópicos. Será uma explanação de código e abrir a cabeça para novas oportunidades de código mais pythonico
+Esse vídeo vai se limitar a falar da estrutura básica das funções em python, sem entrar profundamente em cada um dos tópicos. Será uma explanação de código e abrir a cabeça para novas oportunidades de código mais pythonico.
 
 ## Funções como objeto de primeira classe
 
@@ -27,7 +27,7 @@ lista = [func, func_2] # a variável que armazena a função foi inserida em uma
 lista_2 = [lambda x: x, lambda x: x+1] # aqui as funções foram definidas dentro de uma estrutura
 ```
 
-Como nota-se, em python, as funções podem ser inseridas em qualquer contexto e também geradas em tempo de execução
+Como nota-se, em python, as funções podem ser inseridas em qualquer contexto e também geradas em tempo de execução.
 
 ## Funções puras
 
@@ -47,7 +47,7 @@ valor = 7
 assert mais_cinco(5) == 10 # AssertionError
 ```
 
-mais_cinco() é o exemplo claro de uma função que gera efeito colateral. Uma função pura deve funcionar como uma caixa preta, todas as vezes em que o mesmo input for dado nela, ela terá que retornar o mesmo valor. Agora vamos usar o mesmo exemplo, só alterando a linha do return
+mais_cinco() é o exemplo claro de uma função que gera efeito colateral. Uma função pura deve funcionar como uma caixa preta, todas as vezes em que o mesmo input for dado nela, ela terá que retornar o mesmo valor. Agora vamos usar o mesmo exemplo, só alterando a linha do return:
 
 ```python
 
@@ -125,7 +125,7 @@ list(zip(lista_0, lista_1)) == [(0, 2), (1, 1), (2, 0)]
 
 ```
 
-como falaremos mais adiante, a função embutida zip itera em duas sequências e nos retorna uma lista de tuplas como os elementos que contém o mesmo index na iteração.
+Como falaremos mais adiante, a função embutida zip itera em duas sequências e nos retorna uma lista de tuplas como os elementos que contém o mesmo index na iteração.
 
 ## `__call__`
 
@@ -174,4 +174,4 @@ next(gerador) # 5
 next(gerador) # StopIteration
 ```
 
-Passando bem por alto, uma função geradora nos retorna um iterável que é preguiçoso. Ou seja, ele só vai efetuar a computação quando for chamado. Mas no vídeo seguinte vamos discutir só, e mesmo que superficialmente, sobre iteradores
+Passando bem por alto, uma função geradora nos retorna um iterável que é preguiçoso. Ou seja, ele só vai efetuar a computação quando for chamado. Mas no vídeo seguinte vamos discutir só, e mesmo que superficialmente, sobre iteradores.
