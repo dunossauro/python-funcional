@@ -4,13 +4,13 @@ Programação funcional não é um bicho de sete cabeças. Dito isso, sente-se n
 
 Vamos começar fazendo uma tentativa de entender os paradigmas de programação. um exemplo muito legal é do David Mertz (Functional Programming in Python):
 
-- usa-se programação funcional quando se programa em Lisp, Haskell, Scala, Erlang, F# etc..
+- Usa-se programação funcional quando se programa em Lisp, Haskell, Scala, Erlang, F# etc..
 
 - Do mesmo modo que se usa programação imperativa quando se programada C/C++, Pascal, Java, Python etc...
 
 - Também quando de se programa Prolog estamos programando usando o paradigma lógico
 
-Apesar de não ser uma definição muito elegante, talvez seja a melhor a ser dada em muitas ocasiões. Vamos tentar ser um pouco mais objetivos, em relação ao estilo de computação, embora essa discussão não tenha fim
+Apesar de não ser uma definição muito elegante, talvez seja a melhor a ser dada em muitas ocasiões. Vamos tentar ser um pouco mais objetivos, em relação ao estilo de computação, embora essa discussão não tenha fim.
 
 - O foco de usar programação imperativa está no ato de mudar variáveis. A computação se dá pela modificação dos estados das variáveis iniciais. Sendo assim, vamos pensar que tudo é definido no início e vai se modificando até que o resultado esperado seja obtido
 
@@ -55,4 +55,4 @@ print(lista) # ['P', 'y', 't', 'h', 'o', 'n']
 
 #### Não. Mas é uma linguagem que implementa muitos paradigmas e porque não usar todos de uma vez?
 
-O objetivo desse 'conjunto de videos' é escrever código que gere menos efeito colateral e código com menos estados. Só que isso tudo, feito na medida do possível. Pois Python não é uma linguagem funcional. Porém, podemos contar o máximo possível com as fetures presentes do paradigma em python
+O objetivo desse 'conjunto de vídeos' é escrever código que gere menos efeito colateral e código com menos estados. Só que isso tudo, feito na medida do possível. Pois Python não é uma linguagem funcional. Porém, podemos contar o máximo possível com as features presentes do paradigma em python.
