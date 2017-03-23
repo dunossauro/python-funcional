@@ -1,4 +1,4 @@
-## consumindo iteráveis
+## Consumindo iteráveis
 
 Você achou que o vídeo anterior não ia servir de nada, não?
 
@@ -46,7 +46,7 @@ for elemento in lista:
     lista_mais_2.append(elemento + 2)
 ```
 
-Você consegue olhar pra esse código com bons olhos? imagina que esse for está dentro de uma função:
+Você consegue olhar pra esse código com bons olhos? Imagina que esse for está dentro de uma função:
 
 ```Python
 lista = [1, 2, 3, 4, 5]
@@ -62,7 +62,7 @@ def funcao_que_nao_devo_fazer():
 
 Imagine-se executando essa função que não retorna nada e ainda gera efeitos colaterais sem limites. Imagine executar essa função uma vez, ok. Mas seu programinha vai executar ele 5.415 vezes. Você consegue imaginar o tamanho dessa lista? Eu não.
 
-Podemos deixar a função um pouco melhor, vamos tentar
+Podemos deixar a função um pouco melhor, vamos tentar:
 
 ```Python
 def funcao_que_nao_devo_fazer_p2(lista):
@@ -101,7 +101,7 @@ Olha só, muito mais elegante que a list comprehensions, não? Não. Pense o tra
 map(lambda x: x+2, [1, 2, 3, 4, 5]) # <map at xpto>
 ```
 
-Olha, temos uma linha também, porém, eu acho a list comprehensions muito mais bonita. Porém, pra você que achou que falar sobre iteráveis e iteradores era besteira, essa sequência que o map retorna é uma sequência padrão `__iter__`, ou seja, ela só pode ser usada uma vez. UHULLL, economizamos memória, olha até que não foi de todo mal ter escrito esse lambda.
+Olha, temos uma linha também, porém, eu acho a list comprehensions muito mais bonita. Mas, pra você que achou que falar sobre iteráveis e iteradores era besteira, essa sequência que o map retorna é uma sequência padrão `__iter__`, ou seja, ela só pode ser usada uma vez. UHULLL, economizamos memória, olha até que não foi de todo mal ter escrito esse lambda.
 
 Porém, será que o pessoal que faz o Python é tão fraco assim no gatilho? Ninguém pensou em criar uma sequência como a list comprehension que é esgotável? A resposta é sim querido Jaber.
 
@@ -113,4 +113,4 @@ Acaba-se de reproduzir o estado de amor Pythonico agora. Você foi funcional, t�
 
 Tá, agora você já sabe o poder que tem nas mãos. Nunca mais declare uma lista vazia para receber appends, combinado?
 
-Agora que você é um intendedor da iterações. Vamos complicar um pouco e falar sobre functors, monads e catamorphismo. Tá, mas sem palavras difíceis, os seus coleguinhas não gostam de nomenclaturas haskelianas. Mas você vai poder esnobar seus conhecimentos teóricos sobre teoria das categorias. Até o próximo vídeo.
+Agora que você é um intendedor da iterações, vamos complicar um pouco e falar sobre functors, monads e catamorphismo. Tá, mas sem palavras difíceis, os seus coleguinhas não gostam de nomenclaturas haskelianas. Mas você vai poder esnobar seus conhecimentos teóricos sobre teoria das categorias. Até o próximo vídeo.
