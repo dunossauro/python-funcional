@@ -1,6 +1,6 @@
 ## Funções de ordem superior
 
-Você deve achar que esquecemos muitas funções embutidas no vídeo passado, não? funções como
+Você deve achar que esquecemos muitas funções embutidas no vídeo passado, não? Funções como:
 
 - map()
 - max()
@@ -9,7 +9,7 @@ Você deve achar que esquecemos muitas funções embutidas no vídeo passado, n�
 - sorted()
 - filter()
 
-Porém, essas funções têm características especiais. Como assim? Elas podem receber além do iterável, uma outra função como argumento. Vamos lá. Você já foi introduzido ao map no vídeo passado
+Porém, essas funções têm características especiais. Como assim? Elas podem receber além do iterável, uma outra função como argumento. Vamos lá. Você já foi introduzido ao map no vídeo passado.
 
 ### map()
 
@@ -18,19 +18,19 @@ A função `map()`, fazendo um gancho com o vídeo anterior, é uma função de 
 ```Python
 def func(x):
     """
-    exemplo do vídeo passado
+    Exemplo do vídeo passado
     """
     return x +2
 
 list(map(func, [1,2,3])) # [3, 4, 5]
 ```
 
-A função que chamamos de `func()` é uma função extremamente simples, retorna a entrada somada com 2, simples assim. Um ponto que vale a pena ser tocado é que as funções usadas por map só podem receber um argumento. Por que? A função map vai pegar um elemento da sequência e aplicar a função. Só isso sério.
+A função que chamamos de `func()` é uma função extremamente simples, retorna a entrada somada com 2, simples assim. Um ponto que vale a pena ser tocado é que as funções usadas por map só podem receber um argumento. Por que? A função map vai pegar um elemento da sequência e aplicar a função. Só isso, sério.
 
 Agora vamos complicar as coisas um pouco mais....
 
 ```Python
-# Uma lista de listas, isso em python também é um matriz
+# Uma lista de listas, isso em python também é uma matriz
 lista = [[1,2], [2,3], [3,4], [4,5], [5,6]]
 
 def func(x):
@@ -44,10 +44,10 @@ list(map(func, lista))
 
 Você concorda comigo que a entrada não é exatamente um elemento único, mas uma sequência?
 
-Então, como temos uma lista agora, podemos fazer coisas de lista? aplicar outras funções de iteráveis? Vamos lá:
+Então, como temos uma lista agora, podemos fazer coisas de lista? Aplicar outras funções de iteráveis? Vamos lá:
 
 ```Python
-# Uma lista de listas, isso em python também é um matriz
+# Uma lista de listas, isso em python também é uma matriz
 lista = [[1,2], [2,3], [3,4], [4,5], [5,6]]
 
 def func_rev(x):
@@ -70,7 +70,7 @@ composição de funções = f(g(x))
 
 
  ```
-Funções de ordem superior são funções que recebem, como argumento, ou retornam outra funções
+Funções de ordem superior são funções que recebem, como argumento, ou retornam outra funções.
  ```
 
 Viu, foi simples.
@@ -84,10 +84,10 @@ A função max é uma função de redução, e sem a função como parâmetro, e
 max([1, 2, 3, 4, 5]) # 5
 ```
 
-Só que... (e .... lá vem)
+Só que... (e... lá vem)
 
 
-Se ela lista for uma lista de listas, como prosseguir?
+Se essa lista for uma lista de listas, como prosseguir?
 
 
 ```Python
@@ -104,7 +104,7 @@ lista = [[7,2], [5,3], [5,4], [5,5], [5,6]]
 max(lista) # [7, 2]
 ```
 
-`[7, 2]` é um bom resultado, mas vamos pensar que o que eu queria eram as somas dois dois elementos, nesse caso o resultado veio errado. `7 + 2 = 9` quando `5 + 6 = 11`. Vamos tentar outra vez.
+`[7, 2]` é um bom resultado, mas vamos pensar que o que eu queria eram as somas dois dois elementos, nesse caso o resultado veio errado. `7 + 2 = 9` quando `5 + 6 = 11`. Vamos tentar outra vez:
 
 
 ```Python
@@ -124,12 +124,12 @@ lista = [[7,2], [5,3], [5,4], [5,5], [5,6]]
 max(lista, key=sum) # [5, 6]
 ```
 
-Como você já sabe compor funções, e vamos imaginar que nossa sequência de entrada poderia ser maior que dois elementos, uma maneira bonita de fazer isso seria usar o `sum()`. Fica muito mais elegante.
+Como você já sabe compor funções, vamos imaginar que nossa sequência de entrada poderia ser maior que dois elementos, uma maneira bonita de fazer isso seria usar o `sum()`. Fica muito mais elegante.
 
 
 ### min()
 
-Agora que já entendemos o conceito das HOFs, tudo fica mais simples. A função `min()` é a função equivalente a `max()`. Quando a max pega o maior item da sequência, mim pega o menor.
+Agora que já entendemos o conceito das HOFs, tudo fica mais simples. A função `min()` é a função equivalente a `max()`. Quando a max pega o maior item da sequência, min pega o menor.
 
 ```Python
 lista = [[7,2], [5,3], [5,4], [5,5], [5,6]]
@@ -137,7 +137,7 @@ lista = [[7,2], [5,3], [5,4], [5,5], [5,6]]
 min(lista, key=sum) # [5, 3]
 ```
 
-Não temos muito mais o que falar sobre min, é só um complemento
+Não temos muito mais o que falar sobre min, é só um complemento.
 
 ### iter()
 
@@ -206,9 +206,9 @@ with open('mydata.txt') as fp:
         print(line) # só essa linha foi modificada
 ```
 
-o método readline, quando passado sem parâmetros efetua a leitura de um único caracter. Nesse caso ele printaria uma letra do arquivo por linha. Mas, como usamos `iter(fp.readline, '')` ele vai nos retornar uma sequência de strings até que o sentinela no caso é vazio apareça.
+O método readline, quando passado sem parâmetros efetua a leitura de um único caracter. Nesse caso ele printaria uma letra do arquivo por linha. Mas, como usamos `iter(fp.readline, '')` ele vai nos retornar uma sequência de strings até que o sentinela que no caso é vazio apareça.
 
-Ou seja, é passado um objeto com um método no lugar de uma função. O método tem suas particularidades como não precisar de argumentos e agir no objeto em si. Isso parece óbvio, porém, quando construímos nossas próprias classes, o retorno pode não ser o esperado, como nas sequências embutidas do python
+Ou seja, é passado um objeto com um método no lugar de uma função. O método tem suas particularidades como não precisar de argumentos e agir no objeto em si. Isso parece óbvio, porém, quando construímos nossas próprias classes, o retorno pode não ser o esperado, como nas sequências embutidas do python.
 
 
 ### sorted()
@@ -266,7 +266,7 @@ sorted(autores, key=lambda x: x[0][-1])
 
 Nesse caso ele fez a ordenação pelo index 0, só que invertido.
 
-Mas não paramos por aí. `sorted()` ainda tem mais um argumento escondido `reverse` que por padrão vem sempre false
+Mas não paramos por aí. `sorted()` ainda tem mais um argumento escondido `reverse`, que por padrão vem sempre false.
 Mas podemos pedir o True dele:
 
 ```python
@@ -276,9 +276,9 @@ sorted(autores, key=lambda x: x[0][-1], reverse=True)
 # ('Carlos Drummond Andrade', 14, 'Brasil'),
 # ('Fernando Pessoa', 17, 'Portugal')]
 ```
-e agora obtivemos o mesmo resultado, só que invertido.
+E agora obtivemos o mesmo resultado, só que invertido.
 
-Só pra não dizer que não falei das flores. No lugar desse lambda que não é muito bonito, existe a uma função bem bonita no módulo `operator` chamada `itemgetter()`.
+Só pra não dizer que não falei das flores. No lugar desse lambda que não é muito bonito, existe uma função bem bonita no módulo `operator` chamada `itemgetter()`:
 
 ```python
 from operator import itemgetter
@@ -297,7 +297,7 @@ Mas, teremos alguns momentos a sós com o módulo operator, calma jovenzinho. Um
 
 Bom, já estamos chegando ao final e `filter()` não poderia ficar de fora. A única razão pro filter ser a última função a ser comentada por agora é única e simplesmente por fugir das definições passadas até agora.
 
-Filter não é uma função de nem de mapeamento, nem de redução. Filter é uma função de filtragem. Veja bem, só por isso ela ficou por último. Chega de enrolar, vamos ao código:
+Filter não é uma função nem de mapeamento, nem de redução. Filter é uma função de filtragem. Veja bem, só por isso ela ficou por último. Chega de enrolar, vamos ao código:
 
 ```Python
 lista = [1, 2, 3, 4, 5]
@@ -307,7 +307,7 @@ impares = lambda x: x % 2
 filter(impares, lista) # [1, 3, 5]
 ```
 
-Nem doeu, né? Vale uma lembrança, aparentemente iria retornar só os pares, porém zero é False, lembra? então o retorno foram os ímpares.
+Nem doeu, né? Vale uma lembrança, aparentemente iria retornar só os pares, porém zero é False, lembra? Então o retorno foram os ímpares.
 
 Caso você queira inverter, temos o filterfalse do módulo itertools, que vai ser tema de outro vídeo, mas fica o gostinho:
 
@@ -321,4 +321,4 @@ impares = lambda x: x % 2
 filterfalse(impares, lista) # [2, 4]
 ```
 
-por hoje é só pessoal. No próximo take vamos aprender a criar nossas próprias HOFs
+Por hoje é só pessoal. No próximo take vamos aprender a criar nossas próprias HOFs.
