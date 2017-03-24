@@ -1,6 +1,6 @@
 ## Funções de ordem superior p.2
 
-Segundo Steven Lott, podemos criar três tipos de HOFs diferentes
+Segundo Steven Lott, podemos criar três tipos de HOFs diferentes:
 
 1. Funções que aceitam funções como argumento
 2. Funções que retornam uma função ou uma classe com `__call__`
@@ -28,7 +28,7 @@ def map_clone(func, sequencia):
 
 Olha, eu sei que parecia que já tínhamos falado sobre tudo, mas esse foi o melhor momento para falar sobre as funções geradoras.
 
-#### funções geradoras
+### Funções geradoras
 
 Funções geradoras 'trocam' o `return` por `yield`. Você só precisa disso para que sua função seja um gerador e retorne lazy como as funções embutidas do python. Só que existe um ponto, as funções retornam iteráveis, ou seja, teremos que usar os mesmos construtores (`list`, `tuple`, etc..) de objetos que usamos antes:
 
@@ -127,7 +127,7 @@ list(gen_test())
 #['primeiro laço', 'segundo laço']
 ```
 
-A função executa exatamente o que tem ser executado e nos retorna apenas o valor do yield. Esse tipo de implementação é a base pra entender as co-rotinas em python, mas isso é assunto pra outra hora e nem vamos falar sobre isso, pois foge do nosso escopo. Porém, você está avisado, pode pesquisar depois sobre a relação de `contextmanager` e `yield`.
+A função executa exatamente o que tem que ser executado e nos retorna apenas o valor do yield. Esse tipo de implementação é a base pra entender as co-rotinas em python, mas isso é assunto pra outra hora e nem vamos falar sobre isso, pois foge do nosso escopo. Porém, você está avisado, pode pesquisar depois sobre a relação de `contextmanager` e `yield`.
 
 Você está o bixão do mundo python já, então vamos complicar esse `yield` usando mais um amiguinho dele chamado `yield from`. Tá, tava tudo legal, mas você vai aprender o que é uma monad agora. Eu juro.
 
@@ -148,9 +148,9 @@ Seu coração vai chorar agora
 list(gen_flat()) # [1, 2, 3, 4, 5, 6, 7, 8, 9]
 ```
 
-CARACAS, como assim? o que aconteceu aqui? Vamos pensar que um map normal faria o que `gen()` faz. Mas um flatmap faria o que `gen_flat()` faz.
+CARACAS, como assim? O que aconteceu aqui? Vamos pensar que um map normal faria o que `gen()` faz. Mas um flatmap faria o que `gen_flat()` faz.
 
-Quando usamos yield em um laço, ele retorna cada valor contido em uma sequência, de maneira preguiçosa. Só que a sequência contém outra sequência, ele vai retorna a sequência, pois cada uma é um elemento independente da sequência, mesmo sendo uma sequência. o `yield from` vai retornar um iterável preguiçoso dessa nova sequência, a contida na sequência anterior. Ou seja, ele vai nos retornar uma única sequência. Por isso nome 'flat', é como se a sequência de sequências fosse comprimida em uma única sequência. Para entender isso vou deixar como referência um [vídeo do funfunfunctions](https://www.youtube.com/watch?v=9QveBbn7t_c&t=167s) que fala exatamente sobre isso. Vale a pena.
+Quando usamos yield em um laço, ele retorna cada valor contido em uma sequência, de maneira preguiçosa. Só que a sequência contém outra sequência, ele vai retornar a sequência, pois cada uma é um elemento independente da sequência, mesmo sendo uma sequência. O `yield from` vai retornar um iterável preguiçoso dessa nova sequência, a contida na sequência anterior. Ou seja, ele vai nos retornar uma única sequência. Por isso nome 'flat', é como se a sequência de sequências fosse comprimida em uma única sequência. Para entender isso vou deixar como referência um [vídeo do funfunfunctions](https://www.youtube.com/watch?v=9QveBbn7t_c&t=167s) que fala exatamente sobre isso. Vale a pena.
 
 
 Agora que você já conhece mais um tipo de função, vamos voltar as nossas HOFs
@@ -158,7 +158,7 @@ Agora que você já conhece mais um tipo de função, vamos voltar as nossas HOF
 ## Escrevendo nossas próprias HOFs
 
 
-Como já sabemos e já foi dito exaustivamente. Funções são objetos de primeira classe em Python. Já sabemos. Ok.
+Como já sabemos e já foi dito exaustivamente, funções são objetos de primeira classe em Python. Já sabemos. Ok.
 
 Então como já entendemos tudo isso, vamos só usar alguns exemplos de funções que recebem funções. OBS: Vamos criar algumas funções meio especialistas agora, isso não é muito bom. Mas serve como base de aprendizado. No proxímo vídeo vamos explorar mais funções simples e que são de grande utilidade em muitos contextos, porém ...
 
@@ -168,7 +168,7 @@ Vamos trabalhar em outra frente então:
 
 Vamos supor, que temos uma lista de tuplas:
 
-```python
+```Python
 # Sim, já vimos algo parecido no vídeo anterior
 
 # Hora, minuto, segundo
@@ -198,7 +198,7 @@ De brinde você acabou de fazer uma função curry, mas não vamos nos atentar a
 
 A função anônima `hora()` devolve uma simples tupla com `am` ou `pm` usando aritmética modular. Se for menor que doze ele nos retorna uma tupla com `(hora, 'am')`, se for maior nos retorna `(hora, 'pm')`. Simples não?
 
-agora a função `formato()` recebe dois argumentos de sequência e só organiza o posicionamento `(hora, minuto, segundo, am_ou_pm)`.
+Agora a função `formato()` recebe dois argumentos de sequência e só organiza o posicionamento `(hora, minuto, segundo, am_ou_pm)`.
 
 Sobre a função `func_map()` eu inverti a ordem dos argumentos propositalmente pois o `*` só pode ficar depois dos argumentos fixos. Neste caso o `*` não é muito importante, mas serve pra gente acumular 'n' argumentos e eles se tornam uma lista dentro do escopo da função. Por isso chamamos `funcs[0]` e `funcs[1]`.
 
@@ -206,7 +206,7 @@ Não iteramos pela lista de funções, e sim pela sequência. Iterar por uma seq
 
 Vamos tentar mais uma?
 
-Jaber diz: `Não ficou muito claro, esse exemplo fugiu das listas básicas to meio perdido`
+Jaber diz: `Não ficou muito claro, esse exemplo fugiu das listas básicas. Tô meio perdido`
 
 Vamos um mais simples pra sintetizar:
 
@@ -235,11 +235,11 @@ def reduce_func(seq):
 map_reduce(map_func, reduce_func, 'abacaxi') # {'a': 3, 'b': 1, 'c': 1, 'x': 1, 'i': 1}
 ```
 
-Viu, essa foi simples como roubar doce de criança, tá... ok, roubar doce de criança é bem difícil, mas nossa implementação é bem simples
+Viu, essa foi simples como roubar doce de criança, tá... Ok, roubar doce de criança é bem difícil, mas nossa implementação é bem simples.
 
-A função de mapeamento pega elemento por elemento e o transforma em uma tupla com o valor 1 `(elemento, 1)` e a função de redução tem um dicionário que usa o elemento como chave e o valor um vai sendo somado cada vez que ele aparece no dicionário. Então tudo foi mapeado (para transformação em tupla) e foi reduzido em um dicionário. Olha, tudo é muito simples, você já está muito avançado.
+A função de mapeamento pega elemento por elemento e o transforma em uma tupla com o valor 1 `(elemento, 1)` e a função de redução tem um dicionário que usa o elemento como chave e o valor 1 vai sendo somado cada vez que ele aparece no dicionário. Então tudo foi mapeado (para transformação em tupla) e foi reduzido em um dicionário. Olha, tudo é muito simples, você já está muito avançado.
 
-Um ponto legal a ser comentado é que se a nossa entrada fosse uma lista, ele faria um agrupamento por palavras
+Um ponto legal a ser comentado é que se a nossa entrada fosse uma lista, ele faria um agrupamento por palavras:
 
 ```Python
 map_reduce(map_func, reduce_func, 'abacaxi verde limão verde como coco verde'.split())
@@ -259,6 +259,6 @@ Counter('abacaxi') # Counter({'a': 3, 'b': 1, 'c': 1, 'i': 1, 'x': 1})
 Counter('abacaxi verde limão verde como coco verde'.split()) # Counter({'abacaxi': 1, 'como': 1, 'coco': 1, 'limão': 1, 'verde': 3})
 ```
 
-Tá, vai... a gente tentou e você aprendeu. SUAHSUAHUSHA
+Tá, vai... A gente tentou e você aprendeu. SUAHSUAHUSHA.
 
-Com isso, no próximo vídeo, vamos construir nossa propria lib de HOFs simples e que servem para tudo. Um abraço
+Com isso, no próximo vídeo, vamos construir nossa propria lib de HOFs simples e que servem para tudo. Um abraço.

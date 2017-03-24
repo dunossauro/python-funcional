@@ -1,6 +1,6 @@
 ## Funções de redução/mapeamento
 
-Você já achou que estava super avançado, eu sei, mas porém contudo, entretanto, todavia. Agora que você já sabe como os iteráveis funcionam, nós podemos avançar mais e fazer melhor uso de funções embutidas do python. Como:
+Você já achou que estava super avançado, eu sei, mas porém, contudo, entretanto, todavia. Agora que você já sabe como os iteráveis funcionam, nós podemos avançar mais e fazer melhor uso de funções embutidas do python. Como:
 
 - any()
 - all()
@@ -11,7 +11,7 @@ Você já achou que estava super avançado, eu sei, mas porém contudo, entretan
 - map()
 - reversed()
 
-Mas, primeiro, vamos reduzir tudo a categorias. Como assim?
+Mas primeiro, vamos reduzir tudo a categorias. Como assim?
 
 any, all, len e sum (vamos lembrar, não estamos importando nada, AINDA). São funções de redução. Dando uma prévia, são funções que consomem iteráveis e retornam um único valor.
 
@@ -43,7 +43,7 @@ for elemento in lista:
 # 4 True
 ```
 
-Ou, seja ele executa a função `bool()` para cada elemento da lista.
+Ou seja, ele executa a função `bool()` para cada elemento da lista.
 
 Tá, mas como ele decide o que é Verdadeiro ou Falso?
 
@@ -78,7 +78,7 @@ if var == True:
 
 Bom, agora que você já sabe como o any verifica os valores, vamos continuar a explicar sua função.
 
-`any()` retorna True se qualquer elemento da seqûencia for `True` (usando `bool(elemento)`) para todos os ítens da sequência. Ou seja, a única maneira de ele ser `False` é que todos os elementos no iterável sejam falsos.
+`any()` retorna True se qualquer elemento da seqûencia for `True` (usando `bool(elemento)`) para todos os itens da sequência. Ou seja, a única maneira de ele ser `False` é que todos os elementos no iterável sejam falsos.
 
 ```python
 
@@ -95,9 +95,9 @@ any(lista) # True
 
 Olha que legal, você acabou de aprender a lidar com sua primeira função de redução. Mas não vamos parar por aí.
 
-Jaber diz: `por que??? Agora que eu tinha entendido tudo. Estava tudo tão fácil, por favor. Pare`
+Jaber diz: `Por que??? Agora que eu tinha entendido tudo. Estava tudo tão fácil, por favor. Pare.`
 
-Só mais um pouco, eu sei que você consegue. Vamos lá
+Só mais um pouco, eu sei que você consegue. Vamos lá.
 
 ### `all()`
 
@@ -112,28 +112,28 @@ all(lista) # True
 ```python
 lista = [0, 1, 2, 3, 4, 5]
 
-all(lista) # True
+all(lista) # False
 ```
 
-Viu, foi tão simples. Agora, vamos a mais uma de redução
+Viu, foi tão simples. Agora, vamos a mais uma de redução.
 
 ### `len()`
 
-`len()` diferente das outras sequências, efetua uma soma de números existente em uma sequência. vamos tentar implementar um `len()`?
+`len()` diferente das outras sequências, efetua uma soma de números existente em uma sequência. Vamos tentar implementar um `len()`?
 
 ```Python
 
-def _len(sequência):
+def _len(sequencia):
     """
     Vamos usar _len pois len é uma palavra reservada
     """
     contador = 0
-    for x in sequência:
+    for x in sequencia:
         contador += 1
 
     return contador
 
-_len([1,2,3,4])
+_len([1,2,3,4]) # 4
 
 ```
 
@@ -145,9 +145,9 @@ len([1,2,3,4,5]) # 5
 len('string') # 6
 ```
 
-Vale lembrar que para que nossas sequências, sabe, aqueles que a gente mesmo implementa? elas só precisam ter o método `__len__()`
+Vale lembrar que para que nossas sequências, sabe, aqueles que a gente mesmo implementa? Elas só precisam ter o método `__len__()`.
 
-o interpretador python pega o nosso objeto do tipo sequência e chama o seu método especial.
+O interpretador python pega o nosso objeto do tipo sequência e chama o seu método especial.
 
 Podemos ver, como já foi dito antes, todas as classes de sequência tem que ter um `__iter__()` ou um `__getitem__()`. Mas, se você parar para notar, todas as sequências implementam `__len__()` também. Vamos conferir:
 
@@ -170,7 +170,7 @@ Pronto, agora você está preparado para aprender mais um pouco sobre funções 
 
 As funções de mapeamento padrões da biblioteca padrão (zip(), enumerate() ,reversed()) são maneiras super interessantes de trabalhar com iteráveis, vamos lá.
 
-A função zip não é uma função de compressão, como pode parecer. Ela funciona como um zipper, sabe, aquele da sua calça jeans? é tipo isso.
+A função zip não é uma função de compressão, como pode parecer. Ela funciona como um zipper, sabe, aquele da sua calça jeans? É tipo isso.
 
 ```python
 lista = [1, 2, 3, 4, 5]
@@ -179,7 +179,7 @@ lista_reversa = reversed(lista)
 list(zip(lista, lista_reversa)) # [(1, 5), (2, 4), (3, 3), (4, 2), (5, 1)]
 ```
 
-Você acaba de ser surpreendido, você aprender duas funções em um único exemplo. Falei que aprender programação funcional ia te fazer bem, eu disse.
+Você acaba de ser surpreendido, você aprendeu duas funções em um único exemplo. Falei que aprender programação funcional ia te fazer bem, eu disse.
 
 Como podemos ver, a função zip juntou os elementos de mesmo index de cada sequência e os agrupou em tuplas. Como podemos ver:
 
@@ -187,7 +187,7 @@ Como podemos ver, a função zip juntou os elementos de mesmo index de cada sequ
 (lista[0], lista_reversa[0]) # TypeError
 ```
 
-Jaber diz: `Você não disse que elas eram acessadas pelo index, não acredito mais em você!`
+Jaber diz: `Você não disse que elas eram acessadas pelo index? Não acredito mais em você!`
 
 Calma Jaber, lembra quando eu disse que uma sequência podia ser acessada usando `__iter__()`? Pense comigo. Para consumir um iterador preguiçoso, é, é isso mesmo, é assim que chamamos esse tipo de iterador que em python não pode ser acessado por index.
 
@@ -195,7 +195,7 @@ Isso explica quase tudo sobre a linha `list(zip(..., ...))`. Como o zip produz u
 
 Mas por que estamos falando disso outra vez? Todas as nossas funções de mapeamento retornam esse tipo de sequência preguiçosa.
 
-Então, caso a gente queira ver o que tem na sequência, a sua representação, precisamos construir uma sequência não preguiçosa.
+Então, caso a gente queira ver o que tem na sequência, a sua representação, precisamos construir uma sequência não preguiçosa:
 
 ```python
 print(zip(lista, lista_reversa)) # <zip object at xpto>
@@ -237,13 +237,13 @@ Então... o zip retorna um iterável preguiçoso que casa valores de iteráveis.
 ```Python
 zip([1,2,3], [4,5,6]) # [(1, 4), (2, 5), (3, 6)]
 
-# E você achando que ele só zipava dois? estava enganado
+# E você achando que ele só zipava dois? Estava enganado
 zip([1,2,3], [4,5,6], [7,8,9]) # [(1, 4, 7), (2, 5, 8), (3, 6, 9)]
 ```
 
 Não é muito complicado de entender, o único problema do `zip()` é que todas as sequências tem que ter o mesmo `len()`. (Nossa você já está entendo tudo, eu sei). Vamos voltar a falar mais sobre essa quantidade de argumentos infinitos, só que mais tarde. Agora é o enumerate.
 
-A função `enumerate()` faz uma coisa muito parecida com o zip, só que ele gera a sequência a ser zipada pra você. Olha que legal.
+A função `enumerate()` faz uma coisa muito parecida com o zip, só que ele gera a sequência a ser zipada pra você. Olha que legal:
 
 ```Python
 list(enumerate([1,2,3])) # [(0, 1), (1, 2), (2, 3)]
@@ -283,7 +283,7 @@ for x, y in enumerate(lista):
 # 4 5
 ```
 
-É explícito? não, mas tem os index, as vezes a gente precisa deles.
+É explícito? Não. Mas tem os index, as vezes a gente precisa deles.
 
 Bom, enumerate é bem simples. Mas temos uma função lá no começo que deixamos de falar. Na verdade vamos só dar uma olhada nela, pois ela é a ponte entre esse e próximo vídeo. Enfim, `map()`.
 
@@ -291,7 +291,7 @@ Vamos, falta pouco pra acabar por hoje, você aguenta.
 
 Embora já tenhamos usado a função `map()` em quase todos os vídeos anteriores, agora o seu grande segredo será revelado.
 
-`map()` é uma função de MAPeamento, é essa não foi tão difícil. Porém, ela é um pouco diferente das nossas funções usadas agora. Ela é uma função que chamamos de __Função de ordem superior__. Isso não é um conceito complicado, quer dizer que ela é uma função que recebe uma função como argumento. Existem muitos casos de como usar map, mas uma coisa é certa, a função usada por `map()` só pode receber um argumento. Vamos ao código:
+`map()` é uma função de MAPeamento, é, essa não foi tão difícil. Porém, ela é um pouco diferente das nossas funções usadas agora. Ela é uma função que chamamos de __Função de ordem superior__. Isso não é um conceito complicado, quer dizer que ela é uma função que recebe uma função como argumento. Existem muitos casos de como usar map, mas uma coisa é certa, a função usada por `map()` só pode receber um argumento. Vamos ao código:
 
 
 ```Python
@@ -306,7 +306,7 @@ list(map(func, [1,2,3])) # [3, 4, 5]
 
 Também já contei pra você que ela executa a função em todos os elementos da sequência. Tá, você já sabe como usar o map, eu sei.
 
-Porém você já pensou que falamos hoje da função `bool()`? já pensou usar ela em todos os elementos da sequência?
+Porém você já pensou que falamos hoje da função `bool()`? Já pensou usar ela em todos os elementos da sequência?
 
 ```Python
 
