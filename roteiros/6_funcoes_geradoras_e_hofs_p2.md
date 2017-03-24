@@ -1,4 +1,4 @@
-## Funções de ordem superior p.2
+# Funções de ordem superior p.2
 
 Segundo Steven Lott, podemos criar três tipos de HOFs diferentes:
 
@@ -9,7 +9,7 @@ Segundo Steven Lott, podemos criar três tipos de HOFs diferentes:
 Contudo, vamos exercitar o fato de criar funções de ordem superior, apenas. Vamos tentar copiar algumas do escopo, vamos nos divertir. Pronto?
 
 
-### Funções que aceitam funções
+## Funções que aceitam funções
 
 Essa vocês já estão matando no peito, eu sei. Vamos ao código então:
 
@@ -28,7 +28,7 @@ def map_clone(func, sequencia):
 
 Olha, eu sei que parecia que já tínhamos falado sobre tudo, mas esse foi o melhor momento para falar sobre as funções geradoras.
 
-### Funções geradoras
+## Funções geradoras
 
 Funções geradoras 'trocam' o `return` por `yield`. Você só precisa disso para que sua função seja um gerador e retorne lazy como as funções embutidas do python. Só que existe um ponto, as funções retornam iteráveis, ou seja, teremos que usar os mesmos construtores (`list`, `tuple`, etc..) de objetos que usamos antes:
 

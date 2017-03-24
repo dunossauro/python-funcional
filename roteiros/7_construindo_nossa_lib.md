@@ -126,10 +126,6 @@ Drop também é uma função que vamos pegar emprestado de [fn.py](https://githu
 list(drop(4, [1,2,3,4,5,6,7,8,9])) # [5, 6, 7, 8, 9]
 ```
 
-### `insert()`
-
-### `order_insert()`
-
 ### `pipe()`
 
 Função emprestada da biblioteca [toolz](https://github.com/pytoolz/toolz)

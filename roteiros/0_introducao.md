@@ -1,4 +1,4 @@
-### Programação funcional com python
+# Programação funcional com python
 
 Programação funcional não é um bicho de sete cabeças. Dito isso, sente-se no sofá e vamos aproveitar essa introdução. Eu juro, não vai ser tão longa assim.
 

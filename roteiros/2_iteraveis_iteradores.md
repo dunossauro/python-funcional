@@ -1,4 +1,4 @@
-## Iteráveis e iteradores
+# Iteráveis e iteradores
 
 O que são iteráveis? Basicamente e a grosso modo, iteráveis em python são todos os objetos que implementam o método `__getitem__` ou `__iter__`. Beleza, vamos partir do simples.
 
