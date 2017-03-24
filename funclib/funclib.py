@@ -47,12 +47,36 @@ def head(seq, n=1, key=None):
     return seq[:n] if not key else key(seq[:n])
 
 
-def insert():
-    pass
+def twice(val, func, _iter=False):
+    """
+    Executa duas vezes a mesma função.
 
+    Evita casos como func(func(val)).
 
-def order_insert():
-    pass
+    Args:
+        - val: Valor a ser aplicada a função
+        - func: Função a ser executada duas vezes em val
+        - _iter: Decide se a iteração vai ser aplicada (com map) ou não
+
+    >>> mul_2 = lambda x: x * 2
+    >>> twice(10, mul_2)
+    40
+
+    >>> twice([1, 2, 3], mul_2)
+    [1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3]
+
+    >>> twice([1, 2, 3], mul_2, True)
+    <map at ...>
+
+    >>> list(twice([1, 2, 3], mul_2, True))
+    [4, 8, 12]
+    """
+    from functools import partial
+    if not _iter:
+        return func(func(val))
+    else:
+        map_part = partial(map, func)
+        return map_part(map_part(val))
 
 
 """
@@ -91,12 +115,32 @@ def drop(n, seq):
 
 
 """
-Funções que pegamos emprestadas, e adaptamos ao nosso nível de conhecimento,
- da lib [toolz](https://github.com/pytoolz/tool
+Função emprestada da lib [toolz](https://github.com/pytoolz/tool
 """
 
 
 def pipe(seq, *funcs):
+    """
+    Executa um iterável de funções em uma sequência.
+
+    Args:
+        - seq: Sequência a ser processada
+        - *funcs: lista de funções a processarem seq
+
+    EX:
+    >>> from functools import partial
+    >>> soma_2 = partial(map, lambda x: x + 2)
+    >>> mul_2 = partial(map, lambda x: x * 2)
+
+    >>> pipe([1, 2, 3], soma_2)
+    [3, 4, 5]
+
+    >>> pipe([1, 2, 3], mul_2)
+    [2, 4, 6]
+
+    >>> pipe([1, 2, 3], soma_2, mul_2)
+    [6, 8, 10]
+    """
     for func in funcs:
         seq = func(seq)
     return seq
