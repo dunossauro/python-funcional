@@ -7,9 +7,9 @@ Você já achou que estava super avançado, eu sei, mas porém, contudo, entreta
 - len()
 - sum()
 - zip()
+- reversed()
 - enumerate()
 - map()
-- reversed()
 
 Mas primeiro, vamos reduzir tudo a categorias. Como assim?
 
@@ -23,6 +23,8 @@ Tá bom, vamos explicar detalhadamente.
 
 Funções de redução recebem um iterável e retornam um único elemento. Ok, já disse isso, mas é só isso. Juro.
 
+
+### `any()`
 Vamos exemplificar com a função any
 
 ```Python
@@ -163,12 +165,47 @@ Podemos ver, como já foi dito antes, todas as classes de sequência tem que ter
 
 Viu só, ele está em toda sequência e não está em objetos que não podem ser iterados, como por exemplo um número inteiro.
 
+
+### sum()
+
+Bom, todas as funções que vimos até agora envolvem alguma operaçã, uma chamada de função ou algo do gênero (`bool()`, `__len__()`, ...). A função embutida `sum()` executa uma somatoria de todos os elementos da sequêcia. Por exemplo, se você tiver uma lista de números (int, float, complex, ...) ele vai fazer uma soma de elemento por elemento:
+
+```Python
+lista = [1, 2, 3, 4, 5]
+
+# no caso da lista anterior
+((((1 + 2)+3)+4)+5) # 15
+```
+
+Então ele vai pegar o primeiro elemento e somar com o segundo, o resultado disso vai ser somado com o terceiro valor etc...
+
+```Python
+lista = [1, 2, 3, 4, 5]
+
+sum(lista) # 15
+```
+
+Uma coisa muito interessantes do sum é que ele não é sempre iniciado em 0, espera. Ele é sempre iniciado em 0, porém o segundo parâmetro de sum pode ser o seu valor inicial. Vamos tentar:
+
+```Python
+lista = [1, 2, 3, 4, 5]
+
+sum(lista, 1) # 16
+```
+
+Embora sum faça a soma de valores, ele não usa o `__add__()` do objeto. No caso, varias strings não podem ser concatenadas com `sum()`. Existe um método das strings mais legal para fazer isso que é o `''.join()`, mas esse não é o nosso foco. Isso só serve para exemplificar que assim como usamos soma de strings `'a' + 'b' # ab` não funciona nesse caso.
+
+`sum()` só executa a função de soma, tá isso é meio óbvio. Existe uma função muito famosa em python chamada `functools.reduce()` que executa uma função de concatenação igual ao sum só que aplica qualquer tipo de operação, mas vamos falar mais dela quando estivermos falando da biblioteca functools.
+
+
 Pronto, agora você está preparado para aprender mais um pouco sobre funções de redução. Existem outras funções, mas esse não é momento para falarmos delas. Talvez depois de funções de ordem superior.
 
 
 ## Funções de mapeamento
 
 As funções de mapeamento padrões da biblioteca padrão (zip(), enumerate() ,reversed()) são maneiras super interessantes de trabalhar com iteráveis, vamos lá.
+
+### `zip()` e `reversed()`
 
 A função zip não é uma função de compressão, como pode parecer. Ela funciona como um zipper, sabe, aquele da sua calça jeans? É tipo isso.
 
@@ -243,6 +280,10 @@ zip([1,2,3], [4,5,6], [7,8,9]) # [(1, 4, 7), (2, 5, 8), (3, 6, 9)]
 
 Não é muito complicado de entender, o único problema do `zip()` é que todas as sequências tem que ter o mesmo `len()`. (Nossa você já está entendo tudo, eu sei). Vamos voltar a falar mais sobre essa quantidade de argumentos infinitos, só que mais tarde. Agora é o enumerate.
 
+
+### `enumerate()`
+
+
 A função `enumerate()` faz uma coisa muito parecida com o zip, só que ele gera a sequência a ser zipada pra você. Olha que legal:
 
 ```Python
@@ -288,6 +329,9 @@ for x, y in enumerate(lista):
 Bom, enumerate é bem simples. Mas temos uma função lá no começo que deixamos de falar. Na verdade vamos só dar uma olhada nela, pois ela é a ponte entre esse e próximo vídeo. Enfim, `map()`.
 
 Vamos, falta pouco pra acabar por hoje, você aguenta.
+
+
+### `map()`
 
 Embora já tenhamos usado a função `map()` em quase todos os vídeos anteriores, agora o seu grande segredo será revelado.
 
