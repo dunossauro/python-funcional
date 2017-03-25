@@ -126,6 +126,37 @@ Drop também é uma função que vamos pegar emprestado de [fn.py](https://githu
 list(drop(4, [1,2,3,4,5,6,7,8,9])) # [5, 6, 7, 8, 9]
 ```
 
+Se você analisar de perto, `drop()` tem um comportamento muito parecido com a função `take()` ela também consome parcialmente um iterável, porém ela nos retorna valores após o primeiro argumento:
+
+```Python
+drop(n, seq)
+```
+
+`n` é o valor que queremos ignorar de `seq`. Em uma chamada `n=5` de uma sequência de 6 valores, só o último valor será retonado. O que faz o comportamento da função ser exatamente inverso ao  `take()` que nos retornaria os primeiros cinco valores. Tá bom, falamos muito, vamos tentar implementar:
+
+
+```Python
+def drop(n, seq):
+    _iter = iter(seq)
+    for i, el in enumerate(seq):
+        if i < n: # aqui está a sacada que faz a diferença
+            next(_iter)
+        else:
+            yield next(_iter)
+```
+
+Se você olhar com carinho vai perceber que `drop()` usa enumerate para fazer uma iteração explicita(já falamos disso) e usa o valor do index para saber em qual posição da iteração estamos no `if`. Um ponto importante a ser analisado é que os valores de `seq` são percorridos, porém não são devolvidos ao final da iteração.
+
+Um ponto negativo da função `drop()` é que caso ela seja usada em uma sequência que contém sequências, `[[1], [2]]`, e essas sequências sejam muito grandes, as internas no caso, elas vão ser processadas da mesma maneira internamente na função, embora o resultado seja exatamente o esperado. Para resolver esse ponto, existe na biblioteca `itertools` uma função chamada `islice` que torna a saída lazy, porém vamos ver isso em outro tópico e assim chegaremos na versão verdadeira, a de fn.py, de ambas as funções (`take()` e `drop()`).
+
 ### `pipe()`
 
 Função emprestada da biblioteca [toolz](https://github.com/pytoolz/toolz)
+
+
+### `twice()`
+
+
+### `()`
+
+### `()`
