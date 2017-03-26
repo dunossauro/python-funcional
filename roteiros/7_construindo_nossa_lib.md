@@ -116,7 +116,7 @@ Olha só que mágico, não? A função implementada na biblioteca fn não é con
 
 Jaber diz: `Mas a função take não faz a mesma coisa que a função head???`
 
-Sim e não. Se você pensar em sequências que aceitam slice (seq[]) ela, `head()` é uma função bem legal. Resolve problemas de listas etc... Ela é uma função que pode ser legal em iterações, em pegar o primeiro elemento em alguns casos. A função `take()` é MUITO mais poderosa, mas também não é bala de prata. Apesar do fato de ela consumir geradores, o que almenta seu poder, ela também retorna um gerador, o que faz com que não possamos usar o `len()` dela, embora você saiba o tamanho que pediu no primeiro argumento. O retorno não pode ser acessado por posição e tem que ser constrido com alguma outra função, como (`list()`, `tuple()`, `set` ...). Mas a diferença mais gritante é que `take()` consome parcialmente iteráves e a função `head()` é uma HOF que aceita uma função pra processar a cabeça da lista. Com isso, elas exibem retornos completamente diferentes.
+Sim e não. Se você pensar em sequências que aceitam slice (seq[]) ela, `head()` é uma função bem legal. Resolve problemas de listas etc... Ela é uma função que pode ser legal em iterações, em pegar o primeiro elemento em alguns casos. A função `take()` é MUITO mais poderosa, mas também não é bala de prata. Apesar do fato de ela consumir geradores, o que almenta seu poder, ela também retorna um gerador, o que faz com que não possamos usar o `len()` dela, embora você saiba o tamanho que pediu no primeiro argumento. O retorno não pode ser acessado por posição e tem que ser constrido com alguma outra função, como (`list()`, `tuple()`, `set()` ...). Mas a diferença mais gritante é que `take()` consome parcialmente iteráves e a função `head()` é uma HOF que aceita uma função pra processar a cabeça da lista. Com isso, elas exibem retornos completamente diferentes.
 
 ### `drop()`
 
@@ -151,8 +151,102 @@ Um ponto negativo da função `drop()` é que caso ela seja usada em uma sequên
 
 ### `pipe()`
 
-Função emprestada da biblioteca [toolz](https://github.com/pytoolz/toolz)
+`pipe()` é uma função emprestada da biblioteca [toolz](https://github.com/pytoolz/toolz), que assim como [fn.py](https://github.com/kachayev/fn.py) trabalha em trazer muitos aspectos funcionais ao python. Existem muitas bibliotecas com esse propósito e vou deixar um vídeo que talvez seja o maior motivador desse curso [Programación funcional con Python - Jesús Espino](https://www.youtube.com/watch?v=Rp_lvuXuSSA) em que Jesús explana entre muitos conceitos da programação funcional e também sobre as bibliotecas existentes. Mas, chega de enrolar, vamos entender o conceito agregados no pipe. Pra quem vem do mundo linux pipes fazem parte do dia-a-dia de um bom uso do terminal.
 
+Jaber diz: `Porque dentre todas as funções que falamos até agora, você quer filosofar nessa???`
+
+Tá bom, vamos pensar que o conceito de pipe, na programação funcional é uma coisa muito importante. Streams são feitos a base de pipes. Mas afinal, o que é um pipe? Não ele não é um cano, mas é, no fundo é.
+
+Imagina pegar o resultado de uma função e atribuir a entrada de outra função? É basicamente isso. O terminal do linux foi citado, mas todo o mundo UNIX usa esse conceito de maneira magnifica. Vamos olhar um exemplo no terminal:
+
+
+```sh
+# cat - mostra o conteúdo do arquivo na tela, porém mostrar na tela é uma saída para STDOUT (saída padrão)
+# oi.txt - é um arquivo de texto que contém as linhas (oi Jaber \n oi Eduardo \n Oi dinossauros)
+# | - é um pipe
+# grep - é um comando usado para procurar uma determinada string (grep oi) vai exibir todas as linhas do arquivo que comtém a string oi
+
+cat oi.txt | grep Jaber
+
+# oi Jaber
+```
+
+Dado esse exemplo, o resultado do cat, que jogaria o conteúdo todo da tela, foi jogado para o pipe e ele é responsável por fazer uma conexão entre o `cat` e o `grep`. É um cano entre o cat e o grep. Ele usou tudo que foi processado por cat e entregou ao grep. Fazendo uma conexão. Dito tudo isso, vamos analisar a nossa função de pipe, que não é nossa, foi emprestada de [toolz](https://github.com/pytoolz/toolz):
+
+```Python
+pipe([1, 2, 3, 4], lambda x: x+2) # TypeError: can only concatenate list (not "int") to list
+```
+
+Jaber diz: `Estou totalmente perdido, não estou entendo mais nada`
+
+Calma amiguinho, estamos chegando lá.
+
+A função pipe funciona em um único valor:
+
+```Python
+pipe(4, lambda x: x + 2) # 6
+```
+
+Tá, mas ainda assim ela não acrecenta em nada. Vamos tentar complicar um pouco as coisas:
+
+```Python
+soma_2 = lambda x: x + 2
+soma_4 = lambda x: x + 4
+
+pipe(4, soma_2, soma_4) # 10
+```
+
+Bom, isso também é meio babaca, poderia ser feito com `soma_4(soma_2(4))`. Mas espera. Somos todos hackers, será que não podemos hackear uma função?
+
+Jaber diz: `Aqui é Mr. Robot RAPAZ`
+
+Em um outro momento, vamos explicar isso com muita calma, mas agora só o gostinho pra você entender.
+
+```Python
+from functools import partial
+
+soma_2 = partial(map, lambda x: x + 2)
+
+list(pipe([1, 2, 3, 4], soma_2)) # [3, 4, 5]
+```
+
+Tá, ok. Isso é um map mais complicado, você não acha?
+
+Jaber diz: `Achei muito ofencivo, deleta`
+
+A função `functools.partial()` aplica uma função parcialmente. Mas isso é assunto pra outra hora. Vamos tentar outra vez e eu juro que será a ultima:
+
+```Python
+from functools import partial
+
+soma_2 = partial(map, lambda x: x + 2)
+soma_4 = partial(map, lambda x: x + 4)
+
+list(pipe([1, 2, 3, 4], soma_2)) # [3, 4, 5, 6]
+list(pipe([1, 2, 3, 4], soma_4)) # [5, 6, 7, 8]
+
+# O pulo do gato
+
+list(pipe([1, 2, 3, 4], soma_2, soma_4)) # [7, 8, 9, 10]
+```
+
+A função aplicou `soma_2()` em toda a sequência e no resultado dessa sequência aplicou `soma_4()`. Se tivessimos 10 funções como argumentos ele executaria as 10 funções uma no resultado da outra. Tá, mas é complicado implementar isso? Não:
+
+```Python
+def pipe(seq, *funcs):
+    """
+    O * nessa função faz com que tudo que for passado após a sequência
+      faça parte da lista funcs
+
+    Ele vai iterando na lista de funções e vai jogando o resultado an proxima
+      função
+    """
+    for func in funcs:
+        seq = func(seq)
+    return seq
+```
+
+Ufa, achei que não iamos acabar nunca essa função, mas no fim. Deu tudo certo, somos hackers de sequências e somos muito iteligentes.
 
 ### `twice()`
 
