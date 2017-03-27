@@ -177,8 +177,68 @@ next(gerador) # StopIteration
 Passando bem por alto, uma função geradora nos retorna um iterável que é preguiçoso. Ou seja, ele só vai efetuar a computação quando for chamado.
 
 
-## Funções anônimas
+## Funções anônimas (lambda)
 
-<ESCREVER AQUIIII>
+Funções anônimas, ou funções lambda, são funções que podem ser declaradas em qualquer contexto, tá... Todo tipo de função, em python, pode ser declarada em tempo de execução. Porém funções anônimas podem ser atribuídas a variáveis, podem ser definidas dentro de sequências e declaradas em um argumento de função. Vamos olhar sua sintaxe:
 
-Mas no vídeo seguinte vamos discutir só, e mesmo que superficialmente, sobre iteradores.
+```python
+lambda argumento: argumento
+```
+
+a palavra rereservada `lambda` define a função, assim como um `def`. Porém em uma `def` quase que instintivamente sempre quebramos linha:
+
+```Python
+def func():
+  pass
+```
+
+Uma das diferenças triviais em python é que as funções anônimas não tem nome, tá isso era meio óbvio, mas vamos averiguar:
+
+```Python
+def func():
+  pass
+
+func.__name__ # func
+
+lambda_func = lambda arg: arg
+
+lambda_func.__name__ # '<lambda>'
+```
+
+O resultado `'<lambda>'` será o mesmo para qualquer função. Isso torna sua depuração praticamente impossível em python. Por isso, os usuários de python, e nisso incluo todos os usuários, até que gostam de funcional. Não encorajam o uso de funções lambda e todos os contextos da linguagem. Mas, em funções que aceitam outra funções isso é meio que uma tradição, caso a função (no caso a que executa o código a ser usado pelo lambda) não esteja definida e nem seja reaproveitada em outro contexto. Eu gosto de dizer que lambdas são muito funcionais em aplicações parciais de função. Porém, os lambdas não passam de açucar sintático em Python. Pois não a nada que uma função padrão (definida com `def`), não possa fazer de diferentes. Até o a introspecção retorna o mesmo resultado:
+
+
+```Python
+def func():
+  pass
+
+type(func) # function
+
+lambda_func = lambda arg: arg
+
+type(lambda_func) # function
+```
+
+Uma coisa que vale ser lembrada é que funções anônimas em python só executam um expressão. Ou seja, não podemos usar laços de repetição (`while`, `for`), tratamento de exceções (`try`, `except`, `finally`). Um `if` com uso de `elif` não pode ser definido. Como sintaticamente só são aceitas expressões o único uso de um `if` é o ternario:
+
+
+```Python
+valor_1 if condicao else valor_2
+```
+
+O que dentro de um lambda teria essa aparência:
+
+
+```Python
+func = lambda argumento: argumento + 2 if argumento > 0 else argumento - 2
+```
+
+Funções lambda também podem ter multiplos argumentos, embora seu processamento só possa ocorrer em uma expressão:
+
+```Python
+func = lambda arg_1, arg_2, arg_3: True if sum([arg_1, arg_2, arg_3]) > 7 else min([arg_1, arg_2, arg_3])
+```
+
+Embora essa seja uma explanação inicial sobre as funções anônimas, grande parte dos tópicos faz uso delas e vamos poder explorar melhor sua infinitude.
+
+Mas por hoje é só e no vídeo seguinte vamos discutir só, e mesmo que superficialmente, iteradores e iterávels e suas relações com a programação funcional.
