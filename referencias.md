@@ -1,3 +1,9 @@
+# Referências
+
+Beginning Haskell - Alejandro Serrano Mena, Apress
+
+Clojure Programming - Chas Emerick, Brian Carper, and Christophe Grand, 2012 - O’Reilly
+
 Common Lisp Recipes: A Problem-Solution Approach -Edmund Weitz, 2016 - Apress
 
 Fluent Python - Luciano Ramalho, 2015 - O’Reilly
@@ -15,4 +21,4 @@ Programação Funcional em OCaml - José Romildo Malaquias, 2015 - Universidade 
 
 Structure and Interpretation of Computer Programs - Harold Abelson, Gerald Jay Sussman, Julie Sussman - 1996, The Massachusetts Institute of Technology
 
-https://docs.python.org/
+Understanding Computation - Tom Stuart, 2013 - O’Reilly
