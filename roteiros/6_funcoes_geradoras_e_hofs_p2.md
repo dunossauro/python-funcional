@@ -30,7 +30,7 @@ Olha, eu sei que parecia que já tínhamos falado sobre tudo, mas esse foi o mel
 
 ## Funções geradoras
 
-Funções geradoras 'trocam' o `return` por `yield`. Você só precisa disso para que sua função seja um gerador e retorne lazy como as funções embutidas do python. Só que existe um ponto, as funções retornam iteráveis, ou seja, teremos que usar os mesmos construtores (`list`, `tuple`, etc..) de objetos que usamos antes:
+Funções geradoras 'trocam' o `return` por `yield`. Você só precisa disso para que sua função seja um gerador e retorne lazy como as funções embutidas do python. Só que existe um ponto, as funções retornam iteráveis, ou seja, teremos que usar os mesmos construtores (`list()`, `tuple()`, etc..) de objetos que usamos antes:
 
 ```Python
 map_clone(lambda x: x**2, [1, 2, 3]) # <generator object map_clone at 0x7faee9511e60>
@@ -39,7 +39,7 @@ map_clone(lambda x: x**2, [1, 2, 3]) # <generator object map_clone at 0x7faee951
 list(map_clone(lambda x: x**2, [1, 2, 3])) # [1, 4, 9]
 ```
 
-Vamos explanar mais a ideia de funções geradoras. No nosso exemplo com yield usamos um laço for, mas vamos tentar outra abordagem:
+Vamos explanar mais a ideia de funções geradoras em outro tópico, mas o entendimento básico é necessário agora. No nosso exemplo com yield usamos um laço for, mas vamos tentar outra abordagem:
 
 ```Python
 
@@ -69,13 +69,15 @@ Vamos tentar entender... yield funciona como um break. Tá, vamos tentar de novo
 
 def f_geradora():
     print('aqui vai o primeiro valor')
-    yield 1
+    yield 1 # pausa
     print('Segundo chegando')
-    yield 2
+    yield 2 # pausa
     print('Terceiro, tá quase acabando')
-    yield 3
+    yield 3 # pausa
     print('Quarto e último')
-    yield 4
+    yield 4 # pausa
+
+    # StopIteration
 
 gen = f_geradora()
 

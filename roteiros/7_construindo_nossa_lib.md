@@ -246,10 +246,64 @@ def pipe(seq, *funcs):
     return seq
 ```
 
-Ufa, achei que não iamos acabar nunca essa função, mas no fim. Deu tudo certo, somos hackers de sequências e somos muito iteligentes.
+Ufa, achei que não iamos acabar nunca essa função, mas no fim deu tudo certo, somos hackers de sequências e somos muito iteligentes.
 
 ### `twice()`
 
+Nesse momento eu presumo que você lembre que no tópico passado hackeamos a função aplicando parcialmente outra função. Porque agora vamos usar o que aprendemos, mesmo que ainda tenhamos muito pra aprender em um tópico específico sobre aplicações parciais, para hackear a função por definição.
+
+`twice()` é uma função bem bacana, ela só executa duas vezes a mesma operação em uma sequência. Não é nenhum bixo de sete cabeças e eu espero que você lembre disso.
+
+```Python
+mul_2 = lambda x: x * 2
+twice(10, mul_2) # 40
+```
+
+Vamos pensar, temos uma função que multiplica o valor passado por 2, `mul_2()`. Passamos `10` e ela devolve `20`. Lembra do `pipe`? Então, o resultado dá primeira rodada foi aplicado a segunda.
+
+`((10 * 2) * 2)` ou seja `40`. Outra vez temos uma função que só trabalha com um único valor. Porém, `twice()` tem um truque na manga. Não só um pois `twice()` evita aquela chamada chata `mul_2(mul_2(10))` o que já é uma coisa muito legal. Mas o que é mais imblemático nessa função nós vamos ver agora:
+
+
+```Python
+twice([1, 2, 3], mul_2) # [1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3]
+```
+
+Jaber: `Nossa, o que é isso? MEU DEUS, SENHOR JESUS, ARREDA DAQUI SATANAS`
+
+Calma, Jaber. As listas em python implementam um método chamado `__mul__`, o que faz uma multiplicação ser um pouco diferente. Vamos aplicar a só a multiplicação primeiro:
+
+
+```Python
+[1, 2, 3] * 2 # [1, 2, 3, 1, 2, 3]
+```
+
+Isso nada mais é do que repetir a sequência. É `1, 2, 3` duas vezes. O resultado de `twice()` parece uma coisa maluca porque fez isso duas vezes. O que fez a multiplicação parecer coisa de outro mundo. Só que a função `twice()` tem uma carta na manga. Um parâmetro opcional chamado `_iter`:
+
+```Python
+twice([1, 2, 3], mul_2, True) # <map at ...>
+```
+
+Jaber: `É, parei de entender a muito tempo. Tava bom, mas tava ruim também. Agora parece que piorou`
+
+Calma amiguinho, vamos pedir uma lista disso:
+
+```Python
+list(twice([1, 2, 3], mul_2, True)) # [4, 8, 12]
+```
+
+Jaber: `Cada vez mais misterioso está ficando esse curso, tô fora`
+
+Você lembra do pipe hackeado? Esse True ativa o hack. Vamos ver o código:
+
+```Python
+def twice(val, func, _iter=False):
+    from functools import partial
+    if not _iter:
+        return func(func(val)) # O retorno normal
+    else:
+        map_part = partial(map, func)
+        return map_part(map_part(val)) # O retorno com hack
+```
 
 ### `()`
 

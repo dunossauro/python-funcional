@@ -174,4 +174,11 @@ next(gerador) # 5
 next(gerador) # StopIteration
 ```
 
-Passando bem por alto, uma função geradora nos retorna um iterável que é preguiçoso. Ou seja, ele só vai efetuar a computação quando for chamado. Mas no vídeo seguinte vamos discutir só, e mesmo que superficialmente, sobre iteradores.
+Passando bem por alto, uma função geradora nos retorna um iterável que é preguiçoso. Ou seja, ele só vai efetuar a computação quando for chamado.
+
+
+## Funções anônimas
+
+<ESCREVER AQUIIII>
+
+Mas no vídeo seguinte vamos discutir só, e mesmo que superficialmente, sobre iteradores.
