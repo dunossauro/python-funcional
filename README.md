@@ -6,8 +6,8 @@ Sei que o material em português é escasso em tudo que se diz relacionado a pro
 
 ### Agradecimentos:
 
-[@magnvmopvs](https://github.com/magnvmopvs) pelos puxões de orelha nas partes que não estavam engraçadas
+[@magnvmopvs](https://github.com/magnvmopvs) pelos puxões de orelha nas partes que não estavam engraçadas (#13, #14, #15, #16, #17, #18, #19)
+
+[@Lucasfeelix](https://github.com/Lucasfeelix) pelas correções (#17)
 
 [@ohrlando](https://github.com/ohrlando) pelas correções e incentivo
-
-[@Lucasfeelix](https://github.com/Lucasfeelix) pelas correções
