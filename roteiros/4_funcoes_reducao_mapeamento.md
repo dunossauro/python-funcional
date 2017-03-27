@@ -168,7 +168,7 @@ Viu só, ele está em toda sequência e não está em objetos que não podem ser
 
 ### sum()
 
-Bom, todas as funções que vimos até agora envolvem alguma operaçã, uma chamada de função ou algo do gênero (`bool()`, `__len__()`, ...). A função embutida `sum()` executa uma somatoria de todos os elementos da sequêcia. Por exemplo, se você tiver uma lista de números (int, float, complex, ...) ele vai fazer uma soma de elemento por elemento:
+Bom, todas as funções que vimos até agora envolvem alguma operação, uma chamada de função ou algo do gênero (`bool()`, `__len__()`, ...). A função embutida `sum()` executa uma somatória de todos os elementos da sequência. Por exemplo, se você tiver uma lista de números (int, float, complex, ...) ele vai fazer uma soma de elemento por elemento:
 
 ```Python
 lista = [1, 2, 3, 4, 5]
@@ -177,7 +177,7 @@ lista = [1, 2, 3, 4, 5]
 ((((1 + 2)+3)+4)+5) # 15
 ```
 
-Então ele vai pegar o primeiro elemento e somar com o segundo, o resultado disso vai ser somado com o terceiro valor etc...
+Então ele vai pegar o primeiro elemento e somar com o segundo, o resultado disso vai ser somado com o terceiro valor e assim por diante...
 
 ```Python
 lista = [1, 2, 3, 4, 5]
@@ -228,7 +228,7 @@ Jaber diz: `Você não disse que elas eram acessadas pelo index? Não acredito m
 
 Calma Jaber, lembra quando eu disse que uma sequência podia ser acessada usando `__iter__()`? Pense comigo. Para consumir um iterador preguiçoso, é, é isso mesmo, é assim que chamamos esse tipo de iterador que em python não pode ser acessado por index.
 
-Isso explica quase tudo sobre a linha `list(zip(..., ...))`. Como o zip produz um iterador preguiçoso, não conseguimos acessar nenhum item pelo index, mas chamando a função embutida `next()`. Com isso podemos consumir um iterador sem acessar ele pelo index.
+Isso explica quase tudo sobre a linha `list(zip(..., ...))`. Como o zip produz um iterador preguiçoso, não conseguimos acessar nenhum item pelo index, mas sim chamando a função embutida `next()`. Com isso podemos consumir um iterador sem acessar ele pelo index.
 
 Mas por que estamos falando disso outra vez? Todas as nossas funções de mapeamento retornam esse tipo de sequência preguiçosa.
 
