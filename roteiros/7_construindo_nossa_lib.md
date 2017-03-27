@@ -1,6 +1,6 @@
 ## Nossa primeira biblioteca de funções
 
-O objetivo desse vídeo é construir uma gama de funções simples para que possamos exercitar tudo que aprendemos. Vamos fazer 8 funções legais de usar e que podem ajudar em muitos casos. Patiu? vem comigo.
+O objetivo desse vídeo é construir uma gama de funções simples para que possamos exercitar tudo que aprendemos. Vamos fazer 6 funções legais de usar e que podem ajudar em muitos casos. Patiu? vem comigo.
 
 
 ### `tail()`
@@ -305,6 +305,4 @@ def twice(val, func, _iter=False):
         return map_part(map_part(val)) # O retorno com hack
 ```
 
-### `()`
-
-### `()`
+a função `pipe()` precisava de uma ajuda para aplicar a função parcial, o que fazia seu estado original sempre trabalhar com um único valor e com auxilio do `functools.partial()` iterar em uma sequência. Já a função `twice()` traz isso por definição. Vamos dizer que trabalha com a iteração por definição e pode ser ativada com o parâmetro `_iter`. Tirando isso a função `twice()` não tem nada de especial, ela só executa a mesma função duas vezes ao mesmo elemento e caso `_iter` seja `True` ela executa a função a uma sequência. Um ponto especial de atenção é que a função retorna o mesmo tipo de dado de entrada, caso `_iter` não esteja "ativado" a resposta é um iterável do tipo lazy pois o retorno é saída de uma função `map()`
