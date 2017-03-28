@@ -2,7 +2,7 @@
 
 Você achou que o vídeo anterior não ia servir de nada, não?
 
-Na verdade, você estava enganado. Muito enganado pra dizer a verdade. Agora que você já está familiarizado com os interáveis, você já sabe como as funções funcionam. Por que não relacionar tudo e fazer um código mais limpo e funcional? (sacou a piada?)
+Na verdade, você estava enganado. Muito enganado pra dizer a verdade. Agora que você já está familiarizado com os iteráveis, você já sabe como as funções funcionam. Por que não relacionar tudo e fazer um código mais limpo e funcional? (sacou a piada?)
 
 Retomando um pouco, concordamos anteriormente, que o laço for (e ele é foreach) itera sobre os elementos:
 

@@ -70,7 +70,7 @@ composição de funções = f(g(x))
 
 
  ```
-Funções de ordem superior são funções que recebem, como argumento, ou retornam outra funções.
+Funções de ordem superior são funções que recebem funções como argumento, ou retornam outra funções.
  ```
 
 Viu, foi simples.
