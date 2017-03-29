@@ -1,5 +1,5 @@
 
-# Clojures
+# Closures
 
 Já passamos funções como argumento, já retornamos funções e até já mudamos o comportamento das mesmas. Mas tem uma coisa que ainda não fizemos: Definir uma função no corpo de outra função:
 
@@ -17,7 +17,7 @@ Tá Jaber, eu entendo seu ponto de vista, mas vou usar uma definição muito boa
 
 "Uma classe são dados com operações anexadas (...) Uma Clojure são operações com dados anexados"
 
-Viu? muda totalmente o modo de ver... Vamos nos explicar de maneira simples em breve, mas vamos entender as clojures e fingir que classes não existem, só por alguns minutos.
+Viu? muda totalmente o modo de ver... Vamos nos explicar de maneira simples em breve, mas vamos entender as closures e fingir que classes não existem, só por alguns minutos.
 
 Vamos imaginar que temos que guardar um valor dentro de um função. Essa função vai ser uma função que exclusivamente armazena um valor e uma função dentro do seu escopo:
 
