@@ -66,9 +66,9 @@ soma_quarto(0) # 4
 soma_cinco(0) # 5
 ```
 
-Bom, agora imagino que tenha ficado um pouco mais claro. Fixamos valores na `func_externa()` e armazenamos em variáveis (`soma_um()`, `soma_dois()`, `soma_tres()` ...) cada respectiva função mostra  valor inicial da função.
+Bom, agora imagino que tenha ficado um pouco mais claro. Fixamos valores na `func_externa()` e armazenamos em variáveis (`soma_um()`, `soma_dois()`, `soma_tres()` ...) cada respectiva função mostra valor inicial da função.
 
-Quando executamos a função `soma_um(n)` qualquer valor que for usado em `n` vai ser somado a ao valor fixo na função externa `func_externa(1)`, ou seja, `1`. Vale lembrar que a soma é executada porque esse é o comportamento da função interna `func_interna()`. Vamos tentar outra vez:
+Quando executamos a função `soma_um(n)` qualquer valor que for usado em `n` vai ser somado a ao valor fixo na função externa `func_externa(1)`, ou seja, `1`. Vale lembrar que a soma é executada porque esse é o comportamento da função interna `func_interna()`. Vamos tentar outra vez e de uma maneira mais simples:
 
 ```Python
 def diga_oi(saudacao):
@@ -128,9 +128,10 @@ saudacoes('ingles', 'Python') # 'Hello Python'
 
 Você deve ter percebido que até agora as closures tem dois tipos de comportamento diferentes, porém a imutabilidade permanece:
 
-- fixando parâmetros para padronização de chamadas:
+1. Fixando parâmetros para padronização de chamadas
+2. O escopo da função externa é acessível para a função interna
 
-Aqui você deve ter sacado o esquema de operações com dados. O dado passado a função externa permanece imutável sempre e inacessível a qualquer contexto, ou seja, o dado foi fixado e não pode ser transformado em nenhum outro valor, a não ser que seja feita outra chamada com outro valor. O que deveria ser dito sobre as classes é o que toca exatamente nesse ponto, vamos fazer uma comparação:
+Aqui você deve ter sacado o esquema de operações com dados. O dado passado a função externa permanece imutável sempre e inacessível a qualquer contexto externo ao da função, ou seja, o dado foi fixado e não pode ser transformado em nenhum outro valor, a não ser que seja feita outra chamada com outro valor. O que deveria ser dito sobre as classes, e que preferó postergar, é o que toca exatamente nesse ponto. Vamos fazer uma comparação:
 
 
 ### classe `__call__()``
@@ -189,11 +190,81 @@ class diga_oi:
         return '{} {}'.format(self.saudacao, nome)
 ```
 
-`__setattr__()` é o método da classe que 'seta' valores em atributos, se nós quebrarmos a implementação default do Python ele não vai conseguir fazer atribuições, porém, é muito mais complicado que implementar uma closure. Nessa implementação simples para a comparação as closures tem 4 linhas e as classe 7. Pra fazer a mesma coisa, acho muito mais atrativo usar uma closure, não só porque estamos falando de programação funcional, mas pela simplicidade de código mesmo('legibilidade conta'). Mas vamos prosseguir.
+`__setattr__()` é o método da classe que 'seta' valores em atributos, se nós quebrarmos a implementação default do Python ele não vai conseguir fazer atribuições, porém, é muito mais complicado que implementar uma closure. Nessa implementação simples para a comparação as closures tem 4 linhas e as classe 7. Pra fazer a mesma coisa, acho muito mais atrativo usar uma closure, não só porque estamos falando de programação funcional, mas pela simplicidade de código ('legibilidade conta'). Mas vamos prosseguir.
 
-- Variáveis do escopo da função podem sim ser alterados como nas classes
+
+## Mutação das variáveis de uma closure
+
+Diferente do que eu disse até agora, os valores podem ser alterados no escopo da função externa mas temos uma série de limitações. Caso o objeto passado como parâmetro, ou alocado na função externa, seja mutável (listas dicionários, conjuntos, ...), o objeto pode receber normalmente as modificações, vamos fazer um teste:
+
+
+```Python
+def contador():
+    """
+    Função contadora de acessos.
+
+    Internamente mantem uma lista que é definida
+        vazia no momento em que é declarada
+    """
+    lista = []
+    def soma():
+        """
+        Adiciona 1 a lista toda vez que a função é chamada.
+
+        Retorna a somatória dos valores contidos na lista
+        """
+        lista.append(1)
+        return sum(lista)
+    return soma
+
+count = contador()
+count() # 1
+count() # 2
+count() # 3
+count() # 4
+count() # 5
+```
+
+Isso é uma forma porca de fazer um contador, mas ele funciona. O mais importante disso é que a variável `lista` não está sendo modificada. Os valores estão sendo atribuídos a lista poque ela é um objeto mutável. Mas não seria possível, e vamos tentar isso agora, mudar o conteúdo da variável lista:
+
+```Python
+def contador():
+    """
+    Função contadora de acessos.
+
+    Internamente mantem uma lista que é definida
+        vazia no momento em que é declarada
+    """
+    lista = 0
+    def soma():
+        """
+        Adiciona 1 a lista toda vez que a função é chamada.
+
+        Retorna a somatória dos valores contidos na lista
+        """
+        lista += lista
+        return lista
+    return soma
+
+count = contador()
+count() # UnboundLocalError: local variable 'lista' referenced before assignment
+```
+
+
+
 
 Tá, prometo que essa parte vou tentar ser breve, mas existe um conceito que não poderia deixar passar aqui, as variáveis livres. Um adendo que deve ser feito é que isso vale para as funções anônimas também, não só no mundo das closures. Deixei pra falar disso agora para você não ficar viciado em lambdas.
 
 
 ## Variáveis livres
+
+
+
+
+
+[`__doc__`](https://docs.python.org/3.6/reference/datamodel.html)
+[Variáveis livres](https://pt.wikipedia.org/wiki/Vari%C3%A1veis_livres_e_ligadas)
+[Stack](http://stackoverflow.com/questions/31599376/why-is-code-for-a-functionpython-mutable)
+```Python
+dic = {'pirata': 'Ahoy', 'ingles':'Hello', 'portugues': 'Olá'}
+```
