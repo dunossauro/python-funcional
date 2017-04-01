@@ -1,4 +1,4 @@
-# Iteráveis e iteradores
+# 2. Iteráveis e iteradores
 
 O que são iteráveis? Basicamente e a grosso modo, iteráveis em python são todos os objetos que implementam o método `__getitem__` ou `__iter__`. Beleza, vamos partir do simples.
 
@@ -32,7 +32,7 @@ for (i = 0; i > 10; i++){
 }
 ```
 
-## `__getitem__`
+## 2.1 `__getitem__`
 
 O padrão de projeto iterator em python já vem implementado por padrão, como já foi dito antes. Basta que um objeto tenha os métodos `__iter__` ou `__getitem__` para que um laço possa ser utilizado.
 
@@ -66,7 +66,7 @@ class iteravel:
 Então, pode-se compreender, sendo bem rústico, que todos os objetos que implementam `__getitem__` são iteráveis em python.
 
 
-## `__iter__`
+## 2.2 `__iter__`
 
 Agora os objetos que implementam `__iter__` tem algumas peculiaridades. Por exemplo, quando o iterável (vamos pensar no for) chamar a sequência, ela vai pedir o `__iter__` que vai retornar uma instância de si mesmo para o for e ele vai chamar o `__next__` até que a exceção `StopIteration` acontecer.
 

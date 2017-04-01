@@ -1,4 +1,4 @@
-# Consumindo iteráveis
+# 3. Consumindo iteráveis
 
 Você achou que o vídeo anterior não ia servir de nada, não?
 

@@ -1,5 +1,5 @@
 
-# Closures
+# 8. Closures e contexto de variáveis
 
 Já passamos funções como argumento, já retornamos funções e até já mudamos o comportamento das mesmas. Mas tem uma coisa que ainda não fizemos: Definir uma função no corpo de outra função:
 
@@ -123,7 +123,7 @@ saudacoes('portugues', 'Jaber') # 'Olá Jaber'
 saudacoes('ingles', 'Python') # 'Hello Python'
 ```
 
-## Classes e closures
+## 8.1 Classes vs closures
 
 
 Você deve ter percebido que até agora as closures tem dois tipos de comportamento diferentes, porém a imutabilidade permanece:
@@ -134,7 +134,7 @@ Você deve ter percebido que até agora as closures tem dois tipos de comportame
 Aqui você deve ter sacado o esquema de operações com dados. O dado passado a função externa permanece imutável sempre e inacessível a qualquer contexto externo ao da função, ou seja, o dado foi fixado e não pode ser transformado em nenhum outro valor, a não ser que seja feita outra chamada com outro valor. O que deveria ser dito sobre as classes, e que preferó postergar, é o que toca exatamente nesse ponto. Vamos fazer uma comparação:
 
 
-### classe `__call__()``
+### classe `__call__()`
 
 ```Python
 class diga_oi:
@@ -193,9 +193,9 @@ class diga_oi:
 `__setattr__()` é o método da classe que 'seta' valores em atributos, se nós quebrarmos a implementação default do Python ele não vai conseguir fazer atribuições, porém, é muito mais complicado que implementar uma closure. Nessa implementação simples para a comparação as closures tem 4 linhas e as classe 7. Pra fazer a mesma coisa, acho muito mais atrativo usar uma closure, não só porque estamos falando de programação funcional, mas pela simplicidade de código ('legibilidade conta'). Mas vamos prosseguir.
 
 
-## Mutação das variáveis de uma closure
+## 8.2 Mutação das variáveis de uma closure
 
-Diferente do que eu disse até agora, os valores podem ser alterados no escopo da função externa mas temos uma série de limitações. Caso o objeto passado como parâmetro, ou alocado na função externa, seja mutável (listas dicionários, conjuntos, ...), o objeto pode receber normalmente as modificações, vamos fazer um teste:
+Diferente do que eu disse até agora, os valores podem ser alterados no escopo da função externa mas temos uma série de limitações. Caso o objeto passado como parâmetro, ou alocado na função externa, seja mutável (listas, dicionários, conjuntos, ...), o objeto pode receber normalmente as modificações, vamos fazer um teste:
 
 
 ```Python
@@ -242,7 +242,7 @@ def contador():
 
         Retorna a somatória dos valores contidos na lista
         """
-        lista += lista
+        lista += 1
         return lista
     return soma
 
@@ -250,21 +250,154 @@ count = contador()
 count() # UnboundLocalError: local variable 'lista' referenced before assignment
 ```
 
+Vamos tentar mudar o foco um pouco e dar mais importancia a esse erro, ele pode nos mostrar coisas lindas sobre Python e que podemos usar com muito empenho para fazer funcional com mais espenho e graciosidade.
+
+### UnboundLocalError e escopo de variáveis
+
+`UnboundLocalError` é um erro muito comum em Python, e o que me deixa muito surpreso foi issso te lavado tanto tempo pra acontecer nesses nossos contextos de programação funcional. Vamos falar agora sobre escopo de variáveis, porém vale lembrar que esse não é um tópico de programação funcional e sim de comportamento específico do Python. Se você já sabe sobre tudo isso, você pode pular todos esse tópicos, porém vale a pena, para o melhor entendimento das closures ficar atento a variáveis livres.
 
 
+#### Variáveis globais e locais
 
-Tá, prometo que essa parte vou tentar ser breve, mas existe um conceito que não poderia deixar passar aqui, as variáveis livres. Um adendo que deve ser feito é que isso vale para as funções anônimas também, não só no mundo das closures. Deixei pra falar disso agora para você não ficar viciado em lambdas.
+Em Python as variáveis podem estar em três contextos. Elas podem ser de escopo global, local ou um 'contexto livre'. Vamos tentar olhar para isso com código:
 
-
-## Variáveis livres
-
-
-
-
-
-[`__doc__`](https://docs.python.org/3.6/reference/datamodel.html)
-[Variáveis livres](https://pt.wikipedia.org/wiki/Vari%C3%A1veis_livres_e_ligadas)
-[Stack](http://stackoverflow.com/questions/31599376/why-is-code-for-a-functionpython-mutable)
 ```Python
-dic = {'pirata': 'Ahoy', 'ingles':'Hello', 'portugues': 'Olá'}
+var_0 = 5 # Variável global, pode ser acessada em qualquer contexto
+
+def func():
+    """
+    func lê a variável global e define uma variável local (var_1)
+        e retorna a soma das duas
+    """
+    var_1 = 5 # aqui temos uma variável do escopo local de uma função
+    return var_0 + var_1
+
+print(var_0) # 5
+print(var_1) # NameError: name 'var_1' is not defined
 ```
+
+var_0 está presente em toda a execução, porém var_1 é uma variável do escopo local da função `func()` e fora desse contexto ela simplismente não existe.
+
+Outro ponto legal disso é que a variável global não pode ser modificada pela função `func()`:
+
+```Python
+var_0 = 5
+
+def func():
+    var_0 = 7
+
+func()
+print(var_0) # 5
+```
+
+No momento em que tentamos atribuir a no escopo de `func()` criamos uma nova `var_0` dentro desse contexto, (vamos falar mais sobre isso em um tópico futuro chamado introspecção de funções) o que faz que a variável global permaneça a mesma.
+
+Se nós quisermos transformar o valor da variável global dentro do escopo da função, podemos usar a palavra reservada `global`:
+
+```Python
+var_0 = 5
+
+def func():
+    global var_0
+    var_0 = 7
+
+func()
+print(var_0) # 7
+```
+
+Agora, como você pode notar o comportamento é diferente, a palavra `global` disse ao Python que variável usada aqui é exatamente o do escopo global. Quando o Python procura uma variável (vamos falar mais sobre isso em um tópico futuro chamado introspecção de funções [2]) ele segue uma hierarquia:
+
+```
+Existe no meu escopo local? Se sim, use. Caso não
+Procure em um escopo mais amplo, se existe, use, Caso não
+Procure em um escopo mais amplo ....
+....
+```
+Ele busca até que o contexto seja o global, a variável não existir ele vai nos retornar `NameError`. Mas isso só vale para leitura. E agora para escrerver?
+
+```
+Variável criada no escopo, fica no escopo.
+```
+
+É simples não? isso nos ajuda a previnir muitos erros e não 'assinar' variáveis fora do nosso escopo local e gerar efeitos colaterais bizarros. Exemplo?
+
+```Python
+def dir_concat(dir:str) -> str:
+    """
+    Função que recebe uma string com um diretório
+    e contatena ele com nosso path atual:
+
+    Exemplo:
+    >>> dir_concat('documentos')
+    /home/Jaber/Python/documentos
+    """
+    from os import getcwd
+    return '{}/{}'.format(getcwd(), dir)
+```
+
+Você notou o que existe de errado nessa função? Ela usar a palavra reservada `dir` que é uma função do contexto global do python `dir()`, ou seja, se os contextos locais não fosse criados durante todo o resto da execução desse programa não poderiamos fazer uso da função `dir()` pois ela foi sobreescrita.
+
+#### Variáveis livres
+
+Tá, pode ser que tudo que eu disse é tão óbvio e você faz isso sempre, mas dentro das closures tem um problema relativo a isso e vou voltar no código que iniciei esse bloco:
+
+
+```Python
+def contador():
+    """
+    Função contadora de acessos.
+
+    Internamente mantem uma lista que é definida
+        vazia no momento em que é declarada
+    """
+    lista = 0 # Variável local de contador
+    def soma():
+        """
+        Adiciona 1 a lista toda vez que a função é chamada.
+
+        Retorna a somatória dos valores contidos na lista
+        """
+        lista += 1 # lista está definida no contexto de contador
+        return lista
+    return soma
+```
+
+Vamos pensar um pouco, não é possível modificar `lista` pois ela está em um escopo externo ao de `soma()` só que não podemos usar `global` pois lista não é global, lembra da ordem da busca pos nomes?
+
+```
+faz parte de soma? Não
+faz parte de contador, Sim
+```
+
+Então ele usa, só que responde `UnboundLocalError` pois não podemos mudar seu valor. Em Python 3, e só em python 3, existe a palavra reservada `nonlocal` que dá o poder de outro escopo mutar o valor fora de seu escopo e que não está no escopo global. Ou seja, resolve o nosso problema e isso é lindo. Existe uma PEP inteira detalhando esse aspecto [PEP 3104](https://www.python.org/dev/peps/pep-3104/) pois não quero me alongar nessa explicação, pra simplificar, vou usar o contexto do [wikipedia](https://pt.wikipedia.org/wiki/Vari%C3%A1veis_livres_e_ligadas):
+
+```
+uma variável livre é uma variável referenciada em uma função, que não é nem uma variável local nem um argumento daquela função.
+```
+
+No caso de nossa closures, é uma variável declara na função externa, que pode ser acessada pela função interna e não pode ser modificada pela mesma. Porém podemos usar `nonlocal`. Vamos tentar?
+
+```Python
+def contador():
+    """
+    Função contadora de acessos.
+
+    Internamente mantem uma lista que é definida
+        vazia no momento em que é declarada
+    """
+    var = 0
+    def soma():
+        """
+        Adiciona 1 a lista toda vez que a função é chamada.
+
+        Retorna a somatória dos valores contidos na lista
+        """
+        nonlocal var # implementação de nonlocal
+        var += 1
+        return var
+    return soma
+```
+
+Agora é possível gerar esse contador sem o uso da lista, então ele não 'enche nossa memória' com uma lista que pode ter um tamanho nada convencional. Porém isso fere o conceito de imutabilidade, mais ainda é melhor que uma classe por que faz acesso ao recurso `var` é somente a função interna, sem que isso possa ser transformado pelo escopo exterior, como é feito no caso das classes.
+
+Agora vamos olhar para um lado mais avançado das closures, mas você vai conseguir dar mais vazão e usos derivados das mesmas.

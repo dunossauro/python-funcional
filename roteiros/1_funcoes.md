@@ -1,8 +1,8 @@
-# Funções
+# 1. Funções
 
 Esse vídeo vai se limitar a falar da estrutura básica das funções em python, sem entrar profundamente em cada um dos tópicos. Será uma explanação de código e abrir a cabeça para novas oportunidades de código mais pythonico.
 
-## Funções como objeto de primeira classe
+## 1.1 Funções como objeto de primeira classe
 
 Funções como objeto de primeira classe, são funções que se comportam como qualquer tipo nativo de uma determinada linguagem. Por exemplo:
 
@@ -29,7 +29,7 @@ lista_2 = [lambda x: x, lambda x: x+1] # aqui as funções foram definidas dentr
 
 Como nota-se, em python, as funções podem ser inseridas em qualquer contexto e também geradas em tempo de execução.
 
-## Funções puras
+## 1.2 Funções puras
 
 Funções puras, são funções que não sofrem interferência do meio externo. Vamos começar pelo exemplo ruim:
 
@@ -65,7 +65,7 @@ assert mais_cinco(5) == 10 # True
 
 Pode parecer trivial, mas muitas vezes por comodidade deixamos o meio influenciar no comportamento de uma função.
 
-## Funções de ordem superior (HOFs)
+## 1.3 Funções de ordem superior (HOFs)
 
 Funções de ordem superior são funções que recebem funções como argumento(os) e/ou retornam funções como resposta. Existem muitas funções embutidas em python de ordem superior como: `map, filter, zip` e praticamente todo o módulo functools `import functools`. Porém, nada impede de criarmos novas funções de ordem superior. Um ponto a ser lembrado é que map e filter não tem mais a devida importância em python com a entrada das comprehensions, o que nos faz escolher única e exclusivamente por gosto, apesar de comprehensions serem mais legíveis. Mas não se preocupe, teremos um vídeo só para essas comparações.
 
@@ -115,7 +115,7 @@ def func_quadrada(val):
 assert func_mais_2(func_quadrada, 2) == 6 # true
 ```
 
-#### Um exemplo usando funções embutidas:
+### 1.3.1 Um exemplo usando funções embutidas:
 
 ```python
 lista_0 = [0, 1, 2]
@@ -127,7 +127,7 @@ list(zip(lista_0, lista_1)) == [(0, 2), (1, 1), (2, 0)]
 
 Como falaremos mais adiante, a função embutida zip itera em duas sequências e nos retorna uma lista de tuplas como os elementos que contém o mesmo index na iteração.
 
-## `__call__`
+## 1.4 `__call__`
 
 Por que falar de classes? Lembre-se Python é uma linguagem construída em classes, e todos os objetos que podem ser chamados/invocados, implementam o método `__call__`:
 
@@ -150,7 +150,7 @@ Isso quer dizer que podemos gerar classe que se comportam como funções?
 
 SIIIIIM. Chupa Haskell
 
-## Funções geradoras
+## 1.5 Funções geradoras
 
 Embora faremos um vídeo extremamente focado em funções geradoras, não custa nada dar uma palinha, não?
 
@@ -177,7 +177,7 @@ next(gerador) # StopIteration
 Passando bem por alto, uma função geradora nos retorna um iterável que é preguiçoso. Ou seja, ele só vai efetuar a computação quando for chamado.
 
 
-## Funções anônimas (lambda)
+## 1.6 Funções anônimas (lambda)
 
 Funções anônimas, ou funções lambda, são funções que podem ser declaradas em qualquer contexto, tá... Todo tipo de função, em python, pode ser declarada em tempo de execução. Porém funções anônimas podem ser atribuídas a variáveis, podem ser definidas dentro de sequências e declaradas em um argumento de função. Vamos olhar sua sintaxe:
 

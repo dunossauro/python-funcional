@@ -1,4 +1,4 @@
-# Programação funcional com python
+# 0. Programação funcional com python
 
 Programação funcional não é um bicho de sete cabeças. Dito isso, sente-se no sofá e vamos aproveitar essa introdução. Eu juro, não vai ser tão longa assim.
 
@@ -40,7 +40,7 @@ print(lista) # ['P', 'y', 't', 'h', 'o', 'n']
 
 - Vamos pensar em não usar definições complexas, ao menos quando elas forem necessárias (Matemática ... functors, monads, f(g(x)))
 
-## Técnicas usadas por linguagens funcionais
+## 0.1 Técnicas usadas por linguagens funcionais
 
 - Funções como objetos de primeira classe
 - Funções de ordem superior
@@ -51,7 +51,7 @@ print(lista) # ['P', 'y', 't', 'h', 'o', 'n']
 - O que deve ser computado, não como computar
 - Lazy evaluation
 
-## Python é uma linguagem funcional?
+## 0.2 Python é uma linguagem funcional?
 
 #### Não. Mas é uma linguagem que implementa muitos paradigmas e porque não usar todos de uma vez?
 

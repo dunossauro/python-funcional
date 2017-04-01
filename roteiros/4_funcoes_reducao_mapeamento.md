@@ -1,4 +1,4 @@
-# Funções de redução/mapeamento
+# 4. Funções de redução/mapeamento
 
 Você já achou que estava super avançado, eu sei, mas porém, contudo, entretanto, todavia. Agora que você já sabe como os iteráveis funcionam, nós podemos avançar mais e fazer melhor uso de funções embutidas do python. Como:
 
@@ -19,12 +19,12 @@ Por outro lado, as outras funções (zip, enumerate, map e reversed) produzem um
 
 Tá bom, vamos explicar detalhadamente.
 
-## Funções de redução
+## 4.1 Funções de redução
 
 Funções de redução recebem um iterável e retornam um único elemento. Ok, já disse isso, mas é só isso. Juro.
 
 
-### `any()`
+### 4.1.1 `any()`
 Vamos exemplificar com a função any
 
 ```Python
@@ -101,7 +101,7 @@ Jaber diz: `Por que??? Agora que eu tinha entendido tudo. Estava tudo tão fáci
 
 Só mais um pouco, eu sei que você consegue. Vamos lá.
 
-### `all()`
+### 4.1.2 `all()`
 
 Diferente do `any()` o `all()` só retorna `True`, se todos os elementos da sequência, aplicados a `bool()` retornarem `True`.
 
@@ -119,7 +119,7 @@ all(lista) # False
 
 Viu, foi tão simples. Agora, vamos a mais uma de redução.
 
-### `len()`
+### 4.1.3 `len()`
 
 `len()` diferente das outras sequências, efetua uma soma de números existente em uma sequência. Vamos tentar implementar um `len()`?
 
@@ -166,7 +166,7 @@ Podemos ver, como já foi dito antes, todas as classes de sequência tem que ter
 Viu só, ele está em toda sequência e não está em objetos que não podem ser iterados, como por exemplo um número inteiro.
 
 
-### sum()
+### 4.1.4 sum()
 
 Bom, todas as funções que vimos até agora envolvem alguma operação, uma chamada de função ou algo do gênero (`bool()`, `__len__()`, ...). A função embutida `sum()` executa uma somatória de todos os elementos da sequência. Por exemplo, se você tiver uma lista de números (int, float, complex, ...) ele vai fazer uma soma de elemento por elemento:
 
@@ -201,11 +201,11 @@ Embora sum faça a soma de valores, ele não usa o `__add__()` do objeto. No cas
 Pronto, agora você está preparado para aprender mais um pouco sobre funções de redução. Existem outras funções, mas esse não é momento para falarmos delas. Talvez depois de funções de ordem superior.
 
 
-## Funções de mapeamento
+## 4.2 Funções de mapeamento
 
 As funções de mapeamento padrões da biblioteca padrão (zip(), enumerate() ,reversed()) são maneiras super interessantes de trabalhar com iteráveis, vamos lá.
 
-### `zip()` e `reversed()`
+### 4.2.1 `zip()` e `reversed()`
 
 A função zip não é uma função de compressão, como pode parecer. Ela funciona como um zipper, sabe, aquele da sua calça jeans? É tipo isso.
 
@@ -281,7 +281,7 @@ zip([1,2,3], [4,5,6], [7,8,9]) # [(1, 4, 7), (2, 5, 8), (3, 6, 9)]
 Não é muito complicado de entender, o único problema do `zip()` é que todas as sequências tem que ter o mesmo `len()`. (Nossa você já está entendo tudo, eu sei). Vamos voltar a falar mais sobre essa quantidade de argumentos infinitos, só que mais tarde. Agora é o enumerate.
 
 
-### `enumerate()`
+### 4.2.2 `enumerate()`
 
 
 A função `enumerate()` faz uma coisa muito parecida com o zip, só que ele gera a sequência a ser zipada pra você. Olha que legal:
@@ -331,7 +331,7 @@ Bom, enumerate é bem simples. Mas temos uma função lá no começo que deixamo
 Vamos, falta pouco pra acabar por hoje, você aguenta.
 
 
-### `map()`
+### 4.2.3 `map()`
 
 Embora já tenhamos usado a função `map()` em quase todos os vídeos anteriores, agora o seu grande segredo será revelado.
 

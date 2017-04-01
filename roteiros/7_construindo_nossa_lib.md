@@ -1,4 +1,4 @@
-## Nossa primeira biblioteca de funções
+# 7. Nossa primeira biblioteca de funções
 
 O objetivo desse vídeo é construir uma gama de funções simples para que possamos exercitar tudo que aprendemos. Vamos fazer 6 funções legais de usar e que podem ajudar em muitos casos. Partiu? Vem comigo.
 

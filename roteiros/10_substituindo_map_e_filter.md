@@ -1,1 +1,0 @@
-# Substituindo map e filter
