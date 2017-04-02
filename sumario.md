@@ -39,3 +39,8 @@
 #### 8.1 Classes vs closures
 #### 8.2 Mutação das variáveis de uma closure
 #### 9. Usos variados de closures
+#### 9.1 closures e lambdas
+#### 9.2 métodos em closures
+#### 9.3 closures que recebem funções (ou quase isso)
+#### 9.4 ler parcialmente variáveis `nonlocal`
+#### 9.5 decorar funções com closures
