@@ -24,12 +24,12 @@
 #### 4.2.2 `enumerate()`
 #### 4.2.3 `map()`
 #### 5. Funções de ordem superior
-#### 5.1 map()
-#### 5.2 max()
-#### 5.3 min()
-#### 5.4 iter()
-#### 5.5 sorted()
-#### 5.7 filter()
+#### 5.1 `map()`
+#### 5.2 `max()`
+#### 5.3 `min()`
+#### 5.4 `iter()`
+#### 5.5 `sorted()`
+#### 5.7 `filter()`
 #### 6. Funções de ordem superior p.2
 #### 6.1 Funções que aceitam funções
 #### 6.2 Funções geradoras
