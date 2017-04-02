@@ -4,7 +4,7 @@ Quando procurei saber mais sobre programação funcional usando python descobri 
 
 Sei que o material em português é escasso em tudo que se diz relacionado a programação funcional, então espero que esse seja um guia para você poder conhecer um pouco mais sobre o mundo maravilhoso do cálculo lambda.
 
-Os tópicos abordados até o momento estão disponíves no [sumário](/.sumario.md)
+Os tópicos abordados até o momento estão disponíves no [sumário](sumario.md)
 
 ### Agradecimentos:
 
