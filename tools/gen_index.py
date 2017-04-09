@@ -3,7 +3,6 @@ from contextlib import contextmanager
 from re import compile as comp
 from pprint import pprint
 
-
 roteiros = 'roteiros'
 regex = comp(r'(#|#{2}|#{3}|#{4}) (\d\d?\.\d?\.?\d?) (.+)')
 
