@@ -1,6 +1,10 @@
 #### 0. Programação funcional com python
 #### 0.1 Técnicas usadas por linguagens funcionais
 #### 0.2 Python é uma linguagem funcional?
+#### 0.3 A quem esse 'curso' é destinado?
+#### 0.4 Apresentando o Jaber
+#### 0.5 Sobre as referências
+#### 0.6 Sobre o histórico das linguagens funcionais
 #### 1. Funções
 #### 1.1 Funções como objeto de primeira classe
 #### 1.2 Funções puras
