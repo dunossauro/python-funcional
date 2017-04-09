@@ -5,7 +5,7 @@ from pprint import pprint
 
 
 roteiros = 'roteiros'
-regex = comp(r'(#|#{2}|#{3}|#{4}) (\d\.\d?\.?\d?) (.+)')
+regex = comp(r'(#|#{2}|#{3}|#{4}) (\d\d?\.\d?\.?\d?) (.+)')
 
 
 @contextmanager

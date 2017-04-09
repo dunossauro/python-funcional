@@ -44,3 +44,4 @@
 #### 9.3 closures que recebem funções (ou quase isso)
 #### 9.4 ler parcialmente variáveis `nonlocal`
 #### 9.5 decorar funções com closures
+#### 10. Decoradores
