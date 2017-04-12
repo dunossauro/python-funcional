@@ -1,6 +1,6 @@
 # 1. Funções
 
-Esse vídeo vai se limitar a falar da estrutura básica das funções em python, sem entrar profundamente em cada um dos tópicos. Será uma explanação de código e abrir a cabeça para novas oportunidades de código mais pythonico.
+Como nem tudo são flores. Vamos começar do começo e entender algumas características das funções do python (o objeto função) e dar uma revisada básica em alguns conseitos de função só pra gente não se perder no básico depois. Então tópico vai se limitar a falar da estrutura básica das funções em python, sem entrar profundamente em cada um dos tópicos. Será uma explanação de código e abrir a cabeça para novas oportunidades de código mais pythonico e que preferencialmente gere menos efeito colateral. Mas calma, não vamos ensinar a fazer funções, você já está cheio disso.
 
 ## 1.1 Funções como objeto de primeira classe
 
@@ -27,7 +27,7 @@ lista = [func, func_2] # a variável que armazena a função foi inserida em uma
 lista_2 = [lambda x: x, lambda x: x+1] # aqui as funções foram definidas dentro de uma estrutura
 ```
 
-Como nota-se, em python, as funções podem ser inseridas em qualquer contexto e também geradas em tempo de execução.
+Como é possível notar, em python, as funções podem ser inseridas em qualquer contexto e também geradas em tempo de execução. Com isso nós podemos além de inserir funções em estruturas, retornar funções, passar funções como parâmetro (HOFs), definir funções dentro de funções(closures) e assim por diante. Caso você tenha aprendido a programar usando uma linguagem em que as funções não são objetos de primeira classe, não se assuste isso faz parte da rotina comum do python. Preferencialmente, e quase obrigatoriamente, é preferível fazer funções simples, pequenas e de pouca complexidade para que elas não sofram interferência do meio externo, gerem menos manutenção e o melhor de tudo, possam ser combinadas em outras funções, então vamos lá...
 
 ## 1.2 Funções puras
 
@@ -63,13 +63,25 @@ valor = 7
 assert mais_cinco(5) == 10 # True
 ```
 
-Pode parecer trivial, mas muitas vezes por comodidade deixamos o meio influenciar no comportamento de uma função.
+Pode parecer trivial, mas muitas vezes por comodidade deixamos o meio influenciar no comportamento de uma função. Por definição o Python só faz possível, e vamos falar disso em outro tópico, a leitura de variáveis externas. Ou seja, dentro do contexto da função as variáveis externas não podem ser modificadas, mas isso não impede que o contexto externo a modifique. Se você for uma pessoa inteligente como o Jaber deve saber que nunca é uma boa ideia usar valores externos. Mas, caso seja necessário, você pode sobreescrever o valor de uma variável no contexto global usando a palavra reservada `global`. O que deve ficar com uma cara assim:
+
+```Python
+
+valor = 5
+
+def teste():
+    global valor # aqui é feita a definição
+    valor = 7
+
+print(valor) # 7
+```
+
+Só lembre de ser sempre coerente quando fizer isso, as consequências podem ser imprevisiveis. Nessa linha de funções puras e pequeninas, podemos caracterizar, embora isso não as defina, funções de ordem superior, que são funções que recebem uma função como argumento, ou as devolvem, e fazem a chamada das mesmas dentro do contexto da função que a recebeu como parâmetro. Isso resulta em uma composição de funções o que agrega muito mais valor caso as funções não gerem efeitos colaterais.
+
 
 ## 1.3 Funções de ordem superior (HOFs)
 
-Funções de ordem superior são funções que recebem funções como argumento(os) e/ou retornam funções como resposta. Existem muitas funções embutidas em python de ordem superior como: `map, filter, zip` e praticamente todo o módulo functools `import functools`. Porém, nada impede de criarmos novas funções de ordem superior. Um ponto a ser lembrado é que map e filter não tem mais a devida importância em python com a entrada das comprehensions, o que nos faz escolher única e exclusivamente por gosto, apesar de comprehensions serem mais legíveis. Mas não se preocupe, teremos um vídeo só para essas comparações.
-
-Vamos lá:
+Funções de ordem superior são funções que recebem funções como argumento(os) e/ou retornam funções como resposta. Existem muitas funções embutidas em python de ordem superior como: `map, filter, zip` e praticamente todo o módulo functools `import functools`. Porém, nada impede de criarmos novas funções de ordem superior. Um ponto a ser lembrado é que map e filter não tem mais a devida importância em python com a entrada das comprehensions (embora eu as adore), o que nos faz escolher única e exclusivamente por gosto, apesar de comprehensions serem mais legíveis (vamos falar disso em outro contexto), existem muitos casos onde elas ainda fazem sentido. Mas sem me extender muito, vamos ao código:
 
 ```python
 
@@ -91,16 +103,11 @@ Um ponto a tocar, e o que eu acho mais bonito, é que a função vai retornar di
 
 ```python
 
-func = lambda x: x+2 # uma função simples, soma mais 2 a qualquer inteiro
+func = lambda x: x + 2 # uma função simples, soma mais 2 a qualquer inteiro
 
 def func_mais_2(funcao, valor):
     """
-    Executa a função passada por parâmetro e retorna esse valor somado com dois
-
-    Ou seja, é uma composição de funções:
-
-    Dado que func(valor) é processado por func_mais_dois:
-        func_mais_2(funcao(valor)) == f(g(x))
+    Função que usamos antes.
     """
         return funcao(valor) + 2
 
@@ -108,12 +115,14 @@ assert func_mais_2(func, 2) == 4 # true
 
 def func_quadrada(val):
     """
-    Eleva o valor de entrada ao quadrado
+    Eleva o valor de entrada ao quadrado.
     """
     return val * val
 
 assert func_mais_2(func_quadrada, 2) == 6 # true
 ```
+
+<parei aqui>
 
 ### 1.3.1 Um exemplo usando funções embutidas:
 
