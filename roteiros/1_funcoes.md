@@ -122,19 +122,21 @@ def func_quadrada(val):
 assert func_mais_2(func_quadrada, 2) == 6 # true
 ```
 
-<parei aqui>
-
 ### 1.3.1 Um exemplo usando funções embutidas:
 
-```python
-lista_0 = [0, 1, 2]
-lista_1 = [2, 1, 0]
+Muitas das funções embutidas em python são funções de ordem superior (hofs) como a função map, que é uma das minhas preferidas. Uma função de map recebe uma função, que recebe um único argumento e devolve para nós uma nova lista com a função aplicada a cada elemento da lista
 
-list(zip(lista_0, lista_1)) == [(0, 2), (1, 1), (2, 0)]
+```python
+def func(arg):
+    return arg + 2
+
+lista = [2, 1, 0]
+
+list(map(func, lista)) == [4, 3, 2]
 
 ```
 
-Como falaremos mais adiante, a função embutida zip itera em duas sequências e nos retorna uma lista de tuplas como os elementos que contém o mesmo index na iteração.
+Mas fique tranquilo, falaremos muito mais sobre isso.
 
 ## 1.4 `__call__`
 
@@ -159,11 +161,13 @@ Isso quer dizer que podemos gerar classe que se comportam como funções?
 
 SIIIIIM. Chupa Haskell
 
+Essa é uma parte interessante da estrutura de criação do Python a qual veremos mais em outro momento sobre introspecção de funções, mas vale a pena dizer que classe, funções nomeadas, funções anônimas e funções geradoras usam uma base comum para funcionarem, essa é uma das coisas mais bonitas em python e que em certo ponto fere a ortogonalidade da linguágem, pois coisas iguais tem funcionamentos diferentes, mas facilida o aprendizado da linguagem, mas não é nosso foco agora.
+
 ## 1.5 Funções geradoras
 
-Embora faremos um vídeo extremamente focado em funções geradoras, não custa nada dar uma palinha, não?
+Embora faremos um tópico extremamente focado em funções geradoras, não custa nada dar uma palinha, não?
 
-Funções geradoras, são funções que nos retornam um iterável. Mas ele é lazy, vamos só para o exemplo de uso, muitos conceitos precisam ser esclarecidos antes de entendermos profundamente o que acontece com elas, mas digo logo. São funções lindas <3
+Funções geradoras, são funções que nos retornam um iterável. Mas ele é lazy(só é computado quando é invocado), vamos só para o exemplo de uso, muitos conceitos precisam ser esclarecidos antes de entendermos profundamente o que acontece com elas, mas digo logo. São funções lindas <3
 
 Para que uma função seja geradora, em tese, só precisamos trocar o return por yield:
 
@@ -250,4 +254,4 @@ func = lambda arg_1, arg_2, arg_3: True if sum([arg_1, arg_2, arg_3]) > 7 else m
 
 Embora essa seja uma explanação inicial sobre as funções anônimas, grande parte dos tópicos faz uso delas e vamos poder explorar melhor sua infinitude.
 
-Mas por hoje é só e no vídeo seguinte vamos discutir, e mesmo que superficialmente, iteradores e iterávels e suas relações com a programação funcional.
+Mas por hoje é só e no tópico seguinte vamos discutir, e mesmo que superficialmente, iteradores e iterávels e suas relações com a programação funcional.
