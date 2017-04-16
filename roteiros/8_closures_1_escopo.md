@@ -127,8 +127,8 @@ saudacoes('ingles', 'Python') # 'Hello Python'
 
 Você deve ter percebido que até agora as closures tem dois tipos de comportamentos diferentes, porém a imutabilidade permanece:
 
-1. Fixando parâmetros para padronização de chamadas
-2. O escopo da função externa é acessível para a função interna
+1.  Fixando parâmetros para padronização de chamadas
+2.  O escopo da função externa é acessível para a função interna
 
 Aqui você deve ter sacado o esquema de operações com dados. O dado passado à função externa permanece imutável sempre e inacessível a qualquer contexto externo ao da função, ou seja, o dado foi fixado e não pode ser transformado em nenhum outro valor, a não ser que seja feita outra chamada com outro valor. O que deveria ser dito sobre as classes, e que preferi postergar, é o que toca exatamente nesse ponto. Vamos fazer uma comparação:
 
@@ -304,7 +304,7 @@ func()
 print(var_0) # 7
 ```
 
-Agora, como você pode notar, o comportamento é diferente. A palavra `global` disse ao Python que a variável usada aqui é exatamente a do escopo global. Quando o Python procura uma variável (vamos falar mais sobre isso em um tópico futuro chamado introspecção de funções [2]) ele segue uma hierarquia:
+Agora, como você pode notar, o comportamento é diferente. A palavra `global` disse ao Python que a variável usada aqui é exatamente a do escopo global. Quando o Python procura uma variável (vamos falar mais sobre isso em um tópico futuro chamado introspecção de funções (2)) ele segue uma hierarquia:
 
 ```
 Existe no meu escopo local? Se sim, use. Caso não

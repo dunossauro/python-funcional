@@ -2,9 +2,9 @@
 
 Segundo Steven Lott, podemos criar três tipos de HOFs diferentes:
 
-1. Funções que aceitam funções como argumento
-2. Funções que retornam uma função ou uma classe com `__call__`
-3. Funções que aceitam e retornam funções (Geralmente são decoradores)
+1.  Funções que aceitam funções como argumento
+2.  Funções que retornam uma função ou uma classe com `__call__`
+3.  Funções que aceitam e retornam funções (Geralmente são decoradores)
 
 Contudo, vamos exercitar o fato de criar funções de ordem superior, apenas. Vamos tentar copiar algumas do escopo, vamos nos divertir. Pronto?
 
@@ -166,7 +166,7 @@ Então como já entendemos tudo isso, vamos só usar alguns exemplos de funçõe
 
 Vamos trabalhar em outra frente então:
 
-1. Mapear sequências mais complexas
+1.  Mapear sequências mais complexas
 
 Vamos supor, que temos uma lista de tuplas:
 

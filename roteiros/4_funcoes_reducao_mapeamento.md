@@ -2,14 +2,14 @@
 
 Você já achou que estava super avançado, eu sei, mas porém, contudo, entretanto, todavia. Agora que você já sabe como os iteráveis funcionam, nós podemos avançar mais e fazer melhor uso de funções embutidas do python. Como:
 
-- any()
-- all()
-- len()
-- sum()
-- zip()
-- reversed()
-- enumerate()
-- map()
+-   any()
+-   all()
+-   len()
+-   sum()
+-   zip()
+-   reversed()
+-   enumerate()
+-   map()
 
 Mas primeiro, vamos reduzir tudo a categorias. Como assim?
 
@@ -51,16 +51,16 @@ Tá, mas como ele decide o que é Verdadeiro ou Falso?
 
 A [documentação do python](https://docs.python.org/3.6/library/stdtypes.html#truth-value-testing) diz que 'qualquer objeto pode ser testado (...) e que os seguintes valores são considerados falsos:
 
-- None
-- False
-- zeros
-    - 0 (int)
-    - 0.0 (float)
-    - 0j (complex)
-- Sequências vazias
-    - `[]` (lista)
-    - `''` (string)
-    - `{}` (Dicionários/conjuntos)
+-   None
+-   False
+-   zeros
+    -   0 (int)
+    -   0.0 (float)
+    -   0j (complex)
+-   Sequências vazias
+    -   `[]` (lista)
+    -   `''` (string)
+    -   `{}` (Dicionários/conjuntos)
 
 Ou seja, qualquer coisa que não seja uma sequência vazia, None/False e zero é True. Olha só, você acabou de aprender um truque grátis e nem doeu:
 

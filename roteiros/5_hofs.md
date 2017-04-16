@@ -2,12 +2,12 @@
 
 Você deve achar que esquecemos muitas funções embutidas no vídeo passado, não? Funções como:
 
-- map()
-- max()
-- min()
-- iter()
-- sorted()
-- filter()
+-   map()
+-   max()
+-   min()
+-   iter()
+-   sorted()
+-   filter()
 
 Porém, essas funções têm características especiais. Como assim? Elas podem receber além do iterável, uma outra função como argumento. Vamos lá. Você já foi introduzido ao map no vídeo passado.
 
