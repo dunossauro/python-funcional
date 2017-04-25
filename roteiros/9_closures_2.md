@@ -5,12 +5,12 @@ Vamos entender um pouco mais sobre closures e variar o uso com diversas coisas? 
 
 ## 9.1 closures e lambdas
 
-Todas as closures que criamos até agora podem ser substituidas por lambdas, pois as funções internas não passam de simples expressões:
+Todas as closures que criamos até agora podem ser substituídas por lambdas, pois as funções internas não passam de simples expressões:
 
 ```Python
 def diga_oi(saudacao):
     """
-    Função diga_oi, nossa velha de gerra com um lambda interno
+    Função diga_oi, nossa velha de gera com um lambda interno
     """
     return lambda nome: '{} {}'.format(saudacao, nome)
 
@@ -18,7 +18,7 @@ ahoy = diga_oi('Ahoy')
 ahoy('Jaber') # 'Ahoy Jaber'
 ```
 
-Uma coisa legal de usar funções `lambda`, e ao mesmo tempo um ponto negativo desse tipo de utilização, é que não há uma maneira de sobreescrever a variável local usando `nonlocal` pois o lambda só aceita uma expressão de uma linha. Para closures como essa em que o valor deve ser só lido isso pode funcionar bem.
+Uma coisa legal de usar funções `lambda`, e ao mesmo tempo um ponto negativo desse tipo de utilização, é que não há uma maneira de sobrescrever a variável local usando `nonlocal` pois o lambda só aceita uma expressão de uma linha. Para closures como essa em que o valor deve ser só lido isso pode funcionar bem.
 
 ## 9.2 métodos em closures
 
@@ -27,7 +27,7 @@ Sim, agora estamos falando de Python e as coisas em que mundo Pythonico nos ofer
 ```Python
 def diga_oi(saudacao):
     """
-    Função diga_oi, nossa velha de gerra com um lambda interno
+    Função diga_oi, nossa velha de gera com um lambda interno
     """
     def mudar_saudacao(nova_saudacao):
         nonlocal saudacao
@@ -46,9 +46,9 @@ Em tempo de execução é possível fazer monkey patch em qualquer tipo de objet
 
 ## 9.3 interagindo com valores `nonlocal`
 
-Nós já fizemos isso com coposições de funções, mas como as closures são exatamente o inverso as composições, vamos fazer aqui também. Caso você tenha perdido o momento em que parcialmente consumimos iteráveis, isso foi feito no tópico 7.
+Nós já fizemos isso com composições de funções, mas como as closures são exatamente o inverso as composições, vamos fazer aqui também. Caso você tenha perdido o momento em que parcialmente consumimos iteráveis, isso foi feito no tópico 7.
 
-Vamos imaginar que nossa closure contém um iterável infinito, ele armazena uma contágem, vamos usar nosso mesmo contador Fail do tópico 8:
+Vamos imaginar que nossa closure contém um iterável infinito, ele armazena uma contagem, vamos usar nosso mesmo contador Fail do tópico 8:
 
 ```Python
 def contador(inicio):
@@ -67,7 +67,7 @@ c() # 4
 c() # 5
 ```
 
-Já fizemos isso, mas vamos tentar incrementar a closure para que ela possa ser consumida lentamente, ou preguiçosamente, e que o retorno possa ser um range de valores que acrecentam a contagem de formas diferentes:
+Já fizemos isso, mas vamos tentar incrementar a closure para que ela possa ser consumida lentamente, ou preguiçosamente, e que o retorno possa ser um range de valores que acrescentam a contagem de formas diferentes:
 
 ```Python
 def contador(inicio, continuo=False):
@@ -75,16 +75,16 @@ def contador(inicio, continuo=False):
     inicia nossa closure
 
     Args:
-        - inicio: Define qual o valor de incio da contagem
-        - continuo: Define se os valores serãm continuados ou não
+        - inicio: Define qual o valor de início da contagem
+        - continuo: Define se os valores serão continuados ou não
     """
     var = inicio
     def retorno(quantidade):
         """
-        Retorna uma quantidade x de valores contínuos apartir do último usado
+        Retorna uma quantidade x de valores contínuos a partir do último usado
 
         Caso seja continua, e aquantidade for (> 1) o retorno vai variar e armazenar o ultimo valor do range,
-        Caso contrario, retornará um range, mas não alterará o valor inicial
+        Caso contrário, retornará um range, mas não alterará o valor inicial
         """
         nonlocal var # implementação de nonlocal
         yield from range(var, var + quantidade) # aqui fica a escolha de retornar um gerador
@@ -96,7 +96,7 @@ def contador(inicio, continuo=False):
     return retorno
 ```
 
-Isso faz com que o comportamento da closure seja diferente e temos duas maneiras de utilizar a o reu retorno, mas vale lembrar que ele é sempre lazy e a resposta trá de ser contruída ou iterada:
+Isso faz com que o comportamento da closure seja diferente e temos duas maneiras de utilizar o seu retorno, mas vale lembrar que ele é sempre lazy e a resposta trá de ser construída ou 'iterada':
 
 Modo 1:
 ```Python
@@ -133,12 +133,12 @@ Sim e isso torna tudo mais lindo, mas eu vou deixar você tentar fazer isso sozi
 
 ## 9.4 closures que recebem funções (ou quase isso)
 
-Esse, embora seja um exemplo óbivo do que vimos até agora, pode ser que não tenha passado na cabeça de ninguém até agora, mas vamos lá:
+Esse, embora seja um exemplo óbvio do que vimos até agora, pode ser que não tenha passado na cabeça de ninguém até agora, mas vamos lá:
 
 ```Python
 def diga_oi(saudacao, func):
     """
-    Função diga_oi, nossa velha de gera com um lambda interno
+    Função diga_oi, nossa velha de guera com um lambda interno
     """
     return func
 
@@ -153,3 +153,73 @@ Lembra de todo aquele caso do escopo das variáveis? `saudacao` está definida d
 Vamos entender melhor esse tipo de atribuição ao falar dos decoradores, onde vamos decorar funções. Isso é só um problema de escopo de que precisava ficar nítido agora, nós vamos entender ele agora.
 
 ## 9.5 decorar funções com closures
+
+Vamos voltar ao básico e fazer somas com números e partiremos de exemplos mais complexos no próximo tópico. Vamos imaginar que temos um caso de uma função em que todos os resultados necessitam ser pares. Tá, isso é muito simples, mas vamos decorar uma função que só executa uma soma simples primeiro:
+
+```Python
+def soma(x, y):
+    return x + y
+```
+
+Embora essa seja uma função bem simples, não consigo pensar em um exemplo mais simplesmente direto para que o entendimento dos decoradores não soem como coisa de outro mundo. Vamos criar uma closure que simplesmente executa essa função, ou seja ela vai decorá-la:
+
+```Python
+def eh_par(func):
+    """
+    Nesse caso a função externa é quem nomeia o decorador.
+
+    A função interna é quem lida com a execução da função e com todo tipo
+        de interação com a função decorada.
+
+    Args:
+        - func: Nesse caso func é a função decorada
+    """
+    def interna(a, b):
+        """
+        Função que faz a mágica.
+
+        Diferente das closures que vimos até agora, os argumentos a, b
+            são os argumentos passados para a função decorada.
+
+        Execução:
+            Caso o resultado da soma seja par, o retorno vai ser uma tupla
+                como (True, <valor>)
+            Caso seja ímpar, vai retornar a tupla com (False, <valor>)
+        """
+        result = func(a, b)
+        if result % 2 == 0:
+            return True, result
+        else:
+            return False, result
+    return interna
+```
+
+Alguns comentários que gostaria de fazer antes de aplicar de fato o decorador. A função externa, nesse caso 'eh_par' recebe como primeiro argumento a função que será decorada, o que na verdade é o que o decorador de fato faz:
+
+```Python
+eh_par(soma(2, 2)) # (True, 4)
+eh_par(soma(3, 2)) # (False, 5)
+```
+
+Vamos pensar que a função externa só carrega a função para o escopo da closure (aquilo que vimos como `local`/`nonlocal`) a função interna, nesse caso chamado de 'interna' é quem faz a execução da função de fato, ou seja, ela quem carrega os argumentos da função decorada. É como se a função interna incorporasse a função decorada, vamos exemplificar com o uso:
+
+```Python
+@eh_par
+def soma(x, y):
+    return x + y
+```
+
+É assim que a função deve ser declarada, mas vamos tentar não executar ainda antes de entender. É como se a função 'soma' fosse passada como parâmetro da função 'eh_par' e os argumentos de soma fossem passados para a função 'interna'. Pensando na execução da função 'interna', ela é quem de fato executa a função decorada 'soma'.
+
+Vamos executar:
+
+```Python
+@eh_par
+def soma(x, y):
+    return x + y
+
+soma(2, 2) # (True, 4)
+soma(3, 2) # (False, 5)
+```
+
+Agora estamos preparados para entender especialmente os decoradores no próximo tópico, que esse último exemplo tenha sido explicativo e vamos tentar resolver o problema do 'Ahoy' no próximo tópico.
