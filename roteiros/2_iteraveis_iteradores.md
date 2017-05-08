@@ -2,9 +2,9 @@
 
 O que são iteráveis? Basicamente e a grosso modo, iteráveis em python são todos os objetos que implementam o método `__getitem__` ou `__iter__`. Beleza, vamos partir do simples.
 
-Quase todos os tipos de dados em python são iteráveis, por exemplo. Listas, strings, tuplas, dicionários, conjuntos, etc...
+Quase todos os tipos de dados em python são iteráveis, por exemplo: listas, strings, tuplas, dicionários, conjuntos, etc...
 
-Vamos aos exemplos, eles são sempre mágicos.
+Vamos aos exemplos, eles são sempre mágicos:
 
 ```python
 lista = [1, 2, 3, 4, 5]
@@ -22,9 +22,9 @@ for x in lista:
 
 Era só isso? Sim, nem doeu, fala a verdade.
 
-Em python, o comando `for` nos fornece um iterador implícito, o que? Não entendi.
+Em python, o comando `for` nos fornece um iterador implícito. O que? Não entendi.
 
-O laço for em python itera em cada elemento da sequência. Como no exemplo, o for, ou foreach, no caso vai passando por cada elemento da sequência. Não é necessária a implementação de um index como na linguagem C, onde a iteração é explícita:
+O laço `for` em python itera em cada elemento da sequência. Como no exemplo, o `for`, ou `foreach`, no caso vai passando por cada elemento da sequência. Não é necessária a implementação de um index como na linguagem C, onde a iteração é explícita:
 
 ```C
 for (i = 0; i > 10; i++){
@@ -68,7 +68,7 @@ Então, pode-se compreender, sendo bem rústico, que todos os objetos que implem
 
 ## 2.2 `__iter__`
 
-Agora os objetos que implementam `__iter__` tem algumas peculiaridades. Por exemplo, quando o iterável (vamos pensar no for) chamar a sequência, ela vai pedir o `__iter__` que vai retornar uma instância de si mesmo para o for e ele vai chamar o `__next__` até que a exceção `StopIteration` acontecer.
+Agora os objetos que implementam `__iter__` tem algumas peculiaridades. Por exemplo, quando o iterável (vamos pensar no `for`) chamar a sequência, ela vai pedir o `__iter__` que vai retornar uma instância de si mesmo para o `for` e ele vai chamar o `__next__` até que a exceção `StopIteration` aconteça.
 
 Uma classe que implementa `__iter__`:
 
@@ -114,4 +114,4 @@ O primeiro é a PEP sobre as estruturas dos iteráveis e o segundo um video do G
 
 Ah... Ia quase me esquecendo, se você não entendeu muita coisa sobre os dunders, você pode ler o [Python data model](https://docs.python.org/3/reference/datamodel.html#special-method-names). Obs: não me responsabilizo pelo programador melhor que você sairá desta página.
 
-Embora esse tópico seja talvez o mais curto existente em todos ele vai ser de trivial importância, para o entendimento de um pouco de tudo nesse 'curso'. É sério. Vamos entender como trabalhar com iteráveis de uma maneira bonita no proximo tópico.
+Embora esse tópico seja talvez o mais curto existente, ele vai ser de trivial importância, para o entendimento de um pouco de tudo nesse 'curso'. É sério. Vamos entender como trabalhar com iteráveis de uma maneira bonita no próximo tópico.
