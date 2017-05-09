@@ -28,3 +28,5 @@ Pretendo dividir o conteúdo em três partes
 [@Lucasfeelix](https://github.com/Lucasfeelix) pelas correções ([#17](https://github.com/z4r4tu5tr4/python-funcional/issues/17))
 
 [@ohrlando](https://github.com/ohrlando) pelas correções e incentivo
+
+[@sembug](https://github.com/sembug) pelas correções, pelo bom papo e pelo sumário ([#13](https://github.com/z4r4tu5tr4/python-funcional/issues/13), [#14,](https://github.com/z4r4tu5tr4/python-funcional/issues/14))
