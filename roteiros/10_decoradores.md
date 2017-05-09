@@ -37,3 +37,15 @@ closure(funcao(argumentos)) # linha do problema
 Agora todas as vezes que você encontrar um `@` em cima de uma definição de uma função, você já sabe do que se trata.
 
 ## 10.2 Montando nosso primeiro decorador
+
+
+## 10.? Decoradores com parâmetros (closures de closures)
+
+```Python
+def param(args):
+    def funcao_externa(func):
+        def funcao_interna(*args):
+            return func(*args)
+        return func_args
+    return real_decorator
+```
