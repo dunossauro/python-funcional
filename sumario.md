@@ -57,3 +57,5 @@
 #### 9.4 closures que recebem funções (ou quase isso)
 #### 9.5 decorar funções com closures
 #### [#10 Decoradores](roteiros/10_decoradores.md)
+#### 10.1 Qual a cara de um decorador?
+#### 10.2 Montando nosso primeiro decorador
