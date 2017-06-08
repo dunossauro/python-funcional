@@ -173,6 +173,64 @@ Tudo funcionou muito bem. Vamos tentar entender um pouco mais sobre a natureza d
 
 ## 10.2 Usando um pouco melhor a função externa
 
+Embora a função externa que leva o nome do decorador ganhe como argumento a função a ser executada e execute a função interna, ela pode ter outras funcionalidades. Vamos pensar em um pouco e gerar algumas coisas perigosas, mas que pode ser usadas em contexto onde seja de suma importância.
+
+### 10.2.1 Um cache simples
+
+Vamos pensar em uma função que executa algum tipode calculo mirabolante. Por exemplo, você pode fixar um cache para verificar se o número é par. Mas para isso você precisa do módulo da divisão por 2.
+
+Então, vamos supor que a nossa função de soma só execute a soma quando o segundo valor passado for par, fora desse contexto não iremos executar a função.
+
+Vamos tentar e explicando enquanto fazemos:
+
+```Python
+def segundo_eh_par(func, cache={}):
+    """
+    cache é um dicionário que é iniciado vazio.
+
+    A cada iteração ele executa (y%2 == 0)
+        e armazena no dicionario o valor de y
+    """
+    def interna(x, y):
+        if y not in cache:
+            cache[y] = (y%2 == 0)
+
+        if cache[y]:
+            return func(x, y)
+        raise Exception('Insira somente valores pares para y')
+    return interna
+```
+
+Depois de definir essa função, a gente pode rodar a seguinte linha
+
+```
+>>> segundo_eh_par.__defaults__
+# ({},)
+```
+
+usando `__defaults__` podemos ver o valor inserido no nosso dicionário. Vamos usar esse decorador em uma função:
+
+```Python
+@segundo_eh_par
+def soma(x, y):
+    return x + y
+
+
+soma(2,2) # 4
+segundo_eh_par.__defaults__ # ({2: True},)
+
+soma(2,5) # Exception: Insira somente valores pares
+segundo_eh_par.__defaults__ # ({2: True, 5: False},)
+```
+
+Agora, todas as vezes que os valores forem usado novamente a computação não é necessária, pois ela já esta no dicionário. Vamos fazer isso com fibonacci, é surpreendente a diferença de desempenho, mas vamos aprender a medir o tempo antes
+
+### 10.2.2 Tempo de execução de uma função
+
+Esse decorador também segue uma ideia simples, podemos gravar em arquivos, gerar logs, chamar bancos de dados. Vai além da imaginação, mas vamos tentar medir o tempo que nossa função leva para ser executada.
+
+
+
 ## 10.? Decoradores com parâmetros (closures de closures)
 
 ```Python
