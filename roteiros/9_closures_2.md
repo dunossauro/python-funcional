@@ -1,9 +1,9 @@
 
 # 9. Usos variados de closures
 
-Vamos entender um pouco mais sobre closures e variar o uso com diversas coisas? Vamos tentar trazer alguns exemplos mais práticos do uso de closures. Mas vamos ver alguns modos diferentes dos vistos antes agora.
+Vamos entender um pouco mais sobre closures e variar o uso com diversas coisas? Vamos tentar trazer alguns exemplos mais práticos do uso de closures. Mas agora vamos ver alguns modos diferentes dos vistos antes.
 
-## 9.1 closures e lambdas
+## 9.1 Closures e lambdas
 
 Todas as closures que criamos até agora podem ser substituídas por lambdas, pois as funções internas não passam de simples expressões:
 
@@ -20,9 +20,9 @@ ahoy('Jaber') # 'Ahoy Jaber'
 
 Uma coisa legal de usar funções `lambda`, e ao mesmo tempo um ponto negativo desse tipo de utilização, é que não há uma maneira de sobrescrever a variável local usando `nonlocal` pois o lambda só aceita uma expressão de uma linha. Para closures como essa em que o valor deve ser só lido isso pode funcionar bem.
 
-## 9.2 métodos em closures
+## 9.2 Métodos em closures
 
-Sim, agora estamos falando de Python e as coisas em que mundo Pythonico nos oferece:
+Sim, agora estamos falando de Python e as coisas que o mundo Pythonico nos oferece:
 
 ```Python
 def diga_oi(saudacao):
@@ -42,11 +42,11 @@ ahoy.mudar_saudacao('Olá')
 ahoy('Jaber') # 'Olá Jaber'
 ```
 
-Em tempo de execução é possível fazer monkey patch em qualquer tipo de objeto em python e isso permite que `n` funções possam caber dentro de uma closure e como tudo pode ser modificado, foi criado um método interno. Manipular closures dessa maneira é mais eficiente do que usar classes, mas não vamos falar sobre isso agora. O podemos absorver disso é que sem classes ninguém vai começar a pirar, pelo menos em Python não.
+Em tempo de execução é possível fazer monkey patch em qualquer tipo de objeto em python e isso permite que `n` funções possam caber dentro de uma closure. Como tudo pode ser modificado, foi criado um método interno. Manipular closures dessa maneira é mais eficiente do que usar classes, mas não vamos falar sobre isso agora. O que podemos absorver disso é que sem classes ninguém vai começar a pirar, pelo menos em Python não.
 
-## 9.3 interagindo com valores `nonlocal`
+## 9.3 Interagindo com valores `nonlocal`
 
-Nós já fizemos isso com composições de funções, mas como as closures são exatamente o inverso as composições, vamos fazer aqui também. Caso você tenha perdido o momento em que parcialmente consumimos iteráveis, isso foi feito no tópico 7.
+Nós já fizemos isso com composições de funções, mas como as closures são exatamente o inverso das composições, vamos fazer aqui também. Caso você tenha perdido o momento em que parcialmente consumimos iteráveis, isso foi feito no tópico 7.
 
 Vamos imaginar que nossa closure contém um iterável infinito, ele armazena uma contagem, vamos usar nosso mesmo contador Fail do tópico 8:
 
@@ -67,7 +67,7 @@ c() # 4
 c() # 5
 ```
 
-Já fizemos isso, mas vamos tentar incrementar a closure para que ela possa ser consumida lentamente, ou preguiçosamente, e que o retorno possa ser um range de valores que acrescentam a contagem de formas diferentes:
+Já fizemos isso, mas vamos tentar incrementar a closure para que ela possa ser consumida lentamente(ou preguiçosamente) e que o retorno possa ser um `range` de valores que acrescentam a contagem de formas diferentes:
 
 ```Python
 def contador(inicio, continuo=False):
@@ -83,7 +83,7 @@ def contador(inicio, continuo=False):
         """
         Retorna uma quantidade x de valores contínuos a partir do último usado
 
-        Caso seja continua, e aquantidade for (> 1) o retorno vai variar e armazenar o ultimo valor do range,
+        Caso seja continua, e a quantidade for (> 1) o retorno vai variar e armazenar o ultimo valor do range,
         Caso contrário, retornará um range, mas não alterará o valor inicial
         """
         nonlocal var # implementação de nonlocal
@@ -96,7 +96,7 @@ def contador(inicio, continuo=False):
     return retorno
 ```
 
-Isso faz com que o comportamento da closure seja diferente e temos duas maneiras de utilizar o seu retorno, mas vale lembrar que ele é sempre lazy e a resposta trá de ser construída ou 'iterada':
+Isso faz com que o comportamento da closure seja diferente e temos duas maneiras de utilizar o seu retorno, mas vale lembrar que ele é sempre lazy e a resposta terá de ser construída ou 'iterada':
 
 Modo 1:
 ```Python
@@ -131,14 +131,14 @@ Jaber diz: `Mas eu poderia criar um método para gerenciar aquele boolean em tem
 
 Sim e isso torna tudo mais lindo, mas eu vou deixar você tentar fazer isso sozinho.
 
-## 9.4 closures que recebem funções (ou quase isso)
+## 9.4 Closures que recebem funções (ou quase isso)
 
 Esse, embora seja um exemplo óbvio do que vimos até agora, pode ser que não tenha passado na cabeça de ninguém até agora, mas vamos lá:
 
 ```Python
 def diga_oi(saudacao, func):
     """
-    Função diga_oi, nossa velha de guera com um lambda interno
+    Função diga_oi, nossa velha de gera com um lambda interno
     """
     return func
 
@@ -148,11 +148,11 @@ ahoy('Jaber') # NameError: name 'saudacao' is not defined
 
 Jaber diz: `Mas isso faz todo sentido de funcionar, por que não funciona????`
 
-Lembra de todo aquele caso do escopo das variáveis? `saudacao` está definida dentro de `diga_oi()` e isso faz com que ela não exista fora desse contexto que é onde a função `lambda` está sendo definida. Então para esse casos passar funções como argumento que usam valores `nonlocal` não funcionam. Passar funções como argumento que não compartilham atributos é como fazer uma método estático em classes, não serve de muita coisa, só agrega funções em um mesmo lugar.
+Lembra de todo aquele caso do escopo das variáveis? `saudacao` está definida dentro de `diga_oi()` e isso faz com que ela não exista fora desse contexto que é onde a função `lambda` está sendo definida. Então nesse caso passar funções como argumento que usam valores `nonlocal` não funcionam. Passar funções como argumento que não compartilham atributos é como fazer uma método estático em classes, não serve de muita coisa, só agrega funções em um mesmo lugar.
 
 Vamos entender melhor esse tipo de atribuição ao falar dos decoradores, onde vamos decorar funções. Isso é só um problema de escopo de que precisava ficar nítido agora, nós vamos entender ele agora.
 
-## 9.5 decorar funções com closures
+## 9.5 Decorando funções com closures
 
 Vamos voltar ao básico e fazer somas com números e partiremos de exemplos mais complexos no próximo tópico. Vamos imaginar que temos um caso de uma função em que todos os resultados necessitam ser pares. Tá, isso é muito simples, mas vamos decorar uma função que só executa uma soma simples primeiro:
 
@@ -161,7 +161,7 @@ def soma(x, y):
     return x + y
 ```
 
-Embora essa seja uma função bem simples, não consigo pensar em um exemplo mais simplesmente direto para que o entendimento dos decoradores não soem como coisa de outro mundo. Vamos criar uma closure que simplesmente executa essa função, ou seja ela vai decorá-la:
+Embora essa seja uma função bem simples, não consigo pensar em um exemplo mais direto para que o entendimento dos decoradores não soem como coisa de outro mundo. Vamos criar uma closure que simplesmente executa essa função, ou seja ela vai decorá-la:
 
 ```Python
 def eh_par(func):
@@ -194,14 +194,14 @@ def eh_par(func):
     return interna
 ```
 
-Alguns comentários que gostaria de fazer antes de aplicar de fato o decorador. A função externa, nesse caso 'eh_par' recebe como primeiro argumento a função que será decorada, o que na verdade é o que o decorador de fato faz:
+Alguns comentários que gostaria de fazer antes de aplicar de fato o decorador. A função externa, nesse caso 'eh_par' recebe como primeiro argumento a função que será decorada, o que na verdade é aquilo que o decorador de fato faz:
 
 ```Python
 eh_par(soma(2, 2)) # (True, 4)
 eh_par(soma(3, 2)) # (False, 5)
 ```
 
-Vamos pensar que a função externa só carrega a função para o escopo da closure (aquilo que vimos como `local`/`nonlocal`) a função interna, nesse caso chamado de 'interna' é quem faz a execução da função de fato, ou seja, ela quem carrega os argumentos da função decorada. É como se a função interna incorporasse a função decorada, vamos exemplificar com o uso:
+Vamos pensar que a função externa só carrega a função para o escopo da closure (aquilo que vimos como `local`/`nonlocal`) a função interna, nesse caso chamado de 'interna' é quem faz a execução da função de fato, ou seja, ela quem carrega os argumentos da função decorada. É como se a função interna incorporasse a função decorada. Vamos exemplificar com o uso:
 
 ```Python
 @eh_par
