@@ -1,6 +1,6 @@
 # 1. Funções
 
-Como nem tudo são flores. Vamos começar do começo e entender algumas características das funções do python (o objeto função) e dar uma revisada básica em alguns conceitos de função só pra gente não se perder no básico depois. Então o primeiro tópico vai se limitar a falar da estrutura básica das funções em python, sem entrar profundamente em cada um dos tópicos. Será uma explanação de código e abrir a cabeça para novas oportunidades de código mais pythonicos e que preferencialmente gere menos efeito colateral. Mas calma, não vamos ensinar a fazer funções, você já está cheio disso.
+Como nem tudo são flores, vamos começar do começo e entender algumas características das funções do python (o objeto função) e dar uma revisada básica em alguns conceitos de função só pra gente não se perder no básico depois. Então o primeiro tópico vai se limitar a falar da estrutura básica das funções em python, sem entrar profundamente em cada um dos tópicos. Será uma explanação de código e abrir a cabeça para novas oportunidades de código mais pythonicos e que preferencialmente gere menos efeito colateral. Mas calma, não vamos ensinar a fazer funções, você já está cheio disso.
 
 ## 1.1 Funções como objeto de primeira classe
 
@@ -27,7 +27,7 @@ lista = [func, func_2] # a variável que armazena a função foi inserida em uma
 lista_2 = [lambda x: x, lambda x: x+1] # aqui as funções foram definidas dentro de uma estrutura
 ```
 
-Como é possível notar, em python, as funções podem ser inseridas em qualquer contexto e também geradas em tempo de execução. Com isso nós podemos além de inserir funções em estruturas, retornar funções, passar funções como parâmetro (HOFs), definir funções dentro de funções(closures) e assim por diante. Caso você tenha aprendido a programar usando uma linguagem em que as funções não são objetos de primeira classe, não se assuste isso faz parte da rotina comum do python. Preferencialmente, e quase obrigatoriamente, é preferível fazer funções simples, pequenas e de pouca complexidade para que elas não sofram interferência do meio externo, gerem menos manutenção e o melhor de tudo, possam ser combinadas em outras funções, então vamos lá...
+Como é possível notar, em python, as funções podem ser inseridas em qualquer contexto e também geradas em tempo de execução. Com isso nós podemos, além de inserir funções em estruturas, retornar funções, passar funções como parâmetro (HOFs), definir funções dentro de funções(closures) e assim por diante. Caso você tenha aprendido a programar usando uma linguagem em que as funções não são objetos de primeira classe, não se assuste. Isso faz parte da rotina comum do python. Preferencialmente, e quase obrigatoriamente, é melhor fazer funções simples, pequenas e de pouca complexidade para que elas não sofram interferência do meio externo, gerem menos manutenção e o melhor de tudo, possam ser combinadas em outras funções. Então vamos lá!
 
 ## 1.2 Funções puras
 
@@ -76,7 +76,7 @@ def teste():
 print(valor) # 7
 ```
 
-Só lembre de ser sempre coerente quando fizer isso, as consequências podem ser imprevisíveis. Nessa linha de funções puras e pequeninas, podemos caracterizar, embora isso não as defina, funções de ordem superior, que são funções que recebem uma função como argumento, ou as devolvem, e fazem a chamada das mesmas dentro do contexto da função que a recebeu como parâmetro. Isso resulta em uma composição de funções, o que agrega muito mais valor caso as funções não gerem efeitos colaterais.
+Só lembre-se de ser sempre coerente quando fizer isso, as consequências podem ser imprevisíveis. Nessa linha de funções puras e pequeninas, podemos caracterizar, embora isso não as defina, funções de ordem superior, que são funções que recebem uma função como argumento, ou as devolvem, e fazem a chamada das mesmas dentro do contexto da função que a recebeu como parâmetro. Isso resulta em uma composição de funções, o que agrega muito mais valor caso as funções não gerem efeitos colaterais.
 
 
 ## 1.3 Funções de ordem superior (HOFs)
@@ -140,7 +140,7 @@ Mas fique tranquilo, falaremos muito mais sobre isso.
 
 ## 1.4 `__call__`
 
-Por que falar de classes? Lembre-se Python é uma linguagem construída em classes, e todos os objetos que podem ser chamados/invocados, implementam o método `__call__`:
+Por que falar de classes? Lembre-se, Python é uma linguagem construída em classes, e todos os objetos que podem ser chamados/invocados implementam o método `__call__`:
 
 Em uma função anônima:
 
@@ -158,17 +158,17 @@ def func(x):
 '__call__' in dir(func) # True
 ```
 
-Isso quer dizer que podemos gerar classe que se comportam como funções?
+Isso quer dizer que podemos gerar classes que se comportam como funções?
 
 SIIIIIM. Chupa Haskell
 
-Essa é uma parte interessante da estrutura de criação do Python a qual veremos mais em outro momento sobre introspecção de funções, mas vale a pena dizer que classe, funções nomeadas, funções anônimas e funções geradoras usam uma base comum para funcionarem, essa é uma das coisas mais bonitas em python e que em certo ponto fere a ortogonalidade da linguagem, pois coisas iguais tem funcionamentos diferentes, mas facilita o aprendizado da linguagem, mas não é nosso foco agora.
+Essa é uma parte interessante da estrutura de criação do Python a qual veremos mais em outro momento sobre introspecção de funções, mas vale a pena dizer que classes, funções nomeadas, funções anônimas e funções geradoras usam uma base comum para funcionarem, essa é uma das coisas mais bonitas em python e que em certo ponto fere a ortogonalidade da linguagem, pois coisas iguais tem funcionamentos diferentes, mas facilita o aprendizado da linguagem, mas não é nosso foco agora.
 
 ## 1.5 Funções geradoras
 
 Embora faremos um tópico extremamente focado em funções geradoras, não custa nada dar uma palinha, não?
 
-Funções geradoras, são funções que nos retornam um iterável. Mas ele é lazy(só é computado quando é invocado), vamos só para o exemplo de uso, muitos conceitos precisam ser esclarecidos antes de entendermos profundamente o que acontece com elas, mas digo logo: são funções lindas <3
+Funções geradoras são funções que nos retornam um iterável. Mas ele é lazy (só é computado quando invocado). Para exemplo de uso, muitos conceitos precisam ser esclarecidos antes de entendermos profundamente o que acontece com elas, mas digo logo: são funções lindas <3
 
 Para que uma função seja geradora, em tese, só precisamos trocar o return por yield:
 
@@ -193,7 +193,7 @@ Passando bem por cima, uma função geradora nos retorna um iterável que é pre
 
 ## 1.6 Funções anônimas (lambda)
 
-Funções anônimas, ou funções lambda, são funções que podem ser declaradas em qualquer contexto, tá... Todo tipo de função em python pode ser declarada em tempo de execução. Porém funções anônimas podem ser atribuídas a variáveis, podem ser definidas dentro de sequências e declaradas em um argumento de função. Vamos olhar sua sintaxe:
+Funções anônimas, ou funções lambda, são funções que podem ser declaradas em qualquer contexto. Tá... Todo tipo de função em python pode ser declarada em tempo de execução. Porém funções anônimas podem ser atribuídas a variáveis, podem ser definidas dentro de sequências e declaradas em um argumento de função. Vamos olhar sua sintaxe:
 
 ```python
 lambda argumento: argumento
@@ -206,7 +206,7 @@ def func():
   pass
 ```
 
-Uma das diferenças triviais em python é que as funções anônimas não tem nome, tá isso era meio óbvio, mas vamos averiguar:
+Uma das diferenças triviais em python é que as funções anônimas não tem nome. Tá, isso era meio óbvio, mas vamos averiguar:
 
 ```Python
 def func():
@@ -219,7 +219,7 @@ lambda_func = lambda arg: arg
 lambda_func.__name__ # '<lambda>'
 ```
 
-O resultado `'<lambda>'` será o mesmo para qualquer função. Isso torna sua depuração praticamente impossível em python. Por isso, os usuários de python, e nisso incluo todos os usuários, até aqueles que gostam de funcional, não encorajam o uso de funções lambda a todos os contextos da linguagem. Mas, em funções que aceitam outra funções isso é meio que uma tradição, caso a função (no caso a que executa o código a ser usado pelo lambda) não esteja definida e nem seja reaproveitada em outro contexto. Eu gosto de dizer que lambdas são muito funcionais em aplicações parciais de função. Porém, os lambdas não passam de açúcar sintático em Python, pois não há nada que uma função padrão (definida com `def`), não possa fazer de diferentes. Até a introspecção retorna o mesmo resultado:
+O resultado `'<lambda>'` será o mesmo para qualquer função. Isso torna sua depuração praticamente impossível em python. Por isso os usuários de python (e nisso incluo todos os usuários, até aqueles que gostam de funcional) não encorajam o uso de funções lambda a todos os contextos da linguagem. Mas, em funções que aceitam outra funções isso é meio que uma tradição, caso a função (no caso a que executa o código a ser usado pelo lambda) não esteja definida e nem seja reaproveitada em outro contexto. Eu gosto de dizer que lambdas são muito funcionais em aplicações parciais de função. Porém, os lambdas não passam de açúcar sintático em Python, pois não há nada que uma função padrão (definida com `def`), não possa fazer de diferente. Até a introspecção retorna o mesmo resultado:
 
 
 ```Python
@@ -233,7 +233,7 @@ lambda_func = lambda arg: arg
 type(lambda_func) # function
 ```
 
-Uma coisa que vale ser lembrada é que funções anônimas em python só executam um expressão. Ou seja, não podemos usar laços de repetição (`while`, `for`), tratamento de exceções (`try`, `except`, `finally`). Um `if` com uso de `elif` também não pode ser definido. Como sintaticamente só são aceitas expressões, o único uso de um `if` é o ternário:
+Uma coisa que vale ser lembrada é que funções anônimas em python só executam uma expressão. Ou seja, não podemos usar laços de repetição (`while`, `for`), tratamento de exceções (`try`, `except`, `finally`). Um simples `if` com uso de `elif` também não pode ser definido. Como sintaticamente só são aceitas expressões, o único uso de um `if` é o ternário:
 
 
 ```Python
@@ -255,4 +255,4 @@ func = lambda arg_1, arg_2, arg_3: True if sum([arg_1, arg_2, arg_3]) > 7 else m
 
 Embora essa seja uma explanação inicial sobre as funções anônimas, grande parte dos tópicos fazem uso delas e vamos poder explorar melhor sua infinitude.
 
-Mas por hoje é só e no tópico seguinte vamos discutir, e mesmo que superficialmente, iteradores e iteráveis e suas relações com a programação funcional.
+Mas por hoje é só e no tópico seguinte vamos discutir, mesmo que superficialmente, iteradores e iteráveis e suas relações com a programação funcional.
