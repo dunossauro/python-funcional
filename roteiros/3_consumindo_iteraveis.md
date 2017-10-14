@@ -4,7 +4,7 @@ Você achou que o vídeo anterior não ia servir de nada, não?
 
 Na verdade, você estava enganado. Muito enganado pra dizer a verdade. Agora que você já está familiarizado com os iteráveis, você já sabe como as funções funcionam. Por que não relacionar tudo e fazer um código mais limpo e funcional? (sacou a piada?)
 
-Retomando um pouco, concordamos anteriormente, que o laço for (e ele é foreach) itera sobre os elementos:
+Retomando um pouco, concordamos anteriormente que o laço "for" (e ele é foreach) itera sobre os elementos:
 
 ```Python
 for x in [1, 2, 3, 4, 5]:
@@ -17,13 +17,13 @@ for x in [1, 2, 3, 4, 5]:
 # 5
 ```
 
-Porém, esse for, aos meus olhos, só vale pra printar coisas, não? Pense comigo. Toda vez que realmente iteramos em alguma sequência, nós queremos os valores, queremos modificá-los, querendo incrementar, criar novos objetos e por ai vai...
+Porém, esse "for", aos meus olhos, só vale pra printar coisas, não? Pense comigo. Toda vez que realmente iteramos em alguma sequência, nós queremos os valores, queremos modificá-los, querendo incrementar, criar novos objetos e por ai vai...
 
 Existem muitas maneiras diferentes e até mais eficientes, não briguem comigo, de iterar sobre sequências. Uma delas é uma list comprehensions.
 
-List o que?
+List o quê?
 
-Vamos imaginar que esse for não serve pra nada, só imaginar, calma amiguinho. E que ele pode ser reduzido a uma única e estilosa linha de código:
+Vamos imaginar que esse "for" não serve pra nada, só imaginar, calma amiguinho. E que ele pode ser reduzido a uma única e estilosa linha de código:
 
 ```Python
 [elemento for elemento in [1, 2, 3, 4, 5]] # [1, 2, 3, 4, 5]
@@ -46,7 +46,7 @@ for elemento in lista:
     lista_mais_2.append(elemento + 2)
 ```
 
-Você consegue olhar pra esse código com bons olhos? Imagina que esse for está dentro de uma função:
+Você consegue olhar pra esse código com bons olhos? Imagina que esse "for" está dentro de uma função:
 
 ```Python
 lista = [1, 2, 3, 4, 5]
@@ -103,14 +103,14 @@ map(lambda x: x+2, [1, 2, 3, 4, 5]) # <map at xpto>
 
 Olha, temos uma linha também, porém, eu acho a list comprehensions muito mais bonita. Mas, pra você que achou que falar sobre iteráveis e iteradores era besteira, essa sequência que o map retorna é uma sequência padrão `__iter__`, ou seja, ela só pode ser usada uma vez. UHULLL, economizamos memória, olha até que não foi de todo mal ter escrito esse lambda.
 
-Porém, será que o pessoal que faz o Python é tão fraco assim no gatilho? Ninguém pensou em criar uma sequência como a list comprehension que é esgotável? A resposta é sim querido Jaber.
+Porém, será que o pessoal que faz o Python é tão fraco assim no gatilho? Ninguém pensou em criar uma sequência como a list comprehension que é esgotável? A resposta é sim, meu querido Jaber.
 
 ```Python
 (x+2 for x in [1, 2, 3, 4, 5]) # <generator object <genexpr> at xpto>
 ```
 
-Acaba-se de reproduzir o estado de amor Pythonico agora. Você foi funcional, tá vou parar com as piadas. Mas você usou a cabeça, economizou memória, foi estiloso. Ou seja, um deus do código.
+Acaba-se de reproduzir o estado de amor Pythonico agora. Você foi funcional! Tá, vou parar com as piadas... Mas você usou a cabeça, economizou memória, foi estiloso. Ou seja, um deus do código.
 
 Tá, agora você já sabe o poder que tem nas mãos. Nunca mais declare uma lista vazia para receber appends, combinado?
 
-Agora que você é um intendedor da iterações, vamos complicar um pouco e falar sobre functors, monads e catamorphismo. Tá, mas sem palavras difíceis, os seus coleguinhas não gostam de nomenclaturas haskelianas. Mas você vai poder esnobar seus conhecimentos teóricos sobre teoria das categorias. Até o próximo vídeo.
+Agora que você é um intendedor da iterações, vamos complicar um pouco e falar sobre functors, monads e catamorphismo. Tá, mas sem palavras difíceis, os seus coleguinhas não gostam de nomenclaturas haskelianas. Mas você vai poder esnobar seus conhecimentos teóricos sobre Teoria das Categorias. Até o próximo vídeo.

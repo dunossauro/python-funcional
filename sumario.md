@@ -51,11 +51,11 @@
 #### 8.1 Classes vs closures
 #### 8.2 Mutação das variáveis de uma closure
 #### [#9 Usos variados de closures](roteiros/9_closures_2.md)
-#### 9.1 closures e lambdas
-#### 9.2 métodos em closures
-#### 9.3 interagindo com valores `nonlocal`
-#### 9.4 closures que recebem funções (ou quase isso)
-#### 9.5 decorar funções com closures
+#### 9.1 Closures e lambdas
+#### 9.2 Métodos em closures
+#### 9.3 Interagindo com valores `nonlocal`
+#### 9.4 Closures que recebem funções (ou quase isso)
+#### 9.5 Decorar funções com closures
 #### [#10 Decoradores](roteiros/10_decoradores.md)
 #### 10.1 Qual a cara de um decorador?
 #### 10.2 Montando nosso primeiro decorador

@@ -114,4 +114,4 @@ O primeiro é a PEP sobre as estruturas dos iteráveis e o segundo um video do G
 
 Ah... Ia quase me esquecendo, se você não entendeu muita coisa sobre os dunders, você pode ler o [Python data model](https://docs.python.org/3/reference/datamodel.html#special-method-names). Obs: não me responsabilizo pelo programador melhor que você sairá desta página.
 
-Embora esse tópico seja talvez o mais curto existente, ele vai ser de trivial importância, para o entendimento de um pouco de tudo nesse 'curso'. É sério. Vamos entender como trabalhar com iteráveis de uma maneira bonita no próximo tópico.
+Embora esse tópico seja talvez o mais curto, ele vai ser de fundamental importância para o entendimento de um pouco de tudo nesse 'Curso'. É sério. Vamos entender como trabalhar com iteráveis de uma maneira bonita no próximo tópico.
