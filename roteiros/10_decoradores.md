@@ -1,4 +1,4 @@
-# 10. Decoradores
+# 10. Decoradores WIP
 
 Agora que você e o Jaber já estão craques em closures os decoradores não apresentam medo, pois tudo em decoradores são closures. No tópico 9.5 você usou um decorador e embora eles não tenham sido devidamente explicados vamos entender tudo sobre eles agora.
 
