@@ -111,7 +111,7 @@ def func_mais_2(funcao, valor):
     """
         return funcao(valor) + 2
 
-assert func_mais_2(func, 2) == 4 # true
+assert func_mais_2(func, 2) == 6 # true
 
 def func_quadrada(val):
     """
