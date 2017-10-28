@@ -16,9 +16,9 @@ Tá Jaber, eu entendo seu ponto de vista, mas vou usar uma definição muito boa
 
 "Uma classe são dados com operações anexadas (...) Uma Closure são operações com dados anexados"
 
-Viu? Muda totalmente o modo de ver... Vamos nos explicar de maneira simples em breve, mas vamos entender as closures e fingir que classes não existem, só por alguns minutos.
+Viu? Muda totalmente o modo de ver... Vamos nos explicar de maneira simples e breve, mas vamos entender as closures e fingir que classes não existem, só por alguns minutos.
 
-Vamos imaginar que temos que guardar um valor dentro de um função. Essa função vai ser uma função que exclusivamente armazena um valor e uma função dentro do seu escopo:
+Vamos imaginar que temos que guardar um valor dentro de uma função. Essa função vai ser uma função que exclusivamente armazena um valor e uma função dentro do seu escopo:
 
 
 ```Python
@@ -48,7 +48,7 @@ var_func(5) # 10
 
 Como dá pra notar, a função externa é atribuída a uma variável e essa variável executa a função interna. Parece complicado, mas na verdade é bem simples. Vamos recapitular algumas coisas.
 
-Como em python as funções podem ser definidas em qualquer contexto e armazenada em qualquer lugar imagine que a `func_externa()` está sendo atribuída a uma variável. Em um contexto totalmente normal, como fizemos com as funções anônimas até agora. A diferença é um valor, ou uma quantidade `n` de valores, vão ser passadas no momento da atribuição. Esses valores vão ficar armazenados na função de maneira imutável. Vamos reaproveitar o código com alguns exemplos:
+Como em python as funções podem ser definidas em qualquer contexto e armazenadas em qualquer lugar, imagine que a `func_externa()` está sendo atribuída a uma variável. Em um contexto totalmente normal, como fizemos com as funções anônimas até agora. A diferença é um valor, ou uma quantidade `n` de valores, serão passadas no momento da atribuição. Esses valores vão ficar armazenados na função de maneira imutável. Vamos reaproveitar o código com alguns exemplos:
 
 ```Python
 soma_um = func_externa(1)
@@ -133,7 +133,7 @@ Você deve ter percebido que até agora as closures tem dois tipos de comportame
 Aqui você deve ter sacado o esquema de operações com dados. O dado passado à função externa permanece imutável sempre e inacessível a qualquer contexto externo ao da função, ou seja, o dado foi fixado e não pode ser transformado em nenhum outro valor, a não ser que seja feita outra chamada com outro valor. O que deveria ser dito sobre as classes, e que preferi postergar, é o que toca exatamente nesse ponto. Vamos fazer uma comparação:
 
 
-### classe `__call__()`
+### classe __call__()
 
 ```Python
 class diga_oi:
@@ -289,7 +289,7 @@ func()
 print(var_0) # 5
 ```
 
-No momento em que tentamos atribuir no escopo de `func()`, criamos uma nova `var_0` dentro desse contexto, (vamos falar mais sobre isso em um tópico futuro chamado introspecção de funções) o que faz que a variável global permaneça a mesma.
+No momento em que tentamos atribuir no escopo de `func()`, criamos uma nova `var_0` dentro desse contexto (vamos falar mais sobre isso em um tópico futuro chamado introspecção de funções), o que faz com que a variável global permaneça a mesma.
 
 Se nós quisermos transformar o valor da variável global dentro do escopo da função, podemos usar a palavra reservada `global`:
 
@@ -397,6 +397,6 @@ def contador():
     return soma
 ```
 
-Agora é possível gerar esse contador sem o uso da lista, então ele não 'enche nossa memória' com uma lista que pode ter um tamanho nada convencional. Porém isso fere o conceito de imutabilidade, mas ainda é melhor que uma classe porque faz acesso ao recurso `var` é somente a função interna, sem que isso possa ser transformado pelo escopo externo, como é feito no caso das classes.
+Agora é possível gerar esse contador sem o uso da lista, então ele não 'enche nossa memória' com uma lista que pode ter um tamanho nada convencional. Porém isso fere o conceito de imutabilidade, mas ainda é melhor que uma classe porque quem faz acesso ao recurso `var` é somente a função interna sem que ele possa ser transformado pelo escopo externo, como é feito no caso das classes.
 
 Agora vamos olhar para um lado mais avançado das closures, mas você vai conseguir dar mais vazão e usos derivados das mesmas.

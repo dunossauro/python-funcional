@@ -6,7 +6,7 @@ Segundo Steven Lott, podemos criar três tipos de HOFs diferentes:
 2.  Funções que retornam uma função ou uma classe com `__call__`
 3.  Funções que aceitam e retornam funções (Geralmente são decoradores)
 
-Contudo, vamos exercitar o fato de criar funções de ordem superior, apenas. Vamos tentar copiar algumas do escopo, vamos nos divertir. Pronto?
+Contudo, vamos exercitar o fato de criar funções de ordem superior apenas. Vamos tentar copiar algumas do escopo e vamos nos divertir. Pronto?
 
 
 ## 6.1 Funções que aceitam funções
@@ -26,7 +26,7 @@ def map_clone(func, sequencia):
         yield func(el)
 ```
 
-Olha, eu sei que parecia que já tínhamos falado sobre tudo, mas esse foi o melhor momento para falar sobre as funções geradoras.
+Olha, eu sei que parecia que já tínhamos falado sobre tudo, mas esse é o melhor momento para falar sobre as funções geradoras.
 
 ## 6.2 Funções geradoras
 
@@ -150,7 +150,7 @@ Seu coração vai chorar agora
 list(gen_flat()) # [1, 2, 3, 4, 5, 6, 7, 8, 9]
 ```
 
-CARACAS, como assim? O que aconteceu aqui? Vamos pensar que um map normal faria o que `gen()` faz. Mas um flatmap faria o que `gen_flat()` faz.
+CARACAS, como assim? O que aconteceu aqui? Vamos pensar que um map() normal faria o que gen() faz. Mas um flatmap faria o que gen_flat() faz.
 
 Quando usamos yield em um laço, ele retorna cada valor contido em uma sequência, de maneira preguiçosa. Só que a sequência contém outra sequência, ele vai retornar a sequência, pois cada uma é um elemento independente da sequência, mesmo sendo uma sequência. O `yield from` vai retornar um iterável preguiçoso dessa nova sequência, a contida na sequência anterior. Ou seja, ele vai nos retornar uma única sequência. Por isso nome 'flat', é como se a sequência de sequências fosse comprimida em uma única sequência. Para entender isso vou deixar como referência um [vídeo do funfunfunctions](https://www.youtube.com/watch?v=9QveBbn7t_c&t=167s) que fala exatamente sobre isso. Vale a pena.
 
@@ -162,7 +162,7 @@ Agora que você já conhece mais um tipo de função, vamos voltar as nossas HOF
 
 Como já sabemos e já foi dito exaustivamente, funções são objetos de primeira classe em Python. Já sabemos. Ok.
 
-Então como já entendemos tudo isso, vamos só usar alguns exemplos de funções que recebem funções. OBS: Vamos criar algumas funções meio especialistas agora, isso não é muito bom. Mas serve como base de aprendizado. No proxímo vídeo vamos explorar mais funções simples e que são de grande utilidade em muitos contextos, porém ...
+Então como já entendemos tudo isso, vamos só usar alguns exemplos de funções que recebem funções. OBS: Vamos criar algumas funções meio especialistas agora, isso não é muito bom. Mas serve como base de aprendizado. No proxímo vídeo vamos explorar mais funções simples e que são de grande utilidade em muitos contextos, porém...
 
 Vamos trabalhar em outra frente então:
 
