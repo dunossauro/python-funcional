@@ -20,13 +20,17 @@ Pretendo dividir o conteúdo em três partes
     - fn.py, toolz, pymonad e macropy
 
 
-### Agradecimentos:
+### [Agradecimentos](https://github.com/z4r4tu5tr4/python-funcional/graphs/contributors) <3:
 
 [@magnvmopvs](https://github.com/magnvmopvs) pelos puxões de orelha nas partes que não estavam engraçadas e pelas infinitas correções de gramática ([#13](https://github.com/z4r4tu5tr4/python-funcional/issues/13), [#14](https://github.com/z4r4tu5tr4/python-funcional/issues/14), [#15](https://github.com/z4r4tu5tr4/python-funcional/issues/15), [#16](https://github.com/z4r4tu5tr4/python-funcional/issues/16), [#17](https://github.com/z4r4tu5tr4/python-funcional/issues/17), [#18](https://github.com/z4r4tu5tr4/python-funcional/issues/18), [#19](https://github.com/z4r4tu5tr4/python-funcional/issues/19), [#20](https://github.com/z4r4tu5tr4/python-funcional/issues/20),
 [#21](https://github.com/z4r4tu5tr4/python-funcional/issues/21))
+
+[@serrones](https://github.com/Serrones) pela infinidade de correções em todas as partes onde foram possíveis.
 
 [@Lucasfeelix](https://github.com/Lucasfeelix) pelas correções ([#17](https://github.com/z4r4tu5tr4/python-funcional/issues/17))
 
 [@ohrlando](https://github.com/ohrlando) pelas correções e incentivo
 
 [@sembug](https://github.com/sembug) pelas correções, pelo bom papo e pelo sumário ([#13](https://github.com/z4r4tu5tr4/python-funcional/issues/13), [#14](https://github.com/z4r4tu5tr4/python-funcional/issues/14))
+
+[@azengard](https://github.com/azengard) Por sacar da manga aquele bug todos deixamos passar
