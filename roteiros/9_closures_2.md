@@ -10,7 +10,7 @@ Todas as closures que criamos até agora podem ser substituídas por lambdas, po
 ```Python
 def diga_oi(saudacao):
     """
-    Função diga_oi, nossa velha de gera com um lambda interno
+    Função diga_oi com um lambda interno
     """
     return lambda nome: '{} {}'.format(saudacao, nome)
 
@@ -27,7 +27,7 @@ Sim, agora estamos falando de Python e as coisas que o mundo Pythonico nos ofere
 ```Python
 def diga_oi(saudacao):
     """
-    Função diga_oi, nossa velha de gera com um lambda interno
+    Função diga_oi com um método interno
     """
     def mudar_saudacao(nova_saudacao):
         nonlocal saudacao
@@ -42,7 +42,7 @@ ahoy.mudar_saudacao('Olá')
 ahoy('Jaber') # 'Olá Jaber'
 ```
 
-Em tempo de execução é possível fazer monkey patch em qualquer tipo de objeto em python e isso permite que `n` funções possam caber dentro de uma closure. Como tudo pode ser modificado, foi criado um método interno. Manipular closures dessa maneira é mais eficiente do que usar classes, mas não vamos falar sobre isso agora. O que podemos absorver disso é que sem classes ninguém vai começar a pirar, pelo menos em Python não.
+Em tempo de execução é possível fazer monkey patch em qualquer tipo de objeto em python, e isso permite que `n` funções possam caber dentro de uma closure. Como tudo pode ser modificado, foi criado um método interno. Manipular closures dessa maneira é mais eficiente do que usar classes, mas não vamos falar sobre isso agora. O que podemos absorver disso é que sem classes ninguém vai começar a pirar, pelo menos em Python não.
 
 ## 9.3 Interagindo com valores `nonlocal`
 
@@ -125,7 +125,7 @@ list(c(2)) # [4, 5]
 list(c(2)) # [6, 7]
 ```
 
-Como você pode ter notado, uma definição na função externa pode sim alterar todo o comportamento da função interna e o uso de nonlocal de fez suficiente para uma única variável, não sendo necessário o uso para as duas.
+Como você pode ter notado, uma definição na função externa pode sim alterar todo o comportamento da função interna e o uso de nonlocal se fez suficiente para uma única variável, não sendo necessário o uso para as duas.
 
 Jaber diz: `Mas eu poderia criar um método para gerenciar aquele boolean em tempo de execução?`
 
@@ -138,7 +138,7 @@ Esse, embora seja um exemplo óbvio do que vimos até agora, pode ser que não t
 ```Python
 def diga_oi(saudacao, func):
     """
-    Função diga_oi, nossa velha de gera com um lambda interno
+    Função diga_oi retornando uma função
     """
     return func
 
@@ -150,7 +150,7 @@ Jaber diz: `Mas isso faz todo sentido de funcionar, por que não funciona????`
 
 Lembra de todo aquele caso do escopo das variáveis? `saudacao` está definida dentro de `diga_oi()` e isso faz com que ela não exista fora desse contexto que é onde a função `lambda` está sendo definida. Então nesse caso passar funções como argumento que usam valores `nonlocal` não funcionam. Passar funções como argumento que não compartilham atributos é como fazer uma método estático em classes, não serve de muita coisa, só agrega funções em um mesmo lugar.
 
-Vamos entender melhor esse tipo de atribuição ao falar dos decoradores, onde vamos decorar funções. Isso é só um problema de escopo de que precisava ficar nítido agora, nós vamos entender ele agora.
+Vamos entender melhor esse tipo de atribuição ao falar dos decoradores, onde vamos decorar funções. Isso é só um problema de escopo de que precisava ficar nítido. E agora é a hora.
 
 ## 9.5 Decorando funções com closures
 
@@ -201,7 +201,7 @@ eh_par(soma(2, 2)) # (True, 4)
 eh_par(soma(3, 2)) # (False, 5)
 ```
 
-Vamos pensar que a função externa só carrega a função para o escopo da closure (aquilo que vimos como `local`/`nonlocal`) a função interna, nesse caso chamado de 'interna' é quem faz a execução da função de fato, ou seja, ela quem carrega os argumentos da função decorada. É como se a função interna incorporasse a função decorada. Vamos exemplificar com o uso:
+Vamos pensar que a função externa só carrega a função para o escopo da closure (aquilo que vimos como `local`/`nonlocal`). A função interna, nesse caso chamado de 'interna', é quem faz a execução da função de fato, ou seja, ela quem carrega os argumentos da função decorada. É como se a função interna incorporasse a função decorada. Vamos exemplificar com o uso:
 
 ```Python
 @eh_par
