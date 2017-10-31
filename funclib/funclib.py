@@ -1,5 +1,5 @@
 """
-Nossa funções super especiais.
+Nossas funções super especiais.
 
 Do vídeo 7
 """
@@ -7,7 +7,7 @@ Do vídeo 7
 
 def tail(seq, n=1, key=None):
     """
-    Pega ao n elementos do fim da sequência.
+    Pega n elementos do fim da sequência.
 
     Se uma função que retorna lazy for usada em key, o retorno será lazy
 
@@ -28,7 +28,7 @@ def tail(seq, n=1, key=None):
 
 def head(seq, n=1, key=None):
     """
-    Pega ao n elementos do inicio da sequência.
+    Pegar n elementos do inicio da sequência.
 
     Se uma função que retorna lazy for usada em key, o retorno será lazy
 
