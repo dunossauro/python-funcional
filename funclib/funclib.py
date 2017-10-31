@@ -28,7 +28,7 @@ def tail(seq, n=1, key=None):
 
 def head(seq, n=1, key=None):
     """
-    Pegar n elementos do inicio da sequência.
+    Pega n elementos do inicio da sequência.
 
     Se uma função que retorna lazy for usada em key, o retorno será lazy
 
