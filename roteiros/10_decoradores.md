@@ -13,7 +13,7 @@ Uma closure é aplicada em Python assim:
 closure(funcao(argumentos))
 ```
 
-Invocamos a função externa como uma função e passamos como parâmetro a nossa função com seus argumentos. E os decorares?
+Invocamos a função externa como uma função e passamos como parâmetro a nossa função com seus argumentos. E os decoradores?
 
 ```Python
 @closure
@@ -21,10 +21,10 @@ def funcao(argumentos):
     pass
 ```
 
-Ou seja, é apenas açúcar sintático. Contudo a apresentação é muito explicita, pelo menos pra mim. Fica evidente que a função `closure` decora a `funcao`.
+Ou seja, é apenas açúcar sintático. Contudo a apresentação é muito explícita, pelo menos pra mim. Fica evidente que a função `closure` decora a `funcao`.
 Outro ponto importante e que difere, apenas em nível sintático, é que a função é decorada apenas quando é definida.
 
-Com isso se tentarmos executar um código, como o código a baixo, executarimos a closure duas vezes na função:
+Com isso se tentarmos executar um código, como o código a baixo, executaríamos a closure duas vezes na função:
 
 ```Python
 @closure
@@ -38,7 +38,7 @@ Agora todas as vezes que você encontrar um `@` em cima de uma definição de um
 
 ## 10.2 Montando nosso primeiro decorador
 
-No tópico 8 iniciamos nossa discução sobre o uso de closures, vamos implementar closures de uma maneira mais eficiente e mais agradável visualmente.
+No tópico 8 iniciamos nossa discussão sobre o uso de closures, vamos implementar closures de uma maneira mais eficiente e mais agradável visualmente.
 
 Para iniciar vamos pensar em uma simples função que soma dois números como fizemos ao introduzir o conceito de funções nos primeiros tópicos, para ficar evidentemente simples a utilização de decoradores, mas falar é fácil. Vamos ao código:
 
@@ -177,7 +177,7 @@ Embora a função externa que leva o nome do decorador ganhe como argumento a fu
 
 ### 10.2.1 Um cache simples
 
-Vamos pensar em uma função que executa algum tipode calculo mirabolante. Por exemplo, você pode fixar um cache para verificar se o número é par. Mas para isso você precisa do módulo da divisão por 2.
+Vamos pensar em uma função que executa algum tipo de calculo mirabolante. Por exemplo, você pode fixar um cache para verificar se o número é par. Mas para isso você precisa do módulo da divisão por 2.
 
 Então, vamos supor que a nossa função de soma só execute a soma quando o segundo valor passado for par, fora desse contexto não iremos executar a função.
 
