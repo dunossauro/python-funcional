@@ -177,7 +177,7 @@ Embora a função externa que leva o nome do decorador ganhe como argumento a fu
 
 ### 10.2.1 Um cache simples
 
-Vamos pensar em uma função que executa algum tipo de calculo mirabolante. Por exemplo, você pode fixar um cache para verificar se o número é par. Mas para isso você precisa do módulo da divisão por 2.
+Vamos pensar em uma função que executa algum tipo de cálculo mirabolante. Por exemplo, você pode fixar um cache para verificar se o número é par. Mas para isso você precisa do módulo da divisão por 2.
 
 Então, vamos supor que a nossa função de soma só execute a soma quando o segundo valor passado for par, fora desse contexto não iremos executar a função.
 
