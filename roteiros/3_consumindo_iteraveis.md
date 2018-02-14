@@ -85,7 +85,7 @@ Tá, você pode até não ter gostado das list comprehensions:
 
 `Jaber diz: 'Não gosto, achei muito feia a sintaxe'`
 
-Ok, Jaber. Mas vamos reconhecer, ela é muito mais simples e eficiente. Em contrapartida, temos a função `map`, que também é maior bonita:
+Ok, Jaber. Mas vamos reconhecer, ela é muito mais simples e eficiente. Em contrapartida, temos a função `map`, que também é mais bonita:
 
 ```Python
 
@@ -113,4 +113,4 @@ Acaba-se de reproduzir o estado de amor Pythonico agora. Você foi funcional! T�
 
 Tá, agora você já sabe o poder que tem nas mãos. Nunca mais declare uma lista vazia para receber appends, combinado?
 
-Agora que você é um intendedor da iterações, vamos complicar um pouco e falar sobre functors, monads e catamorphismo. Tá, mas sem palavras difíceis, os seus coleguinhas não gostam de nomenclaturas haskelianas. Mas você vai poder esnobar seus conhecimentos teóricos sobre Teoria das Categorias. Até o próximo vídeo.
+Agora que você é um entendedor da iterações, vamos complicar um pouco e falar sobre functors, monads e catamorphismo. Tá, mas sem palavras difíceis, os seus coleguinhas não gostam de nomenclaturas haskelianas. Mas você vai poder esnobar seus conhecimentos teóricos sobre Teoria das Categorias. Até o próximo vídeo.
