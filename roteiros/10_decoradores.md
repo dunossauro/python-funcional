@@ -53,9 +53,9 @@ def soma(x, y):
 Não é preciso ser um gênio como o Jaber para saber como usar essa função:
 
 ```Python
-soma(1, 1) # 2
-soma(2.0, 2.0) # 4.0
-soma(3j + 3j) # 6j
+>>> soma(1, 1) # 2
+>>> soma(2.0, 2.0) # 4.0
+>>> soma(3j + 3j) # 6j
 ```
 
 Ela funciona efetivamente com todos os tipos de números em Python. Embora seja possível imaginar que nossa função usa o operador `+`. Ele faz com que nossos objetos numéricos invoquem seu método mágico interno `__add__` ou `__radd__`. O único problema é que outros objetos em Python também implementam esse método. Strings e listas podem usar o `__add__`, mas somente entre sí. Vale lembrar aqui que Python é uma linguagem fortemente tipada. Eu não vou conseguir somar uma string com um inteiro ou com uma lista por exemplo.
@@ -67,7 +67,7 @@ Vamos pensar que nossa função `soma()` só trabalha com números (complexos, i
 Calma Jaber, existe um problema em não validar os valores. Se as entradas forem de tipos diferentes a função vai retornar um `TypeError` e não vai ser muito legal para quando o usuário da nossa função estiver usando. Vamos entender isso, para que fique claro:
 
 ```Python
-soma('Jaber', 2)
+>>> soma('Jaber', 2)
 # TypeError: must be str, not int
 ```
 
@@ -95,17 +95,23 @@ def soma(x, y):
 Tá, ficou bonito. Vamos usar:
 
 ```Python
-soma(1, 1) # 2
-soma(2.0, 2.0) # 4.0
-soma(3j, 3j) # 6j
+>>> soma(1, 1)
+# 2
+>>> soma(2.0, 2.0)
+# 4.0
+>>> soma(3j, 3j)
+# 6j
 ```
 
 Até então tudo está exatamente igual, mas vamos tentar usar outros tipos de dados:
 
 ```Python
-soma(1, [1]) # TypeError: Insira somente números (int, complex, float)
-soma(1, 'Jaber') # TypeError: Insira somente números (int, complex, float)
-soma((1, 2, 3), 1) # TypeError: Insira somente números (int, complex, float)
+>>> soma(1, [1])
+# TypeError: Insira somente números (int, complex, float)
+>>> soma(1, 'Jaber')
+# TypeError: Insira somente números (int, complex, float)
+>>> soma((1, 2, 3), 1)
+# TypeError: Insira somente números (int, complex, float)
 ```
 
 `Jaber diz: Hmmmmmmm. Muito bonito, falou muito e nada de decoradores`
@@ -122,8 +128,10 @@ def mul(x, y):
     raise TypeError('Insira somente números (int, complex, float)')
 
 
-mul(1, 2) # 2
-mul(1, [1]) # TypeError: Insira somente números (int, complex, float)
+>>> mul(1, 2)
+# 2
+>>> mul(1, [1])
+# TypeError: Insira somente números (int, complex, float)
 ```
 
 Você entendeu tudo Jaber, mas esqueceu de tudo que falamos sobre closures? Agora vamos ser inteligentes e usar as closures que aprendemos:
@@ -154,19 +162,27 @@ def soma(x, y):
 def mul(x, y):
     return x * y
 
-soma(1, 1) # 2
-soma(2.0, 2.0) # 4.0
-soma(3j + 3j) # 6j
-mul(1, 1) # 2
-mul(2.0, 2.0) # 4.0
-mul(3j, 3j) # (-9+0j)
+>>> soma(1, 1)
+# 2
+>>> soma(2.0, 2.0)
+# 4.0
+>>> soma(3j + 3j)
+# 6j
+>>> mul(1, 1)
+# 2
+>>> mul(2.0, 2.0)
+# 4.0
+>>> mul(3j, 3j)
+# (-9+0j)
 ```
 
 Agora `validate_numbers` além de decorar nossas funções com a closure pode ser usado para qualquer tipo de funções que recebem dois argumentos (claro a validação pode não ser a mesma, mas funciona). Mas e os erros?
 
 ```Python
-soma(1, 'Jaber') # TypeError: Insira somente números (int, complex, float)
-mul(1, [1]) # TypeError: Insira somente números (int, complex, float)
+>>> soma(1, 'Jaber')
+# TypeError: Insira somente números (int, complex, float)
+>>> mul(1, [1])
+# TypeError: Insira somente números (int, complex, float)
 ```
 
 Tudo funcionou muito bem. Vamos tentar entender um pouco mais sobre a natureza dos decoradores.
@@ -203,7 +219,7 @@ def segundo_eh_par(func, cache={}):
 
 Depois de definir essa função, a gente pode rodar a seguinte linha
 
-```
+```Python
 >>> segundo_eh_par.__defaults__
 # ({},)
 ```
@@ -216,11 +232,15 @@ def soma(x, y):
     return x + y
 
 
-soma(2,2) # 4
-segundo_eh_par.__defaults__ # ({2: True},)
+>>> soma(2,2)
+# 4
+>>> segundo_eh_par.__defaults__
+# ({2: True},)
 
-soma(2,5) # Exception: Insira somente valores pares
-segundo_eh_par.__defaults__ # ({2: True, 5: False},)
+>>> soma(2,5)
+# Exception: Insira somente valores pares
+>>> segundo_eh_par.__defaults__
+# ({2: True, 5: False},)
 ```
 
 Agora, todas as vezes que os valores forem usado novamente a computação não é necessária, pois ela já esta no dicionário. Vamos fazer isso com fibonacci, é surpreendente a diferença de desempenho, mas vamos aprender a medir o tempo antes
@@ -229,15 +249,77 @@ Agora, todas as vezes que os valores forem usado novamente a computação não �
 
 Esse decorador também segue uma ideia simples, podemos gravar em arquivos, gerar logs, chamar bancos de dados. Vai além da imaginação, mas vamos tentar medir o tempo que nossa função leva para ser executada.
 
+```Python
+from time import time
+
+def timeit(func):
+    """
+    Decorador para medir o tempo.
+
+    Roubada de: Python Cookbook 3ª edição (Beazley e Jone - O'Reilly)
+    """
+    def inner(*args):
+        ts = time() # pega a 'hora' atual
+        result = func(*args) # Executa a função
+        te = time() # pega a hora atual
+        # Aqui vai rolar um print nesse formato:
+        # <nome_da_função> <argumentos_da_função> <subtração_de_te_por_ts>
+        print('{} {} {:.2}'.format(func.__name__, args, te - ts))
+        return result
+    return inner
+```
+
+Esse é um decorador bem simples de se entender. Ele vai decorar uma função e nós saberemos o tempo que ela levou para ser executada em segundos. Você pode pensar que esse decorador é mais do mesmo, porém, ele nos mostra quão genéricos devem ser os decoradores. A ídeia é de que possam ser usados em qualquer lugar. Nesse caso `eh_par` acaba sendo um contra-exemplo de um bom decorador. Mas, vale lembrar que o objetivo dele é totalmente didático. Sei que você já deve ter entendido tudo sobre decoradores. Porém, eles também podem receber argumentos, o que os tornariam mais genéricose potentes. Então, vamos lá...
 
 
-## 10.? Decoradores com parâmetros (closures de closures)
+## 10.3 Decoradores com parâmetros (closures de closures)
+
+Uma das coisas mais legais de quando se está aprendendo Python, é que em um certo momento você acaba perdendo a ideia de que não podemos fazer código com alto acoplamento. Por exemplo, nos ultimos tópicos você simplesmente definiu uma `def` dentro de outra `def`. Porém, as coisas podem ser mais simpáticas quando você simplesmente se dá o prazer de experimentar.
+
+Por exemplo, e se fizessemos uma closure de uma closure?
 
 ```Python
 def param(args):
     def funcao_externa(func):
         def funcao_interna(*args):
             return func(*args)
-        return func_args
-    return real_decorator
+        return funcao_externa
+    return funcao_interna
 ```
+
+Nesse caso, parece um `Inception`, mas calma, não precisamos do Christopher Nolan para entender o que se passa nesse decorador. Vamos ler linha a linha (sim, foi por isso que não coloquei comentários nas funções).
+
+Na primeira linha foi definida uma função chamada `param`, é um nome bem descritivo na verdade. Lembra-se que nos exemplos passados usamos a função externa para ser nosso decorador. Agora nesse caso, essa camada, que chamamos `param`, vai ser nosso decorador. Mas uma coisa muito interessante sobre ela é que ela não recebe a função como parâmetro. Sim, ela recebe um parâmetro, mas não é a função.
+
+Sim, eu sei, está confuso. Vamos fazer com exemplos, um bom código diz mais que mil palavras.
+
+```Python
+def verbose(level=0):
+    def funcao_externa(func):
+        def funcao_interna(*args):
+            if level == 1:
+                # Nesse caso, ele vai printar o nome da função decorada
+                print(func.__name__)
+            if level == 2:
+                # Nesse caso, ele vai printar o nome da função decorada
+                # junto com os argumentos que foram invocados
+                print(func.__name__, args)
+            return func(*args)
+        return funcao_interna
+    return funcao_externa
+```
+
+Definimos um novo decorador chamado `verbose`, ele recebe um argumento que é nível de verbosidade que o decorador vai exercer sobre as demais funções. Caso `level` seja `0` seu valor default, ele não vai fazer nada. A única ação nesse caso seria retornar a função. Porém, caso os valores variem entre 1 e 2, diferentes coisas serão mostradas na tela. Caso a função decorada receba `level=1`, toda vez que a função for invocada o nome dela será mostrado na tela. (Sim, isso pode ser bem útil para um momento de desespero na hora de depurar seu código). Caso o valor enviado seja `level=2`, ou seja mais verboso, ele vai nos retornar o nome da função junto dos argumentos que foram invocados. Vamos decorar uma função antes de retormar a explicação.
+
+```Python
+@verbose(2)
+def soma(*args):
+    return sum(args)
+```
+
+Embora quem faça a frente da nossa função seja `verbose` o decorador real, a função que recebe a nossa função é a `funcao_externa`, como em todos os exemplos. A função `verbose` nesse caso, vai simplemente adicionar uma camada a mais no escopo local da função `funcao_externa` e por consequência também no escopo da `funcao_interna`. Ou seja, você pode parametrizar a execução do decorador sem que a parametrização seja feita com os argumentos passados a função decorada.
+
+
+## 10.4 Identidade das funções decoradas.
+
+## 10.5 Decorando decoradores
