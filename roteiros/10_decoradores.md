@@ -272,7 +272,7 @@ def timeit(func):
 Esse é um decorador bem simples de se entender. Ele vai decorar uma função e nós saberemos o tempo que ela levou para ser executada em segundos. Você pode pensar que esse decorador é mais do mesmo, porém, ele nos mostra quão genéricos devem ser os decoradores. A ídeia é de que possam ser usados em qualquer lugar. Nesse caso `eh_par` acaba sendo um contra-exemplo de um bom decorador. Mas, vale lembrar que o objetivo dele é totalmente didático. Sei que você já deve ter entendido tudo sobre decoradores. Porém, eles também podem receber argumentos, o que os tornariam mais genéricose potentes. Então, vamos lá...
 
 
-## 10.3 Decoradores com parâmetros (closures de closures)
+## 10.3 Decoradores com parâmetros
 
 Uma das coisas mais legais de quando se está aprendendo Python, é que em um certo momento você acaba perdendo a ideia de que não podemos fazer código com alto acoplamento. Por exemplo, nos ultimos tópicos você simplesmente definiu uma `def` dentro de outra `def`. Porém, as coisas podem ser mais simpáticas quando você simplesmente se dá o prazer de experimentar.
 
@@ -320,6 +320,6 @@ def soma(*args):
 Embora quem faça a frente da nossa função seja `verbose` o decorador real, a função que recebe a nossa função é a `funcao_externa`, como em todos os exemplos. A função `verbose` nesse caso, vai simplemente adicionar uma camada a mais no escopo local da função `funcao_externa` e por consequência também no escopo da `funcao_interna`. Ou seja, você pode parametrizar a execução do decorador sem que a parametrização seja feita com os argumentos passados a função decorada.
 
 
-## 10.4 Identidade das funções decoradas.
+## 10.4 Identidade das funções decoradas
 
 ## 10.5 Decorando decoradores

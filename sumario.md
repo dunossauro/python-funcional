@@ -59,3 +59,7 @@
 ## 10 [Decoradores](roteiros/10_decoradores.md) - WIP
 ### 10.1 Qual a cara de um decorador?
 ### 10.2 Montando nosso primeiro decorador
+### 10.3 Decoradores com parâmetros (closures de closures)
+### 10.4 Identidade das funções decoradas
+### 10.2 Montando nosso primeiro decorador
+### 10.5 Decorando decoradores
