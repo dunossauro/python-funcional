@@ -71,7 +71,7 @@ Calma Jaber, existe um problema em não validar os valores. Se as entradas forem
 # TypeError: must be str, not int
 ```
 
-Esse comportamento não é legal, imagina quatos tipos diferentes de erros podem ocorrer por isso? Vamos resolver de uma maneira simples:
+Esse comportamento não é legal, imagina quantos tipos diferentes de erros podem ocorrer por isso? Vamos resolver de uma maneira simples:
 
 
 ```Python
@@ -81,7 +81,7 @@ def soma(x, y):
     """
     Função que soma dois números.
 
-    isinstance faz uma comparação e valida um valor
+    isinstance faz uma comparação e valida se um valor
         é de uma determinada classe.
 
     Caso um deles não seja, um erro vai ser
@@ -189,7 +189,7 @@ Tudo funcionou muito bem. Vamos tentar entender um pouco mais sobre a natureza d
 
 ## 10.2 Usando um pouco melhor a função externa
 
-Embora a função externa que leva o nome do decorador ganhe como argumento a função a ser executada e execute a função interna, ela pode ter outras funcionalidades. Vamos pensar em um pouco e gerar algumas coisas perigosas, mas que pode ser usadas em contexto onde seja de suma importância.
+Embora a função externa que leva o nome do decorador ganhe como argumento a função a ser executada e execute a função interna, ela pode ter outras funcionalidades. Vamos pensar um pouco e gerar algumas coisas perigosas, mas que podem ser usadas em contexto onde sejam de suma importância.
 
 ### 10.2.1 Um cache simples
 
@@ -197,7 +197,7 @@ Vamos pensar em uma função que executa algum tipo de cálculo mirabolante. Por
 
 Então, vamos supor que a nossa função de soma só execute a soma quando o segundo valor passado for par, fora desse contexto não iremos executar a função.
 
-Vamos tentar e explicando enquanto fazemos:
+Vamos tentar, e explicar enquanto fazemos:
 
 ```Python
 def segundo_eh_par(func, cache={}):
@@ -217,10 +217,10 @@ def segundo_eh_par(func, cache={}):
     return interna
 ```
 
-Depois de definir essa função, a gente pode rodar a seguinte linha
+Depois de definir essa função, a gente pode rodar a seguinte linha:
 
 ```Python
->>> segundo_eh_par.__defaults__
+>>> segundo_eh_par.__defaults__  
 # ({},)
 ```
 
@@ -243,7 +243,7 @@ def soma(x, y):
 # ({2: True, 5: False},)
 ```
 
-Agora, todas as vezes que os valores forem usado novamente a computação não é necessária, pois ela já esta no dicionário. Vamos fazer isso com fibonacci, é surpreendente a diferença de desempenho, mas vamos aprender a medir o tempo antes
+Agora, todas as vezes que os valores forem usado novamente a computação não será necessária, pois ela já está no dicionário. Vamos fazer isso com fibonacci, é surpreendente a diferença de desempenho, mas vamos aprender a medir o tempo de execução de uma função antes.
 
 ### 10.2.2 Tempo de execução de uma função
 
@@ -309,7 +309,7 @@ def verbose(level=0):
     return funcao_externa
 ```
 
-Definimos um novo decorador chamado `verbose`, ele recebe um argumento que é nível de verbosidade que o decorador vai exercer sobre as demais funções. Caso `level` seja `0` seu valor default, ele não vai fazer nada. A única ação nesse caso seria retornar a função. Porém, caso os valores variem entre 1 e 2, diferentes coisas serão mostradas na tela. Caso a função decorada receba `level=1`, toda vez que a função for invocada o nome dela será mostrado na tela. (Sim, isso pode ser bem útil para um momento de desespero na hora de depurar seu código). Caso o valor enviado seja `level=2`, ou seja mais verboso, ele vai nos retornar o nome da função junto dos argumentos que foram invocados. Vamos decorar uma função antes de retormar a explicação.
+Definimos um novo decorador chamado `verbose`, ele recebe um argumento que é nível de verbosidade no qual o decorador vai exercer sobre as demais funções. Caso `level` seja `0`, seu valor default, ele não vai fazer nada. A única ação nesse caso seria retornar a função. Porém, caso os valores variem entre 1 e 2, diferentes coisas serão mostradas na tela. Caso a função decorada receba `level=1`, toda vez que a função for invocada o nome dela será mostrado na tela. (Sim, isso pode ser bem útil para um momento de desespero na hora de depurar seu código). Caso o valor enviado seja `level=2`, ou seja mais verboso, ele vai nos retornar o nome da função junto dos argumentos que foram invocados. Vamos decorar uma função antes de retormar a explicação.
 
 ```Python
 @verbose(2)
