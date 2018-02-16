@@ -61,5 +61,4 @@
 ### 10.2 Montando nosso primeiro decorador
 ### 10.3 Decoradores com parâmetros (closures de closures)
 ### 10.4 Identidade das funções decoradas
-### 10.2 Montando nosso primeiro decorador
 ### 10.5 Decorando decoradores
