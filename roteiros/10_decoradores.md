@@ -322,4 +322,73 @@ Embora quem faça a frente da nossa função seja `verbose` o decorador real, a 
 
 ## 10.4 Identidade das funções decoradas
 
+Continuando esse tópico, uma coisa muito interessante acontece com funções decoradas. Ela parde sua identidade e isso pode ser um grande problema para fase de depuração do seu código. Imagine que quando uma função decorada apresentar um erro, o erro sempre será mostrado no decorador. Vamos tentar olhar como isso acontece:
+
+```Python
+def sem_decorador(x, y):
+    """Função sem decorador."""
+    return x, y
+
+>>> sem_decorador
+# <function __main__.sem_decorador>
+```
+
+Ok, temos uma função no escopo `__main__`, sem problemas, esse é o esperado, porém se decorarmos essa função, vou usar um decorador genérico para fazer isso:
+
+```Python
+def decorator(f):
+    def inner(args):
+        """Função interna do decorador."""
+        return f(args)
+    return inner
+
+@decorator
+def com_decorador(x, y):
+    """Função com decorador."""
+    return x, y
+
+>>> com_decorador
+# <function __main__.decorator.<locals>.inner>
+```
+Ou seja, toda vez em que a função `com_decorador` é invocada ela é o decorador `decorator`, mas expecificamente ela é a função `inner`, a função interna do decorador. Vamos olhar mais profundamente com alguns métodos do objeto.
+
+```Python
+>>> sem_decorador.__name__ # __name__ diz o nome da função
+# 'sem_decorador'
+>>> com_decorador.__name__
+# 'inner'
+>>> sem_decorador.__doc__ # __doc__ nos mostra a docstring da função
+# 'Função sem decorador.'
+>>> com_decorador.__doc__
+# 'Função interna do decorador.'
+```
+
+`WIP: Explicar claramente o que o interpretador faz nessa parte`
+
+Fica evidente que na hora de depurar vamos ter vários problemas com isso, embora não seja o foco principal desse tópico, vamos usar um decorador do `functools`, o decorador de `wraps`.
+
+```Python
+from functools import wraps
+
+
+def decorator(f):
+    @wraps(f)
+    def inner(args):
+        """Função interna do decorador."""
+        return f(args)
+    return inner
+
+@decorator
+def com_decorador(x, y):
+    """Função com decorador."""
+    return x, y
+
+>>> com_decorador
+# <function __main__.com_decorador>
+```
+
+Com isso, uma cópia dos métodos `__module__`, `__name__`, `__qualname__`, `__annotations__` e `__doc__` será feita a função "embrulhada" (wraped) e as propriedades da função decorada continuarão a ser mantidas após o embrulho. Ou seja, poderemos tanto facilitar a vida quando for necessário depurar nosso código e também o autocomplete do seu editor, a função `help()` e todas as coisas que precisam determinar o comportamento da sua função continuariam a funcionar como se a função não estivesse decorada. Porém, ela agora será uma função embrulhada. Ou seja, quando a função for chamada ela vai ser invocada pelo embrulho e você perderá a visualização da representação sem o decorador de `wraps` (`<function __main__.decorator.<locals>.inner>`). Para isso, existe na função embrulhada um método chamado `__wrapped__` que correpende exatamente a função `<function __main__.decorator.<locals>.inner>`. Com isso, você agora pode usar a função sem se preocupar com o comportamento do decorador e caso precise desse tipo de interação, você pode invocar diretamente `com_decorador.__wrapped__`. Então você não precisa mais se preocupar com diferentes tipos de interação e manter a sanidade mental.
+
+Mas, uma coisa um pouco diferente aconteceu nesse exemplo com `@wraps`, existe um novo decorador inserido dentro da função interna do decorador e é isso que vamos ver no proximo tópico.
+
 ## 10.5 Decorando decoradores
