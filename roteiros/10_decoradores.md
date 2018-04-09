@@ -392,3 +392,15 @@ Com isso, uma cópia dos métodos `__module__`, `__name__`, `__qualname__`, `__a
 Mas, uma coisa um pouco diferente aconteceu nesse exemplo com `@wraps`, existe um novo decorador inserido dentro da função interna do decorador e é isso que vamos ver no proximo tópico.
 
 ## 10.5 Decorando decoradores
+
+Como você deve ter percebido, não existem mais limites entre decorar funções e fazer encapsulamento das mesmas. Podemos decorar as funções que são decoradores e as funções decoradas também podem ter mais de um decorador. Por exemplo:
+
+
+```Python
+@decorador1
+@decorador2
+def funcao_que_redece_dois_decoradores():
+    pass
+```
+
+nesse caso, o `decorador1` decora o `decorador2` que decora a função `funcao_que_redece_dois_decoradores`. Sim, eu sei que você entendeu e isso pode ter um ciclo infinito de possibilidades. Uma coisa que deve ser levada em consideração é que conforme você aninha decoradores as funções tendem a ficar mais dificeis de depurar e de prever o comportamento.
