@@ -13,11 +13,15 @@ Os tópicos abordados até o momento estão disponíves no [sumário](sumario.md
 
 Pretendo dividir o conteúdo em três partes
 
-1. Uma introdução sobre funcional e ferramentas sem import (cerca de 10 vídeos/roteiros)
+1. Uma introdução sobre funcional e ferramentas sem import (cerca de 10 tópicos)
     - Funções, hofs, iteradores, closures e decoradores
-2. Usando as baterias internas (Ainda não tenho ideia do tamanho)
+
+2. Depois de entender os conceitos com Python, vamos falar um pouco sobre matemática básica, pra entender o que fizemos (cerca de 4 tópicos)
+
+3. Usando as baterias internas (Ainda não tenho ideia do tamanho)
     - intertools, operator e functools
-3. Usando bibliotecas externas para programação funcional (Ainda não tenho ideia do tamanho)
+
+4. Usando bibliotecas externas para programação funcional (Ainda não tenho ideia do tamanho)
     - fn.py, toolz, pymonad e macropy
 
 

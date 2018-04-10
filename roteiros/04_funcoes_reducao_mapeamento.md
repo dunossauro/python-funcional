@@ -329,14 +329,14 @@ for x, y in enumerate(lista):
 
 É explícito? Não. Mas tem os index, as vezes a gente precisa deles.
 
-Bom, enumerate() é bem simples. Mas temos uma função lá no começo que deixamos de falar. Na verdade vamos só dar uma olhada nela, pois ela é a ponte entre esse e próximo vídeo. Enfim, map().
+Bom, enumerate() é bem simples. Mas temos uma função lá no começo que deixamos de falar. Na verdade vamos só dar uma olhada nela, pois ela é a ponte entre esse e próximo tópico. Enfim, map().
 
 Vamos, falta pouco pra acabar por hoje, você aguenta.
 
 
 ### 4.2.3 map()
 
-Embora já tenhamos usado a função map() em quase todos os vídeos anteriores, o seu grande segredo será revelado apenas agora.
+Embora já tenhamos usado a função map() em quase todos os tópicos anteriores, o seu grande segredo será revelado apenas agora.
 
 map() é uma função de MAPeamento, é, essa não foi tão difícil. Porém, ela é um pouco diferente das nossas funções usadas agora. Ela é uma função que chamamos de __Função de ordem superior__. Isso não é um conceito complicado, quer dizer que ela é uma função que recebe uma função como argumento. Existem muitos casos de como usar map(), mas uma coisa é certa, a função usada por map() só pode receber um argumento. Vamos ao código:
 
@@ -360,4 +360,4 @@ Porém você já pensou que falamos hoje da função bool()? Já pensou usar ela
 map(bool, [0, 1, 2]) # [False, True, True]
 ```
 
-Era só nesse ponto que eu queria tocar, todas as funções embutidas do python que recebem só um único argumento podem ser usadas com map(). Mas o gostinho das funções que recebem funções ficou na pontinha da língua? Então até o próximo vídeo.
+Era só nesse ponto que eu queria tocar, todas as funções embutidas do python que recebem só um único argumento podem ser usadas com map(). Mas o gostinho das funções que recebem funções ficou na pontinha da língua? Então até o próximo tópico.

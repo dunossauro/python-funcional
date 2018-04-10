@@ -162,7 +162,7 @@ Agora que você já conhece mais um tipo de função, vamos voltar as nossas HOF
 
 Como já sabemos e já foi dito exaustivamente, funções são objetos de primeira classe em Python. Já sabemos. Ok.
 
-Então como já entendemos tudo isso, vamos só usar alguns exemplos de funções que recebem funções. OBS: Vamos criar algumas funções meio especialistas agora, isso não é muito bom. Mas serve como base de aprendizado. No proxímo vídeo vamos explorar mais funções simples e que são de grande utilidade em muitos contextos, porém...
+Então como já entendemos tudo isso, vamos só usar alguns exemplos de funções que recebem funções. OBS: Vamos criar algumas funções meio especialistas agora, isso não é muito bom. Mas serve como base de aprendizado. No proxímo tópico vamos explorar mais funções simples e que são de grande utilidade em muitos contextos, porém...
 
 Vamos trabalhar em outra frente então:
 
@@ -171,7 +171,7 @@ Vamos trabalhar em outra frente então:
 Vamos supor, que temos uma lista de tuplas:
 
 ```Python
-# Sim, já vimos algo parecido no vídeo anterior
+# Sim, já vimos algo parecido no tópico anterior
 
 # Hora, minuto, segundo
 tempo = [(13, 17, 50),
@@ -204,7 +204,7 @@ Agora a função `formato()` recebe dois argumentos de sequência e só organiza
 
 Sobre a função `func_map()` eu inverti a ordem dos argumentos propositalmente pois o `*` só pode ficar depois dos argumentos fixos. Neste caso o `*` não é muito importante, mas serve pra gente acumular 'n' argumentos e eles se tornam uma lista dentro do escopo da função. Por isso chamamos `funcs[0]` e `funcs[1]`.
 
-Não iteramos pela lista de funções, e sim pela sequência. Iterar por uma sequência de funções aproveitando os resultados é um conceito chamado de `streaming` mas vamos dedicar um vídeo exclusivamente a isso num futuro próximo.
+Não iteramos pela lista de funções, e sim pela sequência. Iterar por uma sequência de funções aproveitando os resultados é um conceito chamado de `streaming` mas vamos dedicar um tópico exclusivamente a isso num futuro próximo.
 
 Vamos tentar mais uma?
 
@@ -263,4 +263,4 @@ Counter('abacaxi verde limão verde como coco verde'.split()) # Counter({'abacax
 
 Tá, vai... A gente tentou e você aprendeu. SUAHSUAHUSHA.
 
-Com isso, no próximo vídeo, vamos construir nossa propria lib de HOFs simples e que servem para tudo. Um abraço.
+Com isso, no próximo tópico, vamos construir nossa propria lib de HOFs simples e que servem para tudo. Um abraço.

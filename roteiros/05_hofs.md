@@ -1,6 +1,6 @@
 # 5. Funções de ordem superior
 
-Você deve achar que esquecemos muitas funções embutidas no vídeo passado, não? Funções como:
+Você deve achar que esquecemos muitas funções embutidas no tópico passado, não? Funções como:
 
 -   map()
 -   max()
@@ -9,16 +9,16 @@ Você deve achar que esquecemos muitas funções embutidas no vídeo passado, n�
 -   sorted()
 -   filter()
 
-Porém, essas funções têm características especiais. Como assim? Elas podem receber além do iterável, uma outra função como argumento. Vamos lá. Você já foi introduzido ao map() no vídeo passado.
+Porém, essas funções têm características especiais. Como assim? Elas podem receber além do iterável, uma outra função como argumento. Vamos lá. Você já foi introduzido ao map() no tópico passado.
 
 ## 5.1 map()
 
-A função map(), fazendo um gancho com o vídeo anterior, é uma função de mapeamento, contudo, ela recebe o iterável em conjunto a uma função, a que fará o mapeamento. Vamos lá:
+A função map(), fazendo um gancho com o tópico anterior, é uma função de mapeamento, contudo, ela recebe o iterável em conjunto a uma função, a que fará o mapeamento. Vamos lá:
 
 ```Python
 def func(x):
     """
-    Exemplo do vídeo passado
+    Exemplo do tópico passado
     """
     return x +2
 
@@ -77,7 +77,7 @@ Viu, foi simples.
 
 ## 5.2 max()
 
-A função max() é uma função de redução, e sem a função como parâmetro, ela vai ter o comportamento das funções que vimos no outro vídeo.
+A função max() é uma função de redução, e sem a função como parâmetro, ela vai ter o comportamento das funções que vimos no outro tópico.
 
 ```Python
 
@@ -308,7 +308,7 @@ filter(impares, lista) # [1, 3, 5]
 
 Nem doeu, né? Vale uma lembrança, aparentemente iria retornar só os pares, porém zero é False, lembra? Então o retorno foram os ímpares.
 
-Caso você queira inverter, temos o filterfalse() do módulo itertools, que vai ser tema de outro vídeo, mas fica o gostinho:
+Caso você queira inverter, temos o filterfalse() do módulo itertools, que vai ser tema de outro tópico, mas fica o gostinho:
 
 ```Python
 from itertools import filterfalse
@@ -320,4 +320,4 @@ impares = lambda x: x % 2
 filterfalse(impares, lista) # [2, 4]
 ```
 
-Por hoje é só pessoal. No próximo vídeo vamos aprender a criar nossas próprias HOFs.
+Por hoje é só pessoal. No próximo tópico vamos aprender a criar nossas próprias HOFs.

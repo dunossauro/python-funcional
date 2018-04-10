@@ -80,7 +80,7 @@ Vamos tentar mapear o que as linguagens funcionais fazem de diferente das lingua
 
 #### Não. Mas é uma linguagem que implementa muitos paradígmas e porque não usar todos de uma vez?
 
-O objetivo desse 'conjunto de vídeos' é escrever código que gere menos efeito colateral e código com menos estados. Só que isso tudo feito na medida do possível, pois Python não é uma linguagem funcional. Porém, podemos contar o máximo possível com as features presentes do paradígma em python.
+O objetivo desse 'conjunto de tópicos' é escrever código que gere menos efeito colateral e código com menos estados. Só que isso tudo feito na medida do possível, pois Python não é uma linguagem funcional. Porém, podemos contar o máximo possível com as features presentes do paradígma em python.
 
 Exemplos de funcional (básicos) em python:
 

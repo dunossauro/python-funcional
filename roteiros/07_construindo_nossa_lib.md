@@ -1,6 +1,6 @@
 # 7. Nossa primeira biblioteca de funções
 
-O objetivo desse vídeo é construir uma gama de funções simples para que possamos exercitar tudo que aprendemos. Vamos fazer 6 funções legais de usar e que podem ajudar em muitos casos. Partiu? Vem comigo.
+O objetivo desse tópico é construir uma gama de funções simples para que possamos exercitar tudo que aprendemos. Vamos fazer 6 funções legais de usar e que podem ajudar em muitos casos. Partiu? Vem comigo.
 
 
 ### tail()
@@ -112,7 +112,7 @@ list(take(2, func_gen)) # [1, 2]
 list(take(2, func_gen)) # [3, 4]
 ```
 
-Olha só que mágico, não? A função implementada na biblioteca fn não é construída exatamente dessa maneira, eles usam uma função mágica do módulo `itertools` chamada `islice` que vamos ver em um vídeo futuro dedicado especialmente ao itertools. Mas vai dizer que não ficou simples?
+Olha só que mágico, não? A função implementada na biblioteca fn não é construída exatamente dessa maneira, eles usam uma função mágica do módulo `itertools` chamada `islice` que vamos ver em um tópico futuro dedicado especialmente ao itertools. Mas vai dizer que não ficou simples?
 
 Jaber diz: `Mas a função take() não faz a mesma coisa que a função head()???`
 
