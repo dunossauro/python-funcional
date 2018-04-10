@@ -399,7 +399,7 @@ Como você deve ter percebido, não existem mais limites entre decorar funções
 ```Python
 @decorador1
 @decorador2
-def funcao_que_redece_dois_decoradores():
+def funcao_que_redebe_dois_decoradores():
     pass
 ```
 
