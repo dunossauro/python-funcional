@@ -39,4 +39,5 @@ Pretendo dividir o conteúdo em três partes
 [@sembug](https://github.com/sembug) pelas correções, pelo bom papo e pelo sumário ([#13](https://github.com/dunossauro/python-funcional/issues/13), [#14](https://github.com/dunossauro/python-funcional/issues/14))
 
 [@azengard](https://github.com/azengard) Por sacar da manga aquele bug todos deixamos passar
-[@andradejunior](https://github.com/andradejunior)
+
+[@andradejunior](https://github.com/andradejunior) Pelas correções no tópico 10 sobre decoradores
