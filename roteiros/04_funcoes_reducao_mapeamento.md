@@ -124,7 +124,7 @@ Viu, foi tão simples. Agora, vamos a mais uma de redução.
 
 ### 4.1.3 len()
 
-len(), diferente das outras sequências, efetua uma soma de números existente em uma sequência. Vamos tentar implementar um len()?
+len(), diferente das outras funções, efetua uma soma da quantidade de valores existentes em uma sequência. Vamos tentar implementar um len()?
 
 ```Python
 
@@ -142,7 +142,7 @@ _len([1,2,3,4]) # 4
 
 ```
 
-Viu, não é nada tão absurdo. A função len() conta a quantidade de elementos existentes em uma sequência.
+De maneira bem simplista, o len vai acumular todos os valores existentes em qualquer tipo de sequência, e veremos como o objeto faz isso daqui a pouco. Uma coisa interessante de mencionar é que o len não conta sequências de sequência, `[[1,2,3]]`. A somatória da quantidade de objetos nesse caso é um, pois a lista só armazena uma outra lista dentro de sí.
 
 ```python
 len([1,2,3,4,5]) # 5
