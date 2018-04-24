@@ -41,3 +41,5 @@ Pretendo dividir o conteúdo em três partes
 [@azengard](https://github.com/azengard) Por sacar da manga aquele bug todos deixamos passar
 
 [@andradejunior](https://github.com/andradejunior) Pelas correções no tópico 10 sobre decoradores
+
+[@n1lux](https://github.com/n1lux) pela consideração de um entendimento que poderia estar confuso. [Issue 23](https://github.com/dunossauro/python-funcional/issues/13)
