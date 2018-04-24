@@ -1,4 +1,4 @@
-# 10. Decoradores WIP
+# 10. Decoradores
 
 Agora que você e o Jaber já estão craques em closures os decoradores não apresentam medo, pois tudo em decoradores são closures. No tópico 9.5 você usou um decorador e embora eles não tenham sido devidamente explicados vamos entender tudo sobre eles agora.
 
@@ -363,8 +363,6 @@ Ou seja, toda vez em que a função `com_decorador` é invocada ela é o decorad
 # 'Função interna do decorador.'
 ```
 
-`WIP: Explicar claramente o que o interpretador faz nessa parte`
-
 Fica evidente que na hora de depurar vamos ter vários problemas com isso, embora não seja o foco principal desse tópico, vamos usar um decorador do `functools`, o decorador de `wraps`.
 
 ```Python
@@ -404,3 +402,5 @@ def funcao_que_redebe_dois_decoradores():
 ```
 
 nesse caso, o `decorador1` decora o `decorador2` que decora a função `funcao_que_redece_dois_decoradores`. Sim, eu sei que você entendeu e isso pode ter um ciclo infinito de possibilidades. Uma coisa que deve ser levada em consideração é que conforme você aninha decoradores as funções tendem a ficar mais dificeis de depurar e de prever o comportamento.
+
+E com isso terminamos aqui a primeira parte do nosso conteúdo sobre programação funcional sem imports. Tudo que contruímos até foi usando as funções [builtin](https://docs.python.org/3/library/functions.html#built-in-funcs) do python. Mas antes de prosseguir, gostaria de fazer algumas breves considerações matematicas, para que seja possível criarmos código de mais qualidade.
