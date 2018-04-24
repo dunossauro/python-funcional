@@ -56,7 +56,7 @@
 ### 9.3 Interagindo com valores `nonlocal`
 ### 9.4 Closures que recebem funções (ou quase isso)
 ### 9.5 Decorar funções com closures
-## 10 [Decoradores](roteiros/10_decoradores.md) - WIP
+## 10 [Decoradores](roteiros/10_decoradores.md)
 ### 10.1 Qual a cara de um decorador?
 ### 10.2 Montando nosso primeiro decorador
 ### 10.3 Decoradores com parâmetros (closures de closures)
