@@ -24,7 +24,7 @@ def funcao(argumentos):
 Ou seja, é apenas açúcar sintático. Contudo a apresentação é muito explícita, pelo menos pra mim. Fica evidente que a função `closure` decora a `funcao`.
 Outro ponto importante e que difere, apenas em nível sintático, é que a função é decorada apenas quando é definida.
 
-Com isso se tentarmos executar um código, como o código a baixo, executaríamos a closure duas vezes na função:
+Com isso se tentarmos executar um código, como o código abaixo, executaríamos a closure duas vezes na função:
 
 ```Python
 @closure
