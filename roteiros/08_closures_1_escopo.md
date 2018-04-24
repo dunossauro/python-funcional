@@ -30,8 +30,8 @@ def func_externa(val_1):
         """
         A função interna recebe um valor e retorna a soma dos dois valores.
 
-        val_1 está no contexto da função interna, mas val 2 não está no
-            contexto da função externa
+        var_1 está acessível tanto no contexto da função interna quanto da
+          externa, porém val_2 está acessível somente no contexto da função interna.
         """
         return val_1 + val_2
     # aqui quando a função externa for chamada ela retorna a função interna e compartilha seus valores
