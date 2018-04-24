@@ -1,5 +1,5 @@
 [![Say Thanks!](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)](https://saythanks.io/to/z4r4tu5tr4)
- [![Waffle.io - Columns and their card count](https://badge.waffle.io/dunossauro/python-funcional.svg?columns=all)](https://waffle.io/z4r4tu5tr4/python-funcional)
+ [![Waffle.io - Columns and their card count](https://badge.waffle.io/dunossauro/python-funcional.svg?columns=all)](https://waffle.io/dunossauro/python-funcional)
 ## Repositório sobre os videos de python funcional
 
 Quando procurei saber mais sobre programação funcional usando python descobri que as pessoas tem um certo tipo de preconceito com programação funcional, apesar de python ter muitas features que ajudam a implementar muitas coisas do paradigma. Que esses roteiros, vídeos, slides (e qualquer coisa que o valha) te ajudem a evoluir um pouco mais na programação com python.
