@@ -1,6 +1,6 @@
 # 10. Decoradores
 
-Agora que você e o Jaber já estão craques em closures os decoradores não apresentam medo, pois tudo em decoradores são closures. No tópico 9.5 você usou um decorador e embora eles não tenham sido devidamente explicados vamos entender tudo sobre eles agora.
+Agora que você e o Jaber já estão craques em closures os decoradores não apresentam medo, pois tudo em decoradores são closures. No tópico 9.5 você usou um decorador e, embora eles não tenham sido devidamente explicados, vamos entender tudo sobre eles agora.
 
 
 ## 10.1 Qual a cara de um decorador?
@@ -13,7 +13,7 @@ Uma closure é aplicada em Python assim:
 closure(funcao(argumentos))
 ```
 
-Invocamos a função externa como uma função e passamos como parâmetro a nossa função com seus argumentos. E os decoradores?
+Invocamos a função externa como uma função e passamos como argumento a nossa função com seus argumentos. E os decoradores?
 
 ```Python
 @closure
@@ -176,7 +176,7 @@ def mul(x, y):
 # (-9+0j)
 ```
 
-Agora `validate_numbers` além de decorar nossas funções com a closure pode ser usado para qualquer tipo de funções que recebem dois argumentos (claro a validação pode não ser a mesma, mas funciona). Mas e os erros?
+Agora `validate_numbers` além de decorar nossas funções com a closure pode ser usado para qualquer tipo de função que receba dois argumentos (claro a validação pode não ser a mesma, mas funciona). Mas e os erros?
 
 ```Python
 >>> soma(1, 'Jaber')
@@ -274,7 +274,7 @@ Esse é um decorador bem simples de se entender. Ele vai decorar uma função e 
 
 ## 10.3 Decoradores com parâmetros
 
-Uma das coisas mais legais de quando se está aprendendo Python, é que em um certo momento você acaba perdendo a ideia de que não podemos fazer código com alto acoplamento. Por exemplo, nos ultimos tópicos você simplesmente definiu uma `def` dentro de outra `def`. Porém, as coisas podem ser mais simpáticas quando você simplesmente se dá o prazer de experimentar.
+Uma das coisas mais legais de quando se está aprendendo Python, é que em um certo momento você acaba entendendo a ideia de que não podemos fazer código com alto acoplamento. Por exemplo, nos ultimos tópicos você simplesmente definiu uma `def` dentro de outra `def`. Porém, as coisas podem ser mais simpáticas quando você simplesmente se dá o prazer de experimentar.
 
 Por exemplo, e se fizessemos uma closure de uma closure?
 
@@ -289,7 +289,7 @@ def param(args):
 
 Nesse caso, parece um `Inception`, mas calma, não precisamos do Christopher Nolan para entender o que se passa nesse decorador. Vamos ler linha a linha (sim, foi por isso que não coloquei comentários nas funções).
 
-Na primeira linha foi definida uma função chamada `param`, é um nome bem descritivo na verdade. Lembra-se que nos exemplos passados usamos a função externa para ser nosso decorador. Agora nesse caso, essa camada, que chamamos `param`, vai ser nosso decorador. Mas uma coisa muito interessante sobre ela é que ela não recebe a função como parâmetro. Sim, ela recebe um parâmetro, mas não é a função.
+Na primeira linha foi definida uma função chamada `param`, é um nome bem descritivo na verdade. Lembre-se que nos exemplos passados usamos a função externa para ser nosso decorador. Agora nesse caso, essa camada, que chamamos `param`, vai ser nosso decorador. Mas uma coisa muito interessante sobre ela é que ela não recebe a função como parâmetro. Sim, ela recebe um parâmetro, mas não é a função.
 
 Sim, eu sei, está confuso. Vamos fazer com exemplos, um bom código diz mais que mil palavras.
 
@@ -309,7 +309,7 @@ def verbose(level=0):
     return funcao_externa
 ```
 
-Definimos um novo decorador chamado `verbose`, ele recebe um argumento que é nível de verbosidade no qual o decorador vai exercer sobre as demais funções. Caso `level` seja `0`, seu valor default, ele não vai fazer nada. A única ação nesse caso seria retornar a função. Porém, caso os valores variem entre 1 e 2, diferentes coisas serão mostradas na tela. Caso a função decorada receba `level=1`, toda vez que a função for invocada o nome dela será mostrado na tela. (Sim, isso pode ser bem útil para um momento de desespero na hora de depurar seu código). Caso o valor enviado seja `level=2`, ou seja mais verboso, ele vai nos retornar o nome da função junto dos argumentos que foram invocados. Vamos decorar uma função antes de retormar a explicação.
+Definimos um novo decorador chamado `verbose`, ele recebe um argumento que é nível de verbosidade no qual o decorador vai exercer sobre as demais funções. Caso `level` seja `0`, seu valor default, ele não vai fazer nada. A única ação nesse caso seria retornar a função. Porém, caso os valores variem entre 1 e 2, diferentes coisas serão mostradas na tela. Caso a função decorada receba `level=1`, toda vez que a função for invocada o nome dela será mostrado na tela. (Sim, isso pode ser bem útil para um momento de desespero na hora de depurar seu código). Caso o valor enviado seja `level=2`, ou seja, mais verboso, ele vai nos retornar o nome da função junto dos argumentos que foram invocados. Vamos decorar uma função antes de retornar à explicação.
 
 ```Python
 @verbose(2)
@@ -317,12 +317,12 @@ def soma(*args):
     return sum(args)
 ```
 
-Embora quem faça a frente da nossa função seja `verbose` o decorador real, a função que recebe a nossa função é a `funcao_externa`, como em todos os exemplos. A função `verbose` nesse caso, vai simplemente adicionar uma camada a mais no escopo local da função `funcao_externa` e por consequência também no escopo da `funcao_interna`. Ou seja, você pode parametrizar a execução do decorador sem que a parametrização seja feita com os argumentos passados a função decorada.
+Embora quem faça a frente da nossa função seja `verbose`, o decorador real, a função que recebe a nossa função é a `funcao_externa`, como em todos os exemplos. A função `verbose` nesse caso, vai simplemente adicionar uma camada a mais no escopo local da função `funcao_externa` e por consequência também no escopo da `funcao_interna`. Ou seja, você pode parametrizar a execução do decorador sem que a parametrização seja feita com os argumentos passados a função decorada.
 
 
 ## 10.4 Identidade das funções decoradas
 
-Continuando esse tópico, uma coisa muito interessante acontece com funções decoradas. Ela parde sua identidade e isso pode ser um grande problema para fase de depuração do seu código. Imagine que quando uma função decorada apresentar um erro, o erro sempre será mostrado no decorador. Vamos tentar olhar como isso acontece:
+Continuando esse tópico, uma coisa muito interessante acontece com funções decoradas. Ela perde sua identidade e isso pode ser um grande problema para a fase de depuração do seu código. Imagine que quando uma função decorada apresentar um erro, o erro sempre será mostrado no decorador. Vamos tentar olhar como isso acontece:
 
 ```Python
 def sem_decorador(x, y):
@@ -350,7 +350,7 @@ def com_decorador(x, y):
 >>> com_decorador
 # <function __main__.decorator.<locals>.inner>
 ```
-Ou seja, toda vez em que a função `com_decorador` é invocada ela é o decorador `decorator`, mas expecificamente ela é a função `inner`, a função interna do decorador. Vamos olhar mais profundamente com alguns métodos do objeto.
+Ou seja, toda vez em que a função `com_decorador` é invocada ela é o decorador `decorator`, mas especificamente ela é a função `inner`, a função interna do decorador. Vamos olhar mais profundamente com alguns métodos do objeto.
 
 ```Python
 >>> sem_decorador.__name__ # __name__ diz o nome da função
@@ -385,7 +385,7 @@ def com_decorador(x, y):
 # <function __main__.com_decorador>
 ```
 
-Com isso, uma cópia dos métodos `__module__`, `__name__`, `__qualname__`, `__annotations__` e `__doc__` será feita a função "embrulhada" (wraped) e as propriedades da função decorada continuarão a ser mantidas após o embrulho. Ou seja, poderemos tanto facilitar a vida quando for necessário depurar nosso código e também o autocomplete do seu editor, a função `help()` e todas as coisas que precisam determinar o comportamento da sua função continuariam a funcionar como se a função não estivesse decorada. Porém, ela agora será uma função embrulhada. Ou seja, quando a função for chamada ela vai ser invocada pelo embrulho e você perderá a visualização da representação sem o decorador de `wraps` (`<function __main__.decorator.<locals>.inner>`). Para isso, existe na função embrulhada um método chamado `__wrapped__` que correpende exatamente a função `<function __main__.decorator.<locals>.inner>`. Com isso, você agora pode usar a função sem se preocupar com o comportamento do decorador e caso precise desse tipo de interação, você pode invocar diretamente `com_decorador.__wrapped__`. Então você não precisa mais se preocupar com diferentes tipos de interação e manter a sanidade mental.
+Com isso, uma cópia dos métodos `__module__`, `__name__`, `__qualname__`, `__annotations__` e `__doc__` será feita na função "embrulhada" (wraped) e as propriedades da função decorada continuarão a ser mantidas após o embrulho. Ou seja, poderemos tanto facilitar a vida quando for necessário depurar nosso código e também o autocomplete do seu editor, a função `help()` e todas as coisas que precisam determinar o comportamento da sua função continuariam a funcionar como se a função não estivesse decorada. Porém, ela agora será uma função embrulhada. Ou seja, quando a função for chamada ela vai ser invocada pelo embrulho e você perderá a visualização da representação sem o decorador de `wraps` (`<function __main__.decorator.<locals>.inner>`). Para isso, existe na função embrulhada um método chamado `__wrapped__` que corresponde exatamente à função `<function __main__.decorator.<locals>.inner>`. Com isso, você agora pode usar a função sem se preocupar com o comportamento do decorador e caso precise desse tipo de interação, você pode invocar diretamente `com_decorador.__wrapped__`. Então você não precisa mais se preocupar com diferentes tipos de interação e manter a sanidade mental.
 
 Mas, uma coisa um pouco diferente aconteceu nesse exemplo com `@wraps`, existe um novo decorador inserido dentro da função interna do decorador e é isso que vamos ver no proximo tópico.
 
