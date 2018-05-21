@@ -274,7 +274,7 @@ Esse é um decorador bem simples de se entender. Ele vai decorar uma função e 
 
 ## 10.3 Decoradores com parâmetros
 
-Uma das coisas mais legais de quando se está aprendendo Python, é que em um certo momento você acaba perdendo a ideia de que não podemos fazer código com alto acoplamento. Por exemplo, nos ultimos tópicos você simplesmente definiu uma `def` dentro de outra `def`. Porém, as coisas podem ser mais simpáticas quando você simplesmente se dá o prazer de experimentar.
+Uma das coisas mais legais de quando se está aprendendo Python, é que em um certo momento você acaba entendendo a ideia de que não podemos fazer código com alto acoplamento. Por exemplo, nos ultimos tópicos você simplesmente definiu uma `def` dentro de outra `def`. Porém, as coisas podem ser mais simpáticas quando você simplesmente se dá o prazer de experimentar.
 
 Por exemplo, e se fizessemos uma closure de uma closure?
 
