@@ -1,3 +1,4 @@
+[Retornar <<< 8. Closures e contexto de variáveis](https://github.com/Matiusco/python-funcional/blob/master/roteiros/08_closures_1_escopo.md) - [Continue lendo >>> 10. Decoradores](https://github.com/Matiusco/python-funcional/blob/master/roteiros/10_decoradores.md)
 
 # 9. Usos variados de closures
 
