@@ -256,3 +256,5 @@ func = lambda arg_1, arg_2, arg_3: True if sum([arg_1, arg_2, arg_3]) > 7 else m
 Embora essa seja uma explanação inicial sobre as funções anônimas, grande parte dos tópicos fazem uso delas e vamos poder explorar melhor sua infinitude.
 
 Mas por hoje é só e no tópico seguinte vamos discutir, mesmo que superficialmente, iteradores e iteráveis e suas relações com a programação funcional.
+
+[Continue lendo >>> 2. Iteráveis e iteradores](https://github.com/Matiusco/python-funcional/blob/master/roteiros/02_iteraveis_iteradores.md)
