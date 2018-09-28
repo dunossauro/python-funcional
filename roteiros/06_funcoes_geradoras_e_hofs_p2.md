@@ -1,3 +1,5 @@
+[Retornar <<< 5. Funções de ordem superior](https://github.com/Matiusco/python-funcional/blob/master/roteiros/05_hofs.md) - [Continue lendo >>> 7. Nossa primeira biblioteca de funções](https://github.com/Matiusco/python-funcional/blob/master/roteiros/07_construindo_nossa_lib.md)
+
 # 6. Funções de ordem superior p.2
 
 Segundo Steven Lott, podemos criar três tipos de HOFs diferentes:
