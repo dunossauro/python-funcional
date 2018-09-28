@@ -1,3 +1,5 @@
+[Retornar <<< 7. Nossa primeira biblioteca de funções](https://github.com/Matiusco/python-funcional/blob/master/roteiros/07_construindo_nossa_lib.md) - [Continue lendo >>> 9. Usos variados de closures](https://github.com/Matiusco/python-funcional/blob/master/roteiros/09_closures_2.md)
+
 # 8. Closures e contexto de variáveis
 
 Já passamos funções como argumento, já retornamos funções e até já mudamos o comportamento das mesmas. Mas tem uma coisa que ainda não fizemos: definir uma função no corpo de outra função:
