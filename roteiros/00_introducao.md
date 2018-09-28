@@ -1,3 +1,5 @@
+[Continue lendo: >>> 01 - Funções](https://github.com/Matiusco/python-funcional/blob/master/roteiros/01_funcoes.md)
+
 # 0. Saindo da zona de conforto
 
 Sinta-se um vencedor, se você chegou até aqui, isso significa que quer aprender mais sobre o mundo da programação.
