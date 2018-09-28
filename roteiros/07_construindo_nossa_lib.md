@@ -1,3 +1,5 @@
+[Retornar <<< 6. Funções de ordem superior p.2](https://github.com/Matiusco/python-funcional/blob/master/roteiros/06_funcoes_geradoras_e_hofs_p2.md) - [Continue lendo >>> 8. Closures e contexto de variáveis](https://github.com/Matiusco/python-funcional/blob/master/roteiros/08_closures_1_escopo.md)
+
 # 7. Nossa primeira biblioteca de funções
 
 O objetivo desse tópico é construir uma gama de funções simples para que possamos exercitar tudo que aprendemos. Vamos fazer 6 funções legais de usar e que podem ajudar em muitos casos. Partiu? Vem comigo.
