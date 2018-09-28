@@ -1,3 +1,5 @@
+[Retorne <<< 1. Funções](https://github.com/Matiusco/python-funcional/blob/master/roteiros/01_funcoes.md) - [Continue lendo >>> 3. Consumindo Interáveis](https://github.com/Matiusco/python-funcional/blob/master/roteiros/03_consumindo_iteraveis.md)
+
 # 2. Iteráveis e iteradores
 
 O que são iteráveis? Basicamente e a grosso modo, iteráveis em python são todos os objetos que implementam o método `__getitem__` ou `__iter__`. Beleza, vamos partir do simples.
