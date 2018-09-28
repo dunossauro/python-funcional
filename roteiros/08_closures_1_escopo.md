@@ -400,3 +400,5 @@ def contador():
 Agora é possível gerar esse contador sem o uso da lista, então ele não 'enche nossa memória' com uma lista que pode ter um tamanho nada convencional. Porém isso fere o conceito de imutabilidade, mas ainda é melhor que uma classe porque quem faz acesso ao recurso `var` é somente a função interna sem que ele possa ser transformado pelo escopo externo, como é feito no caso das classes.
 
 Agora vamos olhar para um lado mais avançado das closures, mas você vai conseguir dar mais vazão e usos derivados das mesmas.
+
+[Retornar <<< 7. Nossa primeira biblioteca de funções](https://github.com/Matiusco/python-funcional/blob/master/roteiros/07_construindo_nossa_lib.md) - [Continue lendo >>> 9. Usos variados de closures](https://github.com/Matiusco/python-funcional/blob/master/roteiros/09_closures_2.md)
