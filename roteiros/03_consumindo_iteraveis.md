@@ -1,3 +1,5 @@
+[Retorne <<< 2. Iteráveis e iteradores](https://github.com/Matiusco/python-funcional/blob/master/roteiros/02_iteraveis_iteradores.md) - [Continue lendo >>> 4. Funções de redução/mapeamento](https://github.com/Matiusco/python-funcional/blob/master/roteiros/04_funcoes_reducao_mapeamento.md)
+
 # 3. Consumindo iteráveis
 
 Você achou que o tópico anterior não ia servir de nada, não?
