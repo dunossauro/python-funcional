@@ -264,3 +264,5 @@ Counter('abacaxi verde limão verde como coco verde'.split()) # Counter({'abacax
 Tá, vai... A gente tentou e você aprendeu. SUAHSUAHUSHA.
 
 Com isso, no próximo tópico, vamos construir nossa propria lib de HOFs simples e que servem para tudo. Um abraço.
+
+[Retornar <<< 5. Funções de ordem superior](https://github.com/Matiusco/python-funcional/blob/master/roteiros/05_hofs.md) - [Continue lendo >>> 7. Nossa primeira biblioteca de funções](https://github.com/Matiusco/python-funcional/blob/master/roteiros/07_construindo_nossa_lib.md)
