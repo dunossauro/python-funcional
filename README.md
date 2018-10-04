@@ -43,3 +43,5 @@ Pretendo dividir o conteúdo em três partes
 [@andradejunior](https://github.com/andradejunior) Pelas correções no tópico 10 sobre decoradores
 
 [@n1lux](https://github.com/n1lux) pela consideração de um entendimento que poderia estar confuso. [Issue 23](https://github.com/dunossauro/python-funcional/issues/13)
+
+[@Matiusco](https://github.com/dunossauro/python-funcional/pull/51) Pela adição dos sumários
