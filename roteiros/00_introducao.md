@@ -1,3 +1,5 @@
+[Continue lendo: >>> 01 - Funções](https://github.com/Matiusco/python-funcional/blob/master/roteiros/01_funcoes.md)
+
 # 0. Saindo da zona de conforto
 
 Sinta-se um vencedor, se você chegou até aqui, isso significa que quer aprender mais sobre o mundo da programação.
@@ -134,3 +136,6 @@ Outro grande homem e que vale a pena mencionar e ser buscado é o [Haskell Curry
 A primeira linguagem funcional 'oficial' (não gosto muito de dizer isso) é o Lisp (List Processing) criada pelo fenomenal [John McCarthy](https://pt.wikipedia.org/wiki/John_McCarthy) que também vale a pena ser pesquisado e estudado.
 
 Veremos o básico sobre os tipos de função no próximo tópico.
+
+
+[Continue lendo: >>> 01 - Funções](https://github.com/Matiusco/python-funcional/blob/master/roteiros/01_funcoes.md)

@@ -1,3 +1,5 @@
+[Retornar <<< 3. Consumindo iteráveis](https://github.com/Matiusco/python-funcional/blob/master/roteiros/03_consumindo_iteraveis.md) - [Continue lendo >>> 5. Funções de ordem superior](https://github.com/Matiusco/python-funcional/blob/master/roteiros/05_hofs.md)
+
 # 4. Funções de redução/mapeamento
 
 Você já achou que estava super avançado, eu sei. Mas porém, contudo, entretanto, todavia, agora que você já sabe como os iteráveis funcionam, nós podemos avançar mais e fazer melhor uso de funções embutidas do python. Como:
@@ -361,3 +363,5 @@ map(bool, [0, 1, 2]) # [False, True, True]
 ```
 
 Era só nesse ponto que eu queria tocar, todas as funções embutidas do python que recebem só um único argumento podem ser usadas com map(). Mas o gostinho das funções que recebem funções ficou na pontinha da língua? Então até o próximo tópico.
+
+[Retornar <<< 3. Consumindo iteráveis](https://github.com/Matiusco/python-funcional/blob/master/roteiros/03_consumindo_iteraveis.md) - [Continue lendo >>> 5. Funções de ordem superior](https://github.com/Matiusco/python-funcional/blob/master/roteiros/05_hofs.md)

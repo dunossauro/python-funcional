@@ -1,3 +1,5 @@
+[Retornar <<< 0. Saindo da zona de conforto](https://github.com/Matiusco/python-funcional/blob/master/roteiros/00_introducao.md) - [Continue lendo >>> 2. Iteráveis e iteradores](https://github.com/Matiusco/python-funcional/blob/master/roteiros/02_iteraveis_iteradores.md)
+
 # 1. Funções
 
 Como nem tudo são flores, vamos começar do começo e entender algumas características das funções do python (o objeto função) e dar uma revisada básica em alguns conceitos de função só pra gente não se perder no básico depois. Então o primeiro tópico vai se limitar a falar da estrutura básica das funções em python, sem entrar profundamente em cada um dos tópicos. Será uma explanação de código e abrir a cabeça para novas oportunidades de código mais pythonicos e que preferencialmente gere menos efeito colateral. Mas calma, não vamos ensinar a fazer funções, você já está cheio disso.
@@ -256,3 +258,5 @@ func = lambda arg_1, arg_2, arg_3: True if sum([arg_1, arg_2, arg_3]) > 7 else m
 Embora essa seja uma explanação inicial sobre as funções anônimas, grande parte dos tópicos fazem uso delas e vamos poder explorar melhor sua infinitude.
 
 Mas por hoje é só e no tópico seguinte vamos discutir, mesmo que superficialmente, iteradores e iteráveis e suas relações com a programação funcional.
+
+[Retornar <<< 0. Saindo da zona de conforto](https://github.com/Matiusco/python-funcional/blob/master/roteiros/00_introducao.md) - [Continue lendo >>> 2. Iteráveis e iteradores](https://github.com/Matiusco/python-funcional/blob/master/roteiros/02_iteraveis_iteradores.md)

@@ -1,3 +1,5 @@
+[Retornar <<< 9. Usos variados de closures](https://github.com/Matiusco/python-funcional/blob/master/roteiros/09_closures_2.md) [<<< Página inicial >>>](https://github.com/Matiusco/python-funcional/blob/master/sumario.md)
+
 # 10. Decoradores
 
 Agora que você e o Jaber já estão craques em closures os decoradores não apresentam medo, pois tudo em decoradores são closures. No tópico 9.5 você usou um decorador e, embora eles não tenham sido devidamente explicados, vamos entender tudo sobre eles agora.
@@ -404,3 +406,5 @@ def funcao_que_redebe_dois_decoradores():
 nesse caso, o `decorador1` decora o `decorador2` que decora a função `funcao_que_redece_dois_decoradores`. Sim, eu sei que você entendeu e isso pode ter um ciclo infinito de possibilidades. Uma coisa que deve ser levada em consideração é que conforme você aninha decoradores as funções tendem a ficar mais dificeis de depurar e de prever o comportamento.
 
 E com isso terminamos aqui a primeira parte do nosso conteúdo sobre programação funcional sem imports. Tudo que construímos até aqui foi usando as funções [builtin](https://docs.python.org/3/library/functions.html#built-in-funcs) do python. Mas antes de prosseguir, gostaria de fazer algumas breves considerações matemáticas, para que seja possível criarmos código de mais qualidade.
+
+[Retornar <<< 9. Usos variados de closures](https://github.com/Matiusco/python-funcional/blob/master/roteiros/09_closures_2.md) [<<< Página inicial >>>](https://github.com/Matiusco/python-funcional/blob/master/sumario.md)

@@ -1,3 +1,5 @@
+[Retorne <<< 2. Iteráveis e iteradores](https://github.com/Matiusco/python-funcional/blob/master/roteiros/02_iteraveis_iteradores.md) - [Continue lendo >>> 4. Funções de redução/mapeamento](https://github.com/Matiusco/python-funcional/blob/master/roteiros/04_funcoes_reducao_mapeamento.md)
+
 # 3. Consumindo iteráveis
 
 Você achou que o tópico anterior não ia servir de nada, não?
@@ -114,3 +116,5 @@ Acaba-se de reproduzir o estado de amor Pythonico agora. Você foi funcional! T�
 Tá, agora você já sabe o poder que tem nas mãos. Nunca mais declare uma lista vazia para receber appends, combinado?
 
 Agora que você é um entendedor da iterações, vamos complicar um pouco e falar sobre functors, monads e catamorphismo. Tá, mas sem palavras difíceis, os seus coleguinhas não gostam de nomenclaturas haskelianas. Mas você vai poder esnobar seus conhecimentos teóricos sobre Teoria das Categorias. Até o próximo tópico.
+
+[Retorne <<< 2. Iteráveis e iteradores](https://github.com/Matiusco/python-funcional/blob/master/roteiros/02_iteraveis_iteradores.md) - [Continue lendo >>> 4. Funções de redução/mapeamento](https://github.com/Matiusco/python-funcional/blob/master/roteiros/04_funcoes_reducao_mapeamento.md)

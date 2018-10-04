@@ -1,3 +1,5 @@
+[Retornar <<< 4. Funções de redução/mapeamento](https://github.com/Matiusco/python-funcional/blob/master/roteiros/04_funcoes_reducao_mapeamento.md) - [Continue lendo >>>> 6. Funções de ordem superior p.2](https://github.com/Matiusco/python-funcional/blob/master/roteiros/06_funcoes_geradoras_e_hofs_p2.md)
+
 # 5. Funções de ordem superior
 
 Você deve achar que esquecemos muitas funções embutidas no tópico passado, não? Funções como:
@@ -321,3 +323,5 @@ filterfalse(impares, lista) # [2, 4]
 ```
 
 Por hoje é só pessoal. No próximo tópico vamos aprender a criar nossas próprias HOFs.
+
+[Retornar <<< 4. Funções de redução/mapeamento](https://github.com/Matiusco/python-funcional/blob/master/roteiros/04_funcoes_reducao_mapeamento.md) - [Continue lendo >>>> 6. Funções de ordem superior p.2](https://github.com/Matiusco/python-funcional/blob/master/roteiros/06_funcoes_geradoras_e_hofs_p2.md)
