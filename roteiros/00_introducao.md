@@ -1,4 +1,4 @@
-[Continue lendo: >>> 01 - Funções](https://github.com/Matiusco/python-funcional/blob/master/roteiros/01_funcoes.md)
+[Continue lendo: >>> 01 - Funções](./01_funcoes.md)
 
 # 0. Saindo da zona de conforto
 
@@ -138,4 +138,4 @@ A primeira linguagem funcional 'oficial' (não gosto muito de dizer isso) é o L
 Veremos o básico sobre os tipos de função no próximo tópico.
 
 
-[Continue lendo: >>> 01 - Funções](https://github.com/Matiusco/python-funcional/blob/master/roteiros/01_funcoes.md)
+[Continue lendo: >>> 01 - Funções](./01_funcoes.md)
