@@ -1,4 +1,4 @@
-[Retornar <<< 9. Usos variados de closures](https://github.com/Matiusco/python-funcional/blob/master/roteiros/09_closures_2.md) [<<< Página inicial >>>](https://github.com/Matiusco/python-funcional/blob/master/sumario.md)
+[Retornar <<< 9. Usos variados de closures](./09_closures_2.md) [<<< Página inicial >>>](https://github.com/Matiusco/python-funcional/blob/master/sumario.md)
 
 # 10. Decoradores
 
@@ -407,4 +407,4 @@ nesse caso, o `decorador1` decora o `decorador2` que decora a função `funcao_q
 
 E com isso terminamos aqui a primeira parte do nosso conteúdo sobre programação funcional sem imports. Tudo que construímos até aqui foi usando as funções [builtin](https://docs.python.org/3/library/functions.html#built-in-funcs) do python. Mas antes de prosseguir, gostaria de fazer algumas breves considerações matemáticas, para que seja possível criarmos código de mais qualidade.
 
-[Retornar <<< 9. Usos variados de closures](https://github.com/Matiusco/python-funcional/blob/master/roteiros/09_closures_2.md) [<<< Página inicial >>>](https://github.com/Matiusco/python-funcional/blob/master/sumario.md)
+[Retornar <<< 9. Usos variados de closures](./09_closures_2.md) [<<< Página inicial >>>](../sumario.md)

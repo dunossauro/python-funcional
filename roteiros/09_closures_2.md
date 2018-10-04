@@ -1,4 +1,4 @@
-[Retornar <<< 8. Closures e contexto de variáveis](https://github.com/Matiusco/python-funcional/blob/master/roteiros/08_closures_1_escopo.md) - [Continue lendo >>> 10. Decoradores](https://github.com/Matiusco/python-funcional/blob/master/roteiros/10_decoradores.md)
+[Retornar <<< 8. Closures e contexto de variáveis](./08_closures_1_escopo.md) - [Continue lendo >>> 10. Decoradores](./10_decoradores.md)
 
 # 9. Usos variados de closures
 
@@ -225,4 +225,4 @@ soma(3, 2) # (False, 5)
 
 Agora estamos preparados para entender especialmente os decoradores no próximo tópico, que esse último exemplo tenha sido explicativo e vamos tentar resolver o problema do 'Ahoy' no próximo tópico.
 
-[Retornar <<< 8. Closures e contexto de variáveis](https://github.com/Matiusco/python-funcional/blob/master/roteiros/08_closures_1_escopo.md) - [Continue lendo >>> 10. Decoradores](https://github.com/Matiusco/python-funcional/blob/master/roteiros/10_decoradores.md)
+[Retornar <<< 8. Closures e contexto de variáveis](./08_closures_1_escopo.md) - [Continue lendo >>> 10. Decoradores](./10_decoradores.md)

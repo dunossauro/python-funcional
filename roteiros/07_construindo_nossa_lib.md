@@ -1,4 +1,4 @@
-[Retornar <<< 6. Funções de ordem superior p.2](https://github.com/Matiusco/python-funcional/blob/master/roteiros/06_funcoes_geradoras_e_hofs_p2.md) - [Continue lendo >>> 8. Closures e contexto de variáveis](https://github.com/Matiusco/python-funcional/blob/master/roteiros/08_closures_1_escopo.md)
+[Retornar <<< 6. Funções de ordem superior p.2](./06_funcoes_geradoras_e_hofs_p2.md) - [Continue lendo >>> 8. Closures e contexto de variáveis](./08_closures_1_escopo.md)
 
 # 7. Nossa primeira biblioteca de funções
 
@@ -313,4 +313,4 @@ A função pipe() precisava de uma ajuda para aplicar a função parcial, o que 
 
 Com isso acabamos todo nosso discurso sobre funções de ordem superior (HOFs). Se você quiser parar agora, você pode, mas eu juro que a parte mais legal vai começar a rolar agora. Vamos falar de closures, decoradores e algumas substituições modernas para map() e filter().
 
-[Retornar <<< 6. Funções de ordem superior p.2](https://github.com/Matiusco/python-funcional/blob/master/roteiros/06_funcoes_geradoras_e_hofs_p2.md) - [Continue lendo >>> 8. Closures e contexto de variáveis](https://github.com/Matiusco/python-funcional/blob/master/roteiros/08_closures_1_escopo.md)
+[Retornar <<< 6. Funções de ordem superior p.2](./06_funcoes_geradoras_e_hofs_p2.md) - [Continue lendo >>> 8. Closures e contexto de variáveis](./08_closures_1_escopo.md)

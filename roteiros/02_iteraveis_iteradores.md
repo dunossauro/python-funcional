@@ -1,4 +1,4 @@
-[Retorne <<< 1. Funções](https://github.com/Matiusco/python-funcional/blob/master/roteiros/01_funcoes.md) - [Continue lendo >>> 3. Consumindo Interáveis](https://github.com/Matiusco/python-funcional/blob/master/roteiros/03_consumindo_iteraveis.md)
+[Retorne <<< 1. Funções](./01_funcoes.md) - [Continue lendo >>> 3. Consumindo Interáveis](./03_consumindo_iteraveis.md)
 
 # 2. Iteráveis e iteradores
 
@@ -118,4 +118,4 @@ Ah... Ia quase me esquecendo, se você não entendeu muita coisa sobre os dunder
 
 Embora esse tópico seja talvez o mais curto, ele vai ser de fundamental importância para o entendimento de um pouco de tudo nesse 'Curso'. É sério. Vamos entender como trabalhar com iteráveis de uma maneira bonita no próximo tópico.
 
-[Retorne <<< 1. Funções](https://github.com/Matiusco/python-funcional/blob/master/roteiros/01_funcoes.md) - [Continue lendo >>> 3. Consumindo Interáveis](https://github.com/Matiusco/python-funcional/blob/master/roteiros/03_consumindo_iteraveis.md)
+[Retorne <<< 1. Funções](./01_funcoes.md) - [Continue lendo >>> 3. Consumindo Interáveis](./03_consumindo_iteraveis.md)

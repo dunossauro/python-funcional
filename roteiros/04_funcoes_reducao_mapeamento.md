@@ -1,4 +1,4 @@
-[Retornar <<< 3. Consumindo iteráveis](https://github.com/Matiusco/python-funcional/blob/master/roteiros/03_consumindo_iteraveis.md) - [Continue lendo >>> 5. Funções de ordem superior](https://github.com/Matiusco/python-funcional/blob/master/roteiros/05_hofs.md)
+[Retornar <<< 3. Consumindo iteráveis](./03_consumindo_iteraveis.md) - [Continue lendo >>> 5. Funções de ordem superior](./05_hofs.md)
 
 # 4. Funções de redução/mapeamento
 
@@ -364,4 +364,4 @@ map(bool, [0, 1, 2]) # [False, True, True]
 
 Era só nesse ponto que eu queria tocar, todas as funções embutidas do python que recebem só um único argumento podem ser usadas com map(). Mas o gostinho das funções que recebem funções ficou na pontinha da língua? Então até o próximo tópico.
 
-[Retornar <<< 3. Consumindo iteráveis](https://github.com/Matiusco/python-funcional/blob/master/roteiros/03_consumindo_iteraveis.md) - [Continue lendo >>> 5. Funções de ordem superior](https://github.com/Matiusco/python-funcional/blob/master/roteiros/05_hofs.md)
+[Retornar <<< 3. Consumindo iteráveis](./03_consumindo_iteraveis.md) - [Continue lendo >>> 5. Funções de ordem superior](./05_hofs.md)

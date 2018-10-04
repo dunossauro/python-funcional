@@ -1,4 +1,4 @@
-[Retornar <<< 0. Saindo da zona de conforto](https://github.com/Matiusco/python-funcional/blob/master/roteiros/00_introducao.md) - [Continue lendo >>> 2. Iteráveis e iteradores](https://github.com/Matiusco/python-funcional/blob/master/roteiros/02_iteraveis_iteradores.md)
+[Retornar <<< 0. Saindo da zona de conforto](./00_introducao.md) - [Continue lendo >>> 2. Iteráveis e iteradores](./02_iteraveis_iteradores.md)
 
 # 1. Funções
 
@@ -259,4 +259,4 @@ Embora essa seja uma explanação inicial sobre as funções anônimas, grande p
 
 Mas por hoje é só e no tópico seguinte vamos discutir, mesmo que superficialmente, iteradores e iteráveis e suas relações com a programação funcional.
 
-[Retornar <<< 0. Saindo da zona de conforto](https://github.com/Matiusco/python-funcional/blob/master/roteiros/00_introducao.md) - [Continue lendo >>> 2. Iteráveis e iteradores](https://github.com/Matiusco/python-funcional/blob/master/roteiros/02_iteraveis_iteradores.md)
+[Retornar <<< 0. Saindo da zona de conforto](./00_introducao.md) - [Continue lendo >>> 2. Iteráveis e iteradores](./02_iteraveis_iteradores.md)

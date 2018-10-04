@@ -1,4 +1,4 @@
-[Retornar <<< 7. Nossa primeira biblioteca de funções](https://github.com/Matiusco/python-funcional/blob/master/roteiros/07_construindo_nossa_lib.md) - [Continue lendo >>> 9. Usos variados de closures](https://github.com/Matiusco/python-funcional/blob/master/roteiros/09_closures_2.md)
+[Retornar <<< 7. Nossa primeira biblioteca de funções](./07_construindo_nossa_lib.md) - [Continue lendo >>> 9. Usos variados de closures](./09_closures_2.md)
 
 # 8. Closures e contexto de variáveis
 
@@ -403,4 +403,4 @@ Agora é possível gerar esse contador sem o uso da lista, então ele não 'ench
 
 Agora vamos olhar para um lado mais avançado das closures, mas você vai conseguir dar mais vazão e usos derivados das mesmas.
 
-[Retornar <<< 7. Nossa primeira biblioteca de funções](https://github.com/Matiusco/python-funcional/blob/master/roteiros/07_construindo_nossa_lib.md) - [Continue lendo >>> 9. Usos variados de closures](https://github.com/Matiusco/python-funcional/blob/master/roteiros/09_closures_2.md)
+[Retornar <<< 7. Nossa primeira biblioteca de funções](./07_construindo_nossa_lib.md) - [Continue lendo >>> 9. Usos variados de closures](./09_closures_2.md)
