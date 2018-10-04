@@ -1,3 +1,5 @@
+[Retornar <<< 9. Usos variados de closures](https://github.com/Matiusco/python-funcional/blob/master/roteiros/09_closures_2.md) [<<< Página inicial >>>](https://github.com/Matiusco/python-funcional/blob/master/sumario.md)
+
 # 10. Decoradores
 
 Agora que você e o Jaber já estão craques em closures os decoradores não apresentam medo, pois tudo em decoradores são closures. No tópico 9.5 você usou um decorador e, embora eles não tenham sido devidamente explicados, vamos entender tudo sobre eles agora.
