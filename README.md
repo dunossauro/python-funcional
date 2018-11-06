@@ -3,7 +3,7 @@
 [![Waffle.io - Columns and their card count](https://badge.waffle.io/dunossauro/python-funcional.svg?columns=all)](https://waffle.io/dunossauro/python-funcional)
  
  
-## [Comece a ler aqui](https://dunossauro.github.io/python-funcional/)
+## [Comece a ler aqui](https://dunossauro.github.io/python-funcional/roteiros/00_introducao.html)
  
  
 ## [Sumário](https://dunossauro.github.io/python-funcional/sumario.html)
