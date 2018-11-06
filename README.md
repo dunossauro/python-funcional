@@ -1,9 +1,13 @@
+[![book](https://img.shields.io/badge/Livro-Em%20deselvovimento-yellowgreen.svg)]
 [![Say Thanks!](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)](https://saythanks.io/to/z4r4tu5tr4)
- [![Waffle.io - Columns and their card count](https://badge.waffle.io/dunossauro/python-funcional.svg?columns=all)](https://waffle.io/dunossauro/python-funcional)
+[![Waffle.io - Columns and their card count](https://badge.waffle.io/dunossauro/python-funcional.svg?columns=all)](https://waffle.io/dunossauro/python-funcional)
  
- ## [Comece a ler aqui](https://dunossauro.github.io/python-funcional/)
- ## [Sumário](https://dunossauro.github.io/python-funcional/sumario.html)
  
+## [Comece a ler aqui](https://dunossauro.github.io/python-funcional/)
+ 
+ 
+## [Sumário](https://dunossauro.github.io/python-funcional/sumario.html)
+
  
 ## Repositório sobre python funcional
 
