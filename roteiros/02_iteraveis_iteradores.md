@@ -111,7 +111,7 @@ Seguem dois links maravilhosos explicando sobre iteração em python:
 
 -   [Iteração em Python: do básico ao genial](https://www.youtube.com/watch?v=ULj7ejvuzI8)
 
-O primeiro é a PEP sobre as estruturas dos iteráveis e o segundo um video do Guru Luciano Ramalho explicando tudo sobre iteradores.
+O primeiro é a PEP sobre as estruturas dos iteráveis e o segundo um vídeo do Guru Luciano Ramalho explicando tudo sobre iteradores.
 
 
 Ah... Ia quase me esquecendo, se você não entendeu muita coisa sobre os dunders, você pode ler o [Python data model](https://docs.python.org/3/reference/datamodel.html#special-method-names). Obs: não me responsabilizo pelo programador melhor que você sairá desta página.

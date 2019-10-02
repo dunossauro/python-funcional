@@ -214,7 +214,7 @@ Ou seja, é passado um objeto com um método no lugar de uma função. O método
 
 ## 5.5 sorted()
 
-Para os viciados em listas, como eu, o método sort da lista funciona bem, apesar de ordenar a lista e não trazer uma nova lista, o que as vezes é uma dor de cabeça.
+Para os viciados em listas, como eu, o método sort da lista funciona bem, apesar de ordenar a lista e não trazer uma nova lista, o que às vezes é uma dor de cabeça.
 
 ```Python
 lista = [1, 2, 3, 3, 2, 1]

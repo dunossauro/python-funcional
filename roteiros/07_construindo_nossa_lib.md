@@ -17,10 +17,10 @@ def tail(seq, n=1, key=None):
 Pode parecer uma função extremamente simples, mas ela é bem legal. Dá pra conseguir muitos resultados legais com ela:
 
 ```Python
-'Por padrão vai retornar só o ultimo'
+'Por padrão vai retornar só o último'
 tail([1,2,3,4]) # [4]
 
-'Aqui usamos n, que nesse caso retorna os ultimos 3 elementos'
+'Aqui usamos n, que nesse caso retorna os últimos 3 elementos'
 tail([1,2,3,4], 3) # [2, 3, 4]
 
 'O resultado reverso'
@@ -134,7 +134,7 @@ Se você analisar de perto, drop() tem um comportamento muito parecido com a fun
 drop(n, seq)
 ```
 
-`n` é o valor que queremos ignorar de `seq`. Em uma chamada `n=5` de uma sequência de 6 valores, só o último valor será retonado. O que faz o comportamento da função ser exatamente inverso ao take() que nos retornaria os primeiros cinco valores. Tá bom, falamos muito, vamos tentar implementar:
+`n` é o valor que queremos ignorar de `seq`. Em uma chamada `n=5` de uma sequência de 6 valores, só o último valor será retornado. O que faz o comportamento da função ser exatamente inverso ao take() que nos retornaria os primeiros cinco valores. Tá bom, falamos muito, vamos tentar implementar:
 
 
 ```Python
@@ -166,7 +166,7 @@ Imagina pegar o resultado de uma função e atribuir a entrada de outra função
 # cat - mostra o conteúdo do arquivo na tela, porém mostrar na tela é uma saída para STDOUT (saída padrão)
 # oi.txt - é um arquivo de texto que contém as linhas (oi Jaber \n oi Eduardo \n Oi dinossauros)
 # | - é um pipe
-# grep - é um comando usado para procurar uma determinada string (grep oi) vai exibir todas as linhas do arquivo que comtém a string oi
+# grep - é um comando usado para procurar uma determinada string (grep oi) vai exibir todas as linhas do arquivo que contém a string oi
 
 cat oi.txt | grep Jaber
 

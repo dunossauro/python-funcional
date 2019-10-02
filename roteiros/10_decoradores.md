@@ -57,7 +57,7 @@ Não é preciso ser um gênio como o Jaber para saber como usar essa função:
 ```Python
 >>> soma(1, 1) # 2
 >>> soma(2.0, 2.0) # 4.0
->>> soma(3j + 3j) # 6j
+>>> soma(3j, 3j) # 6j
 ```
 
 Ela funciona efetivamente com todos os tipos de números em Python. Embora seja possível imaginar que nossa função usa o operador `+`. Ele faz com que nossos objetos numéricos invoquem seu método mágico interno `__add__` ou `__radd__`. O único problema é que outros objetos em Python também implementam esse método. Strings e listas podem usar o `__add__`, mas somente entre sí. Vale lembrar aqui que Python é uma linguagem fortemente tipada. Eu não vou conseguir somar uma string com um inteiro ou com uma lista por exemplo.
@@ -168,7 +168,7 @@ def mul(x, y):
 # 2
 >>> soma(2.0, 2.0)
 # 4.0
->>> soma(3j + 3j)
+>>> soma(3j, 3j)
 # 6j
 >>> mul(1, 1)
 # 2
@@ -258,7 +258,7 @@ def timeit(func):
     """
     Decorador para medir o tempo.
 
-    Roubada de: Python Cookbook 3ª edição (Beazley e Jone - O'Reilly)
+    Roubada de: Python Cookbook 3ª edição (Beazley e Jones - O'Reilly)
     """
     def inner(*args):
         ts = time() # pega a 'hora' atual
@@ -271,14 +271,14 @@ def timeit(func):
     return inner
 ```
 
-Esse é um decorador bem simples de se entender. Ele vai decorar uma função e nós saberemos o tempo que ela levou para ser executada em segundos. Você pode pensar que esse decorador é mais do mesmo, porém, ele nos mostra quão genéricos devem ser os decoradores. A ídeia é de que possam ser usados em qualquer lugar. Nesse caso `eh_par` acaba sendo um contra-exemplo de um bom decorador. Mas, vale lembrar que o objetivo dele é totalmente didático. Sei que você já deve ter entendido tudo sobre decoradores. Porém, eles também podem receber argumentos, o que os tornariam mais genéricose potentes. Então, vamos lá...
+Esse é um decorador bem simples de se entender. Ele vai decorar uma função e nós saberemos o tempo que ela levou para ser executada em segundos. Você pode pensar que esse decorador é mais do mesmo, porém, ele nos mostra quão genéricos devem ser os decoradores. A ideia é de que possam ser usados em qualquer lugar. Nesse caso `eh_par` acaba sendo um contra-exemplo de um bom decorador. Mas, vale lembrar que o objetivo dele é totalmente didático. Sei que você já deve ter entendido tudo sobre decoradores. Porém, eles também podem receber argumentos, o que os tornariam mais genéricos e potentes. Então, vamos lá...
 
 
 ## 10.3 Decoradores com parâmetros
 
-Uma das coisas mais legais de quando se está aprendendo Python, é que em um certo momento você acaba entendendo a ideia de que não podemos fazer código com alto acoplamento. Por exemplo, nos ultimos tópicos você simplesmente definiu uma `def` dentro de outra `def`. Porém, as coisas podem ser mais simpáticas quando você simplesmente se dá o prazer de experimentar.
+Uma das coisas mais legais de quando se está aprendendo Python, é que em um certo momento você acaba entendendo a ideia de que não podemos fazer código com alto acoplamento. Por exemplo, nos últimos tópicos você simplesmente definiu uma `def` dentro de outra `def`. Porém, as coisas podem ser mais simpáticas quando você simplesmente se dá o prazer de experimentar.
 
-Por exemplo, e se fizessemos uma closure de uma closure?
+Por exemplo, e se fizéssemos uma closure de uma closure?
 
 ```Python
 def param(args):
@@ -319,7 +319,7 @@ def soma(*args):
     return sum(args)
 ```
 
-Embora quem faça a frente da nossa função seja `verbose`, o decorador real, a função que recebe a nossa função é a `funcao_externa`, como em todos os exemplos. A função `verbose` nesse caso, vai simplemente adicionar uma camada a mais no escopo local da função `funcao_externa` e por consequência também no escopo da `funcao_interna`. Ou seja, você pode parametrizar a execução do decorador sem que a parametrização seja feita com os argumentos passados a função decorada.
+Embora quem faça a frente da nossa função seja `verbose`, o decorador real, a função que recebe a nossa função é a `funcao_externa`, como em todos os exemplos. A função `verbose` nesse caso, vai simplesmente adicionar uma camada a mais no escopo local da função `funcao_externa` e por consequência também no escopo da `funcao_interna`. Ou seja, você pode parametrizar a execução do decorador sem que a parametrização seja feita com os argumentos passados a função decorada.
 
 
 ## 10.4 Identidade das funções decoradas
@@ -387,9 +387,9 @@ def com_decorador(x, y):
 # <function __main__.com_decorador>
 ```
 
-Com isso, uma cópia dos métodos `__module__`, `__name__`, `__qualname__`, `__annotations__` e `__doc__` será feita na função "embrulhada" (wraped) e as propriedades da função decorada continuarão a ser mantidas após o embrulho. Ou seja, poderemos tanto facilitar a vida quando for necessário depurar nosso código e também o autocomplete do seu editor, a função `help()` e todas as coisas que precisam determinar o comportamento da sua função continuariam a funcionar como se a função não estivesse decorada. Porém, ela agora será uma função embrulhada. Ou seja, quando a função for chamada ela vai ser invocada pelo embrulho e você perderá a visualização da representação sem o decorador de `wraps` (`<function __main__.decorator.<locals>.inner>`). Para isso, existe na função embrulhada um método chamado `__wrapped__` que corresponde exatamente à função `<function __main__.decorator.<locals>.inner>`. Com isso, você agora pode usar a função sem se preocupar com o comportamento do decorador e caso precise desse tipo de interação, você pode invocar diretamente `com_decorador.__wrapped__`. Então você não precisa mais se preocupar com diferentes tipos de interação e manter a sanidade mental.
+Com isso, uma cópia dos métodos `__module__`, `__name__`, `__qualname__`, `__annotations__` e `__doc__` será feita na função "embrulhada" (wrapped) e as propriedades da função decorada continuarão a ser mantidas após o embrulho. Ou seja, poderemos tanto facilitar a vida quando for necessário depurar nosso código e também o autocomplete do seu editor, a função `help()` e todas as coisas que precisam determinar o comportamento da sua função continuariam a funcionar como se a função não estivesse decorada. Porém, ela agora será uma função embrulhada. Ou seja, quando a função for chamada ela vai ser invocada pelo embrulho e você perderá a visualização da representação sem o decorador de `wraps` (`<function __main__.decorator.<locals>.inner>`). Para isso, existe na função embrulhada um método chamado `__wrapped__` que corresponde exatamente à função `<function __main__.decorator.<locals>.inner>`. Com isso, você agora pode usar a função sem se preocupar com o comportamento do decorador e caso precise desse tipo de interação, você pode invocar diretamente `com_decorador.__wrapped__`. Então você não precisa mais se preocupar com diferentes tipos de interação e manter a sanidade mental.
 
-Mas, uma coisa um pouco diferente aconteceu nesse exemplo com `@wraps`, existe um novo decorador inserido dentro da função interna do decorador e é isso que vamos ver no proximo tópico.
+Mas, uma coisa um pouco diferente aconteceu nesse exemplo com `@wraps`, existe um novo decorador inserido dentro da função interna do decorador e é isso que vamos ver no próximo tópico.
 
 ## 10.5 Decorando decoradores
 
@@ -399,11 +399,11 @@ Como você deve ter percebido, não existem mais limites entre decorar funções
 ```Python
 @decorador1
 @decorador2
-def funcao_que_redebe_dois_decoradores():
+def funcao_que_recebe_dois_decoradores():
     pass
 ```
 
-nesse caso, o `decorador1` decora o `decorador2` que decora a função `funcao_que_redece_dois_decoradores`. Sim, eu sei que você entendeu e isso pode ter um ciclo infinito de possibilidades. Uma coisa que deve ser levada em consideração é que conforme você aninha decoradores as funções tendem a ficar mais dificeis de depurar e de prever o comportamento.
+nesse caso, o `decorador1` decora o `decorador2` que decora a função `funcao_que_recebe_dois_decoradores`. Sim, eu sei que você entendeu e isso pode ter um ciclo infinito de possibilidades. Uma coisa que deve ser levada em consideração é que conforme você aninha decoradores as funções tendem a ficar mais difíceis de depurar e de prever o comportamento.
 
 E com isso terminamos aqui a primeira parte do nosso conteúdo sobre programação funcional sem imports. Tudo que construímos até aqui foi usando as funções [builtin](https://docs.python.org/3/library/functions.html#built-in-funcs) do python. Mas antes de prosseguir, gostaria de fazer algumas breves considerações matemáticas, para que seja possível criarmos código de mais qualidade.
 

@@ -164,7 +164,7 @@ Agora que você já conhece mais um tipo de função, vamos voltar as nossas HOF
 
 Como já sabemos e já foi dito exaustivamente, funções são objetos de primeira classe em Python. Já sabemos. Ok.
 
-Então como já entendemos tudo isso, vamos só usar alguns exemplos de funções que recebem funções. OBS: Vamos criar algumas funções meio especialistas agora, isso não é muito bom. Mas serve como base de aprendizado. No proxímo tópico vamos explorar mais funções simples e que são de grande utilidade em muitos contextos, porém...
+Então como já entendemos tudo isso, vamos só usar alguns exemplos de funções que recebem funções. OBS: Vamos criar algumas funções meio especialistas agora, isso não é muito bom. Mas serve como base de aprendizado. No próximo tópico vamos explorar mais funções simples e que são de grande utilidade em muitos contextos, porém...
 
 Vamos trabalhar em outra frente então:
 
@@ -265,6 +265,6 @@ Counter('abacaxi verde limão verde como coco verde'.split()) # Counter({'abacax
 
 Tá, vai... A gente tentou e você aprendeu. SUAHSUAHUSHA.
 
-Com isso, no próximo tópico, vamos construir nossa propria lib de HOFs simples e que servem para tudo. Um abraço.
+Com isso, no próximo tópico, vamos construir nossa própria lib de HOFs simples e que servem para tudo. Um abraço.
 
 [Retornar <<< 5. Funções de ordem superior](./05_hofs.md) - [Continue lendo >>> 7. Nossa primeira biblioteca de funções](./07_construindo_nossa_lib.md)

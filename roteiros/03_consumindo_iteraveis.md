@@ -19,7 +19,7 @@ for x in [1, 2, 3, 4, 5]:
 # 5
 ```
 
-Porém, esse "for", aos meus olhos, só vale pra printar coisas, não? Pense comigo. Toda vez que realmente iteramos em alguma sequência, nós queremos os valores, queremos modificá-los, querendo incrementar, criar novos objetos e por ai vai...
+Porém, esse "for", aos meus olhos, só vale pra printar coisas, não? Pense comigo. Toda vez que realmente iteramos em alguma sequência, nós queremos os valores, queremos modificá-los, querendo incrementar, criar novos objetos e por aí vai...
 
 Existem muitas maneiras diferentes e até mais eficientes, não briguem comigo, de iterar sobre sequências. Uma delas é uma list comprehensions.
 
@@ -115,6 +115,6 @@ Acaba-se de reproduzir o estado de amor Pythonico agora. Você foi funcional! T�
 
 Tá, agora você já sabe o poder que tem nas mãos. Nunca mais declare uma lista vazia para receber appends, combinado?
 
-Agora que você é um entendedor da iterações, vamos complicar um pouco e falar sobre functors, monads e catamorphismo. Tá, mas sem palavras difíceis, os seus coleguinhas não gostam de nomenclaturas haskelianas. Mas você vai poder esnobar seus conhecimentos teóricos sobre Teoria das Categorias. Até o próximo tópico.
+Agora que você é um entendedor das iterações, vamos complicar um pouco e falar sobre functors, monads e catamorphismo. Tá, mas sem palavras difíceis, os seus coleguinhas não gostam de nomenclaturas haskelianas. Mas você vai poder esnobar seus conhecimentos teóricos sobre Teoria das Categorias. Até o próximo tópico.
 
 [Retorne <<< 2. Iteráveis e iteradores](./02_iteraveis_iteradores.md) - [Continue lendo >>> 4. Funções de redução/mapeamento](./04_funcoes_reducao_mapeamento.md)
