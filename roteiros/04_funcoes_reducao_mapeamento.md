@@ -260,7 +260,7 @@ print(list(reversed(lista))) # [5, 4, 3, 2, 1]
 # construtor de um conjunto
 print(set(reversed(lista))) # {5, 4, 3, 2, 1}
 
-# construtor de uma lista
+# construtor de uma tupla
 print(tuple(reversed(lista))) # (5, 4, 3, 2, 1)
 ```
 
