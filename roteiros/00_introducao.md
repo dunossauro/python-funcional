@@ -6,7 +6,7 @@ Sinta-se um vencedor, se você chegou até aqui, isso significa que quer aprende
 
 Aprender novos paradígmas podem te trazer muitas coisas positivas, assim como aprender linguagens diferentes, pois paradígmas e linguagens transpõem maneiras, estruturas e métodos de implementação completamente diferentes. Com isso você pode ter mais ferramentas para usar no dia a dia. Você pode aumentar sua capacidade de expressar ideias de diferentes maneiras. Eu penso que o maior limitador de um programador é a linguagem de programação em que ele tem domínio. Quando você aprende linguagens imperativas, como C, Python, Java e etc..., você se vê limitado ao escopo de criar e manipular variáveis. Não que isso seja uma coisa ruim, porém existem outras maneiras de resolver problemas e quando você tem conhecimento disso consegue avaliar melhor quando implementar cada tipo de coisa.
 
-Você pode me dizer que aprender diferentes tipos de estruturas e maneiras de computar é uma coisa negativa pois tudo é variável nesse contexto. Mas eu penso exatamente o contrário, quanto mais você aprender da sua língua nativa, no caso estamos falando em português, maior o campo de domínio que você tem sobre como se comunicar e expressar ideias. Assim como aprender outras línguas te darão mais fundamentos para expressar ideias em outros idiomas, que não são melhores que os seu, mas diferentes e compõem diferentes estruturas, e isso pode ser libertador. Não quero me prolongar nesse assunto, mas dizer que isso pode acrescentar muito na suas habilidades cognitivas, até mesmo para usar ferramentas que você já usa no seu dia a dia.
+Você pode me dizer que aprender diferentes tipos de estruturas e maneiras de computar é uma coisa negativa pois tudo é variável nesse contexto. Mas eu penso exatamente o contrário, quanto mais você aprender da sua língua nativa, no caso estamos falando em português, maior o campo de domínio que você tem sobre como se comunicar e expressar suas ideias. Assim como aprender outras línguas te darão mais fundamentos para expressar ideias em outros idiomas, que não são melhores que os seu, mas sim diferentes e que compõem diferentes estruturas, e isso pode ser libertador. Não quero me prolongar nesse assunto, mas dizer que isso pode acrescentar muito na suas habilidades cognitivas, e até mesmo para usar ferramentas que você já usa no seu dia a dia.
 
 
 Vamos começar fazendo uma tentativa de entender os paradígmas de programação, sem muito falatório e complicações. Um exemplo muito legal é do David Mertz em "Functional Programming in Python":
@@ -58,16 +58,17 @@ Chega de enrolação e vamos correr com essa introdução, não viemos aqui para
 Vamos tentar mapear o que as linguagens funcionais fazem de diferente das linguagens imperativas, mas não vamos nos aprofundar nesse tópicos agora, pois são coisas às vezes complexas sem o entendimento prévio de outros contextos, mas vamos tentar só explanar pra que você se sinta empolgado por estar aqui:
 
 -   Funções como objetos de primeira classe:
-    -   São funções que podem estar em qualquer lugar (em estruturas, declaradas em tempo de execução).
+	-   Ou seja, tudo que você pode fazer com "dados", também pode ser feito com a própria função (como por exemplo, passar uma função como argumento de outra função).
 
 -   Funções de ordem superior:
     -   São funções que podem receber funções como argumentos e retornar funções.
 
 -   Funções puras:
     -   São funções que não sofrem interferências de meios externos (variáveis de fora). Evita efeitos colaterais.
+	-   Importante dizer também que, se efeitos colaterais existirem, esses são extremamente controláveis.
 
 -   Recursão, como oposição aos loops:
-    -   Frequentemente a recursão na matemática é uma coisa mais intuitiva e é só chamar tudo outra vez, no lugar de ficar voltando ao ponto inicial da iteração.
+    -   Recursão é usada como ferramenta primária de controle de estruturas, em algumas linguages por exemplo, não existem loops, e a recursão é uma das opções.
 
 -   Foco em processamento de iteráveis:
     -   Como dito anteriormente, pensar em como as sequências podem nos ajudar a resolver problemas.
@@ -75,7 +76,7 @@ Vamos tentar mapear o que as linguagens funcionais fazem de diferente das lingua
 -   O que deve ser computado, não como computar:
     -   Não ser tão expressivo e aceitar que as intruções não tem necessidade de estar explicitas todas as vezes, isso ajuda em legibilidade.
 
--   Lazy evaluation:
+-   Lazy evaluation ou avaliações preguiçosas:
     -   Criar sequências infinitas sem estourar nossa memória.
 
 ## 0.3 Python é uma linguagem funcional?
@@ -101,6 +102,7 @@ print(lista) # ['P', 'y', 't', 'h', 'o', 'n']
 # Gerar uma lista da string # Funcional
 string = lambda x: x
 
+# precisamos usar list para consumir todos os iteráveis
 lista = list(map(str, string('Python'))) # atribuição a um novo objeto
 
 print(lista) # ['P', 'y', 't', 'h', 'o', 'n']
