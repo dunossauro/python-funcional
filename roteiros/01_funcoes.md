@@ -37,108 +37,78 @@ Funções puras são funções que não sofrem interferência do meio externo. V
 
 ```python
 
-valor = 5
+def cauda(seq):
+	del seq[0]
+	return seq
+	
+def print_valor():
+	a = [1, 2, 3] # sequência que será passada para cauda()
+	b = cauda(a) # estamos chamando a função cauda que vai transformar a lista seq
+	print(b)
+	print(a)
 
-def mais_cinco(x):
-    return x + valor
-
-assert mais_cinco(5) == 10 # True
-
-valor = 7
-
-assert mais_cinco(5) == 10 # AssertionError
+print_value() # [2, 3]
 ```
 
-`mais_cinco()` é o exemplo claro de uma função que gera efeito colateral. Uma função pura deve funcionar como uma caixa preta, todas as vezes em que o mesmo input for dado nela, ela terá que retornar o mesmo valor. Agora vamos usar o mesmo exemplo, só alterando a linha do return:
+`cauda()` é o exemplo claro de uma função que gera efeito colateral. Uma função pura deve funcionar como uma caixa preta, todas as vezes em que o mesmo input for dado nela, ela terá que retornar o mesmo valor, claramente o que a versão ruim de cauda() faz é alterar a lista recebida como argumento, altera-la e devolver ela com alterações. Agora vamos usar o mesmo exemplo, só apenas utilizando a técnica de fatiamento do Python e o retorno será uma cópia dessa lista original alterada, enquanto a original permanece sem alterações.
 
 ```python
 
-valor = 5
+def cauda(seq):
+	return seq[1:] # aqui acontece a mágica, quando fazemos o fatiamento, estamos retornando uma cópia da lista seq
+	
+def print_valor():
+	a = [1, 2, 3] # sequência que será passada para cauda()
+	b = cauda(a) # estamos chamando a função cauda que vai transformar a lista seq
+	print(b)
+	print(a)
 
-def mais_cinco(x):
-    return x + 5
+print_value() # [2, 3]
 
-assert mais_cinco(5) == 10 # True
-
-valor = 7
-
-assert mais_cinco(5) == 10 # True
 ```
 
-Pode parecer trivial, mas muitas vezes por comodidade deixamos o meio influenciar no comportamento de uma função. Por definição o Python só faz possível, e vamos falar disso em outro tópico, a leitura de variáveis externas. Ou seja, dentro do contexto da função as variáveis externas não podem ser modificadas, mas isso não impede que o contexto externo a modifique. Se você for uma pessoa inteligente como o Jaber deve saber que nunca é uma boa ideia usar valores externos. Mas, caso seja necessário, você pode sobrescrever o valor de uma variável no contexto global usando a palavra reservada `global`. O que deve ficar com uma cara assim:
-
-```Python
-
-valor = 5
-
-def teste():
-    global valor # aqui é feita a definição
-    valor = 7
-
-print(valor) # 7
-```
-
-Só lembre-se de ser sempre coerente quando fizer isso, as consequências podem ser imprevisíveis. Nessa linha de funções puras e pequeninas, podemos caracterizar, embora isso não as defina, funções de ordem superior, que são funções que recebem uma função como argumento, ou as devolvem, e fazem a chamada das mesmas dentro do contexto da função que a recebeu como parâmetro. Isso resulta em uma composição de funções, o que agrega muito mais valor caso as funções não gerem efeitos colaterais.
+Pode parecer trivial, mas esse é um dos cores da programação funcional, imutabilidade!
 
 
 ## 1.3 Funções de ordem superior (HOFs)
 
-Funções de ordem superior são funções que recebem funções como argumento(s) e/ou retornam funções como resposta. Existem muitas funções embutidas em python de ordem superior, como: `map, filter, zip` e praticamente todo o módulo functools `import functools`. Porém, nada impede de criarmos novas funções de ordem superior. Um ponto a ser lembrado é que map e filter não tem mais a devida importância em python com a entrada das comprehensions (embora eu as adore), o que nos faz escolher única e exclusivamente por gosto, apesar de comprehensions serem mais legíveis (vamos falar disso em outro contexto), existem muitos casos onde elas ainda fazem sentido. Mas sem me estender muito, vamos ao código:
+Funções de ordem superior são funções que recebem funções como argumento(s) e/ou retornam funções como resposta. Existem muitas funções embutidas em python de ordem superior, como: `map, filter, zip` e praticamente todo o módulo functools `import functools`. Porém, nada impede de criarmos novas funções de ordem superior. Um ponto a ser lembrado é que map e filter não tem mais a devida importância em python com a entrada das comprehensions (embora eu as adore), o que nos faz escolher única e exclusivamente por gosto, apesar de comprehensions serem mais legíveis (vamos falar disso em outro contexto), existem muitos casos onde `map, filter, zip` ainda fazem sentido. Mas sem me estender muito, vamos ao código:
 
 ```python
 
-func = lambda x: x+2 # uma função simples, soma mais 2 a qualquer inteiro
+def loud(text):
+	"""Função que simula como se uma pessoa estivesse gritando"""
+	return text.upper()
 
-def func_mais_2(funcao, valor):
-    """
-    Executa a função passada por parâmetro e retorna esse valor somado com dois
+def quiet(text):
+	"""Função que simula como se uma pessoa estivesse sussurando"""
+	return text.lower()
+	
+def hello(func):
+	text = func("Hello")
+	print(text)
+	
+hello(loud) # HELLO
+hello(quiet) # hello
 
-    Ou seja, é uma composição de funções:
-
-    Dado que func(valor) é processado por func_func:
-        func_mais_2(func(valor)) == f(g(x))
-    """
-        return funcao(valor) + 2
 ```
 
-Um ponto a tocar, e o que eu acho mais bonito, é que a função vai retornar diferentes respostas para o mesmo valor, variando a entrada da função. Nesse caso, dada a entrada de um inteiro ele será somado com 2 e depois com mais dois. Mas, vamos estender este exemplo:
+Acima, podemos ver um exemplo de como são usadas as HOFs (High Order Functions), pois estamos passando como argumento para a função hello(), outra função, no caso loud() ou quiet().
 
-```python
-
-func = lambda x: x + 2 # uma função simples, soma mais 2 a qualquer inteiro
-
-def func_mais_2(funcao, valor):
-    """
-    Função que usamos antes.
-    """
-        return funcao(valor) + 2
-
-assert func_mais_2(func, 2) == 6 # true
-
-def func_quadrada(val):
-    """
-    Eleva o valor de entrada ao quadrado.
-    """
-    return val * val
-
-assert func_mais_2(func_quadrada, 2) == 6 # true
-```
 
 ### 1.3.1 Um exemplo usando funções embutidas:
 
-Muitas das funções embutidas em python são funções de ordem superior (HOFs) como a função map, que é uma das minhas preferidas. Uma função de map recebe uma função, que recebe um único argumento e devolve para nós uma nova lista com a função aplicada a cada elemento da lista:
+Muitas das funções embutidas em python são funções de ordem superior (HOFs) como a função map por exemplo, que é uma das minhas preferidas. Uma função map recebe uma função, que recebe um único argumento e devolve para nós uma nova lista com a função aplicada a cada elemento da lista:
 
 ```python
-def func(arg):
-    return arg + 2
-
-lista = [2, 1, 0]
-
-list(map(func, lista)) == [4, 3, 2] # true
+def diga_ola(nome):
+	return f'Olá {nome}'
+	
+list(map(diga_ola, ['Maria', 'Pedro', 'João']))
 
 ```
 
-Mas fique tranquilo, falaremos muito mais sobre isso.
+Lembra que falamos que linguagens de programação funcionais não tem for loops? Mas fique tranquilo, falaremos muito mais sobre isso.
 
 ## 1.4 `__call__`
 
@@ -168,7 +138,7 @@ Essa é uma parte interessante da estrutura de criação do Python a qual veremo
 
 ## 1.5 Funções geradoras
 
-Embora faremos um tópico extremamente focado em funções geradoras, não custa nada dar uma palinha, não?
+Embora faremos um tópico extremamente focado em funções geradoras, não custa nada dar uma olhadinha, não?
 
 Funções geradoras são funções que nos retornam um iterável. Mas ele é lazy (só é computado quando invocado). Para exemplo de uso, muitos conceitos precisam ser esclarecidos antes de entendermos profundamente o que acontece com elas, mas digo logo: são funções lindas <3
 
