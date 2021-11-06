@@ -78,7 +78,27 @@ Vamos tentar mapear o que as linguagens funcionais fazem de diferente das lingua
 -   Lazy evaluation:
     -   Criar sequências infinitas sem estourar nossa memória.
 
-## 0.3 Python é uma linguagem funcional?
+-   Imutabilidade de dados:
+    -   Na abordagem funcional de se resolver problemas, não é comum modificar o que já foi definido , sabemos que em python não é feita a distinção entre constantes e variáveis, mas o principio é simples, o que foi declarado não é modificado, isso facilita demais na hora de debugar.
+
+- Responsabilidade única
+    -   O ideal é que cada função seja responsável por fazer uma e somente uma tarefa, desta forma reutilizar as funções e compor funcionalidades para resolver tarefas mais complexas se torna uma tarefa trivial.
+
+
+## 0.3 Principais benefícios da abordagem funcional
+
+- Os principais benefícios da abordagem funcional são 
+
+- Testabilidade:
+    - Nós temos uma função que recebe parâmetros e retorna um valor definido, isso é um prato cheio pra quem gosta de escrever testes, a abordagem funcional facilita deveras a construção de sistemas realmente testáveis.
+
+-   Composição:
+    - Como dito acima, utilizar funções que fazem única e somente uma coisa faz com que a resolução de tarefas mais complexas seja resolvida sem inflar o código com mais e mais linhas de código além de evitar ferir o principio do DRY (*Don't repeat yourself*).
+
+- Modularidade:
+    - Utilizando a abordagem funcional é possível separar nosso programa em diferentes tipos de problema e fazer módulos para cada tipo de funcionalidade do nosso programa. 
+
+## 0.4 Python é uma linguagem funcional?
 
 #### Não. Mas é uma linguagem que implementa muitos paradígmas e porque não usar todos de uma vez?
 
@@ -108,7 +128,7 @@ print(lista) # ['P', 'y', 't', 'h', 'o', 'n']
 
 Como você pode ver, depois de uma explanação básica das técnicas, a segunda implementação não sofre interferência do meio externo (Funções puras), evita loops e sua saída sem o construtor de list é lazy. Mas não se assuste, vamos abordar tudo isso com calma.
 
-## 0.4 A quem esse 'curso' é destinado?
+## 0.5 A quem esse 'curso' é destinado?
 
 Primeiramente gostaria de dizer que roubei essa ideia dos infinitos livros da O’Reilly, que sempre exibem esse tópico. Mas vamos ao assunto. Este curso é para você que sabe o básico de Python, e quando digo básico quero dizer que consegue fazer qualquer coisa com um pouco de pesquisa na internet. O básico de programação se reduz a isso. Vamos falar sobre coisas simples e coisas mais complexas, mas pretendo manter o bom senso para que todos possam absorver o máximo de conteúdo possível.
 
@@ -116,18 +136,18 @@ Então, caso você venha do Python (OO ou procedural) você vai encontrar aqui u
 
 Então tente tirar o máximo de proveito. Vamos nos divertir.
 
-## 0.5 Apresentando o Jaber
+## 0.6 Apresentando o Jaber
 
 Jaber é nosso aluno de mentira, mas vamos pensar que ele é um aluno que senta na primeira fileira e pergunta de tudo, sempre que acha necessário. Roubei essa ideia do livro de expressões regulares do Aurélio. Ele tem um personagem, Piazinho, e acho que toda interação com ele é sempre graciosa e tira dúvidas quando tudo parece impossível.
 
-## 0.6 Sobre as referências
+## 0.7 Sobre as referências
 
 Não gosto muito de citar referências pois procurei não copiar texto dos livros, mas muita coisa contida neles serve de base para o entendimento de certos tópicos. Outro motivo é o nível de complexidade dos exemplos ou explicações que tentei reduzir ao máximo enquanto escrevia esses roteiros. Para um exemplo, você pode olhar o livro do Steven Lott, cheio de fórmulas e abstrações matemáticas que em certo ponto acabam comprometendo o entendimento de quem não tem uma sólida base em computação teórica ou matemática.
 
 Como um todo, as referências serviram como guia, foi o que lí quando dúvidas para explicações surgiram. Não tiro nenhum crédito delas e as exponho para que todos saibam que existem muitos livros bons e que boa parte do que é passado aqui, foi aprendido neles.
 
 
-## 0.7 Mais sobre o histórico das linguagens funcionais
+## 0.8 Mais sobre o histórico das linguagens funcionais
 
 Se você pretende realmente se aprofundar no assunto enquanto acompanha esse curso, fazer uma imersão ou coisa parecida. Tudo começa com o cálculo lambda mentalizado pelo incrível [Alonzo Church](https://en.wikipedia.org/wiki/Alonzo_Church). Caso você não o conheça, ele foi um matemático fantástico e teve uma carreira acadêmica brilhante. Foi o orientador de pessoas incríveis como Alan Turing, Raymond Smullyan etc...
 
