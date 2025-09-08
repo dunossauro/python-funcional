@@ -1,0 +1,800 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="..">
+      
+      
+        <link rel="next" href="../01_funcoes/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.18">
+    
+    
+      
+        <title>Saindo da zona de conforto - Python funcional</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.7e37652d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#saindo-da-zona-de-conforto" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Python funcional" class="md-header__button md-logo" aria-label="Python funcional" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Python funcional
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Saindo da zona de conforto
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Python funcional" class="md-nav__button md-logo" aria-label="Python funcional" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Python funcional
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Python funcional
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Saindo da zona de conforto
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Saindo da zona de conforto
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#mas-de-onde-vem-a-programacao-funcional" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mas de onde vem a programação funcional?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tecnicas-usadas-por-linguagens-funcionais" class="md-nav__link">
+    <span class="md-ellipsis">
+      Técnicas usadas por linguagens funcionais
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#python-e-uma-linguagem-funcional" class="md-nav__link">
+    <span class="md-ellipsis">
+      Python é uma linguagem funcional?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-quem-esse-curso-e-destinado" class="md-nav__link">
+    <span class="md-ellipsis">
+      A quem esse 'curso' é destinado?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#apresentando-o-jaber" class="md-nav__link">
+    <span class="md-ellipsis">
+      Apresentando o Jaber
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mais-sobre-o-historico-das-linguagens-funcionais" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mais sobre o histórico das linguagens funcionais
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_funcoes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Funções
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02_iteraveis_iteradores/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Iteráveis e iteradores
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_consumindo_iteraveis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Consumindo iteráveis
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_funcoes_reducao_mapeamento/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Funções de redução/mapeamento
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05_hofs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Funções de ordem superior
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06_funcoes_geradoras_e_hofs_p2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Funções de ordem superior p.2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07_construindo_nossa_lib/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Nossa primeira biblioteca de funções
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08_closures_1_escopo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Closures e contexto de variáveis
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09_closures_2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Usos variados de closures
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10_decoradores/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Decoradores
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#mas-de-onde-vem-a-programacao-funcional" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mas de onde vem a programação funcional?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tecnicas-usadas-por-linguagens-funcionais" class="md-nav__link">
+    <span class="md-ellipsis">
+      Técnicas usadas por linguagens funcionais
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#python-e-uma-linguagem-funcional" class="md-nav__link">
+    <span class="md-ellipsis">
+      Python é uma linguagem funcional?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-quem-esse-curso-e-destinado" class="md-nav__link">
+    <span class="md-ellipsis">
+      A quem esse 'curso' é destinado?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#apresentando-o-jaber" class="md-nav__link">
+    <span class="md-ellipsis">
+      Apresentando o Jaber
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mais-sobre-o-historico-das-linguagens-funcionais" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mais sobre o histórico das linguagens funcionais
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="saindo-da-zona-de-conforto">Saindo da zona de conforto</h1>
+<p>Sinta-se um vencedor, se você chegou até aqui, isso significa que quer aprender mais sobre o mundo da programação.</p>
+<p>Aprender novos paradigmas podem te trazer muitas coisas positivas, assim como aprender linguagens diferentes, pois paradigmas e linguagens transpõem maneiras, estruturas e métodos de implementação completamente diferentes. Com isso, você pode ter mais ferramentas para usar no dia a dia. Você pode aumentar sua capacidade de expressar ideias de diferentes maneiras. Penso que o maior limitador de um programador é a linguagem de programação de que ele tem domínio. Quando você aprende linguagens imperativas, como C, Python, Java, etc., você se vê limitado ao escopo de criar e manipular variáveis. Não que isso seja uma coisa ruim, porém existem outras maneiras de resolver problemas e quando você tem conhecimento disso consegue avaliar melhor quando implementar cada tipo de funcionalidade.</p>
+<p>Você pode me dizer que aprender diferentes tipos de estruturas e maneiras de computar é uma coisa negativa, pois tudo é variável nesse contexto. Mas penso exatamente o oposto, quanto mais você aprender da sua língua nativa, no caso estamos falando em português, maior o campo de domínio que você tem sobre como se comunicar e expressar ideias. Assim como aprender outras línguas, te darão mais fundamentos para expressar ideias em outros idiomas, que não são melhores que os seus, mas diferentes e compõem diferentes estruturas, e isso pode ser libertador. Não quero me prolongar nesse assunto, mas dizer que isso pode acrescentar muito nas habilidades cognitivas, até mesmo para usar ferramentas que você já usa no seu dia a dia.</p>
+<p>Vamos começar fazendo uma tentativa de entender os axiomas de programação, sem muito falatório e complicações. Um exemplo muito legal é do David Mertz em "Functional Programming in Python":</p>
+<ul>
+<li>Usa-se programação funcional quando se programa em Lisp, Haskell, Scala, Erlang, F#, etc.</li>
+<li>Do mesmo modo que se usa programação imperativa quando se programa C/C++, Pascal, Java, Python, etc.</li>
+<li>Também quando se programa Prolog estamos programando usando o paradigma lógico.</li>
+</ul>
+<p>Apesar de não ser uma definição muito elegante, talvez seja a melhor a ser dada em muitas ocasiões. Vamos ser um pouco mais objetivos em relação ao estilo de computação, embora essa discussão não tenha fim:</p>
+<ul>
+<li>
+<p>O foco de usar programação imperativa está no ato de mudar variáveis. A computação se dá pela modificação dos estados das variáveis iniciais. Sendo assim, vamos pensar que tudo é definido no início e vai se modificando até que o resultado esperado seja obtido.</p>
+</li>
+<li>
+<p>Na programação funcional, se tem a noção de que o estado deve ser substituído, no caso da avaliação, para a criação de um novo 'objeto' que no caso são funções.</p>
+</li>
+</ul>
+<h2 id="mas-de-onde-vem-a-programacao-funcional">Mas de onde vem a programação funcional?</h2>
+<p>O florescer da programação funcional nasce no Lisp (acrônomo para List Processing) para tentar resolver alguns problemas de inteligência artificial que eram provenientes da linguística, que tinha foco em processamento de linguagem natural que por sua vez eram focados em processamento de listas em geral. Isso justifica uma grande parte do conteúdo que vamos ver aqui e seus tipos de dados variam somente entre listas e átomos. E assim foi mantido o foco de processamento de listas em todas as linguagens funcionais e suas funções e abstrações para resolver problemas relativos a listas e estruturas iteráveis. Uma curiosidade é que para quem não sabe porque em lisp existem tantos parênteses é que ele é baseado em s-expression, uma coisa que temos um "equivalente" evoluído em python, que parte dos teoremas de gramáticas livres de contexto:</p>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="nb">+ </span><span class="mi">4</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span>
+</code></pre></div>
+<p>Sim, isso é uma soma em lisp. Diferente das linguagens imperativas, como costumamos ver:</p>
+<div class="highlight"><pre><span></span><code><span class="mi">4</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">5</span>
+</code></pre></div>
+<p>Uma assertiva pode ser feita dessa maneira:</p>
+<ul>
+<li>
+<p>Funcional (ou declarativa)
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="nb">= </span><span class="mi">4</span><span class="w"> </span><span class="p">(</span><span class="nb">+ </span><span class="mi">2</span><span class="w"> </span><span class="mi">2</span><span class="p">))</span>
+</code></pre></div></p>
+</li>
+<li>
+<p>Imperativa
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="mi">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">4</span>
+</code></pre></div></p>
+</li>
+</ul>
+<p>Chega de enrolação e vamos correr com essa introdução, não viemos aqui para aprender Lisp ou C. Mas acho que parte desse contexto pode nos ajudar e muito quando formos nos aprofundar em alguns tópicos. Pretendo sempre que iniciar uma nova ferramenta da programação funcional, ao menos explicar em que contexto ela foi desenvolvida e para resolver cada tipo de problema.</p>
+<h2 id="tecnicas-usadas-por-linguagens-funcionais">Técnicas usadas por linguagens funcionais</h2>
+<p>Vamos mapear o que as linguagens funcionais fazem de diferente das linguagens imperativas, mas não vamos nos aprofundar nesse tópico agora por serem coisas às vezes complexas sem o entendimento prévio de outros contextos, mas vamos tentar só explanar para que você se sinta empolgado por estar aqui:</p>
+<ul>
+<li>Funções como objetos de primeira classe:<ul>
+<li>São funções que podem estar em qualquer lugar (em estruturas, declaradas em tempo de execução).</li>
+</ul>
+</li>
+<li>Funções de ordem superior:<ul>
+<li>São funções que podem receber funções como argumentos e retornar funções.</li>
+</ul>
+</li>
+<li>Funções puras:<ul>
+<li>São funções que não sofrem interferências de meios externos (variáveis de fora). Evita efeitos colaterais.</li>
+</ul>
+</li>
+<li>Recursão, como oposição aos loops:<ul>
+<li>Frequentemente, a recursão na matemática é uma coisa mais intuitiva e é só chamar tudo outra vez, no lugar de ficar voltando ao ponto inicial da iteração.</li>
+</ul>
+</li>
+<li>Foco em processamento de iteráveis:<ul>
+<li>Como dito anteriormente, pensar em como as sequências podem nos ajudar a resolver problemas.</li>
+</ul>
+</li>
+<li>O que deve ser computado, não como computar:<ul>
+<li>Não ser tão expressivo e aceitar que as instruções não têm necessidade de estar explicitas todas às vezes, isso ajuda em legibilidade.</li>
+</ul>
+</li>
+<li>Lazy evaluation:<ul>
+<li>Criar sequências infinitas sem estourar nossa memória.</li>
+</ul>
+</li>
+</ul>
+<h2 id="python-e-uma-linguagem-funcional">Python é uma linguagem funcional?</h2>
+<p><strong>Não. Mas é uma linguagem que implementa muitos paradigmas e por que não usar todos de uma vez?</strong></p>
+<p>O objetivo desse 'conjunto de tópicos' é escrever código que gere menos efeito colateral e código com menos estados. Só que isso tudo feito dentro do possível, pois Python não é uma linguagem funcional. Porém, podemos contar o máximo possível com as features presentes do paradigma em python.</p>
+<p>Exemplos de funcional (básicos) em python:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Gerar uma lista da string # Imperativo</span>
+<span class="n">string</span> <span class="o">=</span> <span class="s1">&#39;Python&#39;</span>
+<span class="n">lista</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1"># estado inicial</span>
+
+<span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">string</span><span class="p">:</span>
+    <span class="n">lista</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">l</span><span class="p">)</span> <span class="c1"># cada iteração gera um novo estado</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">lista</span><span class="p">)</span> <span class="c1"># [&#39;P&#39;, &#39;y&#39;, &#39;t&#39;, &#39;h&#39;, &#39;o&#39;, &#39;n&#39;]</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1"># Gerar uma lista da string # Funcional</span>
+<span class="n">string</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span>
+
+<span class="n">lista</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">string</span><span class="p">(</span><span class="s1">&#39;Python&#39;</span><span class="p">)))</span> <span class="c1"># atribuição a um novo objeto</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">lista</span><span class="p">)</span> <span class="c1"># [&#39;P&#39;, &#39;y&#39;, &#39;t&#39;, &#39;h&#39;, &#39;o&#39;, &#39;n&#39;]</span>
+</code></pre></div>
+<p>Como você pode ver, após uma explanação básica das técnicas, a segunda implementação não sofre interferência do meio externo (Funções puras), evita loops e sua saída sem o construtor de list é lazy. Mas não se assuste, vamos abordar tudo isso com calma.</p>
+<h2 id="a-quem-esse-curso-e-destinado">A quem esse 'curso' é destinado?</h2>
+<p>Primeiramente, gostaria de dizer que roubei essa ideia dos infinitos livros da O’Reilly, que sempre exibem esse tópico. Mas vamos ao assunto. Este curso é para você que sabe o básico de Python, e quando digo básico quero dizer que consegue fazer qualquer coisa com um pouco de pesquisa na internet. O básico de programação se reduz a isso. Vamos falar sobre coisas simples e coisas mais complexas, mas pretendo manter o bom senso para que todos absorvam o máximo de conteúdo possível.</p>
+<p>Então, caso você venha do Python (OO ou procedural) você vai encontrar aqui uma introdução à programação funcional descontraída e sem uma tonelada de material difícil de entender. Caso você venha de linguagens funcionais como Haskell e Lisp, você pode se sentir um pouco estranho com tantas declarações, mas aprenderá a se expressar em Python. Caso você venha de linguagens funcionais modernas como Clojure e Scala, as coisas são bem parecidas por aqui.</p>
+<p>Então, tente tirar o máximo de proveito. Vamos nos divertir.</p>
+<h2 id="apresentando-o-jaber">Apresentando o Jaber</h2>
+<p>Jaber é nosso aluno de mentira, mas vamos pensar que ele é um aluno que senta na primeira fileira e pergunta de tudo, sempre que acha necessário. Roubei essa ideia do livro de expressões regulares do Aurélio. Ele tem um personagem, Piazinho, e acho que toda interação com ele é sempre graciosa e tira-dúvidas quando tudo parece impossível.</p>
+<h2 id="mais-sobre-o-historico-das-linguagens-funcionais">Mais sobre o histórico das linguagens funcionais</h2>
+<p>Se você pretende realmente se aprofundar no assunto enquanto acompanha esse curso, faça uma imersão ou coisa parecida. Tudo começa com o cálculo lambda mentalizado pelo incrível <a href="https://en.wikipedia.org/wiki/Alonzo_Church">Alonzo Church</a>. Caso você não o conheça, ele foi um matemático fantástico e teve uma carreira acadêmica brilhante. Foi o orientador de pessoas incríveis como Alan Turing, Raymond Smullyan, etc.</p>
+<p>Outro grande homem que vale a pena mencionar e ser buscado é o <a href="https://pt.wikipedia.org/wiki/Haskell_Curry">Haskell Curry</a>, um lógico que trouxe excelentes contribuições para o que chamamos hoje de programação funcional.</p>
+<p>A primeira linguagem funcional 'oficial' (não gosto muito de dizer isso) é o Lisp (List Processing) criada pelo fenomenal <a href="https://pt.wikipedia.org/wiki/John_McCarthy">John McCarthy</a> que também vale a pena ser pesquisado e estudado.</p>
+<p>Veremos o básico sobre os tipos de função no próximo tópico.</p>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 8, 2025 20:22:32 UTC">September 8, 2025</span>
+  </span>
+
+    
+    
+    
+      
+  
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Contributors">
+      
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 5.5A3.5 3.5 0 0 1 15.5 9a3.5 3.5 0 0 1-3.5 3.5A3.5 3.5 0 0 1 8.5 9 3.5 3.5 0 0 1 12 5.5M5 8c.56 0 1.08.15 1.53.42-.15 1.43.27 2.85 1.13 3.96C7.16 13.34 6.16 14 5 14a3 3 0 0 1-3-3 3 3 0 0 1 3-3m14 0a3 3 0 0 1 3 3 3 3 0 0 1-3 3c-1.16 0-2.16-.66-2.66-1.62a5.54 5.54 0 0 0 1.13-3.96c.45-.27.97-.42 1.53-.42M5.5 18.25c0-2.07 2.91-3.75 6.5-3.75s6.5 1.68 6.5 3.75V20h-13zM0 20v-1.5c0-1.39 1.89-2.56 4.45-2.9-.59.68-.95 1.62-.95 2.65V20zm24 0h-3.5v-1.75c0-1.03-.36-1.97-.95-2.65 2.56.34 4.45 1.51 4.45 2.9z"/></svg>
+      
+    </span>
+    <nav>
+      dunossauro, serrones, Bruna Balthazar
+    </nav>
+  </span>
+
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.92b07e13.min.js"></script>
+      
+    
+  </body>
+</html>

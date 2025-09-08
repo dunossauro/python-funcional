@@ -1,0 +1,623 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../02_iteraveis_iteradores/">
+      
+      
+        <link rel="next" href="../04_funcoes_reducao_mapeamento/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.18">
+    
+    
+      
+        <title>Consumindo iteráveis - Python funcional</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.7e37652d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#consumindo-iteraveis" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Python funcional" class="md-header__button md-logo" aria-label="Python funcional" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Python funcional
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Consumindo iteráveis
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Python funcional" class="md-nav__button md-logo" aria-label="Python funcional" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Python funcional
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Python funcional
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00_introducao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Saindo da zona de conforto
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_funcoes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Funções
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02_iteraveis_iteradores/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Iteráveis e iteradores
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Consumindo iteráveis
+    
+  </span>
+  
+
+      </a>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_funcoes_reducao_mapeamento/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Funções de redução/mapeamento
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05_hofs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Funções de ordem superior
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06_funcoes_geradoras_e_hofs_p2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Funções de ordem superior p.2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07_construindo_nossa_lib/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Nossa primeira biblioteca de funções
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08_closures_1_escopo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Closures e contexto de variáveis
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09_closures_2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Usos variados de closures
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10_decoradores/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Decoradores
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="consumindo-iteraveis">Consumindo iteráveis</h1>
+<p>Você achou que o tópico anterior não ia servir de nada, não?</p>
+<p>Na verdade, você estava enganado. Muito enganado, pra dizer a verdade. Agora que você já está familiarizado com os iteráveis, você já sabe como as funções funcionam. Por que não relacionar tudo e fazer um código mais limpo e funcional? (sacou a piada?)</p>
+<p>Retomando um pouco, concordamos anteriormente que o laço "for" (e ele é foreach) itera sobre os elementos:</p>
+<div class="highlight"><pre><span></span><code><span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="c1"># 1</span>
+<span class="c1"># 2</span>
+<span class="c1"># 3</span>
+<span class="c1"># 4</span>
+<span class="c1"># 5</span>
+</code></pre></div>
+<p>Porém, esse "for", aos meus olhos, só vale pra printar coisas, não? Pense comigo. Toda vez que realmente iteramos em alguma sequência, nós queremos os valores, queremos modificá-los, querendo incrementar, criar novos objetos e por aí vai...</p>
+<p>Existem muitas maneiras e até mais eficientes, não briguem comigo, de iterar sobre sequências. Uma delas é uma list comprehensions.</p>
+<p>List o quê?</p>
+<p>Vamos imaginar que esse "for" não serve pra nada, só imaginar, calma amiguinho. E que ele pode ser reduzido a uma única e estilosa linha de código:</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span><span class="n">elemento</span> <span class="k">for</span> <span class="n">elemento</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]]</span> <span class="c1"># [1, 2, 3, 4, 5]</span>
+</code></pre></div>
+<p>Fala aí, quanta marra, não? Tá, mas isso me retornou a mesma lista que eu tinha antes. Ok, você ainda não entendeu. Vamos tentar outra vez:</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span><span class="n">elemento</span> <span class="o">+</span> <span class="mi">2</span> <span class="k">for</span> <span class="n">elemento</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]]</span> <span class="c1"># [3, 4, 5, 6, 7]</span>
+</code></pre></div>
+<p>Agora fez sentido? Nós criamos uma nova lista, partindo de uma lista já existente e que foi processada por uma expressão <code>elemento + 2</code>. Ou seja, para cada elemento presente na lista foi aplicada a expressão. Tá, vamos fazer um código feio, só pra você entender.</p>
+<div class="highlight"><pre><span></span><code><span class="n">lista</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="n">lista_mais_2</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1"># Olha só, uma lista vazia, que medo</span>
+
+<span class="k">for</span> <span class="n">elemento</span> <span class="ow">in</span> <span class="n">lista</span><span class="p">:</span>
+    <span class="n">lista_mais_2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">elemento</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>
+</code></pre></div>
+<p>Você consegue olhar pra esse código com bons olhos? Imagina que esse "for" está dentro de uma função:</p>
+<div class="highlight"><pre><span></span><code><span class="n">lista</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="n">lista_mais_2</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1"># Olha só, uma lista vazia, que medo</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">funcao_que_nao_devo_fazer</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Função que gera muitos efeitos colaterais</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">elemento</span> <span class="ow">in</span> <span class="n">lista</span><span class="p">:</span>
+        <span class="n">lista_mais_2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">elemento</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>
+</code></pre></div>
+<p>Imagine-se executando essa função que não retorna nada e ainda gera efeitos colaterais sem limites. Imagine executar essa função uma vez, ok. Mas seu programinha vai executar ele 5.415 vezes. Você consegue imaginar o tamanho dessa lista? Eu não.</p>
+<p>Podemos deixar a função um pouco melhor, vamos tentar:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">funcao_que_nao_devo_fazer_p2</span><span class="p">(</span><span class="n">lista</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Função que gera muitos efeitos colaterais</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">lista_mais_2</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">elemento</span> <span class="ow">in</span> <span class="n">lista</span><span class="p">:</span>
+        <span class="n">lista_mais_2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">elemento</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">lista_mais_2</span>
+
+<span class="n">lista</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+
+<span class="n">funcao_que_nao_devo_fazer_p2</span><span class="p">(</span><span class="n">lista</span><span class="p">)</span> <span class="c1"># [3, 4, 5, 6, 7]</span>
+</code></pre></div>
+<p>Tá, você pode até não ter gostado das list comprehensions:</p>
+<p><code>Jaber diz: 'Não gosto, achei muito feia a sintaxe'</code></p>
+<p>Ok, Jaber. Mas vamos reconhecer, ela é muito mais simples e eficiente. Em contrapartida, temos a função <code>map</code>, que também é mais bonita:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">soma_2</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">2</span>
+
+<span class="nb">map</span><span class="p">(</span><span class="n">soma_2</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span> <span class="c1"># &lt;map at xpto&gt;</span>
+</code></pre></div>
+<p>Olha só, muito mais elegante que a list comprehensions, não? Não. Pense o trabalho de escrever uma função que poderia levemente ser uma expressão. Podemos usar funções anônimas também, vai...</p>
+<div class="highlight"><pre><span></span><code><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">+</span><span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span> <span class="c1"># &lt;map at xpto&gt;</span>
+</code></pre></div>
+<p>Olha, temos uma linha também, porém, eu acho a list comprehensions muito mais bonita. Mas, pra você que achou que falar sobre iteráveis e iteradores era besteira, essa sequência que o map retorna é uma sequência padrão <code>__iter__</code>, ou seja, ela só pode ser usada uma vez. UHULLL, economizamos memória, olha até que não foi de todo mal ter escrito esse lambda.</p>
+<p>Porém, será que o pessoal que faz o Python é tão fraco assim no gatilho? Ninguém pensou em criar uma sequência como a list comprehension que é esgotável? A resposta é sim, meu querido Jaber.</p>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">2</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span> <span class="c1"># &lt;generator object &lt;genexpr&gt; at xpto&gt;</span>
+</code></pre></div>
+<p>Acaba-se de reproduzir o estado de amor Pythonico agora. Você foi funcional! Tá, vou parar com as piadas... Mas você usou a cabeça, economizou memória, foi estiloso. Ou seja, um deus do código.</p>
+<p>Tá, agora você já sabe o poder que tem nas mãos. Nunca mais declare uma lista vazia para receber appends, combinado?</p>
+<p>Agora que você é um entendedor da iterações, vamos complicar um pouco e falar sobre functors, monads e catamorphismo. Tá, mas sem palavras difíceis, os seus coleguinhas não gostam de nomenclaturas haskelianas. Mas você vai poder esnobar seus conhecimentos teóricos sobre Teoria das Categorias. Até o próximo tópico.</p>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 8, 2025 20:22:32 UTC">September 8, 2025</span>
+  </span>
+
+    
+    
+    
+      
+  
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Contributors">
+      
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 5.5A3.5 3.5 0 0 1 15.5 9a3.5 3.5 0 0 1-3.5 3.5A3.5 3.5 0 0 1 8.5 9 3.5 3.5 0 0 1 12 5.5M5 8c.56 0 1.08.15 1.53.42-.15 1.43.27 2.85 1.13 3.96C7.16 13.34 6.16 14 5 14a3 3 0 0 1-3-3 3 3 0 0 1 3-3m14 0a3 3 0 0 1 3 3 3 3 0 0 1-3 3c-1.16 0-2.16-.66-2.66-1.62a5.54 5.54 0 0 0 1.13-3.96c.45-.27.97-.42 1.53-.42M5.5 18.25c0-2.07 2.91-3.75 6.5-3.75s6.5 1.68 6.5 3.75V20h-13zM0 20v-1.5c0-1.39 1.89-2.56 4.45-2.9-.59.68-.95 1.62-.95 2.65V20zm24 0h-3.5v-1.75c0-1.03-.36-1.97-.95-2.65 2.56.34 4.45 1.51 4.45 2.9z"/></svg>
+      
+    </span>
+    <nav>
+      dunossauro, serrones, Andrade Jr
+    </nav>
+  </span>
+
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.92b07e13.min.js"></script>
+      
+    
+  </body>
+</html>

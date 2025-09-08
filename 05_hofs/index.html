@@ -1,0 +1,908 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../04_funcoes_reducao_mapeamento/">
+      
+      
+        <link rel="next" href="../06_funcoes_geradoras_e_hofs_p2/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.18">
+    
+    
+      
+        <title>Funções de ordem superior - Python funcional</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.7e37652d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#funcoes-de-ordem-superior" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Python funcional" class="md-header__button md-logo" aria-label="Python funcional" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Python funcional
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Funções de ordem superior
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Python funcional" class="md-nav__button md-logo" aria-label="Python funcional" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Python funcional
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Python funcional
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00_introducao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Saindo da zona de conforto
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_funcoes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Funções
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02_iteraveis_iteradores/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Iteráveis e iteradores
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_consumindo_iteraveis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Consumindo iteráveis
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_funcoes_reducao_mapeamento/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Funções de redução/mapeamento
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Funções de ordem superior
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Funções de ordem superior
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#map" class="md-nav__link">
+    <span class="md-ellipsis">
+      map()
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#max" class="md-nav__link">
+    <span class="md-ellipsis">
+      max()
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#min" class="md-nav__link">
+    <span class="md-ellipsis">
+      min()
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iter" class="md-nav__link">
+    <span class="md-ellipsis">
+      iter()
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sorted" class="md-nav__link">
+    <span class="md-ellipsis">
+      sorted()
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#filter" class="md-nav__link">
+    <span class="md-ellipsis">
+      filter()
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06_funcoes_geradoras_e_hofs_p2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Funções de ordem superior p.2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07_construindo_nossa_lib/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Nossa primeira biblioteca de funções
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08_closures_1_escopo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Closures e contexto de variáveis
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09_closures_2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Usos variados de closures
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10_decoradores/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Decoradores
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#map" class="md-nav__link">
+    <span class="md-ellipsis">
+      map()
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#max" class="md-nav__link">
+    <span class="md-ellipsis">
+      max()
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#min" class="md-nav__link">
+    <span class="md-ellipsis">
+      min()
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iter" class="md-nav__link">
+    <span class="md-ellipsis">
+      iter()
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sorted" class="md-nav__link">
+    <span class="md-ellipsis">
+      sorted()
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#filter" class="md-nav__link">
+    <span class="md-ellipsis">
+      filter()
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="funcoes-de-ordem-superior">Funções de ordem superior</h1>
+<p>Você deve achar que esquecemos muitas funções embutidas no tópico passado, não? Funções como:</p>
+<ul>
+<li>map()</li>
+<li>max()</li>
+<li>min()</li>
+<li>iter()</li>
+<li>sorted()</li>
+<li>filter()</li>
+</ul>
+<p>Porém, essas funções têm características especiais. Como assim? Elas podem receber além do iterável, uma outra função como argumento. Vamos lá. Você já foi introduzido ao map() no tópico passado.</p>
+<h2 id="map">map()</h2>
+<p>A função map(), fazendo um gancho com o tópico anterior, é uma função de mapeamento, contudo, ela recebe o iterável em conjunto a uma função, a que fará o mapeamento. Vamos lá:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">func</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Exemplo do tópico passado</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">+</span><span class="mi">2</span>
+
+<span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]))</span> <span class="c1"># [3, 4, 5]</span>
+</code></pre></div>
+<p>A função que chamamos de func() é uma função extremamente simples, retorna a entrada somada com 2, simples assim. Um ponto que vale a pena ser tocado é que as funções usadas por map() só podem receber um argumento. Por quê? A função map() vai pegar um elemento da sequência e aplicar a função. Só isso, sério.</p>
+<p>Agora vamos complicar as coisas um pouco mais....</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Uma lista de listas, isso em python também é uma matriz</span>
+<span class="n">lista</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]]</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">func</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Retorna a mesma coisa que entrou</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">x</span>
+
+<span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">lista</span><span class="p">))</span>
+</code></pre></div>
+<p>Você concorda comigo que a entrada não é exatamente um elemento único, mas uma sequência?</p>
+<p>Então, como temos uma lista agora, podemos fazer coisas de lista? Aplicar outras funções de iteráveis? Vamos lá:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Uma lista de listas, isso em python também é uma matriz</span>
+<span class="n">lista</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]]</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">func_rev</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Retorna a lista que entrou, porém invertida</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="nb">reversed</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+
+<span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">func_rev</span><span class="p">,</span> <span class="n">lista</span><span class="p">))</span> <span class="c1"># [[2, 1], [3, 2], [4, 3], [5, 4], [6, 5]]</span>
+</code></pre></div>
+<p>Isso, isso, isso. Olha como a coisa está ficando linda? O que fizemos agora é uma composição de funções, mas dentro de um map(). A notação matemática disso, caso você tenha curiosidade em saber é:</p>
+<p><div class="highlight"><pre><span></span><code>uma função comum = f(x)
+
+composição de funções = f(g(x))
+</code></pre></div>
+ Bom, agora você aprendeu o poder do map(), podemos viajar entre a outra gama de funções de ordem superior que o python oferece. Porém, fica o adendo teórico:</p>
+<p><code>Funções de ordem superior são funções que recebem funções como argumento, ou retornam outra funções.</code></p>
+<p>Viu, foi simples.</p>
+<h2 id="max">max()</h2>
+<p>A função max() é uma função de redução, e sem a função como parâmetro, ela vai ter o comportamento das funções que vimos no outro tópico.</p>
+<div class="highlight"><pre><span></span><code><span class="nb">max</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span> <span class="c1"># 5</span>
+</code></pre></div>
+<p>Só que... (êee... lá vem)</p>
+<p>Se essa lista for uma lista de listas, como prosseguir?</p>
+<div class="highlight"><pre><span></span><code><span class="n">lista</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]]</span>
+
+<span class="nb">max</span><span class="p">(</span><span class="n">lista</span><span class="p">)</span> <span class="c1"># [5, 6]</span>
+</code></pre></div>
+<p>É, ainda está funcionando.</p>
+<div class="highlight"><pre><span></span><code><span class="n">lista</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">7</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]]</span>
+
+<span class="nb">max</span><span class="p">(</span><span class="n">lista</span><span class="p">)</span> <span class="c1"># [7, 2]</span>
+</code></pre></div>
+<p><code>[7, 2]</code> é um bom resultado, mas vamos pensar que o que eu queria eram as somas dois dois elementos, nesse caso o resultado veio errado. <code>7 + 2 = 9</code> quando <code>5 + 6 = 11</code>. Vamos tentar outra vez:</p>
+<div class="highlight"><pre><span></span><code><span class="n">lista</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">7</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]]</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">func</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="nb">max</span><span class="p">(</span><span class="n">lista</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">func</span><span class="p">)</span> <span class="c1"># [5,6]</span>
+</code></pre></div>
+<p>Viu, esse argumento <code>key</code> pode ser uma mão na roda em muitos dias tristes em que você está sem vontade de cantar uma bela canção.</p>
+<div class="highlight"><pre><span></span><code><span class="n">lista</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">7</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]]</span>
+
+<span class="nb">max</span><span class="p">(</span><span class="n">lista</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="nb">sum</span><span class="p">)</span> <span class="c1"># [5, 6]</span>
+</code></pre></div>
+<p>Como você já sabe compor funções, vamos imaginar que nossa sequência de entrada poderia ser maior que dois elementos, uma maneira bonita de fazer isso seria usar o sum(). Fica muito mais elegante.</p>
+<h2 id="min">min()</h2>
+<p>Agora que já entendemos o conceito das HOFs, tudo fica mais simples. A função min() é a função equivalente a max(). Quando a max() pega o maior item da sequência, min() pega o menor.</p>
+<div class="highlight"><pre><span></span><code><span class="n">lista</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">7</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]]</span>
+
+<span class="nb">min</span><span class="p">(</span><span class="n">lista</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="nb">sum</span><span class="p">)</span> <span class="c1"># [5, 3]</span>
+</code></pre></div>
+<p>Não temos muito mais o que falar sobre min, é só um complemento.</p>
+<h2 id="iter">iter()</h2>
+<p>A função embutida iter() tem duas formas, a primeira devolve o iterável de uma sequência.</p>
+<div class="highlight"><pre><span></span><code><span class="n">lista</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+
+<span class="nb">iter</span><span class="p">(</span><span class="n">lista</span><span class="p">)</span> <span class="c1"># &lt;list_iterator at xpto&gt;</span>
+</code></pre></div>
+<p>Ele faz a chamada do método <code>__iter__()</code> do objeto. Até então nenhuma novidade. Vamos supor que isso seja um facilitador para transformar nossos objetos em sequências imutáveis e preguiçosas.</p>
+<p>Porém, a segunda forma é bem interessante.</p>
+<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Exemplo roubado do Steven Lott</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">lista</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+
+<span class="nb">list</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">lista</span><span class="o">.</span><span class="n">pop</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span> <span class="c1">#[5, 4]</span>
+</code></pre></div>
+<p>Vamos por partes que agora vem muita informação pra pouca linha de código.</p>
+<p>vamos dar um help() em iter():</p>
+<div class="highlight"><pre><span></span><code><span class="n">help</span><span class="p">(</span><span class="nb">iter</span><span class="p">)</span>
+
+<span class="nb">iter</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+    <span class="nb">iter</span><span class="p">(</span><span class="n">iterable</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">iterator</span>
+    <span class="nb">iter</span><span class="p">(</span><span class="nb">callable</span><span class="p">,</span> <span class="n">sentinel</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">iterator</span>
+
+    <span class="n">Get</span> <span class="n">an</span> <span class="n">iterator</span> <span class="kn">from</span><span class="w"> </span><span class="nn">an</span> <span class="nb">object</span><span class="o">.</span>  <span class="n">In</span> <span class="n">the</span> <span class="n">first</span> <span class="n">form</span><span class="p">,</span> <span class="n">the</span> <span class="n">argument</span> <span class="n">must</span>
+    <span class="n">supply</span> <span class="n">its</span> <span class="n">own</span> <span class="n">iterator</span><span class="p">,</span> <span class="ow">or</span> <span class="n">be</span> <span class="n">a</span> <span class="n">sequence</span><span class="o">.</span>
+    <span class="n">In</span> <span class="n">the</span> <span class="n">second</span> <span class="n">form</span><span class="p">,</span> <span class="n">the</span> <span class="nb">callable</span> <span class="ow">is</span> <span class="n">called</span> <span class="n">until</span> <span class="n">it</span> <span class="n">returns</span> <span class="n">the</span> <span class="n">sentinel</span><span class="o">.</span>
+</code></pre></div>
+<p>Então, quer dizer que o callable é chamado até que o retorno seja o sentinela. Como passamos como callable pop() e se pop() for chamado sem argumentos, ele retorna o último elemento da lista e retira ele da mesma. Nesse caso o sentinela é 3. Então ele vai desmontando a lista e gerando um novo iterável de tudo que foi removido da lista anterior.</p>
+<p>Ou seja, vamos fazer um mapinha básico:</p>
+<div class="highlight"><pre><span></span><code>(1) lista = [1, 2, 3, 4, 5]
+
+(2) saida = []
+
+(3) saida.append(lista.pop())
+
+(4) print(saida) # [5]
+</code></pre></div>
+<p>Agora que o pop_append ficou claro, deu pra entender o que faz a segunda forma da função iter()? Sim, deu.</p>
+<p>Então vamos explorar um exemplo mais eficiente, o da documentação:</p>
+<div class="highlight"><pre><span></span><code><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;mydata.txt&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">iter</span><span class="p">(</span><span class="n">fp</span><span class="o">.</span><span class="n">readline</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> <span class="c1"># só essa linha foi modificada</span>
+</code></pre></div>
+<p>O método readline, quando passado sem parâmetros efetua a leitura de um único caracter. Nesse caso ele printaria uma letra do arquivo por linha. Mas, como usamos <code>iter(fp.readline, '')</code> ele vai nos retornar uma sequência de strings até que o sentinela que no caso é vazio apareça.</p>
+<p>Ou seja, é passado um objeto com um método no lugar de uma função. O método tem suas particularidades como não precisar de argumentos e agir no objeto em si. Isso parece óbvio, porém, quando construímos nossas próprias classes, o retorno pode não ser o esperado, como nas sequências embutidas do python.</p>
+<h2 id="sorted">sorted()</h2>
+<p>Para os viciados em listas, como eu, o método sort da lista funciona bem, apesar de ordenar a lista e não trazer uma nova lista, o que as vezes é uma dor de cabeça.</p>
+<div class="highlight"><pre><span></span><code><span class="n">lista</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+
+<span class="n">lista</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">lista</span><span class="p">)</span> <span class="c1"># [1, 1, 2, 2, 3, 3]</span>
+</code></pre></div>
+<p>Para agradar a todos, temos a função embutida sorted().Assim como as outras HOFs, temos o parâmetro opcional <code>key</code> e podemos decidir como a ordenação será feita.</p>
+<p>Vamos pensar em uma tupla de tuplas, uma saída de um banco, por exemplo:</p>
+<div class="highlight"><pre><span></span><code><span class="n">autores</span> <span class="o">=</span> <span class="p">((</span><span class="s1">&#39;Fernando Pessoa&#39;</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="s1">&#39;Portugal&#39;</span><span class="p">),</span>
+           <span class="p">(</span><span class="s1">&#39;Carlos Drummond Andrade&#39;</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="s1">&#39;Brasil&#39;</span><span class="p">),</span>
+           <span class="p">(</span><span class="s1">&#39;Nenê Altro&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;Brasil&#39;</span><span class="p">))</span>
+</code></pre></div>
+<p>Agora vamos ordenar:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">sorted</span><span class="p">(</span><span class="n">autores</span><span class="p">)</span>
+
+<span class="c1">#[(&#39;Carlos Drummond Andrade&#39;, 14, &#39;Brasil&#39;),</span>
+<span class="c1"># (&#39;Fernando Pessoa&#39;, 17, &#39;Portugal&#39;),</span>
+<span class="c1"># (&#39;Nenê Altro&#39;, 4, &#39;Brasil&#39;)]</span>
+</code></pre></div>
+<p>Até então, tudo certo. Ele ordenou pelo index 0 da tupla, que nesse caso eram os nomes.
+Vamos tentar usar a magia da <code>key</code> agora:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">sorted</span><span class="p">(</span><span class="n">autores</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="c1">#[(&#39;Nenê Altro&#39;, 4, &#39;Brasil&#39;),</span>
+<span class="c1"># (&#39;Carlos Drummond Andrade&#39;, 14, &#39;Brasil&#39;),</span>
+<span class="c1"># (&#39;Fernando Pessoa&#39;, 17, &#39;Portugal&#39;)]</span>
+</code></pre></div>
+<p>Nesse caso, a ordenação foi dada pelo index 1, que foi o que nós determinamos na função lambda, vamos tentar mais um caso:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">sorted</span><span class="p">(</span><span class="n">autores</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="c1">#[(&#39;Fernando Pessoa&#39;, 17, &#39;Portugal&#39;),</span>
+<span class="c1"># (&#39;Carlos Drummond Andrade&#39;, 14, &#39;Brasil&#39;),</span>
+<span class="c1"># (&#39;Nenê Altro&#39;, 4, &#39;Brasil&#39;)]</span>
+</code></pre></div>
+<p>Nesse caso ele fez a ordenação pelo index 0, só que invertido.</p>
+<p>Mas não paramos por aí. sorted() ainda tem mais um argumento escondido, <code>reverse</code>, que por padrão vem sempre False.
+Mas podemos pedir o True dele:</p>
+<p><div class="highlight"><pre><span></span><code><span class="nb">sorted</span><span class="p">(</span><span class="n">autores</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1">#[(&#39;Nenê Altro&#39;, 4, &#39;Brasil&#39;),</span>
+<span class="c1"># (&#39;Carlos Drummond Andrade&#39;, 14, &#39;Brasil&#39;),</span>
+<span class="c1"># (&#39;Fernando Pessoa&#39;, 17, &#39;Portugal&#39;)]</span>
+</code></pre></div>
+E agora obtivemos o mesmo resultado, só que invertido.</p>
+<p>Só pra não dizer que não falei das flores. No lugar desse lambda que não é muito bonito, existe uma função bem bonita no módulo <code>operator</code> chamada itemgetter():</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">operator</span><span class="w"> </span><span class="kn">import</span> <span class="n">itemgetter</span>
+
+<span class="nb">sorted</span><span class="p">(</span><span class="n">autores</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">itemgetter</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+
+<span class="c1">#[(&#39;Nenê Altro&#39;, 4, &#39;Brasil&#39;),</span>
+<span class="c1"># (&#39;Carlos Drummond Andrade&#39;, 14, &#39;Brasil&#39;),</span>
+<span class="c1"># (&#39;Fernando Pessoa&#39;, 17, &#39;Portugal&#39;)]</span>
+</code></pre></div>
+<p>Mas, teremos alguns momentos a sós com o módulo operator, calma jovenzinho. Uma hora a gente chega lá.</p>
+<h2 id="filter">filter()</h2>
+<p>Bom, já estamos chegando ao final e filter() não poderia ficar de fora. A única razão pro filter() ser a última função a ser comentada por agora é única e simplesmente por fugir das definições passadas até agora.</p>
+<p>filter() não é uma função nem de mapeamento, nem de redução. filter() é uma função de filtragem. Veja bem, só por isso ela ficou por último. Chega de enrolar, vamos ao código:</p>
+<div class="highlight"><pre><span></span><code><span class="n">lista</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+
+<span class="n">impares</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">2</span>
+
+<span class="nb">filter</span><span class="p">(</span><span class="n">impares</span><span class="p">,</span> <span class="n">lista</span><span class="p">)</span> <span class="c1"># [1, 3, 5]</span>
+</code></pre></div>
+<p>Nem doeu, né? Vale uma lembrança, aparentemente iria retornar só os pares, porém zero é False, lembra? Então o retorno foram os ímpares.</p>
+<p>Caso você queira inverter, temos o filterfalse() do módulo itertools, que vai ser tema de outro tópico, mas fica o gostinho:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">itertools</span><span class="w"> </span><span class="kn">import</span> <span class="n">filterfalse</span>
+
+<span class="n">lista</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+
+<span class="n">impares</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">2</span>
+
+<span class="n">filterfalse</span><span class="p">(</span><span class="n">impares</span><span class="p">,</span> <span class="n">lista</span><span class="p">)</span> <span class="c1"># [2, 4]</span>
+</code></pre></div>
+<p>Por hoje é só pessoal. No próximo tópico vamos aprender a criar nossas próprias HOFs.</p>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 8, 2025 20:22:32 UTC">September 8, 2025</span>
+  </span>
+
+    
+    
+    
+      
+  
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Contributors">
+      
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 5.5A3.5 3.5 0 0 1 15.5 9a3.5 3.5 0 0 1-3.5 3.5A3.5 3.5 0 0 1 8.5 9 3.5 3.5 0 0 1 12 5.5M5 8c.56 0 1.08.15 1.53.42-.15 1.43.27 2.85 1.13 3.96C7.16 13.34 6.16 14 5 14a3 3 0 0 1-3-3 3 3 0 0 1 3-3m14 0a3 3 0 0 1 3 3 3 3 0 0 1-3 3c-1.16 0-2.16-.66-2.66-1.62a5.54 5.54 0 0 0 1.13-3.96c.45-.27.97-.42 1.53-.42M5.5 18.25c0-2.07 2.91-3.75 6.5-3.75s6.5 1.68 6.5 3.75V20h-13zM0 20v-1.5c0-1.39 1.89-2.56 4.45-2.9-.59.68-.95 1.62-.95 2.65V20zm24 0h-3.5v-1.75c0-1.03-.36-1.97-.95-2.65 2.56.34 4.45 1.51 4.45 2.9z"/></svg>
+      
+    </span>
+    <nav>
+      dunossauro, serrones
+    </nav>
+  </span>
+
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.92b07e13.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,898 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../00_introducao/">
+      
+      
+        <link rel="next" href="../02_iteraveis_iteradores/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.18">
+    
+    
+      
+        <title>Funções - Python funcional</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.7e37652d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#funcoes" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Python funcional" class="md-header__button md-logo" aria-label="Python funcional" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Python funcional
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Funções
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Python funcional" class="md-nav__button md-logo" aria-label="Python funcional" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Python funcional
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Python funcional
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00_introducao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Saindo da zona de conforto
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Funções
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Funções
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#funcoes-como-objeto-de-primeira-classe" class="md-nav__link">
+    <span class="md-ellipsis">
+      Funções como objeto de primeira classe
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#funcoes-puras" class="md-nav__link">
+    <span class="md-ellipsis">
+      Funções puras
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#funcoes-de-ordem-superior-hofs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Funções de ordem superior (HOFs)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Funções de ordem superior (HOFs)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#um-exemplo-usando-funcoes-embutidas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Um exemplo usando funções embutidas:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#__call__" class="md-nav__link">
+    <span class="md-ellipsis">
+      __call__
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#funcoes-geradoras" class="md-nav__link">
+    <span class="md-ellipsis">
+      Funções geradoras
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#funcoes-anonimas-lambda" class="md-nav__link">
+    <span class="md-ellipsis">
+      Funções anônimas (lambda)
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02_iteraveis_iteradores/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Iteráveis e iteradores
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_consumindo_iteraveis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Consumindo iteráveis
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_funcoes_reducao_mapeamento/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Funções de redução/mapeamento
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05_hofs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Funções de ordem superior
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06_funcoes_geradoras_e_hofs_p2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Funções de ordem superior p.2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07_construindo_nossa_lib/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Nossa primeira biblioteca de funções
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08_closures_1_escopo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Closures e contexto de variáveis
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09_closures_2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Usos variados de closures
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10_decoradores/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Decoradores
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#funcoes-como-objeto-de-primeira-classe" class="md-nav__link">
+    <span class="md-ellipsis">
+      Funções como objeto de primeira classe
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#funcoes-puras" class="md-nav__link">
+    <span class="md-ellipsis">
+      Funções puras
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#funcoes-de-ordem-superior-hofs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Funções de ordem superior (HOFs)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Funções de ordem superior (HOFs)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#um-exemplo-usando-funcoes-embutidas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Um exemplo usando funções embutidas:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#__call__" class="md-nav__link">
+    <span class="md-ellipsis">
+      __call__
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#funcoes-geradoras" class="md-nav__link">
+    <span class="md-ellipsis">
+      Funções geradoras
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#funcoes-anonimas-lambda" class="md-nav__link">
+    <span class="md-ellipsis">
+      Funções anônimas (lambda)
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="funcoes">Funções</h1>
+<p>Como nem tudo são flores, vamos começar do começo e entender algumas características das funções do python (o objeto função) e dar uma revisada básica em alguns conceitos de função só para a gente não se perder no básico depois. Então, o primeiro tópico vai se limitar a falar da estrutura básica das funções em python, sem entrar profundamente em cada um dos tópicos. Será uma explanação de código e abrirá a cabeça para novas oportunidades de código mais pythonicos e que preferencialmente gere menos efeito colateral. Mas calma, não vamos ensinar a fazer funções, você já está cheio disso.</p>
+<h2 id="funcoes-como-objeto-de-primeira-classe">Funções como objeto de primeira classe</h2>
+<p>Funções como objeto de primeira classe são funções que se comportam como qualquer tipo nativo de uma determinada linguagem. Por exemplo:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># uma lista</span>
+
+<span class="n">lista</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;str&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">},</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="s1">&#39;um&#39;</span><span class="p">}]</span>
+</code></pre></div>
+<p>Todos esses exemplos são tipos de objetos de primeira classe em Python, mas no caso as funções também são. Como assim? Pode-se passar funções como parâmetro de outra função, podemos armazenar funções em variáveis, podemos definir funções em estruturas de dados:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Funções como objeto de primeira classe</span>
+
+<span class="n">func</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="c1"># a função anônima, lambda, foi armazenada em uma variável</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">func_2</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">2</span>
+
+<span class="n">lista</span> <span class="o">=</span> <span class="p">[</span><span class="n">func</span><span class="p">,</span> <span class="n">func_2</span><span class="p">]</span> <span class="c1"># a variável que armazena a função foi inserida em uma estrutura, assim como uma função gerada com def</span>
+
+<span class="n">lista_2</span> <span class="o">=</span> <span class="p">[</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># aqui as funções foram definidas dentro de uma estrutura</span>
+</code></pre></div>
+<p>Como é possível notar, em python, as funções podem ser inseridas em qualquer contexto e também geradas em tempo de execução. Com isso, nós podemos, além de inserir funções em estruturas, retornar funções, passar funções como parâmetro (HOFs), definir funções em funções(closures) e assim por diante. Caso você tenha aprendido a programar usando uma linguagem onde as funções não são objetos de primeira classe, não se assuste. Isso faz parte da rotina comum do python. Preferencialmente, e quase obrigatoriamente, é melhor fazer funções simples, pequenas e de pouca complexidade para que elas não sofram interferência do meio externo, gerem menos manutenção e, o melhor de tudo, possam ser combinadas em outras funções. Então vamos lá!</p>
+<h2 id="funcoes-puras">Funções puras</h2>
+<p>Funções puras são funções que não sofrem interferência do meio externo. Vamos começar pelo exemplo ruim:</p>
+<div class="highlight"><pre><span></span><code><span class="n">valor</span> <span class="o">=</span> <span class="mi">5</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">mais_cinco</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">valor</span>
+
+<span class="k">assert</span> <span class="n">mais_cinco</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="o">==</span> <span class="mi">10</span> <span class="c1"># True</span>
+
+<span class="n">valor</span> <span class="o">=</span> <span class="mi">7</span>
+
+<span class="k">assert</span> <span class="n">mais_cinco</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="o">==</span> <span class="mi">10</span> <span class="c1"># AssertionError</span>
+</code></pre></div>
+<p><code>mais_cinco()</code> é o exemplo claro de uma função que gera efeito colateral. Uma função pura deve funcionar como uma caixa preta, todas as vezes em que o mesmo input for dado nela, ela terá que retornar o mesmo valor. Agora vamos usar o mesmo exemplo, só alterando a linha do <code>return</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">valor</span> <span class="o">=</span> <span class="mi">5</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">mais_cinco</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">5</span>
+
+<span class="k">assert</span> <span class="n">mais_cinco</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="o">==</span> <span class="mi">10</span> <span class="c1"># True</span>
+
+<span class="n">valor</span> <span class="o">=</span> <span class="mi">7</span>
+
+<span class="k">assert</span> <span class="n">mais_cinco</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="o">==</span> <span class="mi">10</span> <span class="c1"># True</span>
+</code></pre></div>
+<p>Pode parecer trivial, mas muitas vezes por comodidade deixamos o meio influenciar no comportamento de uma função. Por definição o Python só faz possível, e vamos falar disso em outro tópico, a leitura de variáveis externas. Ou seja, dentro do contexto da função as variáveis externas não podem ser modificadas, mas isso não impede que o contexto externo a modifique. Se você for uma pessoa inteligente como o Jaber deve saber que nunca é uma boa ideia usar valores externos. Mas, caso seja necessário, você pode sobrescrever o valor de uma variável no contexto global usando a palavra reservada <code>global</code>. O que deve ficar com uma cara assim:</p>
+<div class="highlight"><pre><span></span><code><span class="n">valor</span> <span class="o">=</span> <span class="mi">5</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">teste</span><span class="p">():</span>
+    <span class="k">global</span> <span class="n">valor</span> <span class="c1"># aqui é feita a definição</span>
+    <span class="n">valor</span> <span class="o">=</span> <span class="mi">7</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">valor</span><span class="p">)</span> <span class="c1"># 7</span>
+</code></pre></div>
+<p>Só lembre-se de ser sempre coerente quando fizer isso, as consequências podem ser imprevisíveis. Nessa linha de funções puras e pequeninas, podemos caracterizar, embora isso não as defina, funções de ordem superior, que são funções que recebem uma função como argumento, ou as devolvem, e fazem a chamada das mesmas dentro do contexto da função que a recebeu como parâmetro. Isso resulta em uma composição de funções, o que agrega muito mais valor caso as funções não gerem efeitos colaterais.</p>
+<h2 id="funcoes-de-ordem-superior-hofs">Funções de ordem superior (HOFs)</h2>
+<p>Funções de ordem superior são funções que recebem funções como argumento(s) e/ou retornam funções como resposta. Existem muitas funções embutidas em python de ordem superior, como: <code>map, filter, zip</code> e praticamente todo o módulo functools <code>import functools</code>. Porém, nada impede de criarmos novas funções de ordem superior. Um ponto a ser lembrado é que map e filter não tem mais a devida importância em python com a entrada das comprehensions (embora eu as adore), o que nos faz escolher única e exclusivamente por gosto, apesar de comprehensions serem mais legíveis (vamos falar disso em outro contexto), existem muitos casos onde elas ainda fazem sentido. Mas sem me estender muito, vamos ao código:</p>
+<div class="highlight"><pre><span></span><code><span class="n">func</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">+</span><span class="mi">2</span> <span class="c1"># uma função simples, soma mais 2 a qualquer inteiro</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">func_mais_2</span><span class="p">(</span><span class="n">funcao</span><span class="p">,</span> <span class="n">valor</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Executa a função passada por parâmetro e retorna esse valor somado com dois</span>
+
+<span class="sd">    Ou seja, é uma composição de funções:</span>
+
+<span class="sd">    Dado que func(valor) é processado por func_func:</span>
+<span class="sd">        func_mais_2(func(valor)) == f(g(x))</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">funcao</span><span class="p">(</span><span class="n">valor</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span>
+</code></pre></div>
+<p>Um ponto a tocar, e o que eu acho mais bonito, é que a função vai retornar diferentes respostas para o mesmo valor, variando a entrada da função. Nesse caso, dada a entrada de um inteiro ele será somado com 2 e depois com mais dois. Mas, vamos estender este exemplo:</p>
+<div class="highlight"><pre><span></span><code><span class="n">func</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">2</span> <span class="c1"># uma função simples, soma mais 2 a qualquer inteiro</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">func_mais_2</span><span class="p">(</span><span class="n">funcao</span><span class="p">,</span> <span class="n">valor</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Função que usamos antes.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">funcao</span><span class="p">(</span><span class="n">valor</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span>
+
+<span class="k">assert</span> <span class="n">func_mais_2</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">6</span> <span class="c1"># true</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">func_quadrada</span><span class="p">(</span><span class="n">val</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Eleva o valor de entrada ao quadrado.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">val</span> <span class="o">*</span> <span class="n">val</span>
+
+<span class="k">assert</span> <span class="n">func_mais_2</span><span class="p">(</span><span class="n">func_quadrada</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">6</span> <span class="c1"># true</span>
+</code></pre></div>
+<h3 id="um-exemplo-usando-funcoes-embutidas">Um exemplo usando funções embutidas:</h3>
+<p>Muitas das funções embutidas em python são funções de ordem superior (HOFs) como a função map, que é uma das minhas preferidas. Uma função de map recebe uma função, que recebe um único argumento e devolve para nós uma nova lista com a função aplicada a cada elemento da lista:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">func</span><span class="p">(</span><span class="n">arg</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">arg</span> <span class="o">+</span> <span class="mi">2</span>
+
+<span class="n">lista</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+
+<span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">lista</span><span class="p">))</span> <span class="o">==</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="c1"># true</span>
+</code></pre></div>
+<p>Mas fique tranquilo, falaremos muito mais sobre isso.</p>
+<h2 id="__call__"><code>__call__</code></h2>
+<p>Por que falar de classes? Lembre-se, Python é uma linguagem construída em classes, e todos os objetos que podem ser chamados/invocados implementam o método <code>__call__</code>:</p>
+<p>Em uma função anônima:</p>
+<div class="highlight"><pre><span></span><code><span class="n">func</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span>
+
+<span class="s1">&#39;__call__&#39;</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">func</span><span class="p">)</span> <span class="c1"># True</span>
+</code></pre></div>
+<p>Em funções tradicionais:
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">func</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span>
+
+<span class="s1">&#39;__call__&#39;</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">func</span><span class="p">)</span> <span class="c1"># True</span>
+</code></pre></div></p>
+<p>Isso quer dizer que podemos gerar classes que se comportam como funções? <strong>SIIIIIM</strong></p>
+<p>Essa é uma parte interessante da estrutura de criação do Python a qual veremos mais em outro momento sobre introspecção de funções. Mas vale a pena dizer que classes, funções nomeadas, funções anônimas e funções geradoras usam uma base comum para funcionarem, essa é uma das coisas mais bonitas em python e que em certo ponto fere a ortogonalidade da linguagem, pois coisas iguais tem funcionamentos diferentes, mas facilita o aprendizado da linguagem, mas não é nosso foco agora.</p>
+<h2 id="funcoes-geradoras">Funções geradoras</h2>
+<p>Embora faremos um tópico extremamente focado em funções geradoras, não custa nada dar uma palinha, não?</p>
+<p>Funções geradoras são funções que nos retornam um iterável. Mas ele é lazy (só é computado quando invocado). Para exemplo de uso, muitos conceitos precisam ser esclarecidos antes de entendermos profundamente o que acontece com elas, mas digo logo: são funções lindas &lt;3</p>
+<p>Para que uma função seja geradora, em tese, só precisamos trocar o return por yield:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">gen</span><span class="p">(</span><span class="n">lista</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">elemento</span> <span class="ow">in</span> <span class="n">lista</span><span class="p">:</span>
+        <span class="k">yield</span> <span class="n">elemento</span>
+
+<span class="n">gerador</span> <span class="o">=</span> <span class="n">gen</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+
+<span class="nb">next</span><span class="p">(</span><span class="n">gerador</span><span class="p">)</span> <span class="c1"># 1</span>
+<span class="nb">next</span><span class="p">(</span><span class="n">gerador</span><span class="p">)</span> <span class="c1"># 2</span>
+<span class="nb">next</span><span class="p">(</span><span class="n">gerador</span><span class="p">)</span> <span class="c1"># 3</span>
+<span class="nb">next</span><span class="p">(</span><span class="n">gerador</span><span class="p">)</span> <span class="c1"># 4</span>
+<span class="nb">next</span><span class="p">(</span><span class="n">gerador</span><span class="p">)</span> <span class="c1"># 5</span>
+<span class="nb">next</span><span class="p">(</span><span class="n">gerador</span><span class="p">)</span> <span class="c1"># StopIteration</span>
+</code></pre></div>
+<p>Passando bem por cima, uma função geradora nos retorna um iterável que é preguiçoso. Ou seja, ele só vai efetuar a computação quando for chamado.</p>
+<h2 id="funcoes-anonimas-lambda">Funções anônimas (lambda)</h2>
+<p>Funções anônimas, ou funções lambda, são funções que podem ser declaradas em qualquer contexto. Tá... Todo tipo de função em python pode ser declarada em tempo de execução. Porém, funções anônimas podem ser atribuídas a variáveis, podem ser definidas dentro de sequências e declaradas em um argumento de função. Vamos olhar sua sintaxe:</p>
+<div class="highlight"><pre><span></span><code><span class="k">lambda</span> <span class="n">argumento</span><span class="p">:</span> <span class="n">argumento</span>
+</code></pre></div>
+<p>A palavra reservada <code>lambda</code> define a função, assim como uma <code>def</code>. Porém, em uma <code>def</code> quase que instintivamente, sempre quebramos linha:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">func</span><span class="p">():</span>
+  <span class="k">pass</span>
+</code></pre></div>
+<p>Uma das diferenças triviais em python é que as funções anônimas não têm nome. Tá, isso era meio óbvio, mas vamos averiguar:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">func</span><span class="p">():</span>
+  <span class="k">pass</span>
+
+<span class="n">func</span><span class="o">.</span><span class="vm">__name__</span> <span class="c1"># func</span>
+
+<span class="n">lambda_func</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">arg</span><span class="p">:</span> <span class="n">arg</span>
+
+<span class="n">lambda_func</span><span class="o">.</span><span class="vm">__name__</span> <span class="c1"># &#39;&lt;lambda&gt;&#39;</span>
+</code></pre></div>
+<p>O resultado <code>'&lt;lambda&gt;'</code> será o mesmo para qualquer função. Isso torna sua depuração praticamente impossível em python. Por isso, os usuários de python (e nisso incluo todos os usuários, até aqueles que gostam de funcional) não encorajam o uso de funções anônimas me todos os contextos da linguagem. Mas, em funções que aceitam outras funções, isso é meio que uma tradição, caso a função (no caso, a que executa o código a ser usado pelo lambda) não esteja definida e nem seja reaproveitada em outro contexto. Eu gosto de dizer que lambdas são muito funcionais em aplicações parciais de função. Porém, os lambdas não passam de açúcar sintático em Python, pois não há nada que uma função padrão (definida com <code>def</code>), não possa fazer de diferente. Até a introspecção retorna o mesmo resultado:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">func</span><span class="p">():</span>
+  <span class="k">pass</span>
+
+<span class="nb">type</span><span class="p">(</span><span class="n">func</span><span class="p">)</span> <span class="c1"># function</span>
+
+<span class="n">lambda_func</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">arg</span><span class="p">:</span> <span class="n">arg</span>
+
+<span class="nb">type</span><span class="p">(</span><span class="n">lambda_func</span><span class="p">)</span> <span class="c1"># function</span>
+</code></pre></div>
+<p>Uma coisa que vale ser lembrada é que funções anônimas em python só executam uma expressão. Ou seja, não podemos usar laços de repetição (<code>while</code>, <code>for</code>), tratamento de exceções (<code>try</code>, <code>except</code>, <code>finally</code>). Um simples <code>if</code> com uso de <code>elif</code> também não pode ser definido. Como sintaticamente só são aceitas expressões, o único uso de um <code>if</code> é o ternário:</p>
+<div class="highlight"><pre><span></span><code><span class="n">valor_1</span> <span class="k">if</span> <span class="n">condicao</span> <span class="k">else</span> <span class="n">valor_2</span>
+</code></pre></div>
+<p>O que dentro de um lambda teria essa aparência:</p>
+<div class="highlight"><pre><span></span><code><span class="n">func</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">argumento</span><span class="p">:</span> <span class="n">argumento</span> <span class="o">+</span> <span class="mi">2</span> <span class="k">if</span> <span class="n">argumento</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">argumento</span> <span class="o">-</span> <span class="mi">2</span>
+</code></pre></div>
+<p>Funções lambda também podem ter múltiplos argumentos, embora seu processamento só possa ocorrer em uma expressão:</p>
+<div class="highlight"><pre><span></span><code><span class="n">func</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">arg_1</span><span class="p">,</span> <span class="n">arg_2</span><span class="p">,</span> <span class="n">arg_3</span><span class="p">:</span> <span class="kc">True</span> <span class="k">if</span> <span class="nb">sum</span><span class="p">([</span><span class="n">arg_1</span><span class="p">,</span> <span class="n">arg_2</span><span class="p">,</span> <span class="n">arg_3</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">7</span> <span class="k">else</span> <span class="nb">min</span><span class="p">([</span><span class="n">arg_1</span><span class="p">,</span> <span class="n">arg_2</span><span class="p">,</span> <span class="n">arg_3</span><span class="p">])</span>
+</code></pre></div>
+<p>Embora essa seja uma explanação inicial sobre as funções anônimas, grande parte dos tópicos faz uso delas e vamos poder explorar melhor sua infinitude.</p>
+<p>Mas por hoje é só e no tópico seguinte vamos discutir, mesmo que superficialmente, iteradores e iteráveis e suas relações com a programação funcional.</p>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 8, 2025 20:22:32 UTC">September 8, 2025</span>
+  </span>
+
+    
+    
+    
+      
+  
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Contributors">
+      
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 5.5A3.5 3.5 0 0 1 15.5 9a3.5 3.5 0 0 1-3.5 3.5A3.5 3.5 0 0 1 8.5 9 3.5 3.5 0 0 1 12 5.5M5 8c.56 0 1.08.15 1.53.42-.15 1.43.27 2.85 1.13 3.96C7.16 13.34 6.16 14 5 14a3 3 0 0 1-3-3 3 3 0 0 1 3-3m14 0a3 3 0 0 1 3 3 3 3 0 0 1-3 3c-1.16 0-2.16-.66-2.66-1.62a5.54 5.54 0 0 0 1.13-3.96c.45-.27.97-.42 1.53-.42M5.5 18.25c0-2.07 2.91-3.75 6.5-3.75s6.5 1.68 6.5 3.75V20h-13zM0 20v-1.5c0-1.39 1.89-2.56 4.45-2.9-.59.68-.95 1.62-.95 2.65V20zm24 0h-3.5v-1.75c0-1.03-.36-1.97-.95-2.65 2.56.34 4.45 1.51 4.45 2.9z"/></svg>
+      
+    </span>
+    <nav>
+      dunossauro, Bruna Balthazar, serrones, Matiusco, Carlos Henrique
+    </nav>
+  </span>
+
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.92b07e13.min.js"></script>
+      
+    
+  </body>
+</html>

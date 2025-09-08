@@ -1,0 +1,1037 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../09_closures_2/">
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.18">
+    
+    
+      
+        <title>Decoradores - Python funcional</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.7e37652d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#decoradores" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Python funcional" class="md-header__button md-logo" aria-label="Python funcional" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Python funcional
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Decoradores
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Python funcional" class="md-nav__button md-logo" aria-label="Python funcional" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Python funcional
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Python funcional
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00_introducao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Saindo da zona de conforto
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_funcoes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Funções
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02_iteraveis_iteradores/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Iteráveis e iteradores
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_consumindo_iteraveis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Consumindo iteráveis
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_funcoes_reducao_mapeamento/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Funções de redução/mapeamento
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05_hofs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Funções de ordem superior
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06_funcoes_geradoras_e_hofs_p2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Funções de ordem superior p.2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07_construindo_nossa_lib/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Nossa primeira biblioteca de funções
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08_closures_1_escopo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Closures e contexto de variáveis
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09_closures_2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Usos variados de closures
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Decoradores
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Decoradores
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#qual-a-cara-de-um-decorador" class="md-nav__link">
+    <span class="md-ellipsis">
+      Qual a cara de um decorador?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#montando-nosso-primeiro-decorador" class="md-nav__link">
+    <span class="md-ellipsis">
+      Montando nosso primeiro decorador
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usando-um-pouco-melhor-a-funcao-externa" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usando um pouco melhor a função externa
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Usando um pouco melhor a função externa">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#um-cache-simples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Um cache simples
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tempo-de-execucao-de-uma-funcao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tempo de execução de uma função
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decoradores-com-parametros" class="md-nav__link">
+    <span class="md-ellipsis">
+      Decoradores com parâmetros
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#identidade-das-funcoes-decoradas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Identidade das funções decoradas
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decorando-decoradores" class="md-nav__link">
+    <span class="md-ellipsis">
+      Decorando decoradores
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#qual-a-cara-de-um-decorador" class="md-nav__link">
+    <span class="md-ellipsis">
+      Qual a cara de um decorador?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#montando-nosso-primeiro-decorador" class="md-nav__link">
+    <span class="md-ellipsis">
+      Montando nosso primeiro decorador
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usando-um-pouco-melhor-a-funcao-externa" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usando um pouco melhor a função externa
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Usando um pouco melhor a função externa">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#um-cache-simples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Um cache simples
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tempo-de-execucao-de-uma-funcao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tempo de execução de uma função
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decoradores-com-parametros" class="md-nav__link">
+    <span class="md-ellipsis">
+      Decoradores com parâmetros
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#identidade-das-funcoes-decoradas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Identidade das funções decoradas
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decorando-decoradores" class="md-nav__link">
+    <span class="md-ellipsis">
+      Decorando decoradores
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="decoradores">Decoradores</h1>
+<p>Agora que você e o Jaber já estão craques em closures os decoradores não apresentam medo, pois tudo em decoradores são closures. No tópico 9.5 você usou um decorador e, embora eles não tenham sido devidamente explicados, vamos entender tudo sobre eles agora.</p>
+<h2 id="qual-a-cara-de-um-decorador">Qual a cara de um decorador?</h2>
+<p>Um decorador nada mais é que um açúcar sintático para as closures. Viu? você já sabe tudo sobre eles, sem mesmo saber deles. Vamos entender essa composição diferente.</p>
+<p>Uma closure é aplicada em Python assim:</p>
+<div class="highlight"><pre><span></span><code><span class="n">closure</span><span class="p">(</span><span class="n">funcao</span><span class="p">(</span><span class="n">argumentos</span><span class="p">))</span>
+</code></pre></div>
+<p>Invocamos a função externa como uma função e passamos como argumento a nossa função com seus argumentos. E os decoradores?</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@closure</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">funcao</span><span class="p">(</span><span class="n">argumentos</span><span class="p">):</span>
+    <span class="k">pass</span>
+</code></pre></div>
+<p>Ou seja, é apenas açúcar sintático. Contudo a apresentação é muito explícita, pelo menos pra mim. Fica evidente que a função <code>closure</code> decora a <code>funcao</code>.
+Outro ponto importante e que difere, apenas em nível sintático, é que a função é decorada apenas quando é definida.</p>
+<p>Com isso se tentarmos executar um código, como o código abaixo, executaríamos a closure duas vezes na função:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@closure</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">funcao</span><span class="p">(</span><span class="n">argumentos</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+<span class="n">closure</span><span class="p">(</span><span class="n">funcao</span><span class="p">(</span><span class="n">argumentos</span><span class="p">))</span> <span class="c1"># linha do problema</span>
+</code></pre></div>
+<p>Agora todas as vezes que você encontrar um <code>@</code> em cima de uma definição de uma função, você já sabe do que se trata.</p>
+<h2 id="montando-nosso-primeiro-decorador">Montando nosso primeiro decorador</h2>
+<p>No tópico 8 iniciamos nossa discussão sobre o uso de closures, vamos implementar closures de uma maneira mais eficiente e mais agradável visualmente.</p>
+<p>Para iniciar vamos pensar em uma simples função que soma dois números como fizemos ao introduzir o conceito de funções nos primeiros tópicos, para ficar evidentemente simples a utilização de decoradores, mas falar é fácil. Vamos ao código:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">soma</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Função que efetivamente soma dois números</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+</code></pre></div>
+<p>Não é preciso ser um gênio como o Jaber para saber como usar essa função:</p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="n">soma</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="c1"># 2</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">soma</span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">)</span> <span class="c1"># 4.0</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">soma</span><span class="p">(</span><span class="mi">3</span><span class="n">j</span> <span class="o">+</span> <span class="mi">3</span><span class="n">j</span><span class="p">)</span> <span class="c1"># 6j</span>
+</code></pre></div>
+<p>Ela funciona efetivamente com todos os tipos de números em Python. Embora seja possível imaginar que nossa função usa o operador <code>+</code>. Ele faz com que nossos objetos numéricos invoquem seu método mágico interno <code>__add__</code> ou <code>__radd__</code>. O único problema é que outros objetos em Python também implementam esse método. Strings e listas podem usar o <code>__add__</code>, mas somente entre sí. Vale lembrar aqui que Python é uma linguagem fortemente tipada. Eu não vou conseguir somar uma string com um inteiro ou com uma lista por exemplo.</p>
+<p>Vamos pensar que nossa função <code>soma()</code> só trabalha com números (complexos, inteiros e de ponte flutuante). Então a validação da entrada vai ter que ser feita, pois nós não queremos somar strings e listas.</p>
+<p><code>Jaber diz: Por que não deixamos a função receber de qualquer coisa, assim nossa função pode ser usada para somar listas com listas, strings com strings? Nossa função vai ser muito mais poderosa.</code></p>
+<p>Calma Jaber, existe um problema em não validar os valores. Se as entradas forem de tipos diferentes a função vai retornar um <code>TypeError</code> e não vai ser muito legal para quando o usuário da nossa função estiver usando. Vamos entender isso, para que fique claro:</p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="n">soma</span><span class="p">(</span><span class="s1">&#39;Jaber&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="c1"># TypeError: must be str, not int</span>
+</code></pre></div>
+<p>Esse comportamento não é legal, imagina quantos tipos diferentes de erros podem ocorrer por isso? Vamos resolver de uma maneira simples:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">numbers</span><span class="w"> </span><span class="kn">import</span> <span class="n">Number</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">soma</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Função que soma dois números.</span>
+
+<span class="sd">    isinstance faz uma comparação e valida se um valor</span>
+<span class="sd">        é de uma determinada classe.</span>
+
+<span class="sd">    Caso um deles não seja, um erro vai ser</span>
+<span class="sd">        forçado e a mensagem vai ser exibida</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">Number</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">Number</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+    <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;Insira somente números (int, complex, float)&#39;</span><span class="p">)</span>
+</code></pre></div>
+<p>Tá, ficou bonito. Vamos usar:</p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="n">soma</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="c1"># 2</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">soma</span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">)</span>
+<span class="c1"># 4.0</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">soma</span><span class="p">(</span><span class="mi">3</span><span class="n">j</span><span class="p">,</span> <span class="mi">3</span><span class="n">j</span><span class="p">)</span>
+<span class="c1"># 6j</span>
+</code></pre></div>
+<p>Até então tudo está exatamente igual, mas vamos tentar usar outros tipos de dados:</p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="n">soma</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="c1"># TypeError: Insira somente números (int, complex, float)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">soma</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;Jaber&#39;</span><span class="p">)</span>
+<span class="c1"># TypeError: Insira somente números (int, complex, float)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">soma</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
+<span class="c1"># TypeError: Insira somente números (int, complex, float)</span>
+</code></pre></div>
+<p><code>Jaber diz: Hmmmmmmm. Muito bonito, falou muito e nada de decoradores</code></p>
+<p>Ok, vamos lá. Você fez tudo isso, mas agora eu vou te pedir uma função que faz multiplicação e ela também só pode receber números:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">numbers</span><span class="w"> </span><span class="kn">import</span> <span class="n">Number</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">mul</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">Number</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">Number</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="n">y</span>
+    <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;Insira somente números (int, complex, float)&#39;</span><span class="p">)</span>
+
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">mul</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="c1"># 2</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">mul</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="c1"># TypeError: Insira somente números (int, complex, float)</span>
+</code></pre></div>
+<p>Você entendeu tudo Jaber, mas esqueceu de tudo que falamos sobre closures? Agora vamos ser inteligentes e usar as closures que aprendemos:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">validate_numbers</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Closure que decora a função.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_validate</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Executa a validação e retorna a execução da função.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">Number</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">Number</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;Insira somente números (int, complex, float)&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">_validate</span>
+</code></pre></div>
+<p>Você concorda que só temos o código em um único lugar e podemos decorar as duas funções e executar um código simples dentro da função? Vamos validar os valores com a closure <code>validate_numbers</code> e aplicar valores na função para testar:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@validate_numbers</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">soma</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+
+<span class="nd">@validate_numbers</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">mul</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="n">y</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">soma</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="c1"># 2</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">soma</span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">)</span>
+<span class="c1"># 4.0</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">soma</span><span class="p">(</span><span class="mi">3</span><span class="n">j</span> <span class="o">+</span> <span class="mi">3</span><span class="n">j</span><span class="p">)</span>
+<span class="c1"># 6j</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">mul</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="c1"># 2</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">mul</span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">)</span>
+<span class="c1"># 4.0</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">mul</span><span class="p">(</span><span class="mi">3</span><span class="n">j</span><span class="p">,</span> <span class="mi">3</span><span class="n">j</span><span class="p">)</span>
+<span class="c1"># (-9+0j)</span>
+</code></pre></div>
+<p>Agora <code>validate_numbers</code> além de decorar nossas funções com a closure pode ser usado para qualquer tipo de função que receba dois argumentos (claro a validação pode não ser a mesma, mas funciona). Mas e os erros?</p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="n">soma</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;Jaber&#39;</span><span class="p">)</span>
+<span class="c1"># TypeError: Insira somente números (int, complex, float)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">mul</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="c1"># TypeError: Insira somente números (int, complex, float)</span>
+</code></pre></div>
+<p>Tudo funcionou muito bem. Vamos tentar entender um pouco mais sobre a natureza dos decoradores.</p>
+<h2 id="usando-um-pouco-melhor-a-funcao-externa">Usando um pouco melhor a função externa</h2>
+<p>Embora a função externa que leva o nome do decorador ganhe como argumento a função a ser executada e execute a função interna, ela pode ter outras funcionalidades. Vamos pensar um pouco e gerar algumas coisas perigosas, mas que podem ser usadas em contexto onde sejam de suma importância.</p>
+<h3 id="um-cache-simples">Um cache simples</h3>
+<p>Vamos pensar em uma função que executa algum tipo de cálculo mirabolante. Por exemplo, você pode fixar um cache para verificar se o número é par. Mas para isso você precisa do módulo da divisão por 2.</p>
+<p>Então, vamos supor que a nossa função de soma só execute a soma quando o segundo valor passado for par, fora desse contexto não iremos executar a função.</p>
+<p>Vamos tentar, e explicar enquanto fazemos:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">segundo_eh_par</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="p">{}):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    cache é um dicionário que é iniciado vazio.</span>
+
+<span class="sd">    A cada iteração ele executa (y%2 == 0)</span>
+<span class="sd">        e armazena no dicionario o valor de y</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">interna</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">y</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">cache</span><span class="p">:</span>
+            <span class="n">cache</span><span class="p">[</span><span class="n">y</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">y</span><span class="o">%</span><span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">cache</span><span class="p">[</span><span class="n">y</span><span class="p">]:</span>
+            <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;Insira somente valores pares para y&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">interna</span>
+</code></pre></div>
+<p>Depois de definir essa função, a gente pode rodar a seguinte linha:</p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="n">segundo_eh_par</span><span class="o">.</span><span class="vm">__defaults__</span>  
+<span class="c1"># ({},)</span>
+</code></pre></div>
+<p>usando <code>__defaults__</code> podemos ver o valor inserido no nosso dicionário. Vamos usar esse decorador em uma função:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@segundo_eh_par</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">soma</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">soma</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="c1"># 4</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">segundo_eh_par</span><span class="o">.</span><span class="vm">__defaults__</span>
+<span class="c1"># ({2: True},)</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">soma</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<span class="c1"># Exception: Insira somente valores pares</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">segundo_eh_par</span><span class="o">.</span><span class="vm">__defaults__</span>
+<span class="c1"># ({2: True, 5: False},)</span>
+</code></pre></div>
+<p>Agora, todas as vezes que os valores forem usado novamente a computação não será necessária, pois ela já está no dicionário. Vamos fazer isso com fibonacci, é surpreendente a diferença de desempenho, mas vamos aprender a medir o tempo de execução de uma função antes.</p>
+<h3 id="tempo-de-execucao-de-uma-funcao">Tempo de execução de uma função</h3>
+<p>Esse decorador também segue uma ideia simples, podemos gravar em arquivos, gerar logs, chamar bancos de dados. Vai além da imaginação, mas vamos tentar medir o tempo que nossa função leva para ser executada.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">time</span><span class="w"> </span><span class="kn">import</span> <span class="n">time</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">timeit</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Decorador para medir o tempo.</span>
+
+<span class="sd">    Roubada de: Python Cookbook 3ª edição (Beazley e Jone - O&#39;Reilly)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">inner</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="n">ts</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span> <span class="c1"># pega a &#39;hora&#39; atual</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span> <span class="c1"># Executa a função</span>
+        <span class="n">te</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span> <span class="c1"># pega a hora atual</span>
+        <span class="c1"># Aqui vai rolar um print nesse formato:</span>
+        <span class="c1"># &lt;nome_da_função&gt; &lt;argumentos_da_função&gt; &lt;subtração_de_te_por_ts&gt;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> </span><span class="si">{}</span><span class="s1"> </span><span class="si">{:.2}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">te</span> <span class="o">-</span> <span class="n">ts</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">result</span>
+    <span class="k">return</span> <span class="n">inner</span>
+</code></pre></div>
+<p>Esse é um decorador bem simples de se entender. Ele vai decorar uma função e nós saberemos o tempo que ela levou para ser executada em segundos. Você pode pensar que esse decorador é mais do mesmo, porém, ele nos mostra quão genéricos devem ser os decoradores. A ídeia é de que possam ser usados em qualquer lugar. Nesse caso <code>eh_par</code> acaba sendo um contra-exemplo de um bom decorador. Mas, vale lembrar que o objetivo dele é totalmente didático. Sei que você já deve ter entendido tudo sobre decoradores. Porém, eles também podem receber argumentos, o que os tornariam mais genéricose potentes. Então, vamos lá...</p>
+<h2 id="decoradores-com-parametros">Decoradores com parâmetros</h2>
+<p>Uma das coisas mais legais de quando se está aprendendo Python, é que em um certo momento você acaba entendendo a ideia de que não podemos fazer código com alto acoplamento. Por exemplo, nos ultimos tópicos você simplesmente definiu uma <code>def</code> dentro de outra <code>def</code>. Porém, as coisas podem ser mais simpáticas quando você simplesmente se dá o prazer de experimentar.</p>
+<p>Por exemplo, e se fizessemos uma closure de uma closure?</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">param</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">funcao_externa</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">funcao_interna</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">funcao_externa</span>
+    <span class="k">return</span> <span class="n">funcao_interna</span>
+</code></pre></div>
+<p>Nesse caso, parece um <code>Inception</code>, mas calma, não precisamos do Christopher Nolan para entender o que se passa nesse decorador. Vamos ler linha a linha (sim, foi por isso que não coloquei comentários nas funções).</p>
+<p>Na primeira linha foi definida uma função chamada <code>param</code>, é um nome bem descritivo na verdade. Lembre-se que nos exemplos passados usamos a função externa para ser nosso decorador. Agora nesse caso, essa camada, que chamamos <code>param</code>, vai ser nosso decorador. Mas uma coisa muito interessante sobre ela é que ela não recebe a função como parâmetro. Sim, ela recebe um parâmetro, mas não é a função.</p>
+<p>Sim, eu sei, está confuso. Vamos fazer com exemplos, um bom código diz mais que mil palavras.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">verbose</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">funcao_externa</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">funcao_interna</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">level</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="c1"># Nesse caso, ele vai printar o nome da função decorada</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">level</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="c1"># Nesse caso, ele vai printar o nome da função decorada</span>
+                <span class="c1"># junto com os argumentos que foram invocados</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">funcao_interna</span>
+    <span class="k">return</span> <span class="n">funcao_externa</span>
+</code></pre></div>
+<p>Definimos um novo decorador chamado <code>verbose</code>, ele recebe um argumento que é nível de verbosidade no qual o decorador vai exercer sobre as demais funções. Caso <code>level</code> seja <code>0</code>, seu valor default, ele não vai fazer nada. A única ação nesse caso seria retornar a função. Porém, caso os valores variem entre 1 e 2, diferentes coisas serão mostradas na tela. Caso a função decorada receba <code>level=1</code>, toda vez que a função for invocada o nome dela será mostrado na tela. (Sim, isso pode ser bem útil para um momento de desespero na hora de depurar seu código). Caso o valor enviado seja <code>level=2</code>, ou seja, mais verboso, ele vai nos retornar o nome da função junto dos argumentos que foram invocados. Vamos decorar uma função antes de retornar à explicação.</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@verbose</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">soma</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+</code></pre></div>
+<p>Embora quem faça a frente da nossa função seja <code>verbose</code>, o decorador real, a função que recebe a nossa função é a <code>funcao_externa</code>, como em todos os exemplos. A função <code>verbose</code> nesse caso, vai simplemente adicionar uma camada a mais no escopo local da função <code>funcao_externa</code> e por consequência também no escopo da <code>funcao_interna</code>. Ou seja, você pode parametrizar a execução do decorador sem que a parametrização seja feita com os argumentos passados a função decorada.</p>
+<h2 id="identidade-das-funcoes-decoradas">Identidade das funções decoradas</h2>
+<p>Continuando esse tópico, uma coisa muito interessante acontece com funções decoradas. Ela perde sua identidade e isso pode ser um grande problema para a fase de depuração do seu código. Imagine que quando uma função decorada apresentar um erro, o erro sempre será mostrado no decorador. Vamos tentar olhar como isso acontece:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">sem_decorador</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Função sem decorador.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">sem_decorador</span>
+<span class="c1"># &lt;function __main__.sem_decorador&gt;</span>
+</code></pre></div>
+<p>Ok, temos uma função no escopo <code>__main__</code>, sem problemas, esse é o esperado, porém se decorarmos essa função, vou usar um decorador genérico para fazer isso:</p>
+<p><div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">decorator</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">inner</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Função interna do decorador.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">inner</span>
+
+<span class="nd">@decorator</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">com_decorador</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Função com decorador.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">com_decorador</span>
+<span class="c1"># &lt;function __main__.decorator.&lt;locals&gt;.inner&gt;</span>
+</code></pre></div>
+Ou seja, toda vez em que a função <code>com_decorador</code> é invocada ela é o decorador <code>decorator</code>, mas especificamente ela é a função <code>inner</code>, a função interna do decorador. Vamos olhar mais profundamente com alguns métodos do objeto.</p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="n">sem_decorador</span><span class="o">.</span><span class="vm">__name__</span> <span class="c1"># __name__ diz o nome da função</span>
+<span class="c1"># &#39;sem_decorador&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">com_decorador</span><span class="o">.</span><span class="vm">__name__</span>
+<span class="c1"># &#39;inner&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">sem_decorador</span><span class="o">.</span><span class="vm">__doc__</span> <span class="c1"># __doc__ nos mostra a docstring da função</span>
+<span class="c1"># &#39;Função sem decorador.&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">com_decorador</span><span class="o">.</span><span class="vm">__doc__</span>
+<span class="c1"># &#39;Função interna do decorador.&#39;</span>
+</code></pre></div>
+<p>Fica evidente que na hora de depurar vamos ter vários problemas com isso, embora não seja o foco principal desse tópico, vamos usar um decorador do <code>functools</code>, o decorador de <code>wraps</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">functools</span><span class="w"> </span><span class="kn">import</span> <span class="n">wraps</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">decorator</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
+    <span class="nd">@wraps</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">inner</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Função interna do decorador.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">inner</span>
+
+<span class="nd">@decorator</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">com_decorador</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Função com decorador.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">com_decorador</span>
+<span class="c1"># &lt;function __main__.com_decorador&gt;</span>
+</code></pre></div>
+<p>Com isso, uma cópia dos métodos <code>__module__</code>, <code>__name__</code>, <code>__qualname__</code>, <code>__annotations__</code> e <code>__doc__</code> será feita na função "embrulhada" (wraped) e as propriedades da função decorada continuarão a ser mantidas após o embrulho. Ou seja, poderemos tanto facilitar a vida quando for necessário depurar nosso código e também o autocomplete do seu editor, a função <code>help()</code> e todas as coisas que precisam determinar o comportamento da sua função continuariam a funcionar como se a função não estivesse decorada. Porém, ela agora será uma função embrulhada. Ou seja, quando a função for chamada ela vai ser invocada pelo embrulho e você perderá a visualização da representação sem o decorador de <code>wraps</code> (<code>&lt;function __main__.decorator.&lt;locals&gt;.inner&gt;</code>). Para isso, existe na função embrulhada um método chamado <code>__wrapped__</code> que corresponde exatamente à função <code>&lt;function __main__.decorator.&lt;locals&gt;.inner&gt;</code>. Com isso, você agora pode usar a função sem se preocupar com o comportamento do decorador e caso precise desse tipo de interação, você pode invocar diretamente <code>com_decorador.__wrapped__</code>. Então você não precisa mais se preocupar com diferentes tipos de interação e manter a sanidade mental.</p>
+<p>Mas, uma coisa um pouco diferente aconteceu nesse exemplo com <code>@wraps</code>, existe um novo decorador inserido dentro da função interna do decorador e é isso que vamos ver no proximo tópico.</p>
+<h2 id="decorando-decoradores">Decorando decoradores</h2>
+<p>Como você deve ter percebido, não existem mais limites entre decorar funções e fazer encapsulamento das mesmas. Podemos decorar as funções que são decoradores e as funções decoradas também podem ter mais de um decorador. Por exemplo:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@decorador1</span>
+<span class="nd">@decorador2</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">funcao_que_redebe_dois_decoradores</span><span class="p">():</span>
+    <span class="k">pass</span>
+</code></pre></div>
+<p>nesse caso, o <code>decorador1</code> decora o <code>decorador2</code> que decora a função <code>funcao_que_redece_dois_decoradores</code>. Sim, eu sei que você entendeu e isso pode ter um ciclo infinito de possibilidades. Uma coisa que deve ser levada em consideração é que conforme você aninha decoradores as funções tendem a ficar mais dificeis de depurar e de prever o comportamento.</p>
+<p>E com isso terminamos aqui a primeira parte do nosso conteúdo sobre programação funcional sem imports. Tudo que construímos até aqui foi usando as funções <a href="https://docs.python.org/3/library/functions.html#built-in-funcs">builtin</a> do python. Mas antes de prosseguir, gostaria de fazer algumas breves considerações matemáticas, para que seja possível criarmos código de mais qualidade.</p>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 8, 2025 20:22:32 UTC">September 8, 2025</span>
+  </span>
+
+    
+    
+    
+      
+  
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Contributors">
+      
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 5.5A3.5 3.5 0 0 1 15.5 9a3.5 3.5 0 0 1-3.5 3.5A3.5 3.5 0 0 1 8.5 9 3.5 3.5 0 0 1 12 5.5M5 8c.56 0 1.08.15 1.53.42-.15 1.43.27 2.85 1.13 3.96C7.16 13.34 6.16 14 5 14a3 3 0 0 1-3-3 3 3 0 0 1 3-3m14 0a3 3 0 0 1 3 3 3 3 0 0 1-3 3c-1.16 0-2.16-.66-2.66-1.62a5.54 5.54 0 0 0 1.13-3.96c.45-.27.97-.42 1.53-.42M5.5 18.25c0-2.07 2.91-3.75 6.5-3.75s6.5 1.68 6.5 3.75V20h-13zM0 20v-1.5c0-1.39 1.89-2.56 4.45-2.9-.59.68-.95 1.62-.95 2.65V20zm24 0h-3.5v-1.75c0-1.03-.36-1.97-.95-2.65 2.56.34 4.45 1.51 4.45 2.9z"/></svg>
+      
+    </span>
+    <nav>
+      dunossauro, Flávio Meira, serrones, Andrade Jr, Luis Eduardo
+    </nav>
+  </span>
+
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.92b07e13.min.js"></script>
+      
+    
+  </body>
+</html>

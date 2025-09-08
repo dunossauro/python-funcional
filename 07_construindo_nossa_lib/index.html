@@ -1,0 +1,918 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../06_funcoes_geradoras_e_hofs_p2/">
+      
+      
+        <link rel="next" href="../08_closures_1_escopo/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.18">
+    
+    
+      
+        <title>Nossa primeira biblioteca de funções - Python funcional</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.7e37652d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#nossa-primeira-biblioteca-de-funcoes" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Python funcional" class="md-header__button md-logo" aria-label="Python funcional" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Python funcional
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Nossa primeira biblioteca de funções
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Python funcional" class="md-nav__button md-logo" aria-label="Python funcional" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Python funcional
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Python funcional
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00_introducao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Saindo da zona de conforto
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_funcoes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Funções
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02_iteraveis_iteradores/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Iteráveis e iteradores
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_consumindo_iteraveis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Consumindo iteráveis
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_funcoes_reducao_mapeamento/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Funções de redução/mapeamento
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05_hofs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Funções de ordem superior
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06_funcoes_geradoras_e_hofs_p2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Funções de ordem superior p.2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Nossa primeira biblioteca de funções
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Nossa primeira biblioteca de funções
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tail" class="md-nav__link">
+    <span class="md-ellipsis">
+      tail()
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#head" class="md-nav__link">
+    <span class="md-ellipsis">
+      head()
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#take" class="md-nav__link">
+    <span class="md-ellipsis">
+      take()
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#drop" class="md-nav__link">
+    <span class="md-ellipsis">
+      drop()
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pipe" class="md-nav__link">
+    <span class="md-ellipsis">
+      pipe()
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#twice" class="md-nav__link">
+    <span class="md-ellipsis">
+      twice()
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusões
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08_closures_1_escopo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Closures e contexto de variáveis
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09_closures_2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Usos variados de closures
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10_decoradores/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Decoradores
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tail" class="md-nav__link">
+    <span class="md-ellipsis">
+      tail()
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#head" class="md-nav__link">
+    <span class="md-ellipsis">
+      head()
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#take" class="md-nav__link">
+    <span class="md-ellipsis">
+      take()
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#drop" class="md-nav__link">
+    <span class="md-ellipsis">
+      drop()
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pipe" class="md-nav__link">
+    <span class="md-ellipsis">
+      pipe()
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#twice" class="md-nav__link">
+    <span class="md-ellipsis">
+      twice()
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusões
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="nossa-primeira-biblioteca-de-funcoes">Nossa primeira biblioteca de funções</h1>
+<p>O objetivo desse tópico é construir uma gama de funções simples para que possamos exercitar tudo que aprendemos. Vamos fazer 6 funções legais de usar e que podem ajudar em muitos casos. Partiu? Vem comigo.</p>
+<h3 id="tail">tail()</h3>
+<p>Vamos tentar fazer uma função que pode ou não ser uma HOF ou não? Parecida com aquelas do python, que recebem <code>key</code>?</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">tail</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">seq</span><span class="p">[</span><span class="o">-</span><span class="n">n</span><span class="p">:]</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">key</span> <span class="k">else</span> <span class="n">key</span><span class="p">(</span><span class="n">seq</span><span class="p">[</span><span class="o">-</span><span class="n">n</span><span class="p">:])</span>
+</code></pre></div>
+<p>Pode parecer uma função extremamente simples, mas ela é bem legal. Dá pra conseguir muitos resultados legais com ela:</p>
+<div class="highlight"><pre><span></span><code><span class="s1">&#39;Por padrão vai retornar só o ultimo&#39;</span>
+<span class="n">tail</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span> <span class="c1"># [4]</span>
+
+<span class="s1">&#39;Aqui usamos n, que nesse caso retorna os ultimos 3 elementos&#39;</span>
+<span class="n">tail</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">],</span> <span class="mi">3</span><span class="p">)</span> <span class="c1"># [2, 3, 4]</span>
+
+<span class="s1">&#39;O resultado reverso&#39;</span>
+<span class="n">tail</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">],</span> <span class="mi">3</span><span class="p">,</span> <span class="nb">reversed</span><span class="p">)</span> <span class="c1"># &lt;list_reverseiterator at xpto&gt;</span>
+
+<span class="nb">list</span><span class="p">(</span><span class="n">tail</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">],</span> <span class="mi">3</span><span class="p">,</span> <span class="nb">reversed</span><span class="p">))</span> <span class="c1"># [4, 3, 2]</span>
+
+<span class="s1">&#39;Uma aplicação complexa&#39;</span>
+<span class="nb">list</span><span class="p">(</span><span class="n">tail</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">],</span> <span class="mi">2</span><span class="p">,</span> <span class="n">partial</span><span class="p">(</span><span class="nb">map</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)))</span> <span class="c1"># [9, 16]</span>
+</code></pre></div>
+<h3 id="head">head()</h3>
+<p>Aqui vamos fazer a mesma coisa, só para o começo da sequência:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">head</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">seq</span><span class="p">[:</span><span class="n">n</span><span class="p">]</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">key</span> <span class="k">else</span> <span class="n">key</span><span class="p">(</span><span class="n">seq</span><span class="p">[:</span><span class="n">n</span><span class="p">])</span>
+</code></pre></div>
+<p>Se você parar pra pensar, a única coisa que mudou aqui foi o slice (<code>[-n:] -&gt; [:n]</code>). Então, vamos fazer as mesmas operações:</p>
+<div class="highlight"><pre><span></span><code><span class="s1">&#39;Por padrão vai retornar só o primeiro&#39;</span>
+<span class="n">head</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span> <span class="c1"># [1]</span>
+
+<span class="s1">&#39;O resultado reverso&#39;</span>
+<span class="n">head</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">],</span> <span class="mi">3</span><span class="p">,</span> <span class="nb">reversed</span><span class="p">)</span> <span class="c1"># &lt;list_reverseiterator at xpto&gt;</span>
+
+<span class="s1">&#39;Uma aplicação complexa&#39;</span>
+<span class="nb">list</span><span class="p">(</span><span class="n">head</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">],</span> <span class="mi">2</span><span class="p">,</span> <span class="n">partial</span><span class="p">(</span><span class="nb">map</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)))</span> <span class="c1"># [1, 4]</span>
+</code></pre></div>
+<h3 id="take">take()</h3>
+<p>A função take é uma função muito legal implementada na lib <a href="https://github.com/kachayev/fn.py">fn.py</a> e eu gosto muito dela. Vamos ver como ela funciona?</p>
+<div class="highlight"><pre><span></span><code><span class="nb">list</span><span class="p">(</span><span class="n">take</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]))</span> <span class="c1"># [1,2,3,4]</span>
+</code></pre></div>
+<p>Deu pra perceber que ela é bem poderosa, não? Em qualquer sequência podemos pegar n elementos. Uma coisa legal é que podemos consumir parcialmente os geradores e isso é uma coisa linda:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">gen</span><span class="p">():</span>
+    <span class="k">yield</span> <span class="mi">1</span>
+    <span class="k">yield</span> <span class="mi">2</span>
+    <span class="k">yield</span> <span class="mi">3</span>
+    <span class="k">yield</span> <span class="mi">4</span>
+
+<span class="nb">list</span><span class="p">(</span><span class="n">take</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">gen</span><span class="p">()))</span> <span class="c1"># [1, 2]</span>
+
+<span class="n">func_gen</span> <span class="o">=</span> <span class="n">gen</span><span class="p">()</span>
+<span class="nb">list</span><span class="p">(</span><span class="n">take</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">func_gen</span><span class="p">))</span> <span class="c1"># [1, 2]</span>
+<span class="nb">list</span><span class="p">(</span><span class="n">take</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">func_gen</span><span class="p">))</span> <span class="c1"># [3, 4]</span>
+</code></pre></div>
+<p>Vamos implementar uma função dessa?</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">take</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">seq</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Pega n elementos de um sequência</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        - n: Número de elementos retirados da sequência</span>
+<span class="sd">        - seq: Sequência da qual os números serão removidos</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">_iter</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="k">yield</span> <span class="nb">next</span><span class="p">(</span><span class="n">_iter</span><span class="p">)</span>
+
+<span class="nb">list</span><span class="p">(</span><span class="n">take</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]))</span> <span class="c1"># [1, 2]</span>
+</code></pre></div>
+<p>Agora que você já sabe tudo que foi usado nessa função (iter, yield, next) as coisas ficam tão simples de entender, não?</p>
+<p>Vamos testar com um gerador outra vez, usando o mesmo código do exemplo passado:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">gen</span><span class="p">():</span>
+    <span class="k">yield</span> <span class="mi">1</span>
+    <span class="k">yield</span> <span class="mi">2</span>
+    <span class="k">yield</span> <span class="mi">3</span>
+    <span class="k">yield</span> <span class="mi">4</span>
+
+<span class="nb">list</span><span class="p">(</span><span class="n">take</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">gen</span><span class="p">()))</span> <span class="c1"># [1, 2]</span>
+
+<span class="n">func_gen</span> <span class="o">=</span> <span class="n">gen</span><span class="p">()</span>
+<span class="nb">list</span><span class="p">(</span><span class="n">take</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">func_gen</span><span class="p">))</span> <span class="c1"># [1, 2]</span>
+<span class="nb">list</span><span class="p">(</span><span class="n">take</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">func_gen</span><span class="p">))</span> <span class="c1"># [3, 4]</span>
+</code></pre></div>
+<p>Olha só que mágico, não? A função implementada na biblioteca fn não é construída exatamente dessa maneira, eles usam uma função mágica do módulo <code>itertools</code> chamada <code>islice</code> que vamos ver em um tópico futuro dedicado especialmente ao itertools. Mas vai dizer que não ficou simples?</p>
+<p>Jaber diz: <code>Mas a função take() não faz a mesma coisa que a função head()???</code></p>
+<p>Sim e não. Se você pensar em sequências que aceitam slice (seq[]) ela, head(), é uma função bem legal. Resolve problemas de listas etc... Ela é uma função que pode ser legal em iterações, em pegar o primeiro elemento em alguns casos. A função take() é MUITO mais poderosa, mas também não é bala de prata. Apesar do fato de ela consumir geradores, o que aumenta seu poder, ela também retorna um gerador, o que faz com que não possamos usar o len() dela, embora você saiba o tamanho que pediu no primeiro argumento. O retorno não pode ser acessado por posição e tem que ser construído com alguma outra função, como (list(), tuple(), set() ...). Mas a diferença mais gritante é que take() consome parcialmente iteráves e a função head() é uma HOF que aceita uma função pra processar a cabeça da lista. Com isso, elas exibem retornos completamente diferentes.</p>
+<h3 id="drop">drop()</h3>
+<p>Drop também é uma função que vamos pegar emprestado de <a href="https://github.com/kachayev/fn.py">fn.py</a>, embora também não vamos usar sua implementação oficial. Vamos ver como ela funciona:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">list</span><span class="p">(</span><span class="n">drop</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">]))</span> <span class="c1"># [5, 6, 7, 8, 9]</span>
+</code></pre></div>
+<p>Se você analisar de perto, drop() tem um comportamento muito parecido com a função take(). Ela também consome parcialmente um iterável, porém ela nos retorna valores após o primeiro argumento:</p>
+<div class="highlight"><pre><span></span><code><span class="n">drop</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">seq</span><span class="p">)</span>
+</code></pre></div>
+<p><code>n</code> é o valor que queremos ignorar de <code>seq</code>. Em uma chamada <code>n=5</code> de uma sequência de 6 valores, só o último valor será retonado. O que faz o comportamento da função ser exatamente inverso ao take() que nos retornaria os primeiros cinco valores. Tá bom, falamos muito, vamos tentar implementar:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">drop</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">seq</span><span class="p">):</span>
+    <span class="n">_iter</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">el</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">seq</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">:</span> <span class="c1"># aqui está a sacada que faz a diferença</span>
+            <span class="nb">next</span><span class="p">(</span><span class="n">_iter</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="nb">next</span><span class="p">(</span><span class="n">_iter</span><span class="p">)</span>
+</code></pre></div>
+<p>Se você olhar com carinho vai perceber que drop() usa enumerate() para fazer uma iteração explícita (já falamos disso) e usa o valor do index para saber em qual posição da iteração estamos no <code>if</code>. Um ponto importante a ser analisado é que os valores de <code>seq</code> são percorridos, porém não são devolvidos ao final da iteração.</p>
+<p>Um ponto negativo da função drop() é que caso ela seja usada em uma sequência que contém sequências, <code>[[1], [2]]</code>, e essas sequências sejam muito grandes (as internas no caso), elas vão ser processadas da mesma maneira internamente na função, embora o resultado seja exatamente o esperado. Para resolver esse ponto, existe na biblioteca <code>itertools</code> uma função chamada islice() que torna a saída lazy, porém vamos ver isso em outro tópico e assim chegaremos na versão verdadeira, a de fn.py, de ambas as funções (take() e drop()).</p>
+<h3 id="pipe">pipe()</h3>
+<p>pipe() é uma função emprestada da biblioteca <a href="https://github.com/pytoolz/toolz">toolz</a>, que assim como <a href="https://github.com/kachayev/fn.py">fn.py</a> trabalha em trazer muitos aspectos funcionais ao python. Existem muitas bibliotecas com esse propósito e vou deixar um vídeo que talvez seja o maior motivador desse curso <a href="https://www.youtube.com/watch?v=Rp_lvuXuSSA">Programación funcional con Python - Jesús Espino</a> em que Jesús explana entre muitos conceitos da programação funcional e também sobre as bibliotecas existentes. Mas chega de enrolar, vamos entender o conceito agregado no pipe(). Pra quem vem do mundo linux, pipes fazem parte do dia a dia de um bom uso do terminal.</p>
+<p>Jaber diz: <code>Porque dentre todas as funções que falamos até agora, você quer filosofar nessa???</code></p>
+<p>Tá bom, vamos pensar que o conceito de pipe(), na programação funcional é uma coisa muito importante. Streams são feitos a base de pipes. Mas afinal, o que é um pipe? Não ele não é um cano, mas é, no fundo é.</p>
+<p>Imagina pegar o resultado de uma função e atribuir a entrada de outra função? É basicamente isso. O terminal do linux foi citado, mas todo o mundo UNIX usa esse conceito de maneira magnífica. Vamos olhar um exemplo no terminal:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># cat - mostra o conteúdo do arquivo na tela, porém mostrar na tela é uma saída para STDOUT (saída padrão)</span>
+<span class="c1"># oi.txt - é um arquivo de texto que contém as linhas (oi Jaber \n oi Eduardo \n Oi dinossauros)</span>
+<span class="c1"># | - é um pipe</span>
+<span class="c1"># grep - é um comando usado para procurar uma determinada string (grep oi) vai exibir todas as linhas do arquivo que comtém a string oi</span>
+
+cat<span class="w"> </span>oi.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>Jaber
+
+<span class="c1"># oi Jaber</span>
+</code></pre></div>
+<p>Dado esse exemplo, o resultado do cat, que jogaria o conteúdo todo da tela, foi jogado para o pipe e ele é responsável por fazer uma conexão entre o <code>cat</code> e o <code>grep</code>. É um cano entre o cat e o grep. Ele usou tudo que foi processado por cat e entregou ao grep. Fazendo uma conexão. Dito tudo isso, vamos analisar a nossa função pipe(), que não é nossa, foi emprestada de <a href="https://github.com/pytoolz/toolz">toolz</a>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">pipe</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># TypeError: can only concatenate list (not &quot;int&quot;) to list</span>
+</code></pre></div>
+<p>Jaber diz: <code>Estou totalmente perdido, não estou entendo mais nada.</code></p>
+<p>Calma amiguinho, estamos chegando lá.</p>
+<p>A função pipe() funciona em um único valor:</p>
+<div class="highlight"><pre><span></span><code><span class="n">pipe</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span> <span class="c1"># 6</span>
+</code></pre></div>
+<p>Tá, mas ainda assim ela não acrescenta em nada. Vamos tentar complicar um pouco as coisas:</p>
+<div class="highlight"><pre><span></span><code><span class="n">soma_2</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">2</span>
+<span class="n">soma_4</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">4</span>
+
+<span class="n">pipe</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">soma_2</span><span class="p">,</span> <span class="n">soma_4</span><span class="p">)</span> <span class="c1"># 10</span>
+</code></pre></div>
+<p>Bom, isso também é meio babaca, poderia ser feito com <code>soma_4(soma_2(4))</code>. Mas espera. Somos todos hackers, será que não podemos hackear uma função?</p>
+<p>Jaber diz: <code>Aqui é Mr. Robot RAPAZ</code></p>
+<p>Em um outro momento, vamos explicar isso com muita calma, mas agora só o gostinho pra você entender:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">functools</span><span class="w"> </span><span class="kn">import</span> <span class="n">partial</span>
+
+<span class="n">soma_2</span> <span class="o">=</span> <span class="n">partial</span><span class="p">(</span><span class="nb">map</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="nb">list</span><span class="p">(</span><span class="n">pipe</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="n">soma_2</span><span class="p">))</span> <span class="c1"># [3, 4, 5, 6]</span>
+</code></pre></div>
+<p>Tá, ok. Isso é um map mais complicado, você não acha?</p>
+<p>Jaber diz: <code>Achei muito ofensivo, deleta.</code></p>
+<p>A função functools.partial() aplica uma função parcialmente. Mas isso é assunto pra outra hora. Vamos tentar outra vez e eu juro que será a ultima:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">functools</span><span class="w"> </span><span class="kn">import</span> <span class="n">partial</span>
+
+<span class="n">soma_2</span> <span class="o">=</span> <span class="n">partial</span><span class="p">(</span><span class="nb">map</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">soma_4</span> <span class="o">=</span> <span class="n">partial</span><span class="p">(</span><span class="nb">map</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">4</span><span class="p">)</span>
+
+<span class="nb">list</span><span class="p">(</span><span class="n">pipe</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="n">soma_2</span><span class="p">))</span> <span class="c1"># [3, 4, 5, 6]</span>
+<span class="nb">list</span><span class="p">(</span><span class="n">pipe</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="n">soma_4</span><span class="p">))</span> <span class="c1"># [5, 6, 7, 8]</span>
+
+<span class="c1"># O pulo do gato</span>
+
+<span class="nb">list</span><span class="p">(</span><span class="n">pipe</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="n">soma_2</span><span class="p">,</span> <span class="n">soma_4</span><span class="p">))</span> <span class="c1"># [7, 8, 9, 10]</span>
+</code></pre></div>
+<p>A função aplicou soma_2() em toda a sequência e no resultado dessa sequência aplicou soma_4(). Se tivéssemos 10 funções como argumentos ele executaria as 10 funções uma no resultado da outra. Tá, mas é complicado implementar isso? Não:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">pipe</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span> <span class="o">*</span><span class="n">funcs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    O * nessa função faz com que tudo que for passado após a sequência</span>
+<span class="sd">      faça parte da lista funcs</span>
+
+<span class="sd">    Ele vai iterando na lista de funções e vai jogando o resultado na próxima</span>
+<span class="sd">      função</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">func</span> <span class="ow">in</span> <span class="n">funcs</span><span class="p">:</span>
+        <span class="n">seq</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">seq</span>
+</code></pre></div>
+<p>Ufa, achei que não íamos acabar nunca essa função, mas no fim deu tudo certo, somos hackers de sequências e somos muito inteligentes.</p>
+<h3 id="twice">twice()</h3>
+<p>Nesse momento eu presumo que você lembre que no tópico passado hackeamos a função aplicando parcialmente outra função. Porque agora vamos usar o que aprendemos, mesmo que ainda tenhamos muito pra aprender em um tópico específico sobre aplicações parciais, para hackear a função por definição.</p>
+<p>twice() é uma função bem bacana, ela só executa duas vezes a mesma operação em uma sequência. Não é nenhum bicho de sete cabeças e eu espero que você lembre disso.</p>
+<div class="highlight"><pre><span></span><code><span class="n">mul_2</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">*</span> <span class="mi">2</span>
+<span class="n">twice</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">mul_2</span><span class="p">)</span> <span class="c1"># 40</span>
+</code></pre></div>
+<p>Vamos pensar, temos uma função que multiplica o valor passado por 2, mul_2(). Passamos <code>10</code> e ela devolve <code>20</code>. Lembra do pipe()? Então, o resultado da primeira rodada foi aplicado a segunda.</p>
+<p><code>((10 * 2) * 2)</code> ou seja <code>40</code>. Outra vez temos uma função que só trabalha com um único valor. Porém, twice() tem um truque na manga. Não só um, pois twice() evita aquela chamada chata <code>mul_2(mul_2(10))</code> o que já é uma coisa muito legal. Mas o que é mais emblemático nessa função nós vamos ver agora:</p>
+<div class="highlight"><pre><span></span><code><span class="n">twice</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">mul_2</span><span class="p">)</span> <span class="c1"># [1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3]</span>
+</code></pre></div>
+<p>Jaber: <code>Nossa, o que é isso? MEU DEUS, SENHOR JESUS, ARREDA DAQUI SATANÁS</code></p>
+<p>Calma, Jaber. As listas em python implementam um método chamado <code>__mul__</code>, o que faz uma multiplicação ser um pouco diferente. Vamos aplicar a só a multiplicação primeiro:</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span> <span class="o">*</span> <span class="mi">2</span> <span class="c1"># [1, 2, 3, 1, 2, 3]</span>
+</code></pre></div>
+<p>Isso nada mais é do que repetir a sequência. É <code>1, 2, 3</code> duas vezes. O resultado de twice() parece uma coisa maluca porque fez isso duas vezes. O que fez a multiplicação parecer coisa de outro mundo. Só que a função twice() tem uma carta na manga. Um parâmetro opcional chamado <code>_iter</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">twice</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">mul_2</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span> <span class="c1"># &lt;map at ...&gt;</span>
+</code></pre></div>
+<p>Jaber: <code>É, parei de entender a muito tempo. Tava bom, mas tava ruim também. Agora parece que piorou.</code></p>
+<p>Calma amiguinho, vamos pedir uma lista disso:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">list</span><span class="p">(</span><span class="n">twice</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">mul_2</span><span class="p">,</span> <span class="kc">True</span><span class="p">))</span> <span class="c1"># [4, 8, 12]</span>
+</code></pre></div>
+<p>Jaber: <code>Cada vez mais misterioso está ficando esse curso, tô fora.</code></p>
+<p>Você lembra do pipe hackeado? Esse True ativa o hack. Vamos ver o código:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">twice</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">_iter</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">functools</span><span class="w"> </span><span class="kn">import</span> <span class="n">partial</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">_iter</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="n">func</span><span class="p">(</span><span class="n">val</span><span class="p">))</span> <span class="c1"># O retorno normal</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">map_part</span> <span class="o">=</span> <span class="n">partial</span><span class="p">(</span><span class="nb">map</span><span class="p">,</span> <span class="n">func</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">map_part</span><span class="p">(</span><span class="n">map_part</span><span class="p">(</span><span class="n">val</span><span class="p">))</span> <span class="c1"># O retorno com hack</span>
+</code></pre></div>
+<p>A função pipe() precisava de uma ajuda para aplicar a função parcial, o que fazia seu estado original sempre trabalhar com um único valor e com auxílio do <code>functools.partial()</code> iterar em uma sequência. Já a função twice() traz isso por definição. Vamos dizer que trabalha com a iteração por definição e pode ser ativada com o parâmetro <code>_iter</code>. Tirando isso a função twice() não tem nada de especial, ela só executa a mesma função duas vezes ao mesmo elemento e caso <code>_iter</code> seja <code>True</code> ela executa a função a uma sequência. Um ponto especial de atenção é que a função retorna o mesmo tipo de dado de entrada, caso <code>_iter</code> não esteja "ativado" a resposta é um iterável do tipo lazy pois o retorno é saída de uma função map().</p>
+<h2 id="conclusoes">Conclusões</h2>
+<p>Com isso acabamos todo nosso discurso sobre funções de ordem superior (HOFs). Se você quiser parar agora, você pode, mas eu juro que a parte mais legal vai começar a rolar agora. Vamos falar de closures, decoradores e algumas substituições modernas para map() e filter().</p>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 8, 2025 20:22:32 UTC">September 8, 2025</span>
+  </span>
+
+    
+    
+    
+      
+  
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Contributors">
+      
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 5.5A3.5 3.5 0 0 1 15.5 9a3.5 3.5 0 0 1-3.5 3.5A3.5 3.5 0 0 1 8.5 9 3.5 3.5 0 0 1 12 5.5M5 8c.56 0 1.08.15 1.53.42-.15 1.43.27 2.85 1.13 3.96C7.16 13.34 6.16 14 5 14a3 3 0 0 1-3-3 3 3 0 0 1 3-3m14 0a3 3 0 0 1 3 3 3 3 0 0 1-3 3c-1.16 0-2.16-.66-2.66-1.62a5.54 5.54 0 0 0 1.13-3.96c.45-.27.97-.42 1.53-.42M5.5 18.25c0-2.07 2.91-3.75 6.5-3.75s6.5 1.68 6.5 3.75V20h-13zM0 20v-1.5c0-1.39 1.89-2.56 4.45-2.9-.59.68-.95 1.62-.95 2.65V20zm24 0h-3.5v-1.75c0-1.03-.36-1.97-.95-2.65 2.56.34 4.45 1.51 4.45 2.9z"/></svg>
+      
+    </span>
+    <nav>
+      dunossauro, serrones
+    </nav>
+  </span>
+
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.92b07e13.min.js"></script>
+      
+    
+  </body>
+</html>

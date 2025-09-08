@@ -1,0 +1,1040 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../07_construindo_nossa_lib/">
+      
+      
+        <link rel="next" href="../09_closures_2/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.18">
+    
+    
+      
+        <title>Closures e contexto de variáveis - Python funcional</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.7e37652d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#closures-e-contexto-de-variaveis" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Python funcional" class="md-header__button md-logo" aria-label="Python funcional" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Python funcional
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Closures e contexto de variáveis
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Python funcional" class="md-nav__button md-logo" aria-label="Python funcional" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Python funcional
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Python funcional
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00_introducao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Saindo da zona de conforto
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_funcoes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Funções
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02_iteraveis_iteradores/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Iteráveis e iteradores
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_consumindo_iteraveis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Consumindo iteráveis
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_funcoes_reducao_mapeamento/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Funções de redução/mapeamento
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05_hofs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Funções de ordem superior
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06_funcoes_geradoras_e_hofs_p2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Funções de ordem superior p.2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07_construindo_nossa_lib/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Nossa primeira biblioteca de funções
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Closures e contexto de variáveis
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Closures e contexto de variáveis
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#classes-vs-closures" class="md-nav__link">
+    <span class="md-ellipsis">
+      Classes vs closures
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Classes vs closures">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#classe-call" class="md-nav__link">
+    <span class="md-ellipsis">
+      classe call()
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mutacao-das-variaveis-de-uma-closure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mutação das variáveis de uma closure
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Mutação das variáveis de uma closure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#unboundlocalerror-e-escopo-de-variaveis" class="md-nav__link">
+    <span class="md-ellipsis">
+      UnboundLocalError e escopo de variáveis
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="UnboundLocalError e escopo de variáveis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#variaveis-globais-e-locais" class="md-nav__link">
+    <span class="md-ellipsis">
+      Variáveis globais e locais
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#variaveis-livres" class="md-nav__link">
+    <span class="md-ellipsis">
+      Variáveis livres
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09_closures_2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Usos variados de closures
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10_decoradores/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Decoradores
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#classes-vs-closures" class="md-nav__link">
+    <span class="md-ellipsis">
+      Classes vs closures
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Classes vs closures">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#classe-call" class="md-nav__link">
+    <span class="md-ellipsis">
+      classe call()
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mutacao-das-variaveis-de-uma-closure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mutação das variáveis de uma closure
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Mutação das variáveis de uma closure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#unboundlocalerror-e-escopo-de-variaveis" class="md-nav__link">
+    <span class="md-ellipsis">
+      UnboundLocalError e escopo de variáveis
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="UnboundLocalError e escopo de variáveis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#variaveis-globais-e-locais" class="md-nav__link">
+    <span class="md-ellipsis">
+      Variáveis globais e locais
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#variaveis-livres" class="md-nav__link">
+    <span class="md-ellipsis">
+      Variáveis livres
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="closures-e-contexto-de-variaveis">Closures e contexto de variáveis</h1>
+<p>Já passamos funções como argumento, já retornamos funções e até já mudamos o comportamento das mesmas. Mas tem uma coisa que ainda não fizemos: definir uma função no corpo de outra função:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">func_0</span><span class="p">():</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">func_1</span><span class="p">():</span>
+        <span class="k">pass</span>
+    <span class="k">pass</span>
+</code></pre></div>
+<p>Jaber diz: <code>Mas isso é uma classe! Eu sabia que programação funcional era legal, mas realmente tudo é orientação a objetos.</code></p>
+<p>Tá Jaber, eu entendo seu ponto de vista, mas vou usar uma definição muito boa do livro do Mertz:</p>
+<p>"Uma classe são dados com operações anexadas (...) Uma Closure são operações com dados anexados"</p>
+<p>Viu? Muda totalmente o modo de ver... Vamos nos explicar de maneira simples e breve, mas vamos entender as closures e fingir que classes não existem, só por alguns minutos.</p>
+<p>Vamos imaginar que temos que guardar um valor dentro de uma função. Essa função vai ser uma função que exclusivamente armazena um valor e uma função dentro do seu escopo:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">func_externa</span><span class="p">(</span><span class="n">val_1</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A função externa recebe um valor que só vai existir dentro do seu contexto</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">func_interna</span><span class="p">(</span><span class="n">val_2</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        A função interna recebe um valor e retorna a soma dos dois valores.</span>
+
+<span class="sd">        var_1 está acessível tanto no contexto da função interna quanto da</span>
+<span class="sd">          externa, porém val_2 está acessível somente no contexto da função interna.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">val_1</span> <span class="o">+</span> <span class="n">val_2</span>
+    <span class="c1"># aqui quando a função externa for chamada ela retorna a função interna e compartilha seus valores</span>
+    <span class="k">return</span> <span class="n">func_interna</span>
+</code></pre></div>
+<p>Vamos usar esse código antes de qualquer explicação mirabolante:</p>
+<div class="highlight"><pre><span></span><code><span class="n">var_func</span> <span class="o">=</span> <span class="n">func_externa</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="n">var_func</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="c1"># 10</span>
+</code></pre></div>
+<p>Como dá pra notar, a função externa é atribuída a uma variável e essa variável executa a função interna. Parece complicado, mas na verdade é bem simples. Vamos recapitular algumas coisas.</p>
+<p>Como em python as funções podem ser definidas em qualquer contexto e armazenadas em qualquer lugar, imagine que a <code>func_externa()</code> está sendo atribuída a uma variável. Em um contexto totalmente normal, como fizemos com as funções anônimas até agora. A diferença é um valor, ou uma quantidade <code>n</code> de valores, serão passadas no momento da atribuição. Esses valores vão ficar armazenados na função de maneira imutável. Vamos reaproveitar o código com alguns exemplos:</p>
+<div class="highlight"><pre><span></span><code><span class="n">soma_um</span> <span class="o">=</span> <span class="n">func_externa</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">soma_dois</span> <span class="o">=</span> <span class="n">func_externa</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">soma_tres</span> <span class="o">=</span> <span class="n">func_externa</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">soma_quarto</span> <span class="o">=</span> <span class="n">func_externa</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">soma_cinco</span> <span class="o">=</span> <span class="n">func_externa</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="c1"># vamos somar tudo com 0</span>
+<span class="n">soma_um</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># 1</span>
+<span class="n">soma_dois</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># 2</span>
+<span class="n">soma_tres</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># 3</span>
+<span class="n">soma_quarto</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># 4</span>
+<span class="n">soma_cinco</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># 5</span>
+</code></pre></div>
+<p>Bom, agora imagino que tenha ficado um pouco mais claro. Fixamos valores na <code>func_externa()</code> e armazenamos em variáveis (<code>soma_um()</code>, <code>soma_dois()</code>, <code>soma_tres()</code>, ...) cada respectiva função mostra o valor inicial da função.</p>
+<p>Quando executamos a função <code>soma_um(n)</code> qualquer valor que for usado em <code>n</code> vai ser somado ao valor fixo na função externa <code>func_externa(1)</code>, ou seja, <code>1</code>. Vale lembrar que a soma é executada porque esse é o comportamento da função interna <code>func_interna()</code>. Vamos tentar outra vez e de uma maneira mais simples:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">diga_oi</span><span class="p">(</span><span class="n">saudacao</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A função diga_oi armazenada a sua saudação</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">nome_pessoa</span><span class="p">(</span><span class="n">nome</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        A função nome_pessoa retorna a saudação somada ao nome da pessoa</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">saudacao</span><span class="p">,</span> <span class="n">nome</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">nome_pessoa</span>
+
+<span class="n">oi_pirata</span> <span class="o">=</span> <span class="n">diga_oi</span><span class="p">(</span><span class="s1">&#39;Ahoy!&#39;</span><span class="p">)</span> <span class="c1"># Definição de diga_oi (função externa) fixando Ahoy</span>
+
+<span class="n">oi_pirata</span><span class="p">(</span><span class="s1">&#39;Eduardo&#39;</span><span class="p">)</span> <span class="c1"># Ahoy! Eduardo</span>
+<span class="n">oi_pirata</span><span class="p">(</span><span class="s1">&#39;Jaber&#39;</span><span class="p">)</span> <span class="c1"># Ahoy! Jaber</span>
+<span class="n">oi_pirata</span><span class="p">(</span><span class="s1">&#39;Python&#39;</span><span class="p">)</span> <span class="c1"># Ahoy! Python</span>
+</code></pre></div>
+<p>Nesse contexto a função fixou uma variável <code>Ahoy!</code> que não pode ser modificada e toda vez que é chamada responde com a união do argumento fixo com a variável passada como parâmetro.</p>
+<p>Mas vamos tentar fixar um dicionário de idiomas pra <code>diga_oi()</code>? Por exemplo, a função externa agora não vai receber nenhum argumento, mas vai ter dentro do seu escopo um dicionário com os idiomas:</p>
+<div class="highlight"><pre><span></span><code><span class="n">dic</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;pirata&#39;</span><span class="p">:</span> <span class="s1">&#39;Ahoy&#39;</span><span class="p">,</span> <span class="s1">&#39;ingles&#39;</span><span class="p">:</span><span class="s1">&#39;Hello&#39;</span><span class="p">,</span> <span class="s1">&#39;portugues&#39;</span><span class="p">:</span> <span class="s1">&#39;Olá&#39;</span><span class="p">}</span>
+</code></pre></div>
+<p>Uma vantagem de definir esse dicionário dentro da função é que ele vai ficar isolado das variáveis globais, o que faz ele não gerar efeito colateral, e isso é muito positivo:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">diga_oi</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Definição de uma variável (dic) no escopo local da função.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">dic</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;pirata&#39;</span><span class="p">:</span> <span class="s1">&#39;Ahoy&#39;</span><span class="p">,</span> <span class="s1">&#39;ingles&#39;</span><span class="p">:</span><span class="s1">&#39;Hello&#39;</span><span class="p">,</span> <span class="s1">&#39;portugues&#39;</span><span class="p">:</span> <span class="s1">&#39;Olá&#39;</span><span class="p">}</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">nome_pessoa</span><span class="p">(</span><span class="n">idioma</span><span class="p">,</span> <span class="n">nome</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Agora a função interna ficou com a responsabilidade dos dois parâmetros</span>
+
+<span class="sd">        Mas o dicionário ainda permanece imutável dentro do escopo da chamada de nome_pessoa (função interna)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dic</span><span class="p">[</span><span class="n">idioma</span><span class="p">],</span> <span class="n">nome</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">nome_pessoa</span>
+
+<span class="n">saudacoes</span> <span class="o">=</span> <span class="n">diga_oi</span><span class="p">()</span>
+
+<span class="n">saudacoes</span><span class="p">(</span><span class="s1">&#39;pirata&#39;</span><span class="p">,</span> <span class="s1">&#39;Eduardo&#39;</span><span class="p">)</span> <span class="c1"># &#39;Ahoy Eduardo&#39;</span>
+<span class="n">saudacoes</span><span class="p">(</span><span class="s1">&#39;portugues&#39;</span><span class="p">,</span> <span class="s1">&#39;Jaber&#39;</span><span class="p">)</span> <span class="c1"># &#39;Olá Jaber&#39;</span>
+<span class="n">saudacoes</span><span class="p">(</span><span class="s1">&#39;ingles&#39;</span><span class="p">,</span> <span class="s1">&#39;Python&#39;</span><span class="p">)</span> <span class="c1"># &#39;Hello Python&#39;</span>
+</code></pre></div>
+<h2 id="classes-vs-closures">Classes vs closures</h2>
+<p>Você deve ter percebido que até agora as closures tem dois tipos de comportamentos diferentes, porém a imutabilidade permanece:</p>
+<ol>
+<li>Fixando parâmetros para padronização de chamadas</li>
+<li>O escopo da função externa é acessível para a função interna</li>
+</ol>
+<p>Aqui você deve ter sacado o esquema de operações com dados. O dado passado à função externa permanece imutável sempre e inacessível a qualquer contexto externo ao da função, ou seja, o dado foi fixado e não pode ser transformado em nenhum outro valor, a não ser que seja feita outra chamada com outro valor. O que deveria ser dito sobre as classes, e que preferi postergar, é o que toca exatamente nesse ponto. Vamos fazer uma comparação:</p>
+<h3 id="classe-call">classe <strong>call</strong>()</h3>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">diga_oi</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Classe do tipo função</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">saudacao</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Inicializa a instância do objeto com saudacao</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">saudacao</span> <span class="o">=</span> <span class="n">saudacao</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nome</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        __call__ permite que o objeto aplique o operador (),</span>
+<span class="sd">            seja chamado como função</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">saudacao</span><span class="p">,</span> <span class="n">nome</span><span class="p">)</span>
+</code></pre></div>
+<p>Esse trecho de código tem o mesmo comportamento da nossa closure pois funciona como uma função, mas o efeito colateral existe:</p>
+<div class="highlight"><pre><span></span><code><span class="n">saudacao</span> <span class="o">=</span> <span class="n">diga_oi</span><span class="p">(</span><span class="s1">&#39;Ahoy&#39;</span><span class="p">)</span>
+<span class="n">saudacao</span><span class="p">(</span><span class="s1">&#39;eduardo&#39;</span><span class="p">)</span> <span class="c1"># &#39;Ahoy eduardo&#39;</span>
+
+<span class="n">saudacao</span><span class="o">.</span><span class="n">saudacao</span> <span class="o">=</span> <span class="s1">&#39;Olá&#39;</span>
+
+<span class="n">saudacao</span><span class="p">(</span><span class="s1">&#39;eduardo&#39;</span><span class="p">)</span> <span class="c1"># &#39;Olá eduardo&#39;</span>
+</code></pre></div>
+<p>Todo atributo em python é mutável, até os métodos podem ser mudados usando monkey patch. Não quero me aprofundar em orientação a objetos pois não é o assunto do curso, mas vamos só modificar essa classe para que ela não gere o efeito colateral:</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">diga_oi</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Classe do tipo função</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">saudacao</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Inicializa a instância do objeto com saudacao sendo imutável</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">object</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;saudacao&#39;</span><span class="p">,</span> <span class="n">saudacao</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">ignored</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nome</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        __call__ permite que o objeto aplique o operador (),</span>
+<span class="sd">            seja chamado como função</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">saudacao</span><span class="p">,</span> <span class="n">nome</span><span class="p">)</span>
+</code></pre></div>
+<p><code>__setattr__()</code> é o método da classe que 'seta' valores em atributos, se nós quebrarmos a implementação default do Python ele não vai conseguir fazer atribuições, porém, é muito mais complicado que implementar uma closure. Nessa implementação simples para a comparação as closures tem 4 linhas e as classe 7. Pra fazer a mesma coisa, acho muito mais atrativo usar uma closure, não só porque estamos falando de programação funcional, mas pela simplicidade de código ('legibilidade conta'). Mas vamos prosseguir.</p>
+<h2 id="mutacao-das-variaveis-de-uma-closure">Mutação das variáveis de uma closure</h2>
+<p>Diferente do que eu disse até agora, os valores podem ser alterados no escopo da função externa, mas temos uma série de limitações. Caso o objeto passado como parâmetro, ou alocado na função externa, seja mutável (listas, dicionários, conjuntos, ...), o objeto pode receber normalmente as modificações, vamos fazer um teste:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">contador</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Função contadora de acessos.</span>
+
+<span class="sd">    Internamente mantém uma lista que é definida</span>
+<span class="sd">        vazia no momento em que é declarada</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">lista</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">soma</span><span class="p">():</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Adiciona 1 à lista toda vez que a função é chamada.</span>
+
+<span class="sd">        Retorna a somatória dos valores contidos na lista</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">lista</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">lista</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">soma</span>
+
+<span class="n">count</span> <span class="o">=</span> <span class="n">contador</span><span class="p">()</span>
+<span class="n">count</span><span class="p">()</span> <span class="c1"># 1</span>
+<span class="n">count</span><span class="p">()</span> <span class="c1"># 2</span>
+<span class="n">count</span><span class="p">()</span> <span class="c1"># 3</span>
+<span class="n">count</span><span class="p">()</span> <span class="c1"># 4</span>
+<span class="n">count</span><span class="p">()</span> <span class="c1"># 5</span>
+</code></pre></div>
+<p>Isso é uma forma porca de fazer um contador, mas ele funciona. O mais importante disso é que a variável <code>lista</code> não está sendo modificada. Os valores estão sendo atribuídos à lista porque ela é um objeto mutável. Mas não seria possível, e vamos tentar isso agora, mudar o conteúdo da variável lista:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">contador</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Função contadora de acessos.</span>
+
+<span class="sd">    Internamente mantém uma lista que é definida</span>
+<span class="sd">        vazia no momento em que é declarada</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">lista</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">soma</span><span class="p">():</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Adiciona 1 à lista toda vez que a função é chamada.</span>
+
+<span class="sd">        Retorna a somatória dos valores contidos na lista</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">lista</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="n">lista</span>
+    <span class="k">return</span> <span class="n">soma</span>
+
+<span class="n">count</span> <span class="o">=</span> <span class="n">contador</span><span class="p">()</span>
+<span class="n">count</span><span class="p">()</span> <span class="c1"># UnboundLocalError: local variable &#39;lista&#39; referenced before assignment</span>
+</code></pre></div>
+<p>Vamos tentar mudar o foco um pouco e dar mais importância a esse erro, ele pode nos mostrar coisas lindas sobre Python e que podemos usar para fazer funcional com mais empenho e graciosidade.</p>
+<h3 id="unboundlocalerror-e-escopo-de-variaveis">UnboundLocalError e escopo de variáveis</h3>
+<p><code>UnboundLocalError</code> é um erro muito comum em Python, e o que me deixa muito surpreso foi isso ter levado tanto tempo pra acontecer nesses nossos contextos de programação funcional. Vamos falar agora sobre escopo de variáveis, porém vale lembrar que esse não é um tópico de programação funcional, e sim de comportamento específico do Python. Se você já sabe sobre tudo isso, você pode pular todos esse tópicos, porém vale a pena, para o melhor entendimento das closures, ficar atento a variáveis livres.</p>
+<h4 id="variaveis-globais-e-locais">Variáveis globais e locais</h4>
+<p>Em Python as variáveis podem estar em três contextos. Elas podem ser de escopo global, local ou um 'contexto livre'. Vamos tentar olhar para isso com código:</p>
+<div class="highlight"><pre><span></span><code><span class="n">var_0</span> <span class="o">=</span> <span class="mi">5</span> <span class="c1"># Variável global, pode ser acessada em qualquer contexto</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">func</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    func lê a variável global e define uma variável local (var_1)</span>
+<span class="sd">        e retorna a soma das duas</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">var_1</span> <span class="o">=</span> <span class="mi">5</span> <span class="c1"># aqui temos uma variável do escopo local de uma função</span>
+    <span class="k">return</span> <span class="n">var_0</span> <span class="o">+</span> <span class="n">var_1</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">var_0</span><span class="p">)</span> <span class="c1"># 5</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">var_1</span><span class="p">)</span> <span class="c1"># NameError: name &#39;var_1&#39; is not defined</span>
+</code></pre></div>
+<p>var_0 está presente em toda a execução, porém var_1 é uma variável do escopo local da função <code>func()</code> e fora desse contexto ela simplesmente não existe.</p>
+<p>Outro ponto legal disso é que a variável global não pode ser modificada pela função <code>func()</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">var_0</span> <span class="o">=</span> <span class="mi">5</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">func</span><span class="p">():</span>
+    <span class="n">var_0</span> <span class="o">=</span> <span class="mi">7</span>
+
+<span class="n">func</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">var_0</span><span class="p">)</span> <span class="c1"># 5</span>
+</code></pre></div>
+<p>No momento em que tentamos atribuir no escopo de <code>func()</code>, criamos uma nova <code>var_0</code> dentro desse contexto (vamos falar mais sobre isso em um tópico futuro chamado introspecção de funções), o que faz com que a variável global permaneça a mesma.</p>
+<p>Se nós quisermos transformar o valor da variável global dentro do escopo da função, podemos usar a palavra reservada <code>global</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">var_0</span> <span class="o">=</span> <span class="mi">5</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">func</span><span class="p">():</span>
+    <span class="k">global</span> <span class="n">var_0</span>
+    <span class="n">var_0</span> <span class="o">=</span> <span class="mi">7</span>
+
+<span class="n">func</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">var_0</span><span class="p">)</span> <span class="c1"># 7</span>
+</code></pre></div>
+<p>Agora, como você pode notar, o comportamento é diferente. A palavra <code>global</code> disse ao Python que a variável usada aqui é exatamente a do escopo global. Quando o Python procura uma variável (vamos falar mais sobre isso em um tópico futuro chamado introspecção de funções (2)) ele segue uma hierarquia:</p>
+<p><div class="highlight"><pre><span></span><code>Existe no meu escopo local? Se sim, use. Caso não
+Procure em um escopo mais amplo, se existe, use. Caso não
+Procure em um escopo mais amplo ....
+....
+</code></pre></div>
+Ele busca até que o contexto seja o global, se a variável não existir ele vai nos retornar <code>NameError</code>. Mas isso só vale para leitura. E agora para escrever?</p>
+<div class="highlight"><pre><span></span><code>Variável criada no escopo, fica no escopo.
+</code></pre></div>
+<p>É simples não? Isso nos ajuda a prevenir muitos erros e não 'assinar' variáveis fora do nosso escopo local e gerar efeitos colaterais bizarros. Exemplo:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">dir_concat</span><span class="p">(</span><span class="nb">dir</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Função que recebe uma string com um diretório</span>
+<span class="sd">    e concatena ele com nosso path atual:</span>
+
+<span class="sd">    Exemplo:</span>
+<span class="sd">    &gt;&gt;&gt; dir_concat(&#39;documentos&#39;)</span>
+<span class="sd">    /home/Jaber/Python/documentos</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">os</span><span class="w"> </span><span class="kn">import</span> <span class="n">getcwd</span>
+    <span class="k">return</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">/</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">getcwd</span><span class="p">(),</span> <span class="nb">dir</span><span class="p">)</span>
+</code></pre></div>
+<p>Você notou o que existe de errado nessa função? Ela usa a palavra reservada <code>dir</code>, que é uma função do contexto global do python <code>dir()</code>, ou seja, se os contextos locais não fossem criados durante todo o resto da execução desse programa não poderíamos fazer uso da função <code>dir()</code> pois ela foi sobrescrita.</p>
+<h4 id="variaveis-livres">Variáveis livres</h4>
+<p>Tá, pode ser que tudo que eu disse é tão óbvio e você faz isso sempre, mas dentro das closures tem um problema relativo a isso e vou voltar no código que iniciei esse bloco:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">contador</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Função contadora de acessos.</span>
+
+<span class="sd">    Internamente mantém uma lista que é definida</span>
+<span class="sd">        vazia no momento em que é declarada</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">lista</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1"># Variável local de contador</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">soma</span><span class="p">():</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Adiciona 1 à lista toda vez que a função é chamada.</span>
+
+<span class="sd">        Retorna a somatória dos valores contidos na lista</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">lista</span> <span class="o">+=</span> <span class="mi">1</span> <span class="c1"># lista está definida no contexto de contador</span>
+        <span class="k">return</span> <span class="n">lista</span>
+    <span class="k">return</span> <span class="n">soma</span>
+</code></pre></div>
+<p>Vamos pensar um pouco, não é possível modificar <code>lista</code> pois ela está em um escopo externo ao de <code>soma()</code>, só que não podemos usar <code>global</code> pois <code>lista</code> não é global. Lembra da ordem da busca por nomes?</p>
+<div class="highlight"><pre><span></span><code>Faz parte de soma? Não
+Faz parte de contador? Sim
+</code></pre></div>
+<p>Então ele usa, só que responde <code>UnboundLocalError</code> pois não podemos mudar seu valor. Em Python 3, e só em Python 3, existe a palavra reservada <code>nonlocal</code>, que dá o poder de outro escopo mutar o valor fora de seu escopo e que não está no escopo global. Ou seja, resolve o nosso problema e isso é lindo. Existe uma PEP inteira detalhando esse aspecto <a href="https://www.python.org/dev/peps/pep-3104/">PEP 3104</a> pois não quero me alongar nessa explicação, pra simplificar, vou usar o contexto do <a href="https://pt.wikipedia.org/wiki/Vari%C3%A1veis_livres_e_ligadas">wikipedia</a>:</p>
+<div class="highlight"><pre><span></span><code>Uma variável livre é uma variável referenciada em uma função, que não é nem uma variável local nem um argumento daquela função.
+</code></pre></div>
+<p>No caso de nossas closures, é uma variável declarada na função externa, que pode ser acessada pela função interna e não pode ser modificada pela mesma. Porém podemos usar <code>nonlocal</code>. Vamos tentar?</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">contador</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Função contadora de acessos.</span>
+
+<span class="sd">    Internamente mantém uma lista que é definida</span>
+<span class="sd">        vazia no momento em que é declarada</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">var</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">soma</span><span class="p">():</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Adiciona 1 à lista toda vez que a função é chamada.</span>
+
+<span class="sd">        Retorna a somatória dos valores contidos na lista</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">nonlocal</span> <span class="n">var</span> <span class="c1"># implementação de nonlocal</span>
+        <span class="n">var</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="n">var</span>
+    <span class="k">return</span> <span class="n">soma</span>
+</code></pre></div>
+<p>Agora é possível gerar esse contador sem o uso da lista, então ele não 'enche nossa memória' com uma lista que pode ter um tamanho nada convencional. Porém isso fere o conceito de imutabilidade, mas ainda é melhor que uma classe porque quem faz acesso ao recurso <code>var</code> é somente a função interna sem que ele possa ser transformado pelo escopo externo, como é feito no caso das classes.</p>
+<p>Agora vamos olhar para um lado mais avançado das closures, mas você vai conseguir dar mais vazão e usos derivados das mesmas.</p>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 8, 2025 20:22:32 UTC">September 8, 2025</span>
+  </span>
+
+    
+    
+    
+      
+  
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Contributors">
+      
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 5.5A3.5 3.5 0 0 1 15.5 9a3.5 3.5 0 0 1-3.5 3.5A3.5 3.5 0 0 1 8.5 9 3.5 3.5 0 0 1 12 5.5M5 8c.56 0 1.08.15 1.53.42-.15 1.43.27 2.85 1.13 3.96C7.16 13.34 6.16 14 5 14a3 3 0 0 1-3-3 3 3 0 0 1 3-3m14 0a3 3 0 0 1 3 3 3 3 0 0 1-3 3c-1.16 0-2.16-.66-2.66-1.62a5.54 5.54 0 0 0 1.13-3.96c.45-.27.97-.42 1.53-.42M5.5 18.25c0-2.07 2.91-3.75 6.5-3.75s6.5 1.68 6.5 3.75V20h-13zM0 20v-1.5c0-1.39 1.89-2.56 4.45-2.9-.59.68-.95 1.62-.95 2.65V20zm24 0h-3.5v-1.75c0-1.03-.36-1.97-.95-2.65 2.56.34 4.45 1.51 4.45 2.9z"/></svg>
+      
+    </span>
+    <nav>
+      dunossauro, serrones
+    </nav>
+  </span>
+
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.92b07e13.min.js"></script>
+      
+    
+  </body>
+</html>

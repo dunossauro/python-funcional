@@ -1,0 +1,841 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../05_hofs/">
+      
+      
+        <link rel="next" href="../07_construindo_nossa_lib/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.18">
+    
+    
+      
+        <title>Funções de ordem superior p.2 - Python funcional</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.7e37652d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#funcoes-de-ordem-superior-p2" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Python funcional" class="md-header__button md-logo" aria-label="Python funcional" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Python funcional
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Funções de ordem superior p.2
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Python funcional" class="md-nav__button md-logo" aria-label="Python funcional" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Python funcional
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Python funcional
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00_introducao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Saindo da zona de conforto
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_funcoes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Funções
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02_iteraveis_iteradores/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Iteráveis e iteradores
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_consumindo_iteraveis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Consumindo iteráveis
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_funcoes_reducao_mapeamento/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Funções de redução/mapeamento
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05_hofs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Funções de ordem superior
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Funções de ordem superior p.2
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Funções de ordem superior p.2
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#funcoes-que-aceitam-funcoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Funções que aceitam funções
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#funcoes-geradoras" class="md-nav__link">
+    <span class="md-ellipsis">
+      Funções geradoras
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#escrevendo-nossas-proprias-hofs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Escrevendo nossas próprias HOFs
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07_construindo_nossa_lib/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Nossa primeira biblioteca de funções
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08_closures_1_escopo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Closures e contexto de variáveis
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09_closures_2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Usos variados de closures
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10_decoradores/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Decoradores
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#funcoes-que-aceitam-funcoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Funções que aceitam funções
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#funcoes-geradoras" class="md-nav__link">
+    <span class="md-ellipsis">
+      Funções geradoras
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#escrevendo-nossas-proprias-hofs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Escrevendo nossas próprias HOFs
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="funcoes-de-ordem-superior-p2">Funções de ordem superior p.2</h1>
+<p>Segundo Steven Lott, podemos criar três tipos de HOFs diferentes:</p>
+<ol>
+<li>Funções que aceitam funções como argumento</li>
+<li>Funções que retornam uma função ou uma classe com <code>__call__</code></li>
+<li>Funções que aceitam e retornam funções (Geralmente são decoradores)</li>
+</ol>
+<p>Contudo, vamos exercitar o fato de criar funções de ordem superior apenas. Vamos tentar copiar algumas do escopo e vamos nos divertir. Pronto?</p>
+<h2 id="funcoes-que-aceitam-funcoes">Funções que aceitam funções</h2>
+<p>Essa vocês já estão matando no peito, eu sei. Vamos ao código então:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">map_clone</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">sequencia</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Função geradora clone do map</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        - func: Função que será aplicada a cada elemento da sequência</span>
+<span class="sd">        - sequencia: Iterável a ser consumido pela função</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="n">sequencia</span><span class="p">:</span>
+        <span class="k">yield</span> <span class="n">func</span><span class="p">(</span><span class="n">el</span><span class="p">)</span>
+</code></pre></div>
+<p>Olha, eu sei que parecia que já tínhamos falado sobre tudo, mas esse é o melhor momento para falar sobre as funções geradoras.</p>
+<h2 id="funcoes-geradoras">Funções geradoras</h2>
+<p>Funções geradoras 'trocam' o <code>return</code> por <code>yield</code>. Você só precisa disso para que sua função seja um gerador e retorne lazy como as funções embutidas do python. Só que existe um ponto, as funções retornam iteráveis, ou seja, teremos que usar os mesmos construtores (<code>list()</code>, <code>tuple()</code>, etc..) de objetos que usamos antes:</p>
+<div class="highlight"><pre><span></span><code><span class="n">map_clone</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span> <span class="c1"># &lt;generator object map_clone at 0x7faee9511e60&gt;</span>
+
+<span class="c1"># chamando o construtor list()</span>
+<span class="nb">list</span><span class="p">(</span><span class="n">map_clone</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]))</span> <span class="c1"># [1, 4, 9]</span>
+</code></pre></div>
+<p>Vamos explanar mais a ideia de funções geradoras em outro tópico, mas o entendimento básico é necessário agora. No nosso exemplo com yield usamos um laço for, mas vamos tentar outra abordagem:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">f_geradora</span><span class="p">():</span>
+    <span class="k">yield</span> <span class="mi">1</span>
+    <span class="k">yield</span> <span class="mi">2</span>
+    <span class="k">yield</span> <span class="mi">3</span>
+    <span class="k">yield</span> <span class="mi">4</span>
+
+<span class="n">gen</span> <span class="o">=</span> <span class="n">f_geradora</span><span class="p">()</span>
+
+<span class="nb">next</span><span class="p">(</span><span class="n">gen</span><span class="p">)</span> <span class="c1"># 1</span>
+<span class="nb">next</span><span class="p">(</span><span class="n">gen</span><span class="p">)</span> <span class="c1"># 2</span>
+<span class="nb">next</span><span class="p">(</span><span class="n">gen</span><span class="p">)</span> <span class="c1"># 3</span>
+<span class="nb">next</span><span class="p">(</span><span class="n">gen</span><span class="p">)</span> <span class="c1"># 4</span>
+<span class="nb">next</span><span class="p">(</span><span class="n">gen</span><span class="p">)</span> <span class="c1"># StopIteration</span>
+
+<span class="n">gen</span> <span class="o">=</span> <span class="n">f_geradora</span><span class="p">()</span>
+<span class="nb">list</span><span class="p">(</span><span class="n">gen</span><span class="p">)</span> <span class="c1"># [1, 2, 3, 4]</span>
+</code></pre></div>
+<p>A função se transforma em um iterável, um comportamento diferente de todas as funções que vimos até agora.</p>
+<p>Vamos tentar entender... yield funciona como um break. Tá, vamos tentar de novo. É como se a execução da função tivesse um pause. Vamos explorar mais o último exemplo:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">f_geradora</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;aqui vai o primeiro valor&#39;</span><span class="p">)</span>
+    <span class="k">yield</span> <span class="mi">1</span> <span class="c1"># pausa</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Segundo chegando&#39;</span><span class="p">)</span>
+    <span class="k">yield</span> <span class="mi">2</span> <span class="c1"># pausa</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Terceiro, tá quase acabando&#39;</span><span class="p">)</span>
+    <span class="k">yield</span> <span class="mi">3</span> <span class="c1"># pausa</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Quarto e último&#39;</span><span class="p">)</span>
+    <span class="k">yield</span> <span class="mi">4</span> <span class="c1"># pausa</span>
+
+    <span class="c1"># StopIteration</span>
+
+<span class="n">gen</span> <span class="o">=</span> <span class="n">f_geradora</span><span class="p">()</span>
+
+<span class="nb">next</span><span class="p">(</span><span class="n">gen</span><span class="p">)</span>
+<span class="c1"># aqui vai o primeiro valor</span>
+<span class="c1"># 1</span>
+<span class="nb">next</span><span class="p">(</span><span class="n">gen</span><span class="p">)</span>
+<span class="c1"># Segundo chegando</span>
+<span class="c1"># 2</span>
+<span class="nb">next</span><span class="p">(</span><span class="n">gen</span><span class="p">)</span>
+<span class="c1"># Terceiro, tá quase acabando</span>
+<span class="c1"># 3</span>
+<span class="nb">next</span><span class="p">(</span><span class="n">gen</span><span class="p">)</span>
+<span class="c1"># Quarto e último</span>
+<span class="c1"># 4</span>
+<span class="nb">next</span><span class="p">(</span><span class="n">gen</span><span class="p">)</span>
+<span class="c1"># StopIteration</span>
+
+<span class="n">gen</span> <span class="o">=</span> <span class="n">f_geradora</span><span class="p">()</span>
+<span class="nb">list</span><span class="p">(</span><span class="n">gen</span><span class="p">)</span>
+<span class="c1"># aqui vai o primeiro valor</span>
+<span class="c1"># Segundo chegando</span>
+<span class="c1"># Terceiro, tá quase acabando</span>
+<span class="c1"># Quarto e último</span>
+<span class="c1"># [1, 2, 3, 4]</span>
+</code></pre></div>
+<p>Deu pra sacar agora? A função geradora executa tudo que tem que ser executado até o yield e para. Último, eu juro, aí vamos um pouco mais fundo e voltamos as HOFs:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">gen_test</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+    <span class="k">yield</span> <span class="s1">&#39;primeiro laço&#39;</span>
+
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+    <span class="k">yield</span> <span class="s1">&#39;segundo laço&#39;</span>
+<span class="nb">list</span><span class="p">(</span><span class="n">gen_test</span><span class="p">())</span>
+<span class="c1"># 1</span>
+<span class="c1"># 2</span>
+<span class="c1"># 3</span>
+<span class="c1"># 4</span>
+<span class="c1"># 5</span>
+<span class="c1"># 6</span>
+<span class="c1">#[&#39;primeiro laço&#39;, &#39;segundo laço&#39;]</span>
+</code></pre></div>
+<p>A função executa exatamente o que tem que ser executado e nos retorna apenas o valor do yield. Esse tipo de implementação é a base pra entender as co-rotinas em python, mas isso é assunto pra outra hora e nem vamos falar sobre isso, pois foge do nosso escopo. Porém, você está avisado, pode pesquisar depois sobre a relação de <code>contextmanager</code> e <code>yield</code>.</p>
+<p>Você está o bixão do mundo python já, então vamos complicar esse <code>yield</code> usando mais um amiguinho dele chamado <code>yield from</code>. Tá, tava tudo legal, mas você vai aprender o que é uma monad agora. Eu juro.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">gen</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]]:</span>
+        <span class="k">yield</span> <span class="n">el</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">gen_flat</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]]:</span>
+        <span class="k">yield from</span> <span class="n">el</span>
+
+<span class="nb">list</span><span class="p">(</span><span class="n">gen</span><span class="p">())</span> <span class="c1"># [[1, 2, 3], [4, 5, 6], [7, 8, 9]]</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Seu coração vai chorar agora</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="nb">list</span><span class="p">(</span><span class="n">gen_flat</span><span class="p">())</span> <span class="c1"># [1, 2, 3, 4, 5, 6, 7, 8, 9]</span>
+</code></pre></div>
+<p>CARACAS, como assim? O que aconteceu aqui? Vamos pensar que um map() normal faria o que gen() faz. Mas um flatmap faria o que gen_flat() faz.</p>
+<p>Quando usamos yield em um laço, ele retorna cada valor contido em uma sequência, de maneira preguiçosa. Só que a sequência contém outra sequência, ele vai retornar a sequência, pois cada uma é um elemento independente da sequência, mesmo sendo uma sequência. O <code>yield from</code> vai retornar um iterável preguiçoso dessa nova sequência, a contida na sequência anterior. Ou seja, ele vai nos retornar uma única sequência. Por isso nome 'flat', é como se a sequência de sequências fosse comprimida em uma única sequência. Para entender isso vou deixar como referência um <a href="https://www.youtube.com/watch?v=9QveBbn7t_c&amp;t=167s">vídeo do funfunfunctions</a> que fala exatamente sobre isso. Vale a pena.</p>
+<p>Agora que você já conhece mais um tipo de função, vamos voltar as nossas HOFs</p>
+<h2 id="escrevendo-nossas-proprias-hofs">Escrevendo nossas próprias HOFs</h2>
+<p>Como já sabemos e já foi dito exaustivamente, funções são objetos de primeira classe em Python. Já sabemos. Ok.</p>
+<p>Então como já entendemos tudo isso, vamos só usar alguns exemplos de funções que recebem funções. OBS: Vamos criar algumas funções meio especialistas agora, isso não é muito bom. Mas serve como base de aprendizado. No proxímo tópico vamos explorar mais funções simples e que são de grande utilidade em muitos contextos, porém...</p>
+<p>Vamos trabalhar em outra frente então:</p>
+<ol>
+<li>Mapear sequências mais complexas</li>
+</ol>
+<p>Vamos supor, que temos uma lista de tuplas:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Sim, já vimos algo parecido no tópico anterior</span>
+
+<span class="c1"># Hora, minuto, segundo</span>
+<span class="n">tempo</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">13</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span>
+         <span class="p">(</span><span class="mi">17</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">51</span><span class="p">),</span>
+         <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">51</span><span class="p">),</span>
+         <span class="p">(</span><span class="mi">23</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span> <span class="mi">26</span><span class="p">)]</span>
+</code></pre></div>
+<p>E vamos trabalhar nessa sequência que é um pouco mais complexa do que as que usamos até agora.</p>
+<p>Vamos supor que esse horário que está no padrão que vai de 00:00:00 até 24:59:59. E a resposta que nós esperamos é um horário am/pm que vai de 01:00:00 até 12:59:59. Só que a saída terá que ser uma nova tupla, com quatro elementos <code>(H, M, S, (am ou pm))</code>. Para isso, a nossa função de mapeamento terá que ser um pouco mais inteligente</p>
+<div class="highlight"><pre><span></span><code><span class="n">hora</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">%</span> <span class="mi">12</span><span class="p">,</span> <span class="s1">&#39;pm&#39;</span><span class="p">)</span> <span class="k">if</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">12</span> <span class="k">else</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">%</span> <span class="mi">12</span><span class="p">,</span> <span class="s1">&#39;am&#39;</span><span class="p">)</span>
+<span class="n">formato</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">func_map</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span> <span class="o">*</span><span class="n">funcs</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="n">seq</span><span class="p">:</span>
+        <span class="k">yield</span> <span class="n">funcs</span><span class="p">[</span><span class="mi">1</span><span class="p">](</span><span class="n">el</span><span class="p">,</span> <span class="n">funcs</span><span class="p">[</span><span class="mi">0</span><span class="p">](</span><span class="n">el</span><span class="p">))</span>
+
+<span class="nb">list</span><span class="p">(</span><span class="n">func_map</span><span class="p">(</span><span class="n">tempo</span><span class="p">,</span> <span class="n">hora</span><span class="p">,</span> <span class="n">formato</span><span class="p">))</span> <span class="c1"># [(1, 17, 50, &#39;pm&#39;), (5, 28, 51, &#39;pm&#39;), (2, 28, 51, &#39;am&#39;), (11, 27, 26, &#39;pm&#39;)]</span>
+</code></pre></div>
+<p>De brinde você acabou de fazer uma função curry, mas não vamos nos atentar agora a esse detalhe, vamos focar no que aconteceu.</p>
+<p>A função anônima <code>hora()</code> devolve uma simples tupla com <code>am</code> ou <code>pm</code> usando aritmética modular. Se for menor que doze ele nos retorna uma tupla com <code>(hora, 'am')</code>, se for maior nos retorna <code>(hora, 'pm')</code>. Simples não?</p>
+<p>Agora a função <code>formato()</code> recebe dois argumentos de sequência e só organiza o posicionamento <code>(hora, minuto, segundo, am_ou_pm)</code>.</p>
+<p>Sobre a função <code>func_map()</code> eu inverti a ordem dos argumentos propositalmente pois o <code>*</code> só pode ficar depois dos argumentos fixos. Neste caso o <code>*</code> não é muito importante, mas serve pra gente acumular 'n' argumentos e eles se tornam uma lista dentro do escopo da função. Por isso chamamos <code>funcs[0]</code> e <code>funcs[1]</code>.</p>
+<p>Não iteramos pela lista de funções, e sim pela sequência. Iterar por uma sequência de funções aproveitando os resultados é um conceito chamado de <code>streaming</code> mas vamos dedicar um tópico exclusivamente a isso num futuro próximo.</p>
+<p>Vamos tentar mais uma?</p>
+<p>Jaber diz: <code>Não ficou muito claro, esse exemplo fugiu das listas básicas. Tô meio perdido</code></p>
+<p>Vamos um mais simples pra sintetizar:</p>
+<p>Essa função vai fazer o clássico algoritmo de map/reduce, sim aquele que conta quantas palavras tem em um texto. Mas nós vamos nos limitar a letras, pois é mais simples de demonstrar.</p>
+<p>Vamos entrar com uma string <code>abacaxi</code> e a função vai ter que retornar {'a': 3, 'b': 1, 'c': 1, 'x': 1, 'i': 1}.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">map_reduce</span><span class="p">(</span><span class="n">map_func</span><span class="p">,</span> <span class="n">reduce_func</span><span class="p">,</span> <span class="n">seq</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">reduce_func</span><span class="p">(</span><span class="n">map_func</span><span class="p">(</span><span class="n">seq</span><span class="p">))</span>
+
+<span class="n">map_func</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">((</span><span class="n">el</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="n">x</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">reduce_func</span><span class="p">(</span><span class="n">seq</span><span class="p">):</span>
+    <span class="n">dicio</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">chave</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">seq</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">chave</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">dicio</span><span class="p">:</span>
+            <span class="n">dicio</span><span class="p">[</span><span class="n">chave</span><span class="p">]</span> <span class="o">=</span> <span class="n">val</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">dicio</span><span class="p">[</span><span class="n">chave</span><span class="p">]</span> <span class="o">+=</span> <span class="n">val</span>
+
+    <span class="k">return</span> <span class="n">dicio</span>
+
+<span class="n">map_reduce</span><span class="p">(</span><span class="n">map_func</span><span class="p">,</span> <span class="n">reduce_func</span><span class="p">,</span> <span class="s1">&#39;abacaxi&#39;</span><span class="p">)</span> <span class="c1"># {&#39;a&#39;: 3, &#39;b&#39;: 1, &#39;c&#39;: 1, &#39;x&#39;: 1, &#39;i&#39;: 1}</span>
+</code></pre></div>
+<p>Viu, essa foi simples como roubar doce de criança, tá... Ok, roubar doce de criança é bem difícil, mas nossa implementação é bem simples.</p>
+<p>A função de mapeamento pega elemento por elemento e o transforma em uma tupla com o valor 1 <code>(elemento, 1)</code> e a função de redução tem um dicionário que usa o elemento como chave e o valor 1 vai sendo somado cada vez que ele aparece no dicionário. Então tudo foi mapeado (para transformação em tupla) e foi reduzido em um dicionário. Olha, tudo é muito simples, você já está muito avançado.</p>
+<p>Um ponto legal a ser comentado é que se a nossa entrada fosse uma lista, ele faria um agrupamento por palavras:</p>
+<div class="highlight"><pre><span></span><code><span class="n">map_reduce</span><span class="p">(</span><span class="n">map_func</span><span class="p">,</span> <span class="n">reduce_func</span><span class="p">,</span> <span class="s1">&#39;abacaxi verde limão verde como coco verde&#39;</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+
+<span class="c1"># {&#39;abacaxi&#39;: 1, &#39;verde&#39;: 3, &#39;limão&#39;: 1, &#39;como&#39;: 1, &#39;coco&#39;: 1}</span>
+</code></pre></div>
+<p>Olha que mágico, é uma HOF realmente útil... Não, ela não é. Sabe por que?</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">Counter</span>
+
+<span class="n">Counter</span><span class="p">(</span><span class="s1">&#39;abacaxi&#39;</span><span class="p">)</span> <span class="c1"># Counter({&#39;a&#39;: 3, &#39;b&#39;: 1, &#39;c&#39;: 1, &#39;i&#39;: 1, &#39;x&#39;: 1})</span>
+
+
+<span class="n">Counter</span><span class="p">(</span><span class="s1">&#39;abacaxi verde limão verde como coco verde&#39;</span><span class="o">.</span><span class="n">split</span><span class="p">())</span> <span class="c1"># Counter({&#39;abacaxi&#39;: 1, &#39;como&#39;: 1, &#39;coco&#39;: 1, &#39;limão&#39;: 1, &#39;verde&#39;: 3})</span>
+</code></pre></div>
+<p>Tá, vai... A gente tentou e você aprendeu. SUAHSUAHUSHA.</p>
+<p>Com isso, no próximo tópico, vamos construir nossa propria lib de HOFs simples e que servem para tudo. Um abraço.</p>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 8, 2025 20:22:32 UTC">September 8, 2025</span>
+  </span>
+
+    
+    
+    
+      
+  
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Contributors">
+      
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 5.5A3.5 3.5 0 0 1 15.5 9a3.5 3.5 0 0 1-3.5 3.5A3.5 3.5 0 0 1 8.5 9 3.5 3.5 0 0 1 12 5.5M5 8c.56 0 1.08.15 1.53.42-.15 1.43.27 2.85 1.13 3.96C7.16 13.34 6.16 14 5 14a3 3 0 0 1-3-3 3 3 0 0 1 3-3m14 0a3 3 0 0 1 3 3 3 3 0 0 1-3 3c-1.16 0-2.16-.66-2.66-1.62a5.54 5.54 0 0 0 1.13-3.96c.45-.27.97-.42 1.53-.42M5.5 18.25c0-2.07 2.91-3.75 6.5-3.75s6.5 1.68 6.5 3.75V20h-13zM0 20v-1.5c0-1.39 1.89-2.56 4.45-2.9-.59.68-.95 1.62-.95 2.65V20zm24 0h-3.5v-1.75c0-1.03-.36-1.97-.95-2.65 2.56.34 4.45 1.51 4.45 2.9z"/></svg>
+      
+    </span>
+    <nav>
+      dunossauro, serrones
+    </nav>
+  </span>
+
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.92b07e13.min.js"></script>
+      
+    
+  </body>
+</html>
